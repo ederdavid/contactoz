@@ -1,0 +1,28 @@
+<h1>Listing actions</h1>
+
+<table>
+  <tr>
+    <th>Created at</th>
+    <th>Points</th>
+    <th>Entity changed</th>
+    <th>Action</th>
+    <th>User</th>
+  </tr>
+
+<% @actions.each do |action| %>
+  <tr>
+    <td><%=h action.created_at %></td>
+    <td><%=h action.points %></td>
+    <td><%=h action.entity_changed %></td>
+    <td><%=h action.action %></td>
+    <td><%=h action.user_id %></td>
+    <td><%= link_to 'Show', action %></td>
+    <td><%= link_to 'Edit', edit_action_path(action) %></td>
+    <td><%= link_to 'Destroy', action, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New action', new_action_path %>

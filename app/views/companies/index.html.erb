@@ -1,0 +1,47 @@
+<h1>
+Empresas 
+</h1>
+
+
+<% form_tag companies_path, :method => 'get' do %>
+<p>
+<%= text_field_tag :search, params[:search] %>
+<%= submit_tag "Search" , :name => nil %>
+</p>
+<% end %>
+
+<table>
+  <tr>
+    <th>Company name</th>
+    <th>Company state</th>
+    <th>Company date updated</th>
+    <th>Last update user</th>
+  </tr>
+
+
+<% if @companies_search %>
+
+<% for company in @companies_search %>
+<tr>
+        <td> <%= link_to company.company_name, company_path(company) %><td>
+        <td><%= company.company_state %></td>
+        <td><%= company.updated_at %></td>
+ <td><%= link_to 'Edit', edit_company_path(company) %></td>
+<td</td>
+</tr>
+<% end %>
+
+<% end %>
+
+
+    
+</table>
+
+
+<% if @companies_search %>
+<%= will_paginate @companies_search %>
+<% end %>
+
+<br />
+
+<%= link_to 'New company', new_company_path %>

@@ -1,0 +1,28 @@
+<p>
+  <b>Created at:</b>
+  <%=h @action.created_at %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%=h @action.points %>
+</p>
+
+<p>
+  <b>Entity changed:</b>
+  <%=h @action.entity_changed %>
+</p>
+
+<p>
+  <b>Action:</b>
+  <%=h @action.action %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @action.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_action_path(@action) %> |
+<%= link_to 'Back', actions_path %>

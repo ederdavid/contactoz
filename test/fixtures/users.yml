@@ -1,0 +1,29 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  screen_name: MyString
+  first_name: MyString
+  last_name: MyString
+  profession: MyString
+  email: MyString
+  password: MyString
+  activity_id: MyString
+  level: MyString
+  rating: MyString
+  points: 
+  date_created: 2010-07-09
+  data_contribution: 
+
+two:
+  screen_name: MyString
+  first_name: MyString
+  last_name: MyString
+  profession: MyString
+  email: MyString
+  password: MyString
+  activity_id: MyString
+  level: MyString
+  rating: MyString
+  points: 
+  date_created: 2010-07-09
+  data_contribution: 

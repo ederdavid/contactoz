@@ -1,0 +1,40 @@
+
+<table>
+
+</ br>
+  <tr>
+  
+<th>
+
+
+</th>
+  </tr>
+
+
+</table>
+
+
+<% form_tag homes_path, :method => 'get' do %>
+<p>
+<%= text_field_tag :search, params[:search] %>
+<%= submit_tag "Search" , :name => nil %>
+</p>
+<% end %>
+
+
+
+<% if @contacts %>
+
+<% for contact in @contacts %>
+	<li>
+        <%= link_to contact.name, contact_path(contact) %> 
+	</li>
+<% end %>
+
+
+<%= will_paginate @contacts %>
+<% end %>
+
+<br />
+
+

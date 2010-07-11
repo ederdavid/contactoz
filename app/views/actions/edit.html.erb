@@ -1,0 +1,32 @@
+<h1>Editing action</h1>
+
+<% form_for(@action) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :created_at %><br />
+    <%= f.datetime_select :created_at %>
+  </p>
+  <p>
+    <%= f.label :points %><br />
+    <%= f.text_field :points %>
+  </p>
+  <p>
+    <%= f.label :entity_changed %><br />
+    <%= f.text_field :entity_changed %>
+  </p>
+  <p>
+    <%= f.label :action %><br />
+    <%= f.text_field :action %>
+  </p>
+  <p>
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @action %> |
+<%= link_to 'Back', actions_path %>
