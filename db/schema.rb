@@ -20,11 +20,6 @@ ActiveRecord::Schema.define(:version => 20100710033152) do
     t.integer  "user_id"
   end
 
-  create_table "activities", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "companies", :force => true do |t|
     t.string   "company_site"
     t.string   "company_name"
