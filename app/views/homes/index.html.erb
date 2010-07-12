@@ -25,11 +25,13 @@
 
 
 <% if @contacts %>
-
-<% for contact in @contacts %>
-	<li>
-        <%= link_to contact.name, contact_path(contact) %> 
-	</li>
+<%form_tag contact_saveds_path, method => :post do%>
+	<% for contact in @contacts %>
+		<li>
+		<%check_box_tag "contact_saved_id[]" contact_saved_id %>
+		<%= link_to contact.name, contact_path(contact) %> 
+		</li>
+	<% end %>
 <% end %>
 
 

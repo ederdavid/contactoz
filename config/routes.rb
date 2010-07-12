@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :contact_saveds
+
   map.resources :actions
 
   map.resources :activities
