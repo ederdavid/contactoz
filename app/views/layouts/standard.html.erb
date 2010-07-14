@@ -6,21 +6,25 @@
 charset=iso-8859-1" />
 <meta http-equiv="Content-Language" content="en-us" />
 <title>Library Info System</title>
-<%= stylesheet_link_tag "style" %>
+<%= stylesheet_link_tag "stylesheet" %>
+<%= javascript_include_tag 'jquery-1.3.2.min.js', 'ui.core.js', 'ui.tabs.js', 'application' %>
 </head>
+
 <body id="library">
+
 <div id="container">
 <div id="header">
 <h1>El Directorio</h1>
 <h3>Base de Datos de Empresas y Contactos </h3>
 </div>
 
+<a href="">Click on this Link</a>
 
+</ br>
 <% tabs_tag do |tab| %>
   <%= tab.home       'Contacts', root_path %>
   <%= tab.companies       'Company', companies_path %>
 <% end %>
-<p></p>
 
 
 <div id="user_nav">
@@ -31,22 +35,19 @@ charset=iso-8859-1" />
         <%= current_user.screen_name %>
         <%= current_user.id %>
         <%= current_user.level %>
-
-
 <% else %>
         <%= link_to "Register", new_user_path %> |
         <%= link_to "Login", login_path %>
 <% end %>
 
-<p></p>
-</ br>
 </div>
-
 
 <div id="content">
 <%= yield -%>
 </div>
-<div id="sidebar"></div>
+
 </div>
+
+
 </body>
 </html>
