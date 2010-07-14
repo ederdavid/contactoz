@@ -23,21 +23,39 @@
 <% end %>
 
 
+<% if $results %>
+<h1>
+Contactos 
+</h1>
+<table>
+	<tr>
+		<td><%= link_to "Title", :controller => "homes", :action => "sortByTitle", :id => "1" %></td>
+		<td><%= link_to "Name", :controller => "homes", :action => "sortByName", :id => "1" %></td>
+		<td><%= link_to "City", :controller => "homes", :action => "sortByCity", :id => "1" %></td>
+		<td><%= link_to "Country", :controller => "homes", :action => "sortByCountry", :id => "1" %></td>
+		<td><%= link_to "Linkedin Id", :controller => "homes", :action => "sortByLinkedInId", :id => "1" %></td>
+		<td><%= link_to "Contact last updated", :controller => "homes", :action => "sortByContactLastUpdated", :id => "1" %></td>
+	</tr>
+	<% form_tag :action => 'cart' do %>
+		<% for contact in $results %>
+			<tr>
+				<td><%= check_box_tag "contact[]", contact.id %></td>
+				<td><%= contact.title %> </td>
+				<td><%= link_to contact.name, contact_path(contact) %> </td>
+				<td><%= contact.city %> </td>
+				<td><%= contact.country %> </td>
+				<td><%= contact.linkedin_id %> </td>
+				<td><%= contact.contact_last_updated %> </td>
+			</tr>
 
-<% if @contacts %>
-<%form_tag contact_saveds_path, method => :post do%>
-	<% for contact in @contacts %>
-		<li>
-		<%check_box_tag "contact_saved_id[]" contact_saved_id %>
-		<%= link_to contact.name, contact_path(contact) %> 
-		</li>
-	<% end %>
+		<% end %>
+	<tr>
+		<td><%= submit_tag "Agregar a carrito" %></td>
+		<td><% end %></td>
+		<td><%= will_paginate $results %></td>
+	</tr>
 <% end %>
-
-
-<%= will_paginate @contacts %>
-<% end %>
-
+</table>
 <br />
 
 

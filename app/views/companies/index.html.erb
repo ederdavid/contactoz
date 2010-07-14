@@ -1,8 +1,3 @@
-<h1>
-Empresas 
-</h1>
-
-
 <% form_tag companies_path, :method => 'get' do %>
 <p>
 <%= text_field_tag :search, params[:search] %>
@@ -10,38 +5,39 @@ Empresas
 </p>
 <% end %>
 
+<% if $companies_search %>
+<h1>
+Empresas 
+</h1>
+
+
 <table>
-  <tr>
-    <th>Company name</th>
-    <th>Company state</th>
-    <th>Company date updated</th>
-    <th>Last update user</th>
-  </tr>
+	  <tr>
+	    <td><%= link_to "Company Name", :controller => "companies", :action => "sortByName", :id => "1" %></td>
+	    <td><%= link_to "Company State", :controller => "companies", :action => "sortByState", :id => "1" %></td>
+	    <td><%= link_to "Company date updated", :controller => "companies", :action => "sortByDateUpdated", :id => "1" %></td>
+	    <td><%= link_to "Number of contacts", :controller => "companies", :action => "sortByNumber", :id => "1" %></td>
+	    <td>"Edit"</td>
+	  </tr>
 
-
-<% if @companies_search %>
-
-<% for company in @companies_search %>
-<tr>
-        <td> <%= link_to company.company_name, company_path(company) %><td>
-        <td><%= company.company_state %></td>
-        <td><%= company.updated_at %></td>
- <td><%= link_to 'Edit', edit_company_path(company) %></td>
-<td</td>
-</tr>
-<% end %>
-
-<% end %>
-
-
-    
+	<% for company in $companies_search %>
+	<tr>
+		<td> <%= link_to company.company_name, company_path(company) %><td>
+		<td><%= company.company_state %></td>
+		<td><%= company.updated_at %></td>
+		<%= c = Company.find(company.id) %>
+		<%= c.searchContacts(c) %>
+		<% if @result %>
+			<td> <%= @result %> </td>
+		<% else %>
+			<td> 0 </td>
+		<% end %>
+		<td><%= link_to 'Edit', edit_company_path(company) %></td>
+	</tr>
+	<% end %>
 </table>
-
-
-<% if @companies_search %>
-<%= will_paginate @companies_search %>
+<% if $companies_search %>
+<%= will_paginate $companies_search %>
 <% end %>
-
-<br />
-
 <%= link_to 'New company', new_company_path %>
+<% end %>
