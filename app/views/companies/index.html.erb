@@ -23,7 +23,7 @@ Empresas
 	<% for company in $companies_search %>
 	<tr>
 		<td><%= check_box_tag "company[]", company.id %></td>
-		<td> <%= link_to company.company_name, company_path(company) %><td>
+		<td><%= link_to company.company_name, company_path(company) %><td>
 		<td><%= company.company_state %></td>
 		<td><%= company.updated_at %></td>
 		<% $allContacts = company.id %>

@@ -19,10 +19,11 @@ Empresas
 	    <td><%= link_to "Number of contacts", :controller => "companies", :action => "sortByNumber", :id => "1" %></td>
 	    <td>"Edit"</td>
 	  </tr>
-
+<% form_tag :action => "export_to_csv" do %>
 	<% for company in $companies_search %>
 	<tr>
-		<td> <%= link_to company.company_name, company_path(company) %><td>
+		<td><%= check_box_tag "company[]", company %></td>
+		<td><%= link_to company.company_name, company_path(company) %><td>
 		<td><%= company.company_state %></td>
 		<td><%= company.updated_at %></td>
 		<% $allContacts = company.id %>
@@ -30,6 +31,8 @@ Empresas
 		<td><%= link_to 'Edit', edit_company_path(company) %></td>
 	</tr>
 	<% end %>
+<td><%= submit_tag "Exportar a CSV" %></td>
+<% end %>
 </table>
 <% if $companies_search %>
 <%= will_paginate $companies_search %>

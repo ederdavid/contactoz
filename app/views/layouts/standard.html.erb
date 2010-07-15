@@ -18,11 +18,9 @@ charset=iso-8859-1" />
 <h3>Base de Datos de Empresas y Contactos </h3>
 </div>
 
-<a href="">Click on this Link</a>
-
 </ br>
 <% tabs_tag do |tab| %>
-  <%= tab.home       'Contacts', contacts_path %>
+  <%= tab.contacts       'Contacts', contacts_path %>
   <%= tab.companies       'Company', companies_path %>
 <% end %>
 

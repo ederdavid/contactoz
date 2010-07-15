@@ -32,8 +32,8 @@ Contactos
 		<% end %>
 	<tr>
 		<td><%= submit_tag "Agregar a carrito" %></td>
-		<td><% end %></td>
-		<td><%= will_paginate $results %></td>
+	<td><% end %></td>
+	<td><%= will_paginate $results %></td>
 	</tr>
 <% end %>
 </table>
