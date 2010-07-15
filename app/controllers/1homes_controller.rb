@@ -1,8 +1,8 @@
-class ContactsController < ApplicationController
+class HomesController < ApplicationController
     layout 'application'
-    set_tab :contact
+    set_tab :home
 
- def sortByName
+  def sortByName
      $name = "1"
 	$city = nil
 	$country = nil
@@ -65,11 +65,11 @@ class ContactsController < ApplicationController
 	 end
         redirect_to( :controller => 'users', :action => current_user.id)
   end
-
-  # GET /contacts
-  # GET /contacts.xml
+  
+  # GET /homes
+  # GET /homes.xml
   def index
-if params[:search]
+	if params[:search]
 	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', "%#{params[:search]}%"], :order => 'name')
 	$parametro = "%#{params[:search]}%"
 	else
@@ -93,108 +93,82 @@ if params[:search]
         if $lupdated
 	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'contact_last_updated')
 	end
-	if !$allContacts
-    		@contacts = Contact.all
-	else
-		$results = Company.find($allContacts).contacts.paginate(:page=>params[:page],:per_page=> 3, :order => 'name')
-		$allContacts = nil
-	end
+    @homes = Home.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.xml  { render :xml => @contacts }
+      format.xml  { render :xml => @homes }
     end
-  end
+   
+ end
 
-  # GET /contacts/1
-  # GET /contacts/1.xml
+  # GET /homes/1
+  # GET /homes/1.xml
   def show
-    @contact = Contact.find(params[:id])
+    @home = Home.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @contact }
+      format.xml  { render :xml => @home }
     end
   end
 
-  # GET /contacts/new
-  # GET /contacts/new.xml
+  # GET /homes/new
+  # GET /homes/new.xml
   def new
-    @contact = Contact.new
+    @home = Home.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @contact }
+      format.xml  { render :xml => @home }
     end
   end
 
-  # GET /contacts/1/edit
+  # GET /homes/1/edit
   def edit
-    @contact = Contact.find(params[:id])
+    @home = Home.find(params[:id])
   end
 
-  # POST /contacts
-  # POST /contacts.xml
+  # POST /homes
+  # POST /homes.xml
   def create
-    @contact = Contact.new(params[:contact])
-
-    if current_user
-        @action = Action.new({:points => 2, :entity_changed => "contact" , :action => "create", :user_id => current_user.id })
-        @action.save
-        @user = User.find(current_user.id)
-        @user.points= 2 + @user.points
-        @user.save
-
-    	respond_to do |format|
-      		if @contact.save
-        		format.html { redirect_to(@contact, :notice => 'Contact was successfully created.') }
-        		format.xml  { render :xml => @contact, :status => :created, :location => @contact }
-      		else
-        		format.html { render :action => "new" }
-        		format.xml  { render :xml => @contact.errors, :status => :unprocessable_entity }
-      		end
-    	end
-     end
-  end
-
-  # PUT /contacts/1
-  # PUT /contacts/1.xml
-  def update
-
-    if current_user
-    
-      @contact = Contact.find(params[:id])
-      
-      #update actions table
-  
-      @action = Action.new({:points => 2, :entity_changed => "contact" , :action => "update", :user_id => current_user.id })
-      @action.save
-
-      @user = User.find(current_user.id)
-      @user.points= 2 + @user.points
-      @user.save
-
-    	respond_to do |format|
-      		if @contact.update_attributes(params[:contact])
-        		format.html { redirect_to(@contact, :notice => 'Contact was successfully updated.') }
-        		format.xml  { head :ok }
-      		else
-        		format.html { render :action => "edit" }
-        		format.xml  { render :xml => @contact.errors, :status => :unprocessable_entity }
-      		end
-    	end
-    end 
-
-  end
-
-  # DELETE /contacts/1
-  # DELETE /contacts/1.xml
-  def destroy
-    @contact = Contact.find(params[:id])
-    @contact.destroy
+    @home = Home.new(params[:home])
 
     respond_to do |format|
-      format.html { redirect_to(contacts_url) }
+      if @home.save
+        format.html { redirect_to(@home, :notice => 'Home was successfully created.') }
+        format.xml  { render :xml => @home, :status => :created, :location => @home }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @home.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # PUT /homes/1
+  # PUT /homes/1.xml
+  def update
+    @home = Home.find(params[:id])
+
+    respond_to do |format|
+      if @home.update_attributes(params[:home])
+        format.html { redirect_to(@home, :notice => 'Home was successfully updated.') }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @home.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /homes/1
+  # DELETE /homes/1.xml
+  def destroy
+    @home = Home.find(params[:id])
+    @home.destroy
+
+    respond_to do |format|
+      format.html { redirect_to(homes_url) }
       format.xml  { head :ok }
     end
   end

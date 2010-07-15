@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-    layout 'standard'
+    layout 'application'
     set_tab :home
 
   # GET /homes
