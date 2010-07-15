@@ -4,11 +4,10 @@
 <%= submit_tag "Search" , :name => nil %>
 </p>
 <% end %>
-
-<% if $companies_search %>
 <h1>
 Empresas 
 </h1>
+<% if $companies_search %>
 
 
 <table>
@@ -25,13 +24,8 @@ Empresas
 		<td> <%= link_to company.company_name, company_path(company) %><td>
 		<td><%= company.company_state %></td>
 		<td><%= company.updated_at %></td>
-		<%= c = Company.find(company.id) %>
-		<%= c.searchContacts(c) %>
-		<% if @result %>
-			<td> <%= @result %> </td>
-		<% else %>
-			<td> 0 </td>
-		<% end %>
+		<% $allContacts = company.id %>
+		<td> <%= link_to company.contacts.count, :controller => "companies", :action => "displayContacts", :id => 1 %> </td>
 		<td><%= link_to 'Edit', edit_company_path(company) %></td>
 	</tr>
 	<% end %>

@@ -2,97 +2,9 @@ class HomesController < ApplicationController
     layout 'standard'
     set_tab :home
 
-  def sortByName
-     $name = "1"
-	$city = nil
-	$country = nil
-	$linked = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
-  end
-  def sortByTitle
-     $title = "1"
-	$name = nil
-	$city = nil
-	$country = nil
-	$linked = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
-  end
-  def sortByCity
-     $city = "1"
-	$name = nil
-	$country = nil
-	$linked = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
-  end
-  def sortByCountry
-     $country = "1"
-	$name = nil
-	$city = nil
-	$linked = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
-  end
-  def sortByLinkedInId
-     $linked = "1"
-	$name = nil
-	$city = nil
-	$country = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
-  end
-  def sortByContactLastUpdated
-     $lupdated = "1"
-	$name = nil
-	$city = nil
-	$country = nil
-	$linked = nil
-	$title = nil
-     redirect_to(:action => "index")
-  end
-  def cart
-	@ids  = params[:contact]
-         for contact in @ids
-	        @contact=Contact.find(contact)
-		@contact_saved = ContactSaved.new(:title => @contact.title, :name => @contact.name, :city => @contact.city, :state => @contact.state, :country => @contact.country, :linkedin_id => @contact.linkedin_id, :contact_last_updated => @contact.contact_last_updated, :created_at => @contact.created_at, :updated_at => @contact.updated_at, :purchased => 0)
-		@contact_saved.save
-	 end
-        redirect_to( :controller => 'users', :action => current_user.id)
-  end
-  
   # GET /homes
   # GET /homes.xml
   def index
-	if params[:search]
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', "%#{params[:search]}%"], :order => 'name')
-	$parametro = "%#{params[:search]}%"
-	else
-	   $results = nil
-	end
-	if $name
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'name')
-	end
-	if $title
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'title')
-	end
-	if $city
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'city')
-	end
-        if $country
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'country')
-	end
-        if $linked
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'linkedin_id')
-	end
-        if $lupdated
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'contact_last_updated')
-	end
     @homes = Home.all
 
     respond_to do |format|

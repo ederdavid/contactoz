@@ -1,42 +1,42 @@
-<h1>Contactos</h1>
-
 <% form_tag contacts_path, :method => 'get' do %>
 <p>
 <%= text_field_tag :search, params[:search] %>
 <%= submit_tag "Search" , :name => nil %>
 </p>
 <% end %>
-
+<% if $results %>
+<h1>
+Contactos 
+</h1>
 <table>
-  <tr>
-    <th>Title</th>
-    <th>Name</th>
-    <th>City</th>
-    <th>State</th>
-    <th>Country</th>
-    <th>Date updated</th>
-  </tr>
-
-<% if @contacts %>
-<% for contact in @contacts %>
 	<tr>
-	   <td><%=h contact.title %></td> 
-        <td><%= link_to contact.name, contact_path(contact) %><td>
-	<td><%=h contact.city %></td>
-    	<td><%=h contact.state %></td>
-    	<td><%=h contact.country %></td>
-    	<td><%=h contact.date_updated %></td>
-        </tr>
-<% end %>
-<% end %>
+		<td><%= link_to "Title", :controller => "homes", :action => "sortByTitle", :id => "1" %></td>
+		<td><%= link_to "Name", :controller => "homes", :action => "sortByName", :id => "1" %></td>
+		<td><%= link_to "City", :controller => "homes", :action => "sortByCity", :id => "1" %></td>
+		<td><%= link_to "Country", :controller => "homes", :action => "sortByCountry", :id => "1" %></td>
+		<td><%= link_to "Linkedin Id", :controller => "homes", :action => "sortByLinkedInId", :id => "1" %></td>
+		<td><%= link_to "Contact last updated", :controller => "homes", :action => "sortByContactLastUpdated", :id => "1" %></td>
+	</tr>
+	<% form_tag :action => 'cart' do %>
+		<% for contact in $results %>
+			<tr>
+				<td><%= check_box_tag "contact[]", contact.id %></td>
+				<td><%= contact.title %> </td>
+				<td><%= link_to contact.name, contact_path(contact) %> </td>
+				<td><%= contact.city %> </td>
+				<td><%= contact.country %> </td>
+				<td><%= contact.linkedin_id %> </td>
+				<td><%= contact.contact_last_updated %> </td>
+			</tr>
 
+		<% end %>
+	<tr>
+		<td><%= submit_tag "Agregar a carrito" %></td>
+		<td><% end %></td>
+		<td><%= will_paginate $results %></td>
+	</tr>
+<% end %>
 </table>
-
-<% if @contacts %>
-<%= will_paginate @contacts %>
-<% end %>
-
 <br />
 
 
-<%= link_to 'New contact', new_contact_path %>
