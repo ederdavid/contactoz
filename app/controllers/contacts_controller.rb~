@@ -59,7 +59,7 @@ class ContactsController < ApplicationController
   def cart
 	@ids  = params[:contact]
          for contact in @ids
-	        @contact=Contact.find(contact)
+	        @contact=Contact.find(contact.id)
 		@contact_saved = ContactSaved.new(:title => @contact.title, :name => @contact.name, :city => @contact.city, :state => @contact.state, :country => @contact.country, :linkedin_id => @contact.linkedin_id, :contact_last_updated => @contact.contact_last_updated, :created_at => @contact.created_at, :updated_at => @contact.updated_at, :purchased => 0)
 		@contact_saved.save
 	 end
@@ -96,7 +96,6 @@ if params[:search]
 	if !$allContacts
     		@contacts = Contact.all
 	else
-		#$allContacts
 		$results = Company.find($allContacts).contacts.paginate(:page=>params[:page],:per_page=> 3, :order => 'name')
 		$allContacts = nil
 	end

@@ -6,8 +6,11 @@ require 'fastercsv'
 
 
 def export_to_csv
-  @companies = Company.find(:all)
-
+  @ids = params[:company]
+  @companies = []
+  for company in @ids
+	 @companies << Company.find(company)
+  end
   csv_string = FasterCSV.generate do |csv|
     # header row
     csv << ["id", "company_site", "company_name", "company_postcode", "company_address", "company_state", "linkedin_id", "company_phone", "company_fax", "employee_number", "revenue", "fb_id", "company_ownership", "company_overview", "activity_id", "created_at", "updated_at", "contact_id"]
@@ -16,12 +19,12 @@ def export_to_csv
     @companies.each do |company|
       csv << [company.id, company.company_site, company.company_name, company.company_postcode, company.company_address, company.company_state, company.linkedin_id, company.company_phone, company.company_fax, company.employee_number, company.revenue, company.fb_id, company.company_ownership, company.company_overview, company.activity_id, company.created_at, company.updated_at, company.contact_id]
     end
-  end
+end
 
   # send it to the browsah
   send_data csv_string,
             :type => 'text/csv; charset=iso-8859-1; header=present',
-            :disposition => "attachment; filename=users.csv"
+            :disposition => "attachment; filename=companies.csv"
 end
 
 def displayContacts
