@@ -1,0 +1,64 @@
+<h1>Editing contact_saved</h1>
+
+<% form_for(@contact_saved) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :company_id %><br />
+    <%= f.text_field :company_id %>
+  </p>
+  <p>
+    <%= f.label :city %><br />
+    <%= f.text_field :city %>
+  </p>
+  <p>
+    <%= f.label :state %><br />
+    <%= f.text_field :state %>
+  </p>
+  <p>
+    <%= f.label :country %><br />
+    <%= f.text_field :country %>
+  </p>
+  <p>
+    <%= f.label :linkedin_id %><br />
+    <%= f.text_field :linkedin_id %>
+  </p>
+  <p>
+    <%= f.label :accuracy %><br />
+    <%= f.text_field :accuracy %>
+  </p>
+  <p>
+    <%= f.label :contact_last_updated %><br />
+    <%= f.text_field :contact_last_updated %>
+  </p>
+  <p>
+    <%= f.label :created_at %><br />
+    <%= f.date_select :created_at %>
+  </p>
+  <p>
+    <%= f.label :updated_at %><br />
+    <%= f.datetime_select :updated_at %>
+  </p>
+  <p>
+    <%= f.label :accuracy %><br />
+    <%= f.text_field :accuracy %>
+  </p>
+  <p>
+    <%= f.label :purchased %><br />
+    <%= f.text_field :purchased %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @contact_saved %> |
+<%= link_to 'Back', contact_saveds_path %>

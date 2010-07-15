@@ -1,0 +1,15 @@
+class RemoveBadColumnscd < ActiveRecord::Migration
+  def self.up
+	remove_column :contact, :date_updated
+	remove_column :contact, :date_created
+	remove_column :company, :company_date_updated
+	remove_column :company, :date_created
+  end
+
+  def self.down
+	add_column :contact, :date_updated, :date
+	add_column :contact, :date_created, :date
+	add_column :company, :company_date_updated, :date
+	add_column :company, :date_created, :date
+  end
+end

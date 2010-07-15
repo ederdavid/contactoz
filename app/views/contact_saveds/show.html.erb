@@ -1,0 +1,53 @@
+<p>
+  <b>Title:</b>
+  <%=h @contact_saved.title %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @contact_saved.name %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%=h @contact_saved.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%=h @contact_saved.state %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%=h @contact_saved.country %>
+</p>
+
+<p>
+  <b>Linkedin:</b>
+  <%=h @contact_saved.linkedin_id %>
+</p>
+
+<p>
+  <b>Contact last updated:</b>
+  <%=h @contact_saved.contact_last_updated %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%=h @contact_saved.created_at %>
+</p>
+
+<p>
+  <b>Updated at:</b>
+  <%=h @contact_saved.updated_at %>
+</p>
+
+<p>
+  <b>Purchased:</b>
+  <%=h @contact_saved.purchased %>
+</p>
+
+
+<%= link_to 'Edit', edit_contact_saved_path(@contact_saved) %> |
+<%= link_to 'Back', contact_saveds_path %>

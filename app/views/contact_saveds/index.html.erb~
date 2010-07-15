@@ -1,0 +1,44 @@
+<h1>Listing contact_saveds</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Name</th>
+    <th>Company</th>
+    <th>City</th>
+    <th>State</th>
+    <th>Country</th>
+    <th>Linkedin</th>
+    <th>Accuracy</th>
+    <th>Contact last updated</th>
+    <th>Created at</th>
+    <th>Updated at</th>
+    <th>Accuracy</th>
+    <th>Purchased</th>
+  </tr>
+
+<% @contact_saveds.each do |contact_saved| %>
+  <tr>
+    <td><%=h contact_saved.title %></td>
+    <td><%=h contact_saved.name %></td>
+    <td><%=h contact_saved.company_id %></td>
+    <td><%=h contact_saved.city %></td>
+    <td><%=h contact_saved.state %></td>
+    <td><%=h contact_saved.country %></td>
+    <td><%=h contact_saved.linkedin_id %></td>
+    <td><%=h contact_saved.accuracy %></td>
+    <td><%=h contact_saved.contact_last_updated %></td>
+    <td><%=h contact_saved.created_at %></td>
+    <td><%=h contact_saved.updated_at %></td>
+    <td><%=h contact_saved.accuracy %></td>
+    <td><%=h contact_saved.purchased %></td>
+    <td><%= link_to 'Show', contact_saved %></td>
+    <td><%= link_to 'Edit', edit_contact_saved_path(contact_saved) %></td>
+    <td><%= link_to 'Destroy', contact_saved, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New contact_saved', new_contact_saved_path %>

@@ -1,0 +1,50 @@
+<p>
+  <b>Title:</b>
+  <%=h @contact.title %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @contact.name %>
+</p>
+
+
+<p>
+  <b>City:</b>
+  <%=h @contact.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%=h @contact.state %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%=h @contact.country %>
+</p>
+
+<p>
+  <b>Date updated:</b>
+  <%=h @contact.date_updated %>
+</p>
+
+<p>
+  <b>Linkedin:</b>
+  <%=h @contact.linkedin_id %>
+</p>
+
+
+<p>
+  <b>Date created:</b>
+  <%=h @contact.date_created %>
+</p>
+
+<p>
+  <b>Contact last updated:</b>
+  <%=h @contact.contact_last_updated %>
+</p>
+
+
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>

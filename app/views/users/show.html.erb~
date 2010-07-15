@@ -1,0 +1,81 @@
+<p>
+  <b>Screen name:</b>
+  <%=h @user.screen_name %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%=h @user.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%=h @user.last_name %>
+</p>
+
+<p>
+  <b>Profession:</b>
+  <%=h @user.profession %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%=h @user.email %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%=h @user.password %>
+</p>
+
+<p>
+  <b>Level:</b>
+  <%=h @user.level %>
+</p>
+
+<p>
+  <b>Rating:</b>
+  <%=h @user.rating %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%=h @user.points %>
+</p>
+
+<p>
+  <b>Date created:</b>
+  <%=h @user.date_created %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+
+<% if @contact_saveds.count > 0 %>
+	<li>
+	<%= link_to "Title", :controller => "homes", :action => "sortByTitle", :id => "1" %>
+	<%= link_to "Name", :controller => "homes", :action => "sortByName", :id => "1" %>
+	<%= link_to "City", :controller => "homes", :action => "sortByCity", :id => "1" %>
+	<%= link_to "Country", :controller => "homes", :action => "sortByCountry", :id => "1" %>
+	<%= link_to "Linkedin Id", :controller => "homes", :action => "sortByLinkedInId", :id => "1" %>
+	<%= link_to "Contact last updated", :controller => "homes", :action => "sortByContactLastUpdated", :id => "1" %>
+	</li>
+	<% form_tag :controller => 'contact_saveds', :action => 'borrar' do %>
+		 <% for contact_saveds in @contact_saveds %>  
+		   <li>
+		   <%= check_box_tag "contact_saveds[]", contact_saveds.id %>
+		   <%= contact_saveds.title %> 
+		   <%= link_to contact_saveds.name, contact_saveds_path(:action => 'index', :id => contact_saveds.id) %>
+		   <%= contact_saveds.city %> 
+		   <%= contact_saveds.country %> 
+		   <%= contact_saveds.linkedin_id %> 
+		   <%= contact_saveds.contact_last_updated %> 
+		   </li>  
+		 <% end %>
+	<%= submit_tag "Borrar Contactos" %>
+	<% end %>
+	<% form_tag :controller => 'contact_saveds', :action => 'comprar' do %>
+		<%= submit_tag "Comprar Contactos" %>
+	<% end %>
+<% end %>

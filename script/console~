@@ -1,0 +1,5 @@
+require 'rubygems'
+require 'composite_primary_keys'
+#!/usr/bin/env ruby
+require File.expand_path('../../config/boot',  __FILE__)
+require 'commands/console'

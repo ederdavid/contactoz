@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: MyString
+  name: MyString
+  company_id: 
+  city: MyString
+  state: MyString
+  country: MyString
+  linkedin_id: MyString
+  accuracy: 
+  contact_last_updated: MyString
+  created_at: 2010-07-12
+  updated_at: 2010-07-12 13:52:54
+  accuracy: 
+  purchased: MyString
+
+two:
+  title: MyString
+  name: MyString
+  company_id: 
+  city: MyString
+  state: MyString
+  country: MyString
+  linkedin_id: MyString
+  accuracy: 
+  contact_last_updated: MyString
+  created_at: 2010-07-12
+  updated_at: 2010-07-12 13:52:54
+  accuracy: 
+  purchased: MyString
