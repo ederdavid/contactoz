@@ -11,18 +11,16 @@ charset=iso-8859-1" />
 </head>
 
 <body id="library">
-
+jdnkdndkjv
 <div id="container">
 <div id="header">
 <h1>El Directorio</h1>
 <h3>Base de Datos de Empresas y Contactos </h3>
 </div>
 
-<a href="">Click on this Link</a>
-
 </ br>
 <% tabs_tag do |tab| %>
-  <%= tab.home       'Contacts', contacts_path %>
+  <%= tab.contacts       'Contacts', contacts_path %>
   <%= tab.companies       'Company', companies_path %>
 <% end %>
 
@@ -36,6 +34,7 @@ charset=iso-8859-1" />
         <%= current_user.id %>
         <%= current_user.level %>
 <% else %>
+
         <%= link_to "Register", new_user_path %> |
         <%= link_to "Login", login_path %>
 <% end %>

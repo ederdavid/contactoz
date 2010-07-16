@@ -16,8 +16,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :homes, :collection => {:cart => :put}
   
-
-  map.login "login", :controller => "user_sessions", :action => "new"
+  #map.connect 'login/:action', :controller => 'user_sessions', :action => 'create'
+  map.login "login", :controller => "user_sessions", :action => "create"
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   # The priority is based upon order of creation: first created -> highest priority.
 
