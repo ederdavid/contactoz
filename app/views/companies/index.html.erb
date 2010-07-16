@@ -1,41 +1,57 @@
-<% form_tag companies_path, :method => 'get' do %>
-<p>
-<%= text_field_tag :search, params[:search] %>
-<%= submit_tag "Search" , :name => nil %>
-</p>
-<% end %>
-<h1>
-Empresas 
-</h1>
-<% if $companies_search %>
+<% @query = params[:search] %>
 
-<%= link_to "Export to CSV", :controller => "companies", :action => "export_to_csv", :id => "1" %>
+<div class="search">
+<form id="search_form">
+<div class="wrap">
+<input type="text" data-default="search" value="" name="search"></input>
+<button type="submit"></button>
+</div>
+</form>
 
-<table>
-	  <tr>
-	    <td><%= link_to "Company Name", :controller => "companies", :action => "sortByName", :id => "1" %></td>
-	    <td><%= link_to "Company State", :controller => "companies", :action => "sortByState", :id => "1" %></td>
-	    <td><%= link_to "Company date updated", :controller => "companies", :action => "sortByDateUpdated", :id => "1" %></td>
-	    <td><%= link_to "Number of contacts", :controller => "companies", :action => "sortByNumber", :id => "1" %></td>
-	    <td>"Edit"</td>
-	  </tr>
-<% form_tag :action => "export_to_csv" do %>
-	<% for company in $companies_search %>
-	<tr>
-		<td><%= check_box_tag "company[]", company.id %></td>
-		<td> <%= link_to company.company_name, company_path(company) %><td>
-		<td><%= company.company_state %></td>
-		<td><%= company.updated_at %></td>
-		<% $allContacts = company.id %>
-		<td> <%= link_to company.contacts.count, :controller => "companies", :action => "displayContacts", :id => 1 %> </td>
-		<td><%= link_to 'Edit', edit_company_path(company) %></td>
-	</tr>
+</div>
+
+<div class="clear"></div>
+
+<!-- \search -->
+
+
+
+
+<% if @companies %>
+
+	<table border="1">
+          <tr>
+             <td></td>
+            <td><%= link_to "Company Name", :controller => "companies",:query => @query,:action => "sortByName" %></td>
+            <td><%= link_to "Company State", :controller => "companies", :query => @query,:action => "sortByState" %></td>
+            <td><%= link_to "Company date updated", :controller => "companies", :query => @query, :action => "sortByDateUpdated" %></td>
+            <td><%= link_to "Number of contacts", :controller => "companies", :query => @query,:action => "sortByNumber" %></td>
+          </tr>
+
+	<% form_tag :action => "export_to_csv" do %>
+        <% for company in @companies %>
+        <tr>
+                <td><%= check_box_tag "company[]", company.id %></td>
+                <td> <%= link_to company.company_name, company_path(company) %></td>
+                <td><%= company.company_state %></td>
+                <td><%= company.updated_at %></td>
+                <% $allContacts = company.id %>
+                <td> <%= link_to company.contacts.count, :controller => "companies", :action => "displayContacts" %> </td>
+        </tr>
+        <% end %>
+        
+	<td><%= submit_tag "Exportar a CSV" %></td>
 	<% end %>
-<td><%= submit_tag "Exportar a CSV" %></td>
+
+	</table>
+
+<% if @companies.paginate %>
+<%= will_paginate @companies %>
 <% end %>
-</table>
-<% if $companies_search %>
-<%= will_paginate $companies_search %>
-<% end %>
-<%= link_to 'New company', new_company_path %>
+
+<% else %>
+
+
+<%= render :partial => 'shared/homepage' %>
+
 <% end %>

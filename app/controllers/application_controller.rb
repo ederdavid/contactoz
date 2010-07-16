@@ -20,4 +20,7 @@ class ApplicationController < ActionController::Base
     @current_user = current_user_session && current_user_session.record  
   end 
 
+  def comany_sort_name(company)
+	@company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', $parametro], :order => 'company_name')
+  end
 end

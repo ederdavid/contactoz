@@ -1,51 +1,97 @@
 class CompaniesController < ApplicationController
-	   layout 'application'
+    layout 'application'
     set_tab :companies
+
+require 'fastercsv'
+
+
+def export_to_csv
+  @companies = Company.find(:all)
+
+  csv_string = FasterCSV.generate do |csv|
+    # header row
+    csv << ["id", "company_site", "company_name", "company_postcode", "company_address", "company_state", "linkedin_id", "company_phone", "company_fax", "employee_number", "revenue", "fb_id", "company_ownership", "company_overview", "activity_id", "created_at", "updated_at", "contact_id"]
+
+    # data rows
+    @companies.each do |company|
+      csv << [company.id, company.company_site, company.company_name, company.company_postcode, company.company_address, company.company_state, company.linkedin_id, company.company_phone, company.company_fax, company.employee_number, company.revenue, company.fb_id, company.company_ownership, company.company_overview, company.activity_id, company.created_at, company.updated_at, company.contact_id]
+    end
+  end
+
+  # send it to the browsah
+  send_data csv_string,
+            :type => 'text/csv; charset=iso-8859-1; header=present',
+            :disposition => "attachment; filename=users.csv"
+end
+
+def displayContacts
+	redirect_to(:action => "index")
+end
 
 def sortByName
      $name = "1"
 	$state = nil
 	$date = nil
+	$number = nil
      redirect_to(:action => "index")
   end
   def sortByState
      $state = "1"
 	$name = nil
 	$date = nil
+	$number = nil
      redirect_to(:action => "index")
   end
   def sortByDateUpdated
      $date = "1"
 	$name = nil
 	$state = nil
+	$number = nil
+     redirect_to(:action => "index")
+  end
+  def sortByNumber
+     $number = "1"
+	$name = nil
+	$state = nil
+	$date = nil
      redirect_to(:action => "index")
   end
   # GET /companies
   # GET /companies.xml
   def index
+	if !$allContacts
+		if params[:search]
 
-	if params[:search]
+		$companies_search = Company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_name')
+		$parametro = "%#{params[:search]}%"
+		else
+		   $companies_search = nil
+		end
+		if $number
+		$companies_search = Company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', $parametro], :order => 'contact_id')
+		end
+		if $name
+		$companies_search = Company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', $parametro], :order => 'company_name')
+		end
+		if $state
+		$companies_search = Company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', $parametro], :order => 'company_state')
+		end
+		if $date
+		$companies_search = Company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', $parametro], :order => 'updated_at')
+		end
+	    @companies = Company.all
 
-	$companies_search = Company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_name')
-	$parametro = "%#{params[:search]}%"
-	else
-	   $companies_search = nil
+	    respond_to do |format|
+	      format.html # index.html.erb
+	      format.xml  { render :xml => @companies }
+	    end
+	else   
+	#	redirect_to(:controller => "contacts", :action => "index")
 	end
-	if $name
-	$companies_search = Company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', $parametro], :order => 'company_name')
-	end
-	if $state
-	$companies_search = Company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', $parametro], :order => 'company_state')
-	end
-	if $date
-	$companies_search = Company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', $parametro], :order => 'updated_at')
-	end
-    @companies = Company.all
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @companies }
-    end
+
+
+
   end
 
   # GET /companies/1

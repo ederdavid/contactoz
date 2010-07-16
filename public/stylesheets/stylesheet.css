@@ -1133,7 +1133,7 @@ a.link-reply:hover {
 }
 
 #search_form .wrap.focused-field {
-    border:2px solid #25A0CC;
+    border:4px solid #25A0CC;
 }
 
 /* search result page */
