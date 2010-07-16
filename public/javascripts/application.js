@@ -6,12 +6,6 @@
      @className (string) - the class to add to a clicked element
 */
 
- $(document).ready(function(){
-   $("a").click(function(event){
-     alert("Thanks for visiting!");
-   });
- });
-
  $("a").click(function(event){
    event.preventDefault();
    $(this).hide("slow");

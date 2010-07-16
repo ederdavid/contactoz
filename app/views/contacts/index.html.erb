@@ -4,10 +4,10 @@
 <%= submit_tag "Search" , :name => nil %>
 </p>
 <% end %>
-<% if $results %>
 <h1>
 Contactos 
 </h1>
+<% if $results %>
 <table>
 	<tr>
 		<td><%= link_to "Title", :controller => "homes", :action => "sortByTitle", :id => "1" %></td>
