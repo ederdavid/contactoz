@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100714220442) do
+ActiveRecord::Schema.define(:version => 20100716214016) do
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"
@@ -31,9 +31,7 @@ ActiveRecord::Schema.define(:version => 20100714220442) do
     t.string   "company_postcode"
     t.string   "company_address"
     t.string   "company_state"
-    t.date     "company_date_updated"
     t.string   "linkedin_id"
-    t.date     "date_created"
     t.string   "company_phone"
     t.string   "company_fax"
     t.string   "employee_number"
@@ -46,6 +44,20 @@ ActiveRecord::Schema.define(:version => 20100714220442) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contact_id"
+    t.string   "company_city"
+  end
+
+  create_table "contact_saveds", :force => true do |t|
+    t.string   "title"
+    t.string   "name"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "linkedin_id"
+    t.string   "contact_last_updated"
+    t.date     "created_at"
+    t.datetime "updated_at"
+    t.string   "purchased"
   end
 
   create_table "contacts", :force => true do |t|
@@ -54,9 +66,7 @@ ActiveRecord::Schema.define(:version => 20100714220442) do
     t.string   "city"
     t.string   "state"
     t.string   "country"
-    t.date     "date_updated"
     t.string   "linkedin_id"
-    t.date     "date_created"
     t.date     "contact_last_updated"
     t.datetime "created_at"
     t.datetime "updated_at"

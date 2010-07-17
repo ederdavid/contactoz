@@ -19,35 +19,13 @@
 
 <% if @companies %>
 
-	<table border="1">
-          <tr>
-             <td></td>
-            <td><%= link_to "Company Name", :controller => "companies",:sort=>"true",:search => @query,:action => "sortByName" %></td>
-            <td><%= link_to "Company State", :controller => "companies", :search => @query,:action => "sortByState" %></td>
-            <td><%= link_to "Company date updated", :controller => "companies", :search => @query, :action => "sortByDateUpdated" %></td>
-            <td><%= link_to "Number of contacts", :controller => "companies", :search => @query,:action => "sortByNumber" %></td>
-          </tr>
+<!--
+<%= render :partial => "shared/company_results", :object => @companies %>
+-->
+<%= render :partial => "shared/companyresults", :object => @companies %>
 
-	<% form_tag :action => "export_to_csv" do %>
-        <% for company in @companies %>
-        <tr>
-                <td><%= check_box_tag "company[]", company.id %></td>
-                <td> <%= link_to company.company_name, company_path(company) %></td>
-                <td><%= company.company_state %></td>
-                <td><%= company.updated_at %></td>
-                <% $allContacts = company.id %>
-                <td> <%= link_to company.contacts.count, :controller => "companies", :action => "displayContacts" %> </td>
-        </tr>
-        <% end %>
-        
-	<td><%= submit_tag "Exportar a CSV" %></td>
-	<% end %>
 
-	</table>
-
-<% if @companies.paginate %>
-<%= will_paginate @companies %>
-<% end %>
+<!-- \results -->
 
 <% else %>
 
