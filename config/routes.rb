@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :plans
+
     map.connect 'companies/:action', :controller => 'companies', :action => /[a-z_]+/i
   map.resources :contact_saveds
 
