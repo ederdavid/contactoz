@@ -1,0 +1,65 @@
+
+                <div id="results"> 
+                    <div class="categories"> 
+                        <ul class="filters"> 
+                            <li class="active"><a href="#">Contactos</a></li> 
+                            <li><a href="#">Empresas</a></li> 
+                            <li><a href="#">Servicios</a></li> 
+                            <li><a href="#">Productos</a></li> 
+                        </ul> 
+			<% form_tag :action => "export_to_csv" do %>
+ 
+                        <div class="export"> 
+				 <span id="export_button" >
+				<%= image_submit_tag "/images/btn-export.gif",:class => "btn" %> 
+				 </span> 
+
+                            <ul id="export_menu" style="display:none;"> 
+                                <li><a>Export Selectionado</a></li> 
+                                <li><a>Export Todos</a></li> 
+                            </ul> 
+                        </div> 
+                    </div> 
+                    <div class="table-wrap"> 
+                        <table id="result_table" border="0" width="100%" cellspacing="0" cellpadding="0"> 
+                            <col width="25"> 
+                            <col width="285"> 
+                            <col width="67"> 
+                            <col width="150"> 
+                            <col width="50"> 
+                            <col width="110"> 
+                            <col width="80"> 
+                            <thead> 
+                                <tr> 
+                                    <th class="center"><input type="checkbox" id="results_checkall"></th> 
+                                    <th class="sortable sort-carat-up"><%= link_to "Empresa", :controller => "companies",:sort=>"true",:search => @query,:action => "sortByName" %><span></span></th> 
+                                    <th class="sortable sort-carat-both"><%= link_to "Contactos", :controller => "companies", :sort=> "true",:search => @query,:action => "sortByNumber" %><span></span></th>
+				    <th class="sortable sort-carat-both"><%= link_to "Ciudad", :controller => "companies", :sort=> "true",:search => @query, :action => "sortByDateCity" %> <span></span></th> 
+                                    <th class="sortable sort-carat-both"><%= link_to "Estado", :controller => "companies", :sort=> "true",:search => @query,:action => "sortByState" %><span></span></th> 
+                                    <th class="sortable sort-carat-both"><%= link_to "Actualizado", :controller => "companies", :sort=> "true",:search => @query, :action => "sortByDateUpdated" %><span></span></th> 
+                                </tr> 
+                            </thead> 
+                            <tbody> 
+				 <% for company in @companies %>
+                                <tr> 
+					<% $allContacts = company.id %>
+                                    <td class="center"> <%= check_box_tag "company[]", company.id %></td> 
+                                    <td><a><%= link_to company.company_name, company_path(company) %></a></td> 
+                                    <td><a><%= link_to company.contacts.count, :controller => "companies", :action => "displayContacts" %></a></td> 
+                                   <td><%= company.company_city %></td>
+				     <td><%= company.company_state %></td> 
+                                    <td><%= company.updated_at.strftime("%m/%d/%Y")  %></td> 
+                                </tr> 
+      				<% end %>
+                            </tbody> 
+                        </table> 
+			<% end %>
+		<% if @companies.paginate %>
+                <%= will_paginate @companies %>
+                <% end %>        
+
+            </div>
+ 
+                </div> 
+
+

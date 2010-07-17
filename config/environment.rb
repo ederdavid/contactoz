@@ -30,7 +30,7 @@ Rails::Initializer.run do |config|
 
   # Activate observers that should always be running
   # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-  Mime::Type.register "text/css", :css
+  #Mime::Type.register "text/css", :css
 
 
 
