@@ -704,6 +704,7 @@ ul#search_categories li.active div {
 
 .copyright {
     color:#434343;
+    background:url(../images/footer_logo.gif) right top no-repeat;
     padding:10px 50px 10px 0;
     height:50px;
     margin:10px 0 0 0;
@@ -1098,7 +1099,7 @@ a.link-reply:hover {
     -moz-border-radius:3px;
     -webkit-border-radius: 3px;
     background:none repeat scroll 0 0 #FFFFFF;
-    border:2px solid #AAAAAA;
+    border:4px solid #AAAAAA;
     float:left;
     overflow:hidden;
 }
@@ -1133,7 +1134,7 @@ a.link-reply:hover {
 }
 
 #search_form .wrap.focused-field {
-    border:4px solid #25A0CC;
+    border:2px solid #25A0CC;
 }
 
 /* search result page */
@@ -1185,7 +1186,7 @@ a.link-reply:hover {
     float:right;
 }
 
-#results .export span.btn {
+#results .export .btn {
     background:url("../images/btn-export.gif") no-repeat scroll 0 0 transparent;
     color:#79D7FF;
     display:inline-block;
@@ -1199,7 +1200,7 @@ a.link-reply:hover {
     cursor:pointer;
 }
 
-#results .export span.btn:hover {
+#results .export .btn:hover {
     background:url("../images/btn-export-hover.gif") no-repeat scroll 0 0 transparent;
 }
 
