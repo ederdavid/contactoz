@@ -70,13 +70,14 @@ $("#dialog-form").dialog({
 					
 						if (bValid) {
 							jQuery.ajax({
-							    url: 'login/',
+							    url: 'login',
 							    type: 'POST',
 							    data: 'user_session[email]='+email.val()+'&user_session[password]='+password.val()+'&authenticity_token=fHMB08SvRjE0/kQU27JVnch8xaoZMp83Uy0gpbTxyKQ=',
 							    DataType: 'script',
+							    self.location = ''
 							    success: function(){
-							      self.location=''
-							      //removeRow(id);
+							      post_to_url('login', {'user_session[email]':email.val()})
+								//self.location='login/?user_session[email]='+email.val()+'&user_session[password]='+password.val()+'&authenticity_token=fHMB08SvRjE0/kQU27JVnch8xaoZMp83Uy0gpbTxyKQ='
 							    },
 							    error: function(){
 							    }
@@ -91,7 +92,7 @@ $("#dialog-form").dialog({
 					}
 				},
 				close: function() {
-					allFields.val('').removeClass('ui-state-error');
+					//allFields.val('').removeClass('ui-state-error');
 				}
 			});
 
@@ -197,7 +198,7 @@ $(document).ready(function() {
 			    data: company2,
 			    DataType: 'script',
 			    success: function(){
-				    self.location='companies/export_to_csv?company[1]=1'
+				    self.location='companies/export_to_csv?' + company2
 			    },
 			    error: function(){
 			    }

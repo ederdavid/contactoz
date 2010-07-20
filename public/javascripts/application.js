@@ -70,13 +70,13 @@ $("#dialog-form").dialog({
 					
 						if (bValid) {
 							jQuery.ajax({
-							    url: 'login/',
+							    url: 'login',
 							    type: 'POST',
 							    data: 'user_session[email]='+email.val()+'&user_session[password]='+password.val()+'&authenticity_token=fHMB08SvRjE0/kQU27JVnch8xaoZMp83Uy0gpbTxyKQ=',
 							    DataType: 'script',
+							    self.location = ''
 							    success: function(){
-							      self.location=''
-							      //removeRow(id);
+								self.location='login/?user_session[email]='+email.val()+'&user_session[password]='+password.val()+'&authenticity_token=fHMB08SvRjE0/kQU27JVnch8xaoZMp83Uy0gpbTxyKQ='
 							    },
 							    error: function(){
 							    }
@@ -91,7 +91,7 @@ $("#dialog-form").dialog({
 					}
 				},
 				close: function() {
-					allFields.val('').removeClass('ui-state-error');
+					//allFields.val('').removeClass('ui-state-error');
 				}
 			});
 

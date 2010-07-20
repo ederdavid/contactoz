@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-<<<<<<< HEAD:config/routes.rb
+
 
   map.connect 'companies/:action', :controller => 'companies', :action => /[a-z_]+/i
   
@@ -7,11 +7,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.activate '/activate/:activation_code', :controller => 'activations', :action => 'create'
 
-=======
+
   map.resources :plans
 
     map.connect 'companies/:action', :controller => 'companies', :action => /[a-z_]+/i
->>>>>>> bb76e345f8fda188c0a9824e84bdd082f2d628f3:config/routes.rb
+
   map.resources :contact_saveds
 
   map.resources :actions
