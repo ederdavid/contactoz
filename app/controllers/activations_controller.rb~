@@ -1,0 +1,5 @@
+class ActivationsController < ApplicationController
+  def create
+  end
+
+end

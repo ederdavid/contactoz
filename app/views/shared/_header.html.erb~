@@ -1,0 +1,40 @@
+
+  <div id="header">
+            <div class="links">
+                <ul id="search_categories">
+              
+		    <% tabs_tag do |tab| %>
+	            <li class="active"><div> <%= tab.home 'Contactos', root_path %></div></li>
+                    <li><div>   <%= tab.companies 'Empresas', companies_path %> </div></li>
+                    <li><div>Servicios</div></li>
+                    <li><div>Productos</div></li>            
+		    <% end %>
+	        </ul>
+		    
+                <ul class="site">
+	        <% if current_user %> 
+	            <li><span class="sep">|</span></li>
+                    <li> <%= link_to @user_session, edit_user_path(:current) %> </li>
+                    <li><span class="sep">|</span></li>
+                    <li> <%= link_to "Logout", logout_path %></li>
+		<% else %>
+                    <li><%= link_to "Register", new_user_path %> </li>
+        	    <li><span class="sep">|</span></li>
+		    <li id ="log-in"><%= link_to "Login", login_path%></li>         
+		<% end %>
+	       </ul>
+            </div>
+  </div>
+
+<div id="dialog-form" title="Log in">
+	<p class="validateTips">All form fields are required.</p>
+
+	<form>
+	<fieldset>
+		<label for="email">E-mail</label>
+		<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+		<label for="password">Password</label>
+		<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+	</fieldset>
+	</form>
+</div>

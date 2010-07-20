@@ -39,13 +39,17 @@ class UsersController < ApplicationController
     @user = current_user
 #User.find(params[:id])
   end
-
   # POST /users
   # POST /users.xml
   def create
     @user = User.new(params[:user])
     @user.points = 0
 #    respond_to do |format|
+    if @user.save_without_session_maintenance
+      @user.deliver_activation_instructions!
+      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+      redirect_to root_url
+    else
       if @user.save
        flash[:notice]= "Registration successful."
        redirect_to root_url
@@ -60,6 +64,7 @@ class UsersController < ApplicationController
 #        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
 
       #end
+    end
     end
   end
 

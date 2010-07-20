@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	layout 'secondary'
   # GET /users
   # GET /users.xml
   def index
@@ -15,11 +16,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @contact_saveds = ContactSaved.all
-    #@collection = @user, @contact_saveds
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @contact_saveds, :xml => @contact_saveds }
+      format.xml  { render :xml => @contact_saveds }
     end
   end
 
@@ -39,7 +39,6 @@ class UsersController < ApplicationController
     @user = current_user
 #User.find(params[:id])
   end
-
   # POST /users
   # POST /users.xml
   def create

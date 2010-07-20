@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.export_to_csv "export_to_csv", :controller => "companies", :action => "export_to_csv"
+
   map.connect 'companies/:action', :controller => 'companies', :action => /[a-z_]+/i
   
   map.resources :password_resets, :only => [ :new, :create, :edit, :update ]

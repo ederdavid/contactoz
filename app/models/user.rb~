@@ -24,8 +24,4 @@ class User < ActiveRecord::Base
     reset_perishable_token!
     Notifier.deliver_activation_instructions(self)
   end
-  def deliver_welcome!
-    reset_perishable_token!
-    Notifier.deliver_welcome(self)
-  end
 end

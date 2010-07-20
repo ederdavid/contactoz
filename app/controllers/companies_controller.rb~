@@ -10,7 +10,7 @@ def export_to_csv
   for company in params[:company]
       @companies << Company.find(company[1])
   end
-if @companies.count < 5 && !current_user
+if @companies.count < 2 && !current_user
   csv_string = FasterCSV.generate do |csv|
     # header row
     csv << ["id", "company_site", "company_name", "company_postcode", "company_address", "company_state", "linkedin_id", "company_phone", "company_fax", "employee_number", "revenue", "fb_id", "company_ownership", "company_overview", "activity_id", "created_at", "updated_at", "contact_id"]
