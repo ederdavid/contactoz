@@ -11,7 +11,11 @@ def export_to_csv
   #@companies = Company.find(:all)
   @companies = Array.new
   for company in params[:company]
-      @companies << Company.find(company[1])
+     if !company[1] 
+       @companies << Company.find(company)
+     else
+       @companies << Company.find(company[1])
+     end
   end
 if @companies.count < 5 && !current_user
   csv_string = FasterCSV.generate do |csv|
@@ -30,8 +34,6 @@ if @companies.count < 5 && !current_user
             :disposition => "attachment; filename=companies.csv"
 end
 end
-<<<<<<< HEAD:app/controllers/companies_controller.rb
-=======
 
 def csv_import
   
@@ -88,7 +90,6 @@ require 'faster_csv'
       #  end
        # end
 end
->>>>>>> bb76e345f8fda188c0a9824e84bdd082f2d628f3:app/controllers/companies_controller.rb
 
 def displayContacts
 	redirect_to(:action => "index")

@@ -9,11 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD:db/schema.rb
-ActiveRecord::Schema.define(:version => 20100719175919) do
-=======
-ActiveRecord::Schema.define(:version => 20100719165729) do
->>>>>>> bb76e345f8fda188c0a9824e84bdd082f2d628f3:db/schema.rb
+ActiveRecord::Schema.define(:version => 20100720061401) do
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"
@@ -73,11 +69,17 @@ ActiveRecord::Schema.define(:version => 20100719165729) do
     t.date     "contact_last_updated"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "accuracy"
     t.integer  "company_id"
   end
 
   create_table "homes", :force => true do |t|
     t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "imports", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
