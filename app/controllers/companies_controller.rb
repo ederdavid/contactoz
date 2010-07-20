@@ -1,8 +1,11 @@
 class CompaniesController < ApplicationController
     layout 'application'
     set_tab :companies
-
+    $global_page = 20
 require 'fastercsv'
+require 'rio'
+
+require 'fileutils'
 
 def export_to_csv
   @companies = Company.find(:all)
@@ -23,23 +26,78 @@ def export_to_csv
             :disposition => "attachment; filename=users.csv"
 end
 
+def csv_import
+  
+   $KCODE = 'u'  
+   require 'iconv'
+
+   #save temp file
+   path = File.join('public/data/', 'file.csv' )
+   path2 = File.open(path, "wb") { |f| f.write(params[:dump][:file].read) }
+
+=begin
+   File.open('public/data/cleanfile.csv', "w") do |of|
+        
+	  ic_ignore = Iconv.new('LATIN1//IGNORE', 'UTF-8')
+        string = "CONSTRUCCIÔøN"
+        #string = File.read(path)
+  	cleanstring = ic_ignore.iconv(string)
+        of.puts cleanstring
+   end
+=end   
+
+require 'faster_csv'
+ 
+     n=0
+     #@temp_file =
+
+     #open(path) do |f|
+     #f.each_line do |line|
+
+      	FasterCSV.foreach(path,  :col_sep => "|", :encoding => 'n') do |a|
+        #a = row[0].split("|")
+        c=Company.new
+        c.company_name=a[0]
+        c.company_state=a[1]
+        c.company_city=a[2]
+        c.company_address=a[3]
+        c.colonia=a[4]
+        c.company_postcode=a[5]
+        c.company_phone=a[6]
+        c.company_fax=a[7]
+        c.company_site=a[8]
+        c.giro=a[9]
+        c.scian=a[10]
+        c.employee_number=a[11]
+        c.revenue=a[12]
+        c.year_started=a[13]
+	c.save
+     	if c.save
+        	n=n+1
+        	GC.start if n%50==0
+     	end
+	flash[:notice] = "CSV Import Successful,  #{n} new records added to data base"
+	end
+      #  end
+       # end
+end
 
 def displayContacts
 	redirect_to(:action => "index")
 end
 
 def sortByName
-     @companies = Company.paginate(:page=>params[:page],:per_page=> 3, :conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_name')
+     @companies = Company.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_name')
      render :template => 'companies/index'
   end
 
   def sortByState
-     @companies = Company.paginate(:page=>params[:page],:per_page=> 3, :conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_state')
+     @companies = Company.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_state')
      render :template => 'companies/index'
    
   end
   def sortByDateUpdated
-      @companies = Company.paginate(:page=>params[:page],:per_page=> 3, :conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'updated_at')    
+      @companies = Company.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'updated_at')    
       render :template => 'companies/index'
   end
   def sortByNumber
@@ -52,7 +110,7 @@ def sortByName
        @query = params[:search]
        if @query 
         	if params[:sort].nil?
-			@companies = Company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_name')
+			@companies = Company.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_name')
 		end
        end
 

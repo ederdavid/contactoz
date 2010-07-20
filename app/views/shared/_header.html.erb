@@ -14,7 +14,7 @@
                 <ul class="site">
 	        <% if current_user %> 
 	            <li><span class="sep">|</span></li>
-                    <li> <%= link_to "Su Cuenta", edit_user_path(:current) %> </li>
+                    <li> <%= link_to "Su Cuenta", user_path(current_user.id) %> </li>
                     <li><span class="sep">|</span></li>
                     <li> <%= link_to "Logout", logout_path %></li>
 		<% else %>
