@@ -1,0 +1,60 @@
+<div id="results">
+                    <div class="categories">
+                        <ul class="filters">
+                            <li class="active"><a href="#">Contactos</a></li>
+                            <li><a href="#">Empresas</a></li>                            
+			    <li><a href="#">Servicios</a></li>
+                            <li><a href="#">Productos</a></li>                        </ul>
+                        <% form_tag :action => "export_to_csv", :name => "checkboxForm" do %>
+                        <div class="export" >
+                                 <span id="export_button" ><%= image_tag "/images/btn-export.gif",:class => "btn" %> </span>                            
+				<ul id="export_menu" style="display:none;" >
+                                <li id= "export_select"><a>Exportar Selectionados</a></li>
+                                <li id= "export_all"><%= link_to "Exportar Todos", :controller => "companies", :action => "export_to_csv", :company => Company.find(:all)%></li> </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="table-wrap">
+                        <table id="result_table" border="0" width="100%" cellspacing="0" cellpadding="0">
+                            <col width="25">
+                            <col width="285">
+                            <col width="67">
+                            <col width="150">
+                            <col width="50">
+                            <col width="110">
+                            <col width="80">
+                            <thead>
+                                <tr>
+                                    <th class="center"><input type="checkbox" id="results_checkall"></th>
+                                    <th class="sortable sort-carat-up"><%= link_to "Titulo", :controller => "contacts", :sort=>"true",:search => @query,:action => "sortByTitle" %><span></span></th>
+                                    <th class="sortable sort-carat-both"><%= link_to "Nombre", :controller => "contacts", :sort=>"true",:search => @query,:action => "sortByName"%><span></span></th>
+                                    <th class="sortable sort-carat-both"><%= link_to "Empresa", :controller => "contactss", :sort=> "true",:search => @query, :action => "sortByCompany" %> <span></span></th>
+                                    <th class="sortable sort-carat-both"><%= link_to "Estado", :controller => "contacts", :sort=> "true",:search => @query,:action => "sortByState" %><span></span></th>
+                                    <th class="sortable sort-carat-both"><%= link_to "Actualizado", :controller => "contacts", :sort=> "true",:search => @query, :action => "sortByDateUpdated" %><span></span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                 <% for contact in @contacts %>
+                                <tr>  
+                                    <td class="center"> <%= check_box_tag "contact[]", contact.id %></td>
+                                    <td><a><%= link_to contact.title %></a></td>
+                                    <td><a><%= link_to contact.name, contact_path(contact) %></a></td>
+                                     <% if contact.company_id.nil? %>
+                                         <td> 0 </td>
+				     <% else %>
+					<td> Company.find(contact.company_id).company_name, company_path(@company) </td>
+				     <% end %>
+                                     <td><%= contact.state %></td>
+                                    <td><%= contact.updated_at.strftime("%m/%d/%Y")  %></td>
+                                </tr>
+                                <% end %>
+                            </tbody>
+                        </table>
+                        <% end %>
+                <% if @contacts.paginate %>
+                <%= will_paginate @contacts %>
+                <% end %>
+            </div>
+                </div>
+
+
