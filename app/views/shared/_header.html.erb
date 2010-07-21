@@ -16,11 +16,11 @@
 	            <li><span class="sep">|</span></li>
                     <li> <%= link_to "Su Cuenta", user_path(current_user.id) %> </li>
                     <li><span class="sep">|</span></li>
-                    <li> <%= link_to "Logout", logout_path %></li>
+                    <li> <%= link_to "Salir", logout_path %></li>
 		<% else %>
-                    <li><%= link_to "Register", new_user_path %> </li>
+                    <li><%= link_to "Registrarse", new_user_path %> </li>
         	    <li><span class="sep">|</span></li>
-		    <li id ="log-in"><%= link_to "Login", login_path%></li>         
+		    <li id ="log-in"><%= link_to "Entrar", login_path%></li>         
 		<% end %>
 	       </ul>
             </div>
@@ -31,9 +31,9 @@
 
 	<form>
 	<fieldset>
-		<label for="email">E-mail</label>
+		<label for="email">Correo</label>
 		<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
-		<label for="password">Password</label>
+		<label for="password">Contrasena</label>
 		<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
 	</fieldset>
 	</form>
