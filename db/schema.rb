@@ -9,11 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20100720061401) do
-=======
-ActiveRecord::Schema.define(:version => 20100719165729) do
->>>>>>> d53110b5fa47012bb75c895a0ac335e55b37353d
+ActiveRecord::Schema.define(:version => 20100721145859) do
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"
@@ -43,11 +39,11 @@ ActiveRecord::Schema.define(:version => 20100719165729) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contact_id"
-    t.string   "company_city"
     t.string   "colonia"
     t.string   "scian"
     t.string   "giro"
     t.string   "year_started"
+    t.string   "company_city"
   end
 
   create_table "contact_saveds", :force => true do |t|
