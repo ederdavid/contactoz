@@ -54,7 +54,7 @@ $(function() {
 		});
 $("#dialog-form").dialog({
 				autoOpen: false,
-				height: 300,
+				height: 220,
 				width: 350,
 				modal: true,
 				buttons: {
@@ -75,14 +75,11 @@ $("#dialog-form").dialog({
 							    data: 'user_session[email]='+email.val()+'&user_session[password]='+password.val()+'&authenticity_token=fHMB08SvRjE0/kQU27JVnch8xaoZMp83Uy0gpbTxyKQ=',
 							    DataType: 'script',
 							    success: function(){
-							      //self.location='login'
-							      //removeRow(id);
 								self.location='login/?user_session[email]='+email.val()+'&user_session[password]='+password.val()+'&authenticity_token=fHMB08SvRjE0/kQU27JVnch8xaoZMp83Uy0gpbTxyKQ='
 							    },
 							    error: function(){
 							    }
 							  });
-
 							$(this).dialog('close');
 						}
 					},

@@ -27,14 +27,15 @@
   </div>
 
 <div id="dialog-form" title="Log in">
-	<p class="validateTips">All form fields are required.</p>
+	<p class="validateTips">Todos los campos son requeridos.</p>
 
 	<form>
 	<fieldset>
-		<label for="email">Correo</label>
+		<label for="email">Email</label>
 		<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
-		<label for="password">Contrasena</label>
+		<label for="password">Clave</label>
 		<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+		<%= link_to "¿OLvidaste tu contraseña?", :controller => "password_resets", :action => "new" %>
 	</fieldset>
 	</form>
 </div>
