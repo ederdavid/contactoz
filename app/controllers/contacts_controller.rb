@@ -2,60 +2,21 @@ class ContactsController < ApplicationController
     layout 'application'
     set_tab :contact
 
- def sortByName
-     $name = "1"
-	$city = nil
-	$country = nil
-	$linked = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
+
+  def displayContacts
+        redirect_to(:action => "index")
   end
-  def sortByTitle
-     $title = "1"
-	$name = nil
-	$city = nil
-	$country = nil
-	$linked = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
+
+  def sortByName
+     @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['name like ?', "%#{params[:search]}%"], :order => 'name')
+     render :template => 'contacts/index'
   end
-  def sortByCity
-     $city = "1"
-	$name = nil
-	$country = nil
-	$linked = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
+
+  def sortByDateUpdated
+      @companies = Company.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'updated_at')
+      render :template => 'contacts/index'
   end
-  def sortByCountry
-     $country = "1"
-	$name = nil
-	$city = nil
-	$linked = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
-  end
-  def sortByLinkedInId
-     $linked = "1"
-	$name = nil
-	$city = nil
-	$country = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
-  end
-  def sortByContactLastUpdated
-     $lupdated = "1"
-	$name = nil
-	$city = nil
-	$country = nil
-	$linked = nil
-	$title = nil
-     redirect_to(:action => "index")
-  end
+
   def cart
 	@ids  = params[:contact]
          for contact in @ids
@@ -69,41 +30,17 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.xml
   def index
-if params[:search]
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', "%#{params[:search]}%"], :order => 'name')
-	$parametro = "%#{params[:search]}%"
-	else
-	   $results = nil
-	end
-	if $name
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'name')
-	end
-	if $title
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'title')
-	end
-	if $city
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'city')
-	end
-        if $country
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'country')
-	end
-        if $linked
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'linkedin_id')
-	end
-        if $lupdated
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'contact_last_updated')
-	end
-	if !$allContacts
-    		@contacts = Contact.all
-	else
-		$results = Company.find($allContacts).contacts.paginate(:page=>params[:page],:per_page=> 3, :order => 'name')
-		$allContacts = nil
-	end
+       @query = params[:search]
+       if @query
+                if params[:sort].nil?
+                        @contacts = Contact.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['name like ?', "%#{params[:search]}%"], :order => 'name')
+                end
+       end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @contacts }
-    end
+       respond_to do |format|
+            format.html # index.html.erb
+           format.xml  { render :xml => @contacts }
+       end
   end
 
   # GET /contacts/1

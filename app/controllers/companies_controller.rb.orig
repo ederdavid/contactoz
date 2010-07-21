@@ -2,18 +2,27 @@ class CompaniesController < ApplicationController
     layout 'application'
     set_tab :companies
     $global_page = 20
-
 require 'fastercsv'
+
+require 'fileutils'
 
 def export_to_csv
   #@companies = Company.find(:all)
   @companies = Array.new
   for company in params[:company]
+<<<<<<< HEAD
+     if !company[1] 
+       @companies << Company.find(company)
+     else
+       @companies << Company.find(company[1])
+     end
+=======
       if !company[1]
 	@companies << Company.find(company)
       else
         @companies << Company.find(company[1])
       end
+>>>>>>> d53110b5fa47012bb75c895a0ac335e55b37353d
   end
 if @companies.count < 5 && !current_user
   csv_string = FasterCSV.generate do |csv|
@@ -42,9 +51,24 @@ def csv_import
    path = File.join('public/data/', 'file.csv' )
    path2 = File.open(path, "wb") { |f| f.write(params[:dump][:file].read) }
 
+=begin
+   File.open('public/data/cleanfile.csv', "w") do |of|
+        
+	  ic_ignore = Iconv.new('LATIN1//IGNORE', 'UTF-8')
+        string = "CONSTRUCCIÔøN"
+        #string = File.read(path)
+  	cleanstring = ic_ignore.iconv(string)
+        of.puts cleanstring
+   end
+=end   
+
 require 'faster_csv'
  
      n=0
+     #@temp_file =
+
+     #open(path) do |f|
+     #f.each_line do |line|
 
       	FasterCSV.foreach(path,  :col_sep => "|", :encoding => 'n') do |a|
         #a = row[0].split("|")
