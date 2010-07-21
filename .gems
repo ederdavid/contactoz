@@ -1,4 +1,5 @@
 rails 2.3.8
-will_paginate (2.3.14)
-tabs_on_rails (1.0.0)
-authlogic (2.1.5)
+fastercsv -v 1.5.3
+will_paginate -v 2.3.14
+tabs_on_rails -v 1.0.0
+authlogic -v 2.1.5
