@@ -7,7 +7,7 @@
   <h1>Bienvenido a contacto.heroku.com, <%=h @user.first_name %></h1>
   <p>  Se ha inscrito exitosamente a contacto.heroku.com, tu usuario es: <%= @user.screen_name %>.
   <br/>
-  Para entrar al sitio haga 'click' en el siguiente enlace: <%= @url %> </p>
+  Para entrar al sitio haga 'click' en el siguiente enlace: <%= link_to @url %> </p>
   <p>¡Gracias por su preferencia, que tenga un buen día!</p>
   </body>
  </html> 
