@@ -74,7 +74,6 @@ $("#dialog-form").dialog({
 							    type: 'POST',
 							    data: 'user_session[email]='+email.val()+'&user_session[password]='+password.val()+'&authenticity_token=fHMB08SvRjE0/kQU27JVnch8xaoZMp83Uy0gpbTxyKQ=',
 							    DataType: 'script',
-							    self.location = ''
 							    success: function(){
 								self.location='login/?user_session[email]='+email.val()+'&user_session[password]='+password.val()+'&authenticity_token=fHMB08SvRjE0/kQU27JVnch8xaoZMp83Uy0gpbTxyKQ='
 							    },
