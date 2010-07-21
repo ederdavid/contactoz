@@ -2,9 +2,8 @@ class CompaniesController < ApplicationController
     layout 'application'
     set_tab :companies
     $global_page = 20
-require 'fastercsv'
 
-require 'fileutils'
+require 'fastercsv'
 
 def export_to_csv
   #@companies = Company.find(:all)
@@ -43,24 +42,9 @@ def csv_import
    path = File.join('public/data/', 'file.csv' )
    path2 = File.open(path, "wb") { |f| f.write(params[:dump][:file].read) }
 
-=begin
-   File.open('public/data/cleanfile.csv', "w") do |of|
-        
-	  ic_ignore = Iconv.new('LATIN1//IGNORE', 'UTF-8')
-        string = "CONSTRUCCIÔøN"
-        #string = File.read(path)
-  	cleanstring = ic_ignore.iconv(string)
-        of.puts cleanstring
-   end
-=end   
-
 require 'faster_csv'
  
      n=0
-     #@temp_file =
-
-     #open(path) do |f|
-     #f.each_line do |line|
 
       	FasterCSV.foreach(path,  :col_sep => "|", :encoding => 'n') do |a|
         #a = row[0].split("|")
