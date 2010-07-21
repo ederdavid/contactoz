@@ -28,7 +28,7 @@ class PasswordResetsController < ApplicationController
     @user.password = params[:password]
     if @user.save
       flash[:success] = "Your password was successfully updated"
-      redirect_to @user
+      redirect_to root_path
     else
       render :action => :edit
     end
