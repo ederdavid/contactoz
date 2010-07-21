@@ -1,0 +1,20 @@
+<div class="search">
+<form id="search_form">
+<div class="wrap">
+<input type="text" data-default="search" value="" name="search"></input>
+<button type="submit"></button>
+</div>
+</form>
+</div>
+<div class="clear"></div>
+
+<%= render :partial => "shared/passwrdreset" %>
+
+<h1>Reset Password</h1>
+
+<p>Please enter your email address below and then press "Reset Password".</p>
+
+<% form_tag password_resets_path do %>
+  <%= text_field_tag :email %>
+  <%= submit_tag "Reset Password" %>
+<% end %>
