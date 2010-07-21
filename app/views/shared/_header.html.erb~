@@ -16,11 +16,11 @@
 	            <li><span class="sep">|</span></li>
                     <li> <%= link_to "Su Cuenta", user_path(current_user.id) %> </li>
                     <li><span class="sep">|</span></li>
-                    <li> <%= link_to "Logout", logout_path %></li>
+                    <li> <%= link_to "Salir", logout_path %></li>
 		<% else %>
-                    <li><%= link_to "Register", new_user_path %> </li>
+                    <li><%= link_to "Registrarse", new_user_path %> </li>
         	    <li><span class="sep">|</span></li>
-		    <li id ="log-in"><%= link_to "Login", login_path%></li>         
+		    <li id ="log-in"><%= link_to "Entrar", login_path%></li>         
 		<% end %>
 	       </ul>
             </div>
@@ -31,10 +31,10 @@
 
 	<form>
 	<fieldset>
-		<label for="email">Email</label>
-		<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
-		<label for="password">Clave</label>
-		<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+		<p><label for="email">Email</label>
+		<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" /></p>
+		<p><label for="password">Clave</label>
+		<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" /></p>
 		<%= link_to "¿OLvidaste tu contraseña?", :controller => "password_resets", :action => "new" %>
 	</fieldset>
 	</form>
