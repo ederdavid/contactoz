@@ -12,7 +12,7 @@ class Notifier < ActionMailer::Base
     from          "noreply@binarylogic.com" # Removed name/brackets around 'from' to resolve "555 5.5.2 Syntax error." as of Rails 2.3.3
     recipients    user.email
     sent_on       Time.now
-    body          :account_activation_url => activate_url(:activation_code => user.perishable_token, :host => "contacto.heroku.com/activate/")
+    body          :account_activation_url => activate_url(:activation_code => user.perishable_token, :host => "contacto.heroku.com")
   end
   def welcome(user)
     subject       "Welcome to the site!"
