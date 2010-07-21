@@ -46,7 +46,3 @@ Rails::Initializer.run do |config|
 
 config.active_record.observers = :user_observer
 end
-
-ActionMailer::Base.delivery_method = :sendmail
-#ActionMailer::Base.perform_deliveries = true
-ActionMailer::Base.raise_delivery_errors = true
