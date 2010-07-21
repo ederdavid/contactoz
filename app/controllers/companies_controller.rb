@@ -3,7 +3,6 @@ class CompaniesController < ApplicationController
     set_tab :companies
     $global_page = 20
 require 'fastercsv'
-require 'rio'
 
 require 'fileutils'
 
@@ -11,11 +10,11 @@ def export_to_csv
   #@companies = Company.find(:all)
   @companies = Array.new
   for company in params[:company]
-     if !company[1] 
-       @companies << Company.find(company)
-     else
-       @companies << Company.find(company[1])
-     end
+      if !company[1]
+	@companies << Company.find(company)
+      else
+        @companies << Company.find(company[1])
+      end
   end
 if @companies.count < 5 && !current_user
   csv_string = FasterCSV.generate do |csv|

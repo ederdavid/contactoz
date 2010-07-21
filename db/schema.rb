@@ -9,7 +9,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20100720061401) do
+=======
+ActiveRecord::Schema.define(:version => 20100719165729) do
+>>>>>>> d53110b5fa47012bb75c895a0ac335e55b37353d
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"

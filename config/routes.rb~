@@ -1,12 +1,16 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.export_to_csv "export_to_csv", :controller => "companies", :action => "export_to_csv"
 
   map.connect 'companies/:action', :controller => 'companies', :action => /[a-z_]+/i
   
   map.resources :password_resets, :only => [ :new, :create, :edit, :update ]
 
   map.activate '/activate/:activation_code', :controller => 'activations', :action => 'create'
+
+
+  map.resources :plans
+
+    map.connect 'companies/:action', :controller => 'companies', :action => /[a-z_]+/i
 
   map.resources :contact_saveds
 
@@ -26,7 +30,8 @@ ActionController::Routing::Routes.draw do |map|
   
 
   #map.connect 'login/:action', :controller => 'user_sessions', :action => 'create'
-  map.login "login", :controller => "user_sessions", :action => "create"
+  map.login "login", :controller => "user_sessions", :action => "create", :conditions => { :method => :post }
+
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   # The priority is based upon order of creation: first created -> highest priority.
 
