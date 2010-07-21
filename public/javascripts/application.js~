@@ -54,7 +54,7 @@ $(function() {
 		});
 $("#dialog-form").dialog({
 				autoOpen: false,
-				height: 300,
+				height: 200,
 				width: 350,
 				modal: true,
 				buttons: {
@@ -80,7 +80,6 @@ $("#dialog-form").dialog({
 							    error: function(){
 							    }
 							  });
-
 							$(this).dialog('close');
 						}
 					},
