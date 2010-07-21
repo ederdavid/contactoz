@@ -19,6 +19,6 @@ class Notifier < ActionMailer::Base
     from          "noreply@binarylogic.com"
     recipients    user.email
     sent_on       Time.now
-    body          :root_url => root_url
+    body          :host => "contacto.heroku.com"
   end
 end
