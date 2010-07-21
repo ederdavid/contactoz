@@ -46,6 +46,8 @@ Rails::Initializer.run do |config|
 
 config.active_record.observers = :user_observer
 config.action_mailer.delivery_method = :smtp
+config.action_mailer.raise_delivery_errors = true
+end
 ActionMailer::Base.smtp_settings = {
   :address  => "smtp.contacto.heroku.com",
   :port  => 25,
@@ -53,5 +55,3 @@ ActionMailer::Base.smtp_settings = {
   :password  => "1234123466",
   :authentication  => :login
 }
-config.action_mailer.raise_delivery_errors = true
-end
