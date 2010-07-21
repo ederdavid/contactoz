@@ -45,8 +45,6 @@ Rails::Initializer.run do |config|
   # config.i18n.default_locale = :de
 
 config.active_record.observers = :user_observer
-end
-
 config.action_mailer.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
   :address  => "smtp.contacto.heroku.com",
@@ -56,3 +54,4 @@ ActionMailer::Base.smtp_settings = {
   :authentication  => :login
 }
 config.action_mailer.raise_delivery_errors = true
+end
