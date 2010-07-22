@@ -39,6 +39,13 @@ class UsersController < ApplicationController
     @user = current_user
 #User.find(params[:id])
   end
+  def invite
+      @action = Action.new({:points => 2, :entity_changed => "user" , :action => "invite", :user_id => current_user.id })
+      @action.save
+      @user = User.find(current_user.id)
+      current_user.points= 2 + @user.points
+      current_user.save
+  end
   # POST /users
   # POST /users.xml
   def create
