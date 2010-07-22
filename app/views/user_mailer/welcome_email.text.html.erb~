@@ -4,10 +4,10 @@
   <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-  <h1>Welcome to example.com, <%=h @user.first_name %></h1>
-  <p>  You have successfully signed up to example.com, and your username is: <%= @user.screen_name %>.
-<br/>
-  To login to the site, just follow this link: </p>
-  <p>Thanks for joining and have a great day!</p>
+  <h1>Bienvenido a contacto.heroku.com, <%=h @user.first_name %></h1>
+  <p>  Se ha inscrito exitosamente a contacto.heroku.com, tu usuario es: <%= @user.screen_name %>.
+  <br/>
+  Para entrar al sitio haga 'click' en el siguiente enlace: <%= link_to @url %> </p>
+  <p>¡Gracias por su preferencia, que tenga un buen día!</p>
   </body>
  </html> 
