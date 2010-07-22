@@ -7,7 +7,7 @@ class UserMailer < ActionMailer::Base
  body :user => user, :url => "http://contacto.heroku.com/"
  end
  def invite_email(user)
-  recipients user.email
+  recipients user
   from "El directorio de companias <no-reply@contacto.com>"
   subject "¡Te han invitado al directorio de compañías más grande!"
   sent_on Time.now
