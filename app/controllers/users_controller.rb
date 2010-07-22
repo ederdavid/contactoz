@@ -45,6 +45,7 @@ class UsersController < ApplicationController
       @user = User.find(current_user.id)
       current_user.points= 2 + @user.points
       current_user.save
+      redirect_to root_url
   end
   # POST /users
   # POST /users.xml
