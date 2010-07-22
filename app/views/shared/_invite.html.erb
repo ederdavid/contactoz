@@ -1,9 +1,9 @@
-<%= form_tag(:action => "invite") %>
+<%= form_tag :action => "invite" %>
         <p> Invitar a un amigo: </p>
 	<p class="inputtext"><label>Correo</label> <%= text_field "email", "email" %></p> 
 	<div class="clear"></div> 
 	<p class="btn-send text-right"> 
 
-	<%= f.submit 'Invitar!' %>
+	<%= submit_tag 'Invitar!' %>
 	</p>
 <% end %> 
