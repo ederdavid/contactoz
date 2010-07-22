@@ -11,6 +11,6 @@ class UserMailer < ActionMailer::Base
   from "El directorio de companias <no-reply@contacto.com>"
   subject "¡Te han invitado al directorio de compañías más grande!"
   sent_on Time.now
- body :user => user
+ body :url => "http://contacto.heroku.com/"
  end
 end 
