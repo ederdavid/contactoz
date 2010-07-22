@@ -1,0 +1,9 @@
+<% form_for(@user), :url => { :action => "invite" } do |f| %>
+        <p> Invitar a un amigo: </p>
+	<p class="inputtext"><label>Correo</label> <%= f.text_field :email %></p> 
+	<div class="clear"></div> 
+	<p class="btn-send text-right"> 
+
+	<%= f.submit 'Invitar!' %>
+	</p>
+<% end %> 
