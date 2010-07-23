@@ -77,7 +77,7 @@ require 'faster_csv'
        # end
 end
 
-def displayContacts
+def displayCompanies
 	redirect_to(:action => "index")
 end
 

@@ -10,7 +10,7 @@
                                  <span id="export_button" ><%= image_tag "/images/btn-export.gif",:class => "btn" %> </span>                            
 				<ul id="export_menu" style="display:none;" >
                                 <li id= "export_select"><a>Exportar Selectionados</a></li>
-                                <li id= "export_all"><%= link_to "Exportar Todos", :controller => "companies", :action => "export_to_csv", :company => Company.find(:all)%></li> </li>
+                                <li id= "export_all"><%= link_to "Exportar Todos", :controller => "contacts", :action => "export_to_csv", :all => "true"%></li> </li>
                             </ul>
                         </div>
                     </div>
@@ -28,7 +28,7 @@
                                     <th class="center"><input type="checkbox" id="results_checkall"></th>
                                     <th class="sortable sort-carat-up"><%= link_to "Titulo", :controller => "contacts", :sort=>"true",:search => @query,:action => "sortByTitle" %><span></span></th>
                                     <th class="sortable sort-carat-both"><%= link_to "Nombre", :controller => "contacts", :sort=>"true",:search => @query,:action => "sortByName"%><span></span></th>
-                                    <th class="sortable sort-carat-both"><%= link_to "Empresa", :controller => "contactss", :sort=> "true",:search => @query, :action => "sortByCompany" %> <span></span></th>
+                                    <th class="sortable sort-carat-both"><%= link_to "Empresa", :controller => "contactss", :sort=> "true",:search => @query, :action => "ssortByCompany" %> <span></span></th>
                                     <th class="sortable sort-carat-both"><%= link_to "Estado", :controller => "contacts", :sort=> "true",:search => @query,:action => "sortByState" %><span></span></th>
                                     <th class="sortable sort-carat-both"><%= link_to "Actualizado", :controller => "contacts", :sort=> "true",:search => @query, :action => "sortByDateUpdated" %><span></span></th>
                                 </tr>

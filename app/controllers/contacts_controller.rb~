@@ -1,65 +1,71 @@
 class ContactsController < ApplicationController
-    layout 'standard'
+    layout 'application'
     set_tab :contact
 
- def sortByName
-     $name = "1"
-	$city = nil
-	$country = nil
-	$linked = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
+def export_to_csv
+  if params[:all]
+	@contacts = Contact.find(:all)
+  else
+	  @contacts = Array.new
+	  for company in params[:company]
+	      if !company[1]
+		@contacts << Contact.find(company)
+	      else
+		@contacts << Contact.find(company[1])
+	      end
+	  end
   end
+#if @contacts.count < 5 && !current_user
+  csv_string = FasterCSV.generate do |csv|
+    # header row
+    csv << ["id", "company_site", "company_name", "company_postcode", "company_address", "company_state", "linkedin_id", "company_phone", "company_fax", "employee_number", "revenue", "fb_id", "company_ownership", "company_overview", "activity_id", "created_at", "updated_at", "contact_id"]
+
+    # data rows
+    @contacts.each do |company|
+      csv << [company.id, company.company_site, company.company_name, company.company_postcode, company.company_address, company.company_state, company.linkedin_id, company.company_phone, company.company_fax, company.employee_number, company.revenue, company.fb_id, company.company_ownership, company.company_overview, company.activity_id, company.created_at, company.updated_at, company.contact_id]
+    end
+  end
+
+  # send it to the browsah
+  send_data csv_string,
+            :type => 'text/csv; charset=iso-8859-1; header=present',
+            :disposition => "attachment; filename=companies.csv"
+#end
+end
+
+  def displayContacts
+        redirect_to(:action => "index")
+  end
+
   def sortByTitle
-     $title = "1"
-	$name = nil
-	$city = nil
-	$country = nil
-	$linked = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
+     @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['title like ?', "%#{params[:search]}%"], :order => 'title')
+     render :template => 'contacts/index'
   end
-  def sortByCity
-     $city = "1"
-	$name = nil
-	$country = nil
-	$linked = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
+
+  def sortByCompany
+      @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['company_id like ?', "%#{params[:search]}%"], :order => 'company_id')
+      render :template => 'contacts/index'
   end
-  def sortByCountry
-     $country = "1"
-	$name = nil
-	$city = nil
-	$linked = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
+
+  def sortByName
+      @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['name like ?', "%#{params[:search]}%"], :order => 'name')
+      render :template => 'contacts/index'
   end
-  def sortByLinkedInId
-     $linked = "1"
-	$name = nil
-	$city = nil
-	$country = nil
-	$title = nil
-	$lupdated = nil
-     redirect_to(:action => "index")
+
+  def sortByDateUpdated
+      @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['updated_at like ?', "%#{params[:search]}%"], :order => 'updated_at')
+      render :template => 'contacts/index'
   end
-  def sortByContactLastUpdated
-     $lupdated = "1"
-	$name = nil
-	$city = nil
-	$country = nil
-	$linked = nil
-	$title = nil
-     redirect_to(:action => "index")
+
+  def sortByState
+      @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['state like ?', "%#{params[:search]}%"], :order => 'state')
+      render :template => 'contacts/index'
   end
+
   def cart
 	@ids  = params[:contact]
          for contact in @ids
-	        @contact=Contact.find(contact.id)
+	        @contact=Contact.find(contact)
 		@contact_saved = ContactSaved.new(:title => @contact.title, :name => @contact.name, :city => @contact.city, :state => @contact.state, :country => @contact.country, :linkedin_id => @contact.linkedin_id, :contact_last_updated => @contact.contact_last_updated, :created_at => @contact.created_at, :updated_at => @contact.updated_at, :purchased => 0)
 		@contact_saved.save
 	 end
@@ -69,41 +75,17 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.xml
   def index
-if params[:search]
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', "%#{params[:search]}%"], :order => 'name')
-	$parametro = "%#{params[:search]}%"
-	else
-	   $results = nil
-	end
-	if $name
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'name')
-	end
-	if $title
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'title')
-	end
-	if $city
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'city')
-	end
-        if $country
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'country')
-	end
-        if $linked
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'linkedin_id')
-	end
-        if $lupdated
-	$results = Contact.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['name like ?', $parametro], :order => 'contact_last_updated')
-	end
-	if !$allContacts
-    		@contacts = Contact.all
-	else
-		$results = Company.find($allContacts).contacts.paginate(:page=>params[:page],:per_page=> 3, :order => 'name')
-		$allContacts = nil
-	end
+       @query = params[:search]
+       if @query
+                if params[:sort].nil?
+                        @contacts = Contact.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['name like ?', "%#{params[:search]}%"], :order => 'name')
+                end
+       end
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.xml  { render :xml => @contacts }
-    end
+       respond_to do |format|
+            format.html # index.html.erb
+           format.xml  { render :xml => @contacts }
+       end
   end
 
   # GET /contacts/1

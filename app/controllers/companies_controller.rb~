@@ -7,7 +7,7 @@ require 'fastercsv'
 
 def export_to_csv
   if params[:all]
-	@companies = Companies.find(:all)
+	@companies = Company.find(:all)
   else
 	  @companies = Array.new
 	  for company in params[:company]
