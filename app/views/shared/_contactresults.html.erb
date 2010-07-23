@@ -42,7 +42,7 @@
                                      <% if contact.company_id.nil? %>
                                          <td> 0 </td>
 				     <% else %>
-					<td> Company.find(contact.company_id).company_name, company_path(@company) </td>
+					<td> <%= link_to Company.find(contact.company_id).company_name, company_path(contact.company)%> </td>
 				     <% end %>
                                      <td><%= contact.state %></td>
                                     <td><%= contact.updated_at.strftime("%m/%d/%Y")  %></td>

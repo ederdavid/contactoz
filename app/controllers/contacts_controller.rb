@@ -7,7 +7,7 @@ def export_to_csv
 	@contacts = Contact.find(:all)
   else
 	  @contacts = Array.new
-	  for company in params[:contact]
+	  for contact in params[:contact]
 	      if !contact[1]
 		@contacts << Contact.find(contact)
 	      else
@@ -20,7 +20,7 @@ def export_to_csv
     csv << ["id", "title", "name", "city", "state", "country", "linkedin_id", "contact_last_updated", "created_at", "updated_at", "accuracy", "company_id"]
 
     # data rows
-    @contacts.each do |company|
+    @contacts.each do |contact|
       csv << [contact.id, contact.title, contact.name, contact.city, contact.state, contact.country, contact.linkedin_id, contact.contact_last_updated, contact.created_at, contact.updated_at, contact.accuracy, contact.company_id]
     end
   end
