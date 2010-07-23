@@ -195,7 +195,7 @@ $(document).ready(function() {
 			    data: company2,
 			    DataType: 'script',
 			    success: function(response){
-				    self.location= 'companies/export_to_csv?'+ company2
+				    "self.location= 'companies/export_to_csv?'+ company2"
 				    "self.location= url"
 			    },
 			    error: function(){
