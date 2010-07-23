@@ -48,32 +48,6 @@
   <%=h @user.date_created %>
 </p>
 
-<%= render :partial => '/shared/import' %>
-
-<% if @contact_saveds.count > 0 %>
-	<li>
-	"Title"
-	"Name"
-	"City"
-	"Country"
-	"Linkedin Id"
-	"Contact last updated"
-	</li>
-	<% form_tag :controller => 'contact_saveds', :action => 'borrar' do %>
-		 <% for contact_saveds in @contact_saveds %>  
-		   <li>
-		   <%= check_box_tag "contact_saveds[]", contact_saveds.id %>
-		   <%= contact_saveds.title %> 
-		   <%= link_to contact_saveds.name, contact_saveds_path(:action => 'index', :id => contact_saveds.id) %>
-		   <%= contact_saveds.city %> 
-		   <%= contact_saveds.country %> 
-		   <%= contact_saveds.linkedin_id %> 
-		   <%= contact_saveds.contact_last_updated %> 
-		   </li>  
-		 <% end %>
-	<%= submit_tag "Borrar Contactos" %>
-	<% end %>
-	<% form_tag :controller => 'contact_saveds', :action => 'comprar' do %>
-		<%= submit_tag "Comprar Contactos" %>
-	<% end %>
-<% end %>
+<%= render :partial => '/shared/invite' %>
+<%= render :partial => '/shared/import2' %>
+<%= render :partial => '/shared/contacts_saved' %>

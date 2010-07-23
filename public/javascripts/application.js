@@ -190,12 +190,13 @@ $(document).ready(function() {
 		     }  
 		   }
 		jQuery.ajax({
-			    url: 'companies/export_to_csv?' + company2,
+			    url: 'companies/export_to_csv',
 			    type: 'POST',
 			    data: company2,
 			    DataType: 'script',
-			    success: function(){
-				    self.location='companies/export_to_csv?' + company2
+			    success: function(response){
+				    self.location= 'companies/export_to_csv?'+ company2
+				    "self.location= url"
 			    },
 			    error: function(){
 			    }

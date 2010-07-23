@@ -2,21 +2,19 @@ class CompaniesController < ApplicationController
     layout 'application'
     set_tab :companies
     $global_page = 20
+
 require 'fastercsv'
 
-require 'fileutils'
-
 def export_to_csv
-  #@companies = Company.find(:all)
   @companies = Array.new
   for company in params[:company]
-      if company[1]
+      if !company[1]
 	@companies << Company.find(company)
       else
         @companies << Company.find(company[1])
       end
   end
-if @companies.count < 5 && !current_user
+#if @companies.count < 5 && !current_user
   csv_string = FasterCSV.generate do |csv|
     # header row
     csv << ["id", "company_site", "company_name", "company_postcode", "company_address", "company_state", "linkedin_id", "company_phone", "company_fax", "employee_number", "revenue", "fb_id", "company_ownership", "company_overview", "activity_id", "created_at", "updated_at", "contact_id"]
@@ -28,10 +26,10 @@ if @companies.count < 5 && !current_user
   end
 
   # send it to the browsah
-  send_data csv_string,
+  send_data csv,
             :type => 'text/csv; charset=iso-8859-1; header=present',
             :disposition => "attachment; filename=companies.csv"
-end
+#end
 end
 
 def csv_import
@@ -43,24 +41,9 @@ def csv_import
    path = File.join('public/data/', 'file.csv' )
    path2 = File.open(path, "wb") { |f| f.write(params[:dump][:file].read) }
 
-=begin
-   File.open('public/data/cleanfile.csv', "w") do |of|
-        
-	  ic_ignore = Iconv.new('LATIN1//IGNORE', 'UTF-8')
-        string = "CONSTRUCCIÔøN"
-        #string = File.read(path)
-  	cleanstring = ic_ignore.iconv(string)
-        of.puts cleanstring
-   end
-=end   
-
 require 'faster_csv'
  
      n=0
-     #@temp_file =
-
-     #open(path) do |f|
-     #f.each_line do |line|
 
       	FasterCSV.foreach(path,  :col_sep => "|", :encoding => 'n') do |a|
         #a = row[0].split("|")
