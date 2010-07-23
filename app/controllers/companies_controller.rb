@@ -6,13 +6,17 @@ class CompaniesController < ApplicationController
 require 'fastercsv'
 
 def export_to_csv
-  @companies = Array.new
-  for company in params[:company]
-      if !company[1]
-	@companies << Company.find(company)
-      else
-        @companies << Company.find(company[1])
-      end
+  if params[:all]
+	@companies = Companies.find(:all)
+  else
+	  @companies = Array.new
+	  for company in params[:company]
+	      if !company[1]
+		@companies << Company.find(company)
+	      else
+		@companies << Company.find(company[1])
+	      end
+	  end
   end
 #if @companies.count < 5 && !current_user
   csv_string = FasterCSV.generate do |csv|

@@ -14,7 +14,7 @@
 				 </span> 
                             <ul id="export_menu" style="display:none;" > 
                                 <li id= "export_select"><a>Exportar Selectionados</a></li> 
-                                <li id= "export_all"><%= link_to "Exportar Todos", :controller => "companies", :action => "export_to_csv", :company => Company.find(:all)%></li> </li> 
+                                <li id= "export_all"><%= link_to "Exportar Todos", :controller => "companies", :action => "export_to_csv", :all => "true"%></li> </li> 
                             </ul> 
                         </div>
                     </div> 
