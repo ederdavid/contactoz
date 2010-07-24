@@ -21,11 +21,7 @@
 <div class="bodywrap">
 <div class="container"> 
     
-<% if current_user %>
-<div class="account-info"> 
-Bienvenido, <a href="#"> <%= current_user.screen_name %> </a> (<a href="#" title="Data contributed: 2">2</a>) <a href="#" class="unrated">Unrated</a> <span>Points: <a href="#">10</a></span>
-</div> 
-<% end %>
+<%= render :partial => '/shared/account' %>
     
 <%= yield %> 
 </div>

@@ -25,8 +25,7 @@ class PasswordResetsController < ApplicationController
   end
 
   def update
-    @user = User.find_using_perishable_token(params[:id])
-    @user.password = params[:password]
+    @user.update_attribute(:password , params[:password])
     if @user.save
       flash[:success] = "Your password was successfully updated"
       redirect_to @user

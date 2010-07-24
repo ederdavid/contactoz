@@ -29,7 +29,7 @@
  
                                 <div class="contact-form"> 
  
-				    <% form_for @user, :url => { :model => "user_mailer",:action => "welcome_email" } do |f| %>
+				    <% form_for(@user) do |f| %>
 				    <%= f.error_messages %>
 
                                         <p class="inputtext"><label>Nombre *</label> <%= f.text_field :screen_name %></p>
@@ -38,7 +38,7 @@
                                         <p class="inputtext"><label>Contrasena</label> <%= f.password_field :password_confirmation %></p> 
                                         <div class="clear"></div> 
                                         <p class="btn-send text-right"> 
-                                        <span class="notice-field"><em><strong>* mandatory fileds</strong></em></span> 
+                                        <span class="notice-field"><em><strong>* campos obligatorios</strong></em></span> 
                                   
  					<%= f.submit 'Registre' %>
       
@@ -57,12 +57,9 @@
  
                         </div> 
                     </div> 
- 
-                    <!--/ content -->        
 
-			<!-- navigation -->
-			<%= render :partial => 'shared/navigation_plans' %> 
-			<!--/ navigation --> 
+                        <%= render :partial => 'shared/navigation_plans' %>
+                    <!--/ content -->        
 
                     <div class="clear"></div> 
                 </div> 

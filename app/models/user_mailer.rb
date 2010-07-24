@@ -1,10 +1,16 @@
 class UserMailer < ActionMailer::Base
-@url = "http://contacto.heroku.com/"
  def welcome_email(user)
   recipients user.email
   from "El directorio de companias <no-reply@contacto.com>"
-  subject "Bienvenido al directorio de companias"
+  subject "¡Bienvenido al directorio de compañías más grande!"
   sent_on Time.now
- body :user => user
+ body :user => user, :url => "http://contacto.heroku.com/"
+ end
+ def invite_email(email)
+  recipients email
+  from "El directorio de companias <no-reply@contacto.com>"
+  subject "¡Te han invitado al directorio de compañías más grande!"
+  sent_on Time.now
+ body :url => "http://contacto.heroku.com/"
  end
 end 

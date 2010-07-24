@@ -175,27 +175,38 @@ $(document).ready(function() {
             });
             $('#export_select').click(function() {
 		   var inputs = document.getElementsByTagName("input"); //or document.forms[0].elements;    
-		   var company = []; //will contain all checked checkboxes  
-		   var company2 = ""
+		   var array = []; //will contain all checked checkboxes  
+		   var array2 = ""
 		   var j = 1;
 		   for (var i = 0; i < inputs.length-1; i++) {  
-		     if (inputs[i].type == "checkbox" && inputs[i].id != "results_checkall") {  
+		     if (inputs[i].type == "checkbox" && inputs[i].id != "results_checkall") {
 		       if (inputs[i].checked) {  
-			 company.push(inputs[i]);
-			 if (company2 == "") {
-			 company2 = company2 + "company[" + j + "]=" + inputs[i].value;} else {
-			 company2 = company2 + "&company[" + j + "]=" + inputs[i].value;}
+			 array.push(inputs[i]);
+			 if (inputs[i].id == "contact_") {
+				 if (array2 == "") {
+				     array2 = array2 + "contact[" + j + "]=" + inputs[i].value;
+		                 } else {
+				     array2 = array2 + "&contact[" + j + "]=" + inputs[i].value;
+				 }
+			 }else{
+				if (array2 == "") {
+				     array2 = array2 + "company[" + j + "]=" + inputs[i].value;
+		                 } else {
+				     array2 = array2 + "&company[" + j + "]=" + inputs[i].value;
+				 }
+			 }
 			 j ++;
 		       }  
 		     }  
 		   }
 		jQuery.ajax({
-			    url: 'companies/export_to_csv?' + company2,
+			    url: 'export_to_csv',
 			    type: 'POST',
-			    data: company2,
+			    data: array2,
 			    DataType: 'script',
 			    success: function(){
-				    self.location='companies/export_to_csv?' + company2
+				    self.location= 'export_to_csv?'+ array2
+				    "self.location= url"
 			    },
 			    error: function(){
 			    }

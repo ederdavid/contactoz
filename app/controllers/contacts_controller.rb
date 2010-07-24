@@ -2,18 +2,61 @@ class ContactsController < ApplicationController
     layout 'application'
     set_tab :contact
 
+def export_to_csv
+  if params[:all]
+	@contacts = Contact.find(:all)
+  else
+	  @contacts = Array.new
+	  for contact in params[:contact]
+	      if !contact[1]
+		@contacts << Contact.find(contact)
+	      else
+		@contacts << Contact.find(contact[1])
+	      end
+	  end
+  end
+  csv_string = FasterCSV.generate do |csv|
+    # header row
+    csv << ["id", "title", "name", "city", "state", "country", "linkedin_id", "contact_last_updated", "created_at", "updated_at", "accuracy", "company_id"]
+
+    # data rows
+    @contacts.each do |contact|
+      csv << [contact.id, contact.title, contact.name, contact.city, contact.state, contact.country, contact.linkedin_id, contact.contact_last_updated, contact.created_at, contact.updated_at, contact.accuracy, contact.company_id]
+    end
+  end
+
+  # send it to the browsah
+  send_data csv_string,
+            :type => 'text/csv; charset=iso-8859-1; header=present',
+            :disposition => "attachment; filename=contacts.csv"
+end
 
   def displayContacts
         redirect_to(:action => "index")
   end
 
-  def sortByName
-     @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['name like ?', "%#{params[:search]}%"], :order => 'name')
+  def sortByTitle
+     @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['title like ?', "%#{params[:search]}%"], :order => 'title')
      render :template => 'contacts/index'
   end
 
+  def sortByCompany
+      @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['company_id like ?', "%#{params[:search]}%"], :order => 'company_id')
+      render :template => 'contacts/index'
+  end
+
+  def sortByName
+      @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['name like ?', "%#{params[:search]}%"], :order => 'name')
+      render :template => 'contacts/index'
+  end
+
   def sortByDateUpdated
-      @companies = Company.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'updated_at')
+      @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['updated_at like ?', "%#{params[:search]}%"], :order => 'updated_at')
+      render :template => 'contacts/index'
+  end
+
+  def sortByState
+      @contacts = Contact.paginate(:page=>params[:page],:per_page=> $global_page, :conditions => ['state like ?', "%#{params[:search]}%"], :order => 'state')
       render :template => 'contacts/index'
   end
 

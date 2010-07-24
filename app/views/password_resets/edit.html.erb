@@ -1,8 +1,8 @@
-<h1>Update your password</h1>
+<h1>Actualiza tu clave</h1>
 
-<p>Please enter the new password below and then press "Update Password".</p>
+<p>Por favor pon tu clave nueva a actualizar y luego pulza el botón de "Actualizar clave".</p>
 
 <% form_tag password_reset_path, :action => "update", :method => :put do %>
   <%= password_field_tag :password %>
-  <%= submit_tag "Update Password" %>
+  <%= submit_tag "Actualizar clave" %>
 <% end %>

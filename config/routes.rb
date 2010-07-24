@@ -1,12 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+
+  map.connect 'contacts/:action', :controller => 'contacts', :action => /[a-z_]+/i
+
+  map.connect 'companies/:action', :controller => 'companies', :action => /[a-z_]+/i
   
   map.resources :password_resets, :only => [ :new, :create, :edit, :update ]
 
   map.activate '/activate/:activation_code', :controller => 'activations', :action => 'create'
 
   map.resources :plans
-
-  map.connect 'companies/:action', :controller => 'companies', :action => /[a-z_]+/i
 
   map.resources :contact_saveds
 

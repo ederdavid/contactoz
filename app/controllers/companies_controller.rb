@@ -6,16 +6,19 @@ class CompaniesController < ApplicationController
 require 'fastercsv'
 
 def export_to_csv
-  #@companies = Company.find(:all)
-  @companies = Array.new
-  for company in params[:company]
-      if !company[1]
-	@companies << Company.find(company)
-      else
-        @companies << Company.find(company[1])
-      end
+  if params[:all]
+	@companies = Company.find(:all)
+  else
+	  @companies = Array.new
+	  for company in params[:company]
+	      if !company[1]
+		@companies << Company.find(company)
+	      else
+		@companies << Company.find(company[1])
+	      end
+	  end
   end
-if @companies.count < 5 && !current_user
+#if @companies.count < 5 && !current_user
   csv_string = FasterCSV.generate do |csv|
     # header row
     csv << ["id", "company_site", "company_name", "company_postcode", "company_address", "company_state", "linkedin_id", "company_phone", "company_fax", "employee_number", "revenue", "fb_id", "company_ownership", "company_overview", "activity_id", "created_at", "updated_at", "contact_id"]
@@ -30,7 +33,7 @@ if @companies.count < 5 && !current_user
   send_data csv_string,
             :type => 'text/csv; charset=iso-8859-1; header=present',
             :disposition => "attachment; filename=companies.csv"
-end
+#end
 end
 
 def csv_import
@@ -74,7 +77,7 @@ require 'faster_csv'
        # end
 end
 
-def displayContacts
+def displayCompanies
 	redirect_to(:action => "index")
 end
 
