@@ -1,14 +1,16 @@
 <div class="update-info">
-<%@companies = Company.find(:all)%>
+<%@companies = Company.find(:all, :order => "created_at DESC")%>
 <%if @companies %>
 <div class="toggler">
 	<div id="effect" class="ui-widget-content ui-corner-all">
 		<h3 class="ui-widget-header ui-corner-all">Actualizaciones</h3>
-			<%
+			<% i = 0;
 			for company in @companies %>
 				<% if company.created_at > (Time.now - 24.hours) %>
-					<p><%= company.company_name %> was created <%= time_ago_in_words(company.created_at) %> ago</p> </br>
+					<p><%= link_to company.company_name, :controller => "companies", :action => "show", :id => company.id %> was created <%= time_ago_in_words(company.created_at) %> ago</p> </br>
 				<% end %>
+				<% if i > 10 then break end; i = i + 1%>
+				
 			  <% end %>
 
 	</div>
