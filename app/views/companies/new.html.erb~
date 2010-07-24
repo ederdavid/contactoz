@@ -19,8 +19,6 @@
     <%= f.label :company_address %><br />
     <%= f.text_field :company_address %>
   </p>
-
-      <%= state_select(:company_state, 'POST', country='US', options = {}, html_options = {}) %>
   <p>
     <%= f.label :company_state %><br />
     <%= f.text_field :company_state %>

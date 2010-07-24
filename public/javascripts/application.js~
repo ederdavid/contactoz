@@ -5,6 +5,41 @@
      @selector (string) - the elements to search for
      @className (string) - the class to add to a clicked element
 */
+//quora form
+$(function() {
+
+		//run the currently selected effect
+		function runEffect(){
+			//get effect type from 
+			var selectedEffect = "bounce";//$('#effectTypes').val();
+			
+			//most effect types need no options passed by default
+			var options = {};
+			//check if it's scale or size - they need options explicitly set
+			if(selectedEffect == 'scale'){  options = {percent: 100}; }
+			else if(selectedEffect == 'size'){ options = { to: {width: 280,height: 185} }; }
+			
+			//run the effect
+			$("#effect").show(selectedEffect,options,500);
+		};
+		
+		//callback function to bring a hidden box back
+		function callback(){
+			/*setTimeout*/(function(){
+				$("#effect:visible").removeAttr('style').hide().fadeOut();
+			}/*, 1000*/);
+		};
+		set effect from select menu value
+		runEffect();
+		/*$("#button").click(function() {
+			runEffect();
+			return false;
+		});*/
+		
+		//$("#effect").hide();
+	});
+//end of qoura form
+
 //Modal Form
 $(function() {
 		// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
@@ -177,21 +212,18 @@ $(document).ready(function() {
 		   var inputs = document.getElementsByTagName("input"); //or document.forms[0].elements;    
 		   var array = []; //will contain all checked checkboxes  
 		   var array2 = ""
-		   var controller;
 		   var j = 1;
 		   for (var i = 0; i < inputs.length-1; i++) {  
 		     if (inputs[i].type == "checkbox" && inputs[i].id != "results_checkall") {
 		       if (inputs[i].checked) {  
 			 array.push(inputs[i]);
 			 if (inputs[i].id == "contact_") {
-				 controller = "contacts";
 				 if (array2 == "") {
 				     array2 = array2 + "contact[" + j + "]=" + inputs[i].value;
 		                 } else {
 				     array2 = array2 + "&contact[" + j + "]=" + inputs[i].value;
 				 }
 			 }else{
-				 controller = "companies";
 				if (array2 == "") {
 				     array2 = array2 + "company[" + j + "]=" + inputs[i].value;
 		                 } else {
@@ -209,7 +241,6 @@ $(document).ready(function() {
 			    DataType: 'script',
 			    success: function(){
 				    self.location= 'export_to_csv?'+ array2
-				    "self.location= url"
 			    },
 			    error: function(){
 			    }
