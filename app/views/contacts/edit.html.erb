@@ -28,6 +28,10 @@
     <%= f.text_field :linkedin_id %>
   </p>
   <p>
+    <%= f.label :updated_at %><br />
+    <%= f.date_select :updated_at %>
+  </p>
+  <p>
     <%= f.submit 'Update' %>
   </p>
 <% end %>

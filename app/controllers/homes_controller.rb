@@ -21,12 +21,12 @@ class HomesController < ApplicationController
     end
     @data = ""
     @message = " acaba de actualizarse. </br>"
-    if @Company
+    if @Company	
        @Company = @Company.company_name
        @data = "#{@data}\r\n#{@Company}\r\n#{@message}\r\n"
     end
     if @Contact
-       @Contact = @Contact.company_name
+       @Contact = @Contact.name
        @data = "#{@data}\r\n#{@Contact}\r\n#{@message}\r\n"
     end
     render :text => @data
