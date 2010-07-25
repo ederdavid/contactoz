@@ -3,10 +3,10 @@ jQuery.noConflict();
 jQuery(document).ready(function($){     
 	function updateList(){
         	//if ($("#status").text() != "") {
-			$.jGrowl($("#status").text(), { life: 1000 });
+			$.jGrowl("hola");//$("#status").text(), { life: 1000 });
 		//}
 	}
-	window.setInterval(updateList, 510);
+	window.setInterval(updateList, 1000);
 }); 
 </script>
 <%= periodically_call_remote(:url => { :action => 'dataUpdated', :controller => 'homes' }, :update => 'status', :frequency => '1') %>
