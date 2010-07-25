@@ -1319,3 +1319,30 @@ th.sort-carat-down span {
     margin-left: 4px;
 }
 
+/* update info for users */
+.update-info {
+    float:right;
+    font-size:14px;
+    font-weight:bold;
+    margin-right:15px;
+    margin-top:18px;
+    border-width: 1px;
+    border-spacing: 2px;
+    border-style: outset;
+    border-color: gray;
+    border-collapse: separate;
+}
+
+.update-info a:hover {
+    text-decoration: underline;
+}
+
+.update-info .unrated {
+    font-weight: bold;
+    color: #ec0707;
+}
+
+.update-info span {
+    margin-left: 4px;
+}
+

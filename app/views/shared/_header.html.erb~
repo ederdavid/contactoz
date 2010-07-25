@@ -39,3 +39,27 @@
 	</fieldset>
 	</form>
 </div>
+
+
+
+
+
+
+<%@companies = Company.find(:all)%>
+<%if @companies %>
+<div class="toggler">
+	<div id="effect" class="ui-widget-content ui-corner-all">
+		<h3 class="ui-widget-header ui-corner-all">Actualizaciones</h3>
+			<%
+			for company in @companies %>
+				<% if company.created_at > (Time.now - 24.hours) %>
+					<p><%= company.company_name %> was created <%= time_ago_in_words(company.created_at) %> ago</p> </br>
+				<% end %>
+			  <% end %>
+
+	</div>
+</div>
+<%end%>
+
+<!--<a href="#" id="button" class="ui-state-default ui-corner-all">Run Effect</a>-->
+

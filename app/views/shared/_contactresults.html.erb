@@ -34,6 +34,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+				  <% form_tag :controller => "cnjdcn", :action => "cart" do %>
                                  <% for contact in @contacts %>
                                 <tr>  
                                     <td class="center"> <%= check_box_tag "contact[]", contact.id %></td>
