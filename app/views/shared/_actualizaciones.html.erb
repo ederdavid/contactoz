@@ -3,7 +3,7 @@ jQuery.noConflict();
 jQuery(document).ready(function($){     
 	function updateList(){
         	//if ($("#status").text() != "") {
-			$.jGrowl("hola");//$("#status").text(), { life: 1000 });
+			$.jGrowl($("#status").text(), { life: 1000 });
 		//}
 	}
 	window.setInterval(updateList, 1000);
