@@ -2,6 +2,32 @@ class HomesController < ApplicationController
     layout 'application'
     set_tab :home
 
+  def dataUpdated
+    @Company = Company.find(:first, :order => "updated_at DESC")
+    if @Company && $CompanyUpdatedAt == @Company.updated_at
+	@Company = nil
+    else
+	$CompanyUpdatedAt = @Company.updated_at
+    end
+    @Contact = Contact.find(:first, :order => "updated_at DESC")
+    if @Contact && $ContactUpdatedAt == @Contact.updated_at
+	@Contact = nil
+    else
+	$ContactUpdatedAt = @Contact.updated_at
+    end
+    @data = ""
+    @message = " acaba de actualizarse. </br>"
+    if @Company
+       @Company = @Company.company_name
+       @data = "#{@data}\r\n#{@Company}\r\n#{@message}\r\n"
+    end
+    if @Contact
+       @Contact = @Contact.company_name
+       @data = "#{@data}\r\n#{@Contact}\r\n#{@message}\r\n"
+    end
+    render :text => @data
+  end
+
   # GET /homes
   # GET /homes.xml
   def index

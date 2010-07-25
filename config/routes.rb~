@@ -1,5 +1,7 @@
 ActionController::Routing::Routes.draw do |map|
 
+  map.connect 'contacts/:action', :controller => 'contacts', :action => /[a-z_]+/i
+
   map.connect 'companies/:action', :controller => 'companies', :action => /[a-z_]+/i
   
   map.resources :password_resets, :only => [ :new, :create, :edit, :update ]

@@ -5,41 +5,10 @@
      @selector (string) - the elements to search for
      @className (string) - the class to add to a clicked element
 */
-//quora form
-$(function() {
-
-		//run the currently selected effect
-		function runEffect(){
-			//get effect type from 
-			var selectedEffect = "bounce";//$('#effectTypes').val();
-			
-			//most effect types need no options passed by default
-			var options = {};
-			//check if it's scale or size - they need options explicitly set
-			if(selectedEffect == 'scale'){  options = {percent: 100}; }
-			else if(selectedEffect == 'size'){ options = { to: {width: 280,height: 185} }; }
-			
-			//run the effect
-			$("#effect").show(selectedEffect,options,500);
-		};
-		
-		//callback function to bring a hidden box back
-		function callback(){
-			/*setTimeout*/(function(){
-				$("#effect:visible").removeAttr('style').hide().fadeOut();
-			}/*, 1000*/);
-		};
-		//set effect from select menu value
-		runEffect();
-		/*$("#button").click(function() {
-			runEffect();
-			return false;
-		});*/
-		
-		//$("#effect").hide();
-	});
-//end of qoura form
-
+     jQuery.noConflict();
+     
+     // Put all your code in your document ready area
+     jQuery(document).ready(function($){     
 //Modal Form
 $(function() {
 		// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
@@ -279,4 +248,4 @@ $(document).ready(function() {
         });
     });
 });
-
+     });
