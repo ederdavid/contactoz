@@ -4,16 +4,20 @@ class HomesController < ApplicationController
 
   def dataUpdated
     @Company = Company.find(:first, :order => "updated_at DESC")
-    if @Company && $CompanyUpdatedAt == @Company.updated_at
-	@Company = nil
-    else
-	$CompanyUpdatedAt = @Company.updated_at
+    if @Company
+	    if $CompanyUpdatedAt == @Company.updated_at
+		@Company = nil
+	    else
+		$CompanyUpdatedAt = @Company.updated_at
+	    end
     end
     @Contact = Contact.find(:first, :order => "updated_at DESC")
-    if @Contact && $ContactUpdatedAt == @Contact.updated_at
-	@Contact = nil
-    else
-	$ContactUpdatedAt = @Contact.updated_at
+    if @Contact
+	    if $ContactUpdatedAt == @Contact.updated_at
+		@Contact = nil
+	    else
+		$ContactUpdatedAt = @Contact.updated_at
+	    end
     end
     @data = ""
     @message = " acaba de actualizarse. </br>"

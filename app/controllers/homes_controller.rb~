@@ -16,7 +16,6 @@ class HomesController < ApplicationController
 	$ContactUpdatedAt = @Contact.updated_at
     end
     @data = ""
-    @space = " "
     @message = " acaba de actualizarse. </br>"
     if @Company
        @Company = @Company.company_name
