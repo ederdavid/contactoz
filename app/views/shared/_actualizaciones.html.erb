@@ -9,6 +9,6 @@ jQuery(document).ready(function($){
 	window.setInterval(updateList, 510);
 }); 
 </script>
-<%= periodically_call_remote(:url => { :action => 'dataUpdated', :controller => 'homes' }, :update => 'status', :frequency => '0.5') %>
+<%= periodically_call_remote(:url => { :action => 'dataUpdated', :controller => 'homes' }, :update => 'status', :frequency => '1') %>
 <div name="status" id="status"><%=@CompanyName%></div>
 
