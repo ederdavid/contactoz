@@ -6,9 +6,9 @@ jQuery(document).ready(function($){
 			$.jGrowl($("#status").text(), { life: 1000 });
 		}
 	}
-	window.setInterval(updateList, 510);
+	window.setInterval(updateList, 500);
 }); 
 </script>
 <%= periodically_call_remote(:url => { :action => 'dataUpdated', :controller => 'homes' }, :update => 'status', :frequency => '0.5') %>
-<div name="status" id="status"><%=@CompanyName%></div>
+<div name="status" id="status" style="display: none;"></div>
 
