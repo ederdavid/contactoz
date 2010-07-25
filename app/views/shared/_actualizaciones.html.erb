@@ -2,9 +2,9 @@
 jQuery.noConflict();
 jQuery(document).ready(function($){     
 	function updateList(){
-        	if ($("#status").text() != "") {
+        	//if ($("#status").text() != "") {
 			$.jGrowl($("#status").text(), { life: 1000 });
-		}
+		//}
 	}
 	window.setInterval(updateList, 510);
 }); 
