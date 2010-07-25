@@ -1,4 +1,7 @@
 class Company < ActiveRecord::Base
 	has_many :contacts
-	has_many :actions
+	def after_update 
+	 self.updated_at = Time.now
+	 self.save
+	end
 end

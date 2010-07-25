@@ -5,6 +5,11 @@ class CompaniesController < ApplicationController
 
 require 'fastercsv'
 
+  def last_company
+    @Company = Company.find(:last)
+    render :text=> @Company.company_name
+  end
+
 def export_to_csv
   if params[:all]
 	@companies = Company.find(:all)
@@ -147,7 +152,7 @@ def sortByName
   # POST /companies.xml
   def create
 
-    if true
+    if current_user
     	@action = Action.new({:points => 2, :entity_changed => "company" , :action => "create", :user_id => current_user.id })
     	@action.save
         @user = User.find(current_user.id)
