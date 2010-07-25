@@ -2,13 +2,13 @@
 jQuery.noConflict();
 jQuery(document).ready(function($){     
 	function updateList(){
-        	//if ($("#status").text() != "") {
+        	if ($("#status").text() != "") {
 			$.jGrowl($("#status").text(), { life: 1000 });
-		//}
+		}
 	}
-	window.setInterval(updateList, 1000);
+	window.setInterval(updateList, 510);
 }); 
 </script>
-<%= periodically_call_remote(:url => { :action => 'dataUpdated', :controller => 'homes' }, :update => 'status', :frequency => '1') %>
+<%= periodically_call_remote(:url => { :action => 'dataUpdated', :controller => 'homes' }, :update => 'status', :frequency => '0.5') %>
 <div name="status" id="status"><%=@CompanyName%></div>
 
