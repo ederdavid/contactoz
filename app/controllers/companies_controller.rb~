@@ -5,11 +5,6 @@ class CompaniesController < ApplicationController
 
 require 'fastercsv'
 
-  def last_company
-    @Company = Company.find(:last)
-    render :text=> @Company.company_name
-  end
-
 def export_to_csv
   if params[:all]
 	@companies = Company.find(:all)
@@ -105,7 +100,7 @@ def sortByName
   end
   # GET /companies
   # GET /companies.xml
-  def index
+  def indexz
 
        @query = params[:search]
        if @query 
