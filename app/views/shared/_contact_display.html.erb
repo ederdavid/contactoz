@@ -23,7 +23,7 @@
                                 <div class="clear"></div> 
                                 <div class="details">
 					 <%= @contact_company = Company.find(@contact_selected.company_id) %> 
-                                    <a href="#"> <%= @contact_company.company_name %></a> 
+                                   <a href=""> <%= @contact_company.company_name %></a> 
                                     <p><%= @contact_selected.address %></p>
    
                                     <p><%= @contact_selected.city %> , <%= @contact_selected.country %> </p> 
@@ -46,9 +46,10 @@
                         </div> 
                         <div class="body"> 
                             <ul>
-<% @contacts_related = Contact.find(:company_id => @contact_company.id, :department=> @contact_selected.department) %>
+<% @contacts_related = Contact.find_all_by_company_id( @contact_company.id, :conditions => ['department = ?', @contact_selected.department]) %>
+
 <% if @contacts_related.nil? %>
-<% @contacts_related = Contact.find(:company_id => @contact_company.id) %>
+<% @contacts_related = Contact.find_all_by_company_id(@contact_company.id) %>
 <% end %>
 <% @other_contact1 = @contacts_related.first %>
 <% @other_contact2 = @contacts_related.last %>
