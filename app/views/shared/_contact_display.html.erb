@@ -21,8 +21,9 @@
                                     </div> 
                                 </div> 
                                 <div class="clear"></div> 
-                                <div class="details"> 
-                                    <a href="#"> <%= Company.find(@contact_selected.company_id) %></a> 
+                                <div class="details">
+					 <%= @contact_company = Company.find(@contact_selected.company_id) %> 
+                                    <a href="#"> <%= @contact_company.company_name %></a> 
                                     <p><%= @contact_selected.address %></p>
    
                                     <p><%= @contact_selected.city %> , <%= @contact_selected.country %> </p> 
@@ -44,14 +45,21 @@
 			Contactos Relacionados                            
                         </div> 
                         <div class="body"> 
-                            <ul> 
+                            <ul>
+<% @contacts_related = Contact.find(:company_id => @contact_company.id, :department=> @contact_selected.department) %>
+<% if @contacts_related.nil? %>
+<% @contacts_related = Contact.find(:company_id => @contact_company.id) %>
+<% end %>
+<% @other_contact1 = @contacts_related.first %>
+<% @other_contact2 = @contacts_related.last %>
+
                                 <li> 
-                                    <a href="#">Michael Slim</a> 
-                                    <span>Developer</span> 
+                                    <a href="#"> <%= @other_contact1.name %></a> 
+                                    <span> <%= @other_contact1.title %></span> 
                                 </li> 
                                 <li> 
-                                    <a href="#">Steve Slim</a> 
-                                    <span>CTO</span> 
+                                    <a href="#"> <%= @other_contact2.name %> </a> 
+                                    <span> <%= @other_contact2.title %> </span> 
                                 </li> 
                             </ul> 
                         </div> 

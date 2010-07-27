@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100727062342) do
+ActiveRecord::Schema.define(:version => 20100727174154) do
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"
@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20100727062342) do
     t.string   "address"
   end
 
+  add_index "contacts", ["company_id"], :name => "index_contacts_on_company_id"
+  add_index "contacts", ["department"], :name => "index_contacts_on_department"
   add_index "contacts", ["name"], :name => "index_contacts_on_name"
 
   create_table "displaycontacts", :force => true do |t|
