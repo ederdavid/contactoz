@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1" />
+<meta http-equiv="Content-Language" content="en-us" />
+<title>Directorio</title>
+
+<%= stylesheet_link_tag "stylesheet", "ie-7-only.css", "s2", "ui.tabs.css", "jquery-ui-1.7.3.custom.css", :media => 'all' %>
+<%= javascript_include_tag 'prototype', 'jquery-1.3.2.min.js', 'ui.core.js', 'ui.tabs.js', 'application', 'jquery-ui-1.7.3.custom.min.js', 'jquery.jgrowl.js', 'jquery.jgrowl_compressed.js', 'jquery.jgrowl_minimized.js', 'jquery.autocomplete.js' %>
+</head>
+<body class="contact">
+<script type="text/javascript">jQuery.noConflict();</script>
+<%= render :partial  => '/shared/header' %>
+<!-- \header -->
+          
+<div class="bodywrap">
+<div class="container"> 
+    
+<%= render :partial => '/shared/account' %>
+    
+<%= yield %> 
+</div>
+<!-- \container -->
+<%= render :partial => '/shared/footer' %>
+<!-- \footer-->
+
+</div>
+<!-- bodywrap homepage -->
+</body>
+</html>
+
+
+
