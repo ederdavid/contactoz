@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
     layout 'application'
     set_tab :contact
+   
 
 def export_to_csv
   if params[:all]
