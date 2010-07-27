@@ -1,5 +1,4 @@
-
-                <div id="results"> 
+            <div id="results"> 
                     <div class="categories"> 
                         <ul class="filters"> 
                             <li class="active"><a href="#">Contactos</a></li> 
@@ -30,11 +29,10 @@
                             <thead> 
                                 <tr> 
                                     <th class="center"><input type="checkbox" id="results_checkall"></th> 
-                                    <th class="sortable sort-carat-up"><%= link_to "Empresa", :controller => "companies",:sort=>"true",:search => @query,:action => "sortByName" %><span></span></th> 
-                                    <th class="sortable sort-carat-both"><%= link_to "Contactos", :controller => "companies", :sort=> "true",:search => @query,:action => "sortByNumber" %><span></span></th>
-				    <th class="sortable sort-carat-both"><%= link_to "Ciudad", :controller => "companies", :sort=> "true",:search => @query, :action => "sortByDateCity" %> <span></span></th> 
-                                    <th class="sortable sort-carat-both"><%= link_to "Estado", :controller => "companies", :sort=> "true",:search => @query,:action => "sortByState" %><span></span></th> 
-                                    <th class="sortable sort-carat-both"><%= link_to "Actualizado", :controller => "companies", :sort=> "true",:search => @query, :action => "sortByDateUpdated" %><span></span></th> 
+                           <th class="sortable sort-carat-up"><%= link_to "Empresa", :controller => "companies",:sort=>"true",:search => @query,:action => "sortByName" %><span></span></th> 
+                     <th class="sortable sort-carat-both"><%= link_to "Contactos", :controller => "companies", :sort=> "true",:search => @query,:action => "sortByNumber" %><span></span></th>	     <th class="sortable sort-carat-both"><%= link_to "Ciudad", :controller => "companies", :sort=> "true",:search => @query, :action => "sortByDateCity" %> <span></span></th> 
+                        <th class="sortable sort-carat-both"><%= link_to "Estado", :controller => "companies", :sort=> "true",:search => @query,:action => "sortByState" %><span></span></th> 
+            <th class="sortable sort-carat-both"><%= link_to "Actualizado", :controller => "companies", :sort=> "true",:search => @query, :action => "sortByDateUpdated" %><span></span></th> 
                                 </tr> 
                             </thead> 
                             <tbody> 
@@ -55,9 +53,6 @@
 		<% if @companies.paginate %>
                 <%= will_paginate @companies %>
                 <% end %>        
-
             </div>
- 
-                </div> 
-
+                 </div> 
 

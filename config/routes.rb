@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :displays
+
 
   map.connect 'contacts/:action', :controller => 'contacts', :action => /[a-z_]+/i
 
@@ -25,10 +27,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users, :collection => {:borrar => :delete}
 
   map.resources :homes, :collection => {:cart => :put}
-  
 
-  #map.connect 'login/:action', :controller => 'user_sessions', :action => 'create'
+  #map.display_companies "display_companies/:id", :controller => "company_displays", :action => "show"  
+  map.display_contact "display_contacts/:id", :controller => "displays", :action => "show" 
   map.login "login", :controller => "user_sessions", :action => "create"
+
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   # The priority is based upon order of creation: first created -> highest priority.
 

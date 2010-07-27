@@ -26,9 +26,9 @@
                             <thead>
                                 <tr>
                                     <th class="center"><input type="checkbox" id="results_checkall"></th>
-                                    <th class="sortable sort-carat-up"><%= link_to "Titulo", :controller => "contacts", :sort=>"true",:search => @query,:action => "sortByTitle" %><span></span></th>
-                                    <th class="sortable sort-carat-both"><%= link_to "Nombre", :controller => "contacts", :sort=>"true",:search => @query,:action => "sortByName"%><span></span></th>
-                                    <th class="sortable sort-carat-both"><%= link_to "Empresa", :controller => "contactss", :sort=> "true",:search => @query, :action => "ssortByCompany" %> <span></span></th>
+                          <th class="sortable sort-carat-up"><%= link_to "Titulo", :controller => "contacts", :sort=>"true",:search => @query,:action => "sortByTitle" %><span></span></th>
+                          <th class="sortable sort-carat-both"><%= link_to "Nombre", :controller => "contacts", :sort=>"true",:search => @query,:action => "sortByName"%><span></span></th>
+                                    <th class="sortable sort-carat-both"><%= link_to "Empresa", :controller => "contacts", :sort=> "true",:search => @query, :action => "sortByCompany" %> <span></span></th>
                                     <th class="sortable sort-carat-both"><%= link_to "Estado", :controller => "contacts", :sort=> "true",:search => @query,:action => "sortByState" %><span></span></th>
                                     <th class="sortable sort-carat-both"><%= link_to "Actualizado", :controller => "contacts", :sort=> "true",:search => @query, :action => "sortByDateUpdated" %><span></span></th>
                                 </tr>
@@ -38,8 +38,8 @@
                                  <% for contact in @contacts %>
                                 <tr>  
                                     <td class="center"> <%= check_box_tag "contact[]", contact.id %></td>
-                                    <td><a><%= link_to contact.title %></a></td>
-                                    <td><a><%= link_to contact.name, contact_path(contact) %></a></td>
+                                    <td><a><%= contact.title %></a></td>
+                                    <td><a><%= link_to contact.name, display_contact_path(contact.id) %></a></td>
                                      <% if contact.company_id.nil? %>
                                          <td> 0 </td>
 				     <% else %>
@@ -55,6 +55,7 @@
                 <% if @contacts.paginate %>
                 <%= will_paginate @contacts %>
                 <% end %>
+ <% end %>
             </div>
                 </div>
 
