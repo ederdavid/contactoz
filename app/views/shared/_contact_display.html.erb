@@ -1,0 +1,82 @@
+
+
+                <div class="content"> 
+                    <div class="pane"> 
+                        <div class="title"> 
+                            Contacto
+                        </div> 
+                        <div class="body"> 
+                            <div class="business-card"> 
+                                <span class="social-links"> 
+                                    <a href="http://facebook.com" class="fb">Facebook</a> 
+                                    <a href="http://linkedin.com" class="in">LinkedIn</a> 
+                                    <a href="http://twitter.com" class="tw">Twitter</a> 
+                                </span> 
+                                <div class="name"> 
+                                    <h1> <%= @contact_selected.name %></h1> 
+                                    <span><%= @contact_selected.title %></span> 
+                                    <div class="contacts"> 
+                                        <a href="#">(Compra datos)</a> 
+                                        <a href="#">(Compra datos)</a> 
+                                    </div> 
+                                </div> 
+                                <div class="clear"></div> 
+                                <div class="details"> 
+                                    <a href="#"> <%= Company.find(@contact_selected.company_id) %></a> 
+                                    <p><%= @contact_selected.address %></p>
+   
+                                    <p><%= @contact_selected.city %> , <%= @contact_selected.country %> </p> 
+                                    <p class="spaced"> 
+                                        <em>Precision: <%= @contact_selected.accuracy %></em> 
+                                        <em>Actualizado: <%= @contact_selected.updated_at.strftime("%m/%d/%Y") %></em> 
+                                    </p> 
+                                </div> 
+                            </div> 
+                            <div class="btn-download"> 
+                                <a href="#"><span>Get Contact</span></a> 
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
+                <div class="sidebar"> 
+                    <div id="related_contacts" class="pane"> 
+                        <div class="title"> 
+			Contactos Relacionados                            
+                        </div> 
+                        <div class="body"> 
+                            <ul> 
+                                <li> 
+                                    <a href="#">Michael Slim</a> 
+                                    <span>Developer</span> 
+                                </li> 
+                                <li> 
+                                    <a href="#">Steve Slim</a> 
+                                    <span>CTO</span> 
+                                </li> 
+                            </ul> 
+                        </div> 
+                    </div> 
+
+ 
+                    <div id="related_search" class="pane"> 
+                        <div class="title"> 
+			Búsquedas Relacionadas                     
+                        </div> 
+                        <div class="body"> 
+                            <ul> 
+                                <li> 
+                                    <a href="#">Michael Slim</a> 
+                                    <span>Developer</span> 
+                                </li> 
+                                <li> 
+                                    <a href="#">Steve Slim</a> 
+                                    <span>CTO</span> 
+                                </li> 
+                            </ul> 
+                        </div> 
+                    </div> 
+                </div> 
+ 
+ 
+
+
