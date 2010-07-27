@@ -3,7 +3,7 @@ a{
     cursor: pointer;
 }
 
-html, body, ul, ol, li, form, blockquote, dl, dd, img, h1, h2, h3, h4, h5, h6  {
+html, body, ul, ol, li, p, form, blockquote, dl, dd, img, h1, h2, h3, h4, h5, h6  {
     margin:0;
     padding:0;
     list-style:none;
@@ -118,10 +118,10 @@ body {
 }
 
 #header .links {
-    width:960px;
     margin:0 auto;
-    padding: 18px 18px 0;
-    overflow: hidden;
+    overflow:hidden;
+    padding-top:18px;
+    width:996px;
 }
 
 #header ul {
@@ -704,6 +704,7 @@ ul#search_categories li.active div {
 
 .copyright {
     color:#434343;
+    background:url(../images/footer_logo.gif) right top no-repeat;
     padding:10px 50px 10px 0;
     height:50px;
     margin:10px 0 0 0;
@@ -1090,7 +1091,7 @@ a.link-reply:hover {
 
 .search {
     float:left;
-    margin:18px 0 18px 18px;
+    margin:18px 0 18px 0;
     position:relative;
 }
 
@@ -1098,7 +1099,7 @@ a.link-reply:hover {
     -moz-border-radius:3px;
     -webkit-border-radius: 3px;
     background:none repeat scroll 0 0 #FFFFFF;
-    border:4px solid #AAAAAA;
+    border:2px solid #AAAAAA;
     float:left;
     overflow:hidden;
 }
@@ -1137,14 +1138,14 @@ a.link-reply:hover {
 }
 
 /* search result page */
-#results {
+body.search-results .content {
     background:none repeat scroll 0 0 #FFFFFF;
     border-left:1px solid #CCC;
     border-right:1px solid #CCC;
     margin:0 auto;
     padding:0 0 40px;
     position:relative;
-    width:960px;
+    width:100%;
 }
 
 #results .categories {
@@ -1185,7 +1186,7 @@ a.link-reply:hover {
     float:right;
 }
 
-#results .export .btn {
+#results .export span.btn {
     background:url("../images/btn-export.gif") no-repeat scroll 0 0 transparent;
     color:#79D7FF;
     display:inline-block;
@@ -1199,7 +1200,7 @@ a.link-reply:hover {
     cursor:pointer;
 }
 
-#results .export .btn:hover {
+#results .export span.btn:hover {
     background:url("../images/btn-export-hover.gif") no-repeat scroll 0 0 transparent;
 }
 
@@ -1241,8 +1242,8 @@ a.link-reply:hover {
 }
 
 #results table .center {
-padding-bottom:3px;
-vertical-align:middle;
+    padding-bottom:3px;
+    vertical-align:middle;
 }
 
 #results .center input {
@@ -1302,7 +1303,6 @@ th.sort-carat-down span {
     float:right;
     font-size:14px;
     font-weight:bold;
-    margin-right:15px;
     margin-top:18px;
 }
 
@@ -1319,30 +1319,139 @@ th.sort-carat-down span {
     margin-left: 4px;
 }
 
-/* update info for users */
-.update-info {
-    float:right;
-    font-size:14px;
+/* business contact */
+body.contact .pane {
+    background:none repeat scroll 0 0 #FFFFFF;
+    margin:20px 0;
+}
+
+body.contact .pane .title {
+    background:url("../images/blue_bg.png") repeat scroll 0 0 transparent;
+    border:1px solid #0E4F74;
+    color:#FFFFFF;
     font-weight:bold;
-    margin-right:15px;
-    margin-top:18px;
-    border-width: 1px;
-    border-spacing: 2px;
-    border-style: outset;
-    border-color: gray;
-    border-collapse: separate;
+    padding:7px 8px;
 }
 
-.update-info a:hover {
-    text-decoration: underline;
+body.contact .pane .body {
+border-bottom:1px solid #D0DFE8;
+border-left:1px solid #D0DFE8;
+border-right:1px solid #D0DFE8;
+padding:12px;
 }
 
-.update-info .unrated {
-    font-weight: bold;
-    color: #ec0707;
+body.contact .content {
+    width:680px;
+    margin: 0;
+    padding:0;
+    float: left;
 }
 
-.update-info span {
-    margin-left: 4px;
+body.contact .sidebar {
+    width: 300px;
+    float: right;
 }
 
+body.contact .sidebar li {
+    margin: 4px 0;
+}
+
+body.contact .sidebar li span {
+    display: block;
+    color: #888;
+    font-size: 13px;
+}
+
+.business-card {
+    background:url("../images/bg_business_card.png") no-repeat scroll 0 0 transparent;
+    height:168px;
+    margin:12px auto;
+    padding:30px 35px;
+    position:relative;
+    width:355px;
+}
+
+.business-card .social-links {
+    position: absolute; 
+    right: 35px;
+}
+
+.social-links a {
+    width: 33px;
+    height: 33px;
+    margin-left:6px;
+    float:left;
+    text-indent:-9999px;
+}
+
+.social-links .fb {
+    background:url("../images/social/facebook.gif") no-repeat scroll 0 0 transparent;
+}
+
+.social-links .in {
+    background:url("../images/social/in_social.gif") no-repeat scroll 0 0 transparent;
+}
+
+.social-links .tw {
+    background:url("../images/social/twitter.gif") no-repeat scroll 0 0 transparent;
+}
+
+.business-card .name {
+    float:left;
+    width:240px;
+}
+
+.business-card h1 {
+    margin: 0;
+    font-size: 19px;
+}
+
+.business-card .name span {
+    color: #888;
+    font-size: 13px;
+}
+
+.business-card .contacts {
+    font-size:14px;
+    line-height:20px;
+    margin-top:8px;
+}
+
+.business-card .name a {
+    display:block;
+}
+
+.business-card .details {
+    text-align:right;
+}
+
+.business-card .details a {
+    font-family:"MergeRegular-1",Arial,sans-serif;
+    font-size:16px;
+}
+
+.business-card .details p.spaced {
+    margin-top: 4px;
+}
+
+.business-card .details em {
+    color:#777777;
+    display:block;
+}
+
+body.contact .btn-download {
+margin:0 auto 10px;
+width:85px;
+}
+
+body.contact .btn-download span {
+background:url("../images/btn-download.gif") no-repeat scroll 0 0 transparent;
+display:block;
+height:33px;
+text-indent:-9999px;
+width:85px;
+}
+
+body.contact .btn-download span:hover {
+background:url("../images/btn-download-hover.gif") no-repeat scroll 0 0 transparent;
+}
