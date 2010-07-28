@@ -73,7 +73,7 @@
                         </div> 
                         <div class="body"> 
                             <ul>
-<% @contacts_related = Contact.find_all_by_company_id( @contact_company.id, :conditions => ['department = ?', @contact_selected.department]) %>
+<% @contacts_related = Contact.find_all_by_company_id( @contact_company.id, :conditions => ['department = ? AND id != ?', @contact_selected.department, @contact_selected.id]) %>
 
 <% if @contacts_related.nil? %>
 <% @contacts_related = Contact.find_all_by_company_id(@contact_company.id) %>
