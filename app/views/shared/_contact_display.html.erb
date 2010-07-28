@@ -24,9 +24,11 @@
                                 </div> 
                                 <div class="clear"></div> 
                                 <div class="details">
+					<% if !@contact_company.nil? %>
 					 <%= @contact_company = Company.find(@contact_selected.company_id) %> 
                                    <a href=""> <%= @contact_company.company_name %></a> 
-                                    <p><%= @contact_selected.address %></p>
+                                	<% end %>
+				    <p><%= @contact_selected.address %></p>
    
                                     <p><%= @contact_selected.city %> , <%= @contact_selected.country %> </p> 
                                     <p class="spaced"> 
@@ -73,27 +75,29 @@
                         </div> 
                         <div class="body"> 
                             <ul>
+<% if !@contact_selected.company_id.nil? %>
 <% @contacts_related = Contact.find_all_by_company_id( @contact_company.id, :conditions => ['department = ? AND id != ?', @contact_selected.department, @contact_selected.id]) %>
-
-<% if @contacts_related.nil? %>
+<% if @contacts_related.empty? %>
 <% @contacts_related = Contact.find_all_by_company_id(@contact_company.id, :conditions => ['id != ?', @contact_selected.id]) %>
 <% end %>
-<% if @contacts_related %>
+
+<% if !@contacts_related.empty? %>
 <% @other_contact1 = @contacts_related.first %>
-<% if @contacts_related.count %>
+<% if @contacts_related.count > 1 %>
 <% @other_contact2 = @contacts_related.last %>
 <% end %>
                                 <li> 
                                     <a href="#"> <%= @other_contact1.name %></a> 
                                     <span> <%= @other_contact1.title %></span> 
                                 </li>
-				<% if @contacts_related.count %> 
+				<% if @contacts_related.count > 1 %> 
                                 <li> 
                                     <a href="#"> <%= @other_contact2.name %> </a> 
                                     <span> <%= @other_contact2.title %> </span> 
                                 </li> 
 				<% end %>
                             </ul> 
+<% end %>
 <% end %>
                         </div> 
                     </div> 
