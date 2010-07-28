@@ -80,16 +80,19 @@
 <% end %>
 <% if @contacts_related %>
 <% @other_contact1 = @contacts_related.first %>
+<% if @contacts_related.count %>
 <% @other_contact2 = @contacts_related.last %>
-
+<% end %>
                                 <li> 
                                     <a href="#"> <%= @other_contact1.name %></a> 
                                     <span> <%= @other_contact1.title %></span> 
-                                </li> 
+                                </li>
+				<% if @contacts_related.count %> 
                                 <li> 
                                     <a href="#"> <%= @other_contact2.name %> </a> 
                                     <span> <%= @other_contact2.title %> </span> 
                                 </li> 
+				<% end %>
                             </ul> 
 <% end %>
                         </div> 
