@@ -1,7 +1,17 @@
 class User < ActiveRecord::Base
   has_many :actions
   has_many :contact_saveds
+  has_many :contacts, :through => :contact_saveds
   validates_presence_of :screen_name
+
+  acts_as_recommendable :contacts, :through => :contact_saveds
+
+  def buy_book(contact)
+	contacts << contact
+	self.save
+  end
+
+
   #validates_format_of :email, :with => /\A([^@\s]+)@[^?!snow]((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
   acts_as_authentic do |c|
