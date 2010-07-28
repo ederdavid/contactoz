@@ -1,6 +1,7 @@
 class ContactsController < ApplicationController
     layout 'application'
     set_tab :contact
+
    
 
 def export_to_csv
@@ -15,6 +16,7 @@ def export_to_csv
 		@contacts << Contact.find(contact[1])
 	      end
 	  end
+
   end
   csv_string = FasterCSV.generate do |csv|
     # header row

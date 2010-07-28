@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     @users = User.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @users }
@@ -39,6 +38,17 @@ class UsersController < ApplicationController
     @user = current_user
 #User.find(params[:id])
   end
+
+   def buy
+        @user = User.find(current_user.id)
+           
+	if current_user
+	@contact_bought=Contact.find(params[:id])
+ 	@contactsaved = ContactSaved.create(:title => @contact_bought.title, :city=> @contact_bought.city, :name=> @contact_bought.name, :state => @contact_bought.state, :country=> @contact_bought.country, :purchased => "1", :user_id => current_user.id) 
+	redirect_to :action => 'show', :id => current_user.id
+	end
+  end
+
   def invite
       @action = Action.new({:points => 2, :entity_changed => "user" , :action => "invite", :user_id => current_user.id })
       @action.save

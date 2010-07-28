@@ -15,9 +15,9 @@
                                 <div class="name"> 
                                     <h1> <%= @contact_selected.name %></h1> 
                                     <span><%= @contact_selected.title %></span> 
-                                    <div class="contacts"> 
-                                        <a href="#">(Compra datos)</a> 
-                                        <a href="#">(Compra datos)</a> 
+                                    <div class="contacts">
+					 <%= link_to "(Compra datos)", :controller => "users", :action => "buy", :id => @contact_selected.id %>
+ 					  <%= link_to "(Compra datos)", :controller => "users", :action => "buy", :id => @contact_selected.id %>
                                     </div> 
                                 </div> 
                                 <div class="clear"></div> 
@@ -32,10 +32,35 @@
                                         <em>Actualizado: <%= @contact_selected.updated_at.strftime("%m/%d/%Y") %></em> 
                                     </p> 
                                 </div> 
-                            </div> 
-                            <div class="btn-download"> 
-                                <a href="#"><span>Get Contact</span></a> 
-                            </div> 
+                            </div>
+                            <!-- replace -->
+
+			    <% if current_user %>
+				 <div class="btn-download">
+					<%= link_to "<span> Compra </span> ", :controller => "users", :action => "buy", :id => @contact_selected.id %>                                         
+	                            </div>
+			   <% else %>
+				<div class="btn-download" >
+				<%= link_to "<span> Entrar</span>", login_path %>
+				</div>
+			   <% end %>
+
+<!-- 
+<div id="dialog-form" title="Log in">
+        <p class="validateTips">Todos los campos son requeridos.</p>
+
+        <form>
+        <fieldset>
+                <p><label for="email">Email</label>
+                <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" /></p>
+                <p><label for="password">Clave</label>
+                <input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" /></p>
+                <p><%= link_to "¿Olvidaste tu contraseña?", :controller => "password_resets", :action => "new" %></p>
+        </fieldset>
+        </form>
+</div>
+ -->
+
                         </div> 
                     </div> 
                 </div> 
@@ -51,6 +76,7 @@
 <% if @contacts_related.nil? %>
 <% @contacts_related = Contact.find_all_by_company_id(@contact_company.id) %>
 <% end %>
+<% if @contacts_related %>
 <% @other_contact1 = @contacts_related.first %>
 <% @other_contact2 = @contacts_related.last %>
 
@@ -63,6 +89,7 @@
                                     <span> <%= @other_contact2.title %> </span> 
                                 </li> 
                             </ul> 
+<% end %>
                         </div> 
                     </div> 
 

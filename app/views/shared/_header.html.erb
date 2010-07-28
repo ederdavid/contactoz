@@ -13,7 +13,6 @@
 		    
                 <ul class="site">
 	        <% if current_user %> 
-	            <li><span class="sep">|</span></li>
                     <li> <%= link_to "Su Cuenta", user_path(current_user.id) %> </li>
                     <li><span class="sep">|</span></li>
                     <li> <%= link_to "Salir", logout_path %></li>
@@ -35,7 +34,7 @@
 		<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" /></p>
 		<p><label for="password">Clave</label>
 		<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" /></p>
-		<p><%= link_to "¿OLvidaste tu contraseña?", :controller => "password_resets", :action => "new" %></p>
+		<p><%= link_to "¿Olvidaste tu contraseña?", :controller => "password_resets", :action => "new" %></p>
 	</fieldset>
 	</form>
 </div>
