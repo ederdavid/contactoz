@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-	layout 'secondary'
+  before_filter :check
+  layout 'secondary'
   # GET /users
   # GET /users.xml
   def index
