@@ -66,7 +66,7 @@ end
   def cart
 	@ids  = params[:contact]
          for contact in @ids
-	        @contact=Contact.find(contact)
+	        @contact=Contact.find(:first, :conditions => {:id => contact})
 		@contact_saved = ContactSaved.new(:title => @contact.title, :name => @contact.name, :city => @contact.city, :state => @contact.state, :country => @contact.country, :linkedin_id => @contact.linkedin_id, :contact_last_updated => @contact.contact_last_updated, :created_at => @contact.created_at, :updated_at => @contact.updated_at, :purchased => 0)
 		@contact_saved.save
 	 end

@@ -1,10 +1,11 @@
 class ContactSavedsController < ApplicationController
 
   def comprar
-     @contact_saveds = ContactSaved.all
-     for contact_saveds in @contact_saveds
-        @contact_saveds2 = ContactSaved.find(contact_saveds)
-	@contact_saveds2.update_attributes(:purchased => '1')
+     @ids = params[:contactSaveds]
+     for contact_saveds in @ids
+        @contact_saveds=ContactSaved.find_or_create_by_id(contact_saveds[1])
+        @contact_saveds.update_attributes(:purchased => '1')
+	@contact_saveds.save
      end
      redirect_to( :controller => 'users', :action => current_user.id, :notice => 'Contacts was successfully purchased!')
   end  

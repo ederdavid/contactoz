@@ -101,6 +101,9 @@ def sortByName
   # GET /companies
   # GET /companies.xml
   def index
+       @results = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:query]}%"])
+
+
 
        @query = params[:search]
        if @query 
@@ -110,7 +113,8 @@ def sortByName
        end
 
        respond_to do |format|
-  	    format.html # index.html.erb
+           format.js
+  	   format.html # index.html.erb
    	   format.xml  { render :xml => @companies }
        end
 
