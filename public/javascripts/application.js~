@@ -205,7 +205,8 @@ jQuery(document).ready(function($){
 				    data: array2,
 				    DataType: 'script',
 				    success: function(){
-					    self.location= 'export_to_csv?'+ array2
+                                            if (array2.length > 0)
+					        self.location= 'export_to_csv?'+ array2
 				    },
 				    error: function(){
 				    }
@@ -231,7 +232,8 @@ jQuery(document).ready(function($){
 			       }  
 			     }  
 			   }
-			   self.location= 'contacts/cart?'+ array2
+                           if (array2.length > 0)
+			      self.location= 'contacts/cart?'+ array2
 		    });
                     $('#add_all').click(function() {
 			   var inputs = document.getElementsByTagName("input"); //or document.forms[0].elements;    
@@ -251,7 +253,8 @@ jQuery(document).ready(function($){
 				j ++;
 			     }  
 			   }
-			   self.location= 'contacts/cart?'+ array2
+                           if (array2.length > 0)
+			      self.location= 'contacts/cart?'+ array2
 		    });
                     $('#get_select').click(function() {
 			   var inputs = document.getElementsByTagName("input"); //or document.forms[0].elements;    
@@ -273,7 +276,8 @@ jQuery(document).ready(function($){
 			       }  
 			     }  
 			   }
-			   self.location= 'contact_saveds/comprar?'+ array2
+                           if (array2.length > 0)
+			      self.location= 'contact_saveds/comprar?'+ array2
 		    });
 		    menu.click(function() {
 		        menu.slideUp('fast');
@@ -281,6 +285,18 @@ jQuery(document).ready(function($){
 		    });
 		});
 	    });
+
+	
+
+	    /* tab menus */
+	    $(function() {
+        		// search tab selection
+        		//handleClick('#search_categories li', 'active');
+        		// search result categories
+        		handleClick('#results ul.filters li', 'active');
+    		});
+
+	    
 
 	    /* search results checkall */
 	    $(function() { 
