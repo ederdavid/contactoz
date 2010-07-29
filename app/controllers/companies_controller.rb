@@ -110,7 +110,7 @@ def sortByName
        end
        respond_to do |format|
   	    format.html # index.html.erb
-   	   format.xml  { render :xml => @companies.to_xml(:only => [:company_name, :company_phone, :updated_at, :company_city, :company_site, :company_state]) }
+   	   format.xml  { render :xml => @companies.to_xml(:only => [:company_name]) }
        end
 
   end
@@ -123,7 +123,7 @@ def sortByName
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @company }
+      format.xml  { render :xml => @company.to_xml(:only => [:company_name]) }
     end
   end
 
