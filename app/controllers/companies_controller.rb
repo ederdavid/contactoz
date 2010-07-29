@@ -106,15 +106,15 @@ def sortByName
        if @query 
         	if params[:sort].nil?
 			@companies = Company.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_name')
-		end
+		end       
        end
-
        respond_to do |format|
   	    format.html # index.html.erb
-   	   format.xml  { render :xml => @companies }
+   	   format.xml  { render :xml => @companies.to_xml(:only => [:company_name, :company_phone, :updated_at, :company_city, :company_site, :company_state]) }
        end
 
   end
+
 
   # GET /companies/1
   # GET /companies/1.xml

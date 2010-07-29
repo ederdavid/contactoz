@@ -17,6 +17,7 @@ class UsersController < ApplicationController
     @contact_saveds = ContactSaved.all
 
     respond_to do |format|
+	response.headers['Content-type'] = 'text/javascript; charset=utf-8'
       format.html # show.html.erb
       format.xml  { render :xml => @contact_saveds }
     end
