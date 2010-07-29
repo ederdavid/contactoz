@@ -101,7 +101,7 @@ def sortByName
   # GET /companies
   # GET /companies.xml
   def index
-       @results = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:query]}%"])
+       @results = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:query]}%", :limit => "20"])
 
 
 
