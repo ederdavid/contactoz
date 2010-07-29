@@ -205,11 +205,79 @@ jQuery(document).ready(function($){
 				    data: array2,
 				    DataType: 'script',
 				    success: function(){
-					    self.location= 'export_to_csv?'+ array2
+                                            if (array2.length > 0)
+					        self.location= 'export_to_csv?'+ array2
 				    },
 				    error: function(){
 				    }
 				  });
+		    });
+                    $('#add_select').click(function() {
+			   var inputs = document.getElementsByTagName("input"); //or document.forms[0].elements;    
+			   var array = []; //will contain all checked checkboxes  
+			   var array2 = ""
+			   var j = 1;
+			   for (var i = 0; i < inputs.length-1; i++) {  
+			     if (inputs[i].type == "checkbox" && inputs[i].id != "results_checkall") {
+			       if (inputs[i].checked) {  
+				 array.push(inputs[i]);
+				 if (inputs[i].id == "contact_") {
+					 if (array2 == "") {
+					     array2 = array2 + "contact[" + j + "]=" + inputs[i].value;
+				         } else {
+					     array2 = array2 + "&contact[" + j + "]=" + inputs[i].value;
+					 }
+				 }
+				 j ++;
+			       }  
+			     }  
+			   }
+                           if (array2.length > 0)
+			      self.location= 'contacts/cart?'+ array2
+		    });
+                    $('#add_all').click(function() {
+			   var inputs = document.getElementsByTagName("input"); //or document.forms[0].elements;    
+			   var array = []; //will contain all checked checkboxes  
+			   var array2 = ""
+			   var j = 1;
+			   for (var i = 0; i < inputs.length-1; i++) {  
+			     if (inputs[i].type == "checkbox" && inputs[i].id != "results_checkall") {
+			        array.push(inputs[i]);
+				if (inputs[i].id == "contact_") {
+				   if (array2 == "") {
+				       array2 = array2 + "contact[" + j + "]=" + inputs[i].value;
+				     } else {
+				       array2 = array2 + "&contact[" + j + "]=" + inputs[i].value;
+			             }
+			        }
+				j ++;
+			     }  
+			   }
+                           if (array2.length > 0)
+			      self.location= 'contacts/cart?'+ array2
+		    });
+                    $('#get_select').click(function() {
+			   var inputs = document.getElementsByTagName("input"); //or document.forms[0].elements;    
+			   var array = []; //will contain all checked checkboxes  
+			   var array2 = ""
+			   var j = 1;
+			   for (var i = 0; i < inputs.length-1; i++) {  
+			     if (inputs[i].type == "checkbox" && inputs[i].id != "results_checkall") {
+			       if (inputs[i].checked) {  
+				 array.push(inputs[i]);
+				 if (inputs[i].id == "contact_") {
+					 if (array2 == "") {
+					     array2 = array2 + "contactSaveds[" + j + "]=" + inputs[i].value;
+				         } else {
+					     array2 = array2 + "&contactSaveds[" + j + "]=" + inputs[i].value;
+					 }
+				 }
+				 j ++;
+			       }  
+			     }  
+			   }
+                           if (array2.length > 0)
+			      self.location= 'contact_saveds/comprar?'+ array2
 		    });
 		    menu.click(function() {
 		        menu.slideUp('fast');

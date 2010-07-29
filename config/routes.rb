@@ -1,14 +1,13 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :display_companies
 
-
-
   map.resources :displays
-
 
   map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
 
   map.connect 'contacts/:action', :controller => 'contacts', :action => /[a-z_]+/i
+
+  map.connect 'contact_saveds/:action', :controller => 'contact_saveds', :action => /[a-z_]+/i
 
   map.connect 'companies/:action', :controller => 'companies', :action => /[a-z_]+/i
   

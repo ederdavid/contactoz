@@ -7,12 +7,13 @@
                             <li><a href="#">Empresas</a></li>                            
 			    <li><a href="#">Servicios</a></li>
                             <li><a href="#">Productos</a></li>                        </ul>
-                        <% form_tag :action => "export_to_csv", :name => "checkboxForm" do %>
+                        <% form_tag :action => "cart", :name => "checkboxForm" do %>
                         <div class="export" >
                                  <span id="export_button" ><%= image_tag "/images/btn-export.gif",:class => "btn" %> </span>                            
 				<ul id="export_menu" style="display:none;" >
-                                <li id= "export_select"><a>Exportar Selectionados</a></li>
-                                <li id= "export_all"><%= link_to "Exportar Todos", :controller => "contacts", :action => "export_to_csv", :all => "true"%></li> </li>
+                                <li id= "add_select"><a>Agregar seleccionados al carrito</a></li>
+                                <li id= "add_all"><a>Agregar todos al carrito</a></li>
+                                <li id= "get_select"></a>Comprar seleccionados</a></li>
                             </ul>
                         </div>
                     </div>
@@ -36,7 +37,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-				  <% form_tag :controller => "cnjdcn", :action => "cart" do %>
                                  <% for contact in @contacts %>
                                 <tr>  
                                     <td class="center"> <%= check_box_tag "contact[]", contact.id %></td>
@@ -53,7 +53,6 @@
                                 <% end %>
                             </tbody>
                         </table>
-                        <% end %>
                 <% if @contacts.paginate %>
                 <%= will_paginate @contacts %>
                 <% end %>

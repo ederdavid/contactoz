@@ -2,6 +2,8 @@ class ContactsController < ApplicationController
     layout 'application'
     set_tab :contact
 
+   
+
 def export_to_csv
   if params[:all]
 	@contacts = Contact.find(:all)
@@ -14,13 +16,14 @@ def export_to_csv
 		@contacts << Contact.find(contact[1])
 	      end
 	  end
+
   end
   csv_string = FasterCSV.generate do |csv|
     # header row
     csv << ["id", "title", "name", "city", "state", "country", "linkedin_id", "contact_last_updated", "created_at", "updated_at", "accuracy", "company_id"]
 
     # data rows
-    @contacts.each do |company|
+    @contacts.each do |contact|
       csv << [contact.id, contact.title, contact.name, contact.city, contact.state, contact.country, contact.linkedin_id, contact.contact_last_updated, contact.created_at, contact.updated_at, contact.accuracy, contact.company_id]
     end
   end
@@ -63,7 +66,7 @@ end
   def cart
 	@ids  = params[:contact]
          for contact in @ids
-	        @contact=Contact.find(contact)
+	        @contact=Contact.find(:first, :conditions => :id => contact)
 		@contact_saved = ContactSaved.new(:title => @contact.title, :name => @contact.name, :city => @contact.city, :state => @contact.state, :country => @contact.country, :linkedin_id => @contact.linkedin_id, :contact_last_updated => @contact.contact_last_updated, :created_at => @contact.created_at, :updated_at => @contact.updated_at, :purchased => 0)
 		@contact_saved.save
 	 end
