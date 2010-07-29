@@ -112,14 +112,9 @@ def sortByName
 		end       
        end
        respond_to do |format|
-<<<<<<< HEAD
-  	    format.html # index.html.erb
-   	   format.xml  { render :xml => @companies.to_xml(:only => [:company_name]) }
-=======
            format.js
   	   format.html # index.html.erb
    	   format.xml  { render :xml => @companies.to_xml(:only =>[:company_name, :company_phone, :updated_at, :company_city, :company_site, :company_state]) }
->>>>>>> b51c7400cbf379df2fea20e171f88affa212f757
        end
 
   end
