@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100728210441) do
+ActiveRecord::Schema.define(:version => 20100729221057) do
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"
@@ -18,6 +18,11 @@ ActiveRecord::Schema.define(:version => 20100728210441) do
     t.datetime "updated_at"
     t.integer  "points",         :limit => 8
     t.integer  "user_id"
+  end
+
+  create_table "application_accounts", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "companies", :force => true do |t|
@@ -39,30 +44,14 @@ ActiveRecord::Schema.define(:version => 20100728210441) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contact_id"
+    t.string   "company_city"
     t.string   "colonia"
     t.string   "scian"
     t.string   "giro"
     t.string   "year_started"
-    t.string   "company_city"
   end
 
   add_index "companies", ["company_name"], :name => "index_companies_on_company_name"
-
-  create_table "companycontacts", :force => true do |t|
-    t.string   "title"
-    t.string   "name"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "linkedin_id"
-    t.date     "contact_last_updated"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "accuracy"
-    t.integer  "company_id"
-    t.string   "department"
-    t.string   "hierarchy"
-  end
 
   create_table "contact_saveds", :force => true do |t|
     t.string   "title"
@@ -93,8 +82,8 @@ ActiveRecord::Schema.define(:version => 20100728210441) do
     t.date     "contact_last_updated"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "accuracy"
     t.integer  "company_id"
+    t.integer  "accuracy"
     t.string   "department"
     t.string   "hierarchy"
     t.string   "address"

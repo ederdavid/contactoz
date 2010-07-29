@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  acts_as_authentic
   has_many :actions
   has_many :contact_saveds
   has_many :contacts, :through => :contact_saveds
