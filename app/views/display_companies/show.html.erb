@@ -1,0 +1,25 @@
+
+
+  <!-- search -->
+                <div class="search">
+                    <form id="search_form">
+                        <div class="wrap">
+                            <input type="text" data-default="search" value="search"></input>
+                            <button type="submit"></button>
+                        </div>
+                    </form>
+                </div>
+                <div class="clear"></div>
+                <!--/ search -->
+
+<% if "directorio".eql? params[:tab] %>
+<%= render :partial => "shared/directory_company", :object => @company_selected %>
+<% end %>
+
+<% if "ubicacion".eql? params[:tab] %>
+<%= render :partial => "shared/location_company", :object => @company_selected %>
+<% end %>
+
+<% if params[:tab].nil? %>
+<%= render :partial => "shared/info_company", :object => @company_selected %>
+<% end %>

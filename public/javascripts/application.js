@@ -330,3 +330,213 @@ $("a").click(function(event){
    $(this).hide("slow");
  });
 
+/* other scripts */
+
+
+var handleClick = function(selector, className) {
+    var current = $(selector + '.' + className);
+    $(selector).click(function() {
+        current.length && current.removeClass(className);
+        $(this).addClass(className);
+        current = $(this);
+    });
+};
+
+/* Initiates a table by adding various effects to it. 
+
+   params:
+     @selector (string) - the table to manipulate
+     @rows (boolean) - add background colour to every other row
+     @hover (boolean) - add a background colour to the row being hovered on
+     @api (public)
+*/
+var initTable = function(selector, rows, hover) {
+    if (rows === true) {
+        var td = $(selector + ' tbody tr:odd td');
+        td.addClass('odd'); 
+        $(selector).data('zebra-rows', true); // save for other functions
+    }
+
+    if (hover === true) {
+        $(selector + ' tbody tr').hover(function() {
+            $(this).find('td').addClass('hovered');
+        }, function() {
+            $(this).find('td').removeClass('hovered');
+        });
+    }
+
+    // add sort arrows if the sortable class is present
+    var bc = 'sort-carat-both',
+    uc = 'sort-carat-up',
+    dc = 'sort-carat-down';
+
+    $(selector + ' th.sortable').click(function() { 
+        var th =  $(this);
+        if (th.hasClass(bc)) {
+            $(this).siblings('.sortable').removeClass(uc).removeClass(dc).addClass(bc);
+            th.removeClass(bc).addClass(uc);
+        }
+        else {
+            th.hasClass(uc) ? th.removeClass(uc).addClass(dc) : th.removeClass(dc).addClass(uc);
+        }
+    });
+}
+
+/* Filters out the selector matches based on a text query
+
+   params:
+     @selector (string) - the elements to search for
+     @query (string) - the text to find in the selector result array
+     @returns (integer) - the number of elements being displayed 
+     @api (private)
+*/
+function filter(selector, query) {  
+    var count = 0;
+    query = $.trim(query);   
+    // add OR between words so that multiple matches can be found 
+    query = query.replace(/ /gi, '|'); 
+
+    $(selector).each(function() {  
+        if ($(this).text().search(new RegExp(query, "i")) < 0) {
+            $(this).hide();
+        }
+        else {
+            $(this).show(); 
+            count++;
+        }
+    });
+    return count;
+}  
+
+/* Filters the content of a table. 
+
+   params:
+     @filter_id (string) - the element with filter text
+     @filter_count (string) - the element to hold the displayed content text
+     @table_id (string) - the table to filter
+     @api (public)
+*/
+function filterTable(filter_id, filter_count, table_id) {
+    var $filter = $(filter_id);
+    $filter.parent().show();
+
+    var table = table_id + ' tbody tr';
+    filter_count = $(filter_count);
+
+    // display the total items
+    var total = $(table).length;
+    var oldShow = total;
+    var countMsg = function(num) { return 'showing ' + num + ' of ' + total; };
+    filter_count.text(countMsg(total)); // display before we filter
+
+    $filter.keyup(function(event) {
+        // check for 'esc' or blank input
+        if (event.keyCode == 27 || $filter.val() == '') {
+            $filter.val(''); // for esc
+            $(table).show(); // display each row again
+            filter_count.text(countMsg(total));
+            oldShow = total;
+        }
+        else {
+            var show = filter(table, $filter.val());
+            if (show !== oldShow) {
+                filter_count.text(countMsg(show));
+                oldShow = show;
+            }
+        }
+        if ($(table_id).data('zebra-rows')) {
+            // doing zebra rows, so reset them
+            $(table_id + ' tbody tr:visible td').removeClass('odd');
+            $(table_id + ' tbody tr:visible:odd td').addClass('odd');
+        }
+    });
+}
+
+/* Adds helper text to an input. 
+
+   params:
+     @selector (string) - the input to add helper text to
+     @api (public)
+*/
+function inputHelperText(selector) {
+    $(selector).each(function() {
+        var input = $(this);
+        // reset the value
+        input.val(input.attr('data-default'));
+        input.parent().addClass('idle-field');
+    
+        input.focus(function() {
+            var self = $(this);
+            self.parent().removeClass('idle-field').addClass('focused-field');
+            // remove the helper text
+            if (self.val() === self.attr('data-default')) {
+                self.val('');
+            }
+        });
+
+        input.blur(function() {
+            var self = $(this);
+            self.parent().removeClass('focused-field');
+            if ($.trim(self.val()) === '') {
+                var value = self.attr('data-default') || '';
+                self.parent().addClass('idle-field');
+                self.val(value);
+            }
+        });
+    });
+}
+
+/* Creates a dropdown that hides when it looses focus or is clicked. 
+
+   params:
+     @selector (string) - the element to display (typically a list)
+     @api (public)
+*/
+var slideMenu = function(selector) {
+    $(selector).click(function() {
+        var menu = $(this).next('ul');
+        menu.slideDown('fast').show();
+        menu.parent().hover(function() {}, function() {
+            menu.slideUp('fast');
+        });
+        menu.click(function() {
+            menu.slideUp('fast');
+        });
+    });
+}
+
+/* Runs when the page is ready */
+$(document).ready(function() {
+    /* top slider - image slideshow */
+    $(function() {
+        var topslider = $('#topslider');
+        if (!topslider.length) return;
+
+	topslider.tabs({ 
+            fx: [{opacity: 'toggle', duration: 'fast'}, {opacity: 'toggle', duration: 'fast'}] 
+        }).tabs('rotate', 6500);
+    });
+
+    /* tab menus */
+    $(function() {
+        // search tab selection 
+        handleClick('#search_categories li', 'active');
+        // search result categories
+        handleClick('#results ul.filters li', 'active');
+    });
+
+    /* search bar */
+    $(function() {
+        // add helper text
+        inputHelperText('#search_form input');
+    });
+
+    /* search results checkall */
+    $(function() { 
+        $('#results_checkall').click(function () {
+            $(this).parents('table:eq(0)').find(':checkbox').attr('checked', this.checked);
+        });
+    });
+});
+
+

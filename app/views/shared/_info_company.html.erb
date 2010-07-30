@@ -1,0 +1,272 @@
+<div class="middle"> 
+                    <div class="navigation"> 
+                        <ul class="tabs"> 
+                            <li class="active">Info</li> 
+                	    <li> <%= link_to "Directorio", :controller => "display_companies", :action => "show", :tab => "directorio" %></li>                     
+			    <li> <%= link_to "Ubicaciones", :controller => "display_companies", :action => "show", :tab => "ubicacion" %></li>                      
+                        </ul> 
+                    </div> 
+                    <div class="content info"> 
+                        <div class="pane"> 
+                            <div class="body gradient"> 
+                                <div class="company-info"> 
+                                    <div class="info-left"> 
+                                        <table cellspacing="5" border="0"> 
+                                            <tbody> 
+                                                <tr> 
+                                                    <td class="rJust"><label>Pagina Corporativo</label></td> 
+                                                    <td> 
+                                                        <a href="<%= @company_selected.company_site %> "> <%= @company_selected.company_site %></a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td class="rJust"> 
+                                                        <label>Info</label> 
+                                                    </td> 
+                                                    <td>	
+                                                <%= @company_selected.company_overview %> 
+			      <a href="#">ver mass... </a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td class="rJust"> 
+                                                        <label>Headquarters</label> 
+                                                    </td> 
+                                                    <td> 
+                                                        <p> <%= @company_selected.company_address %></br> 
+                                                        <%= @company_selected.company_city %> , <%= @company_selected.company_state %>, &nbsp;
+                                                        Mexico &nbsp;<a href="#" title="Google Maps">map</a> 
+                                                        </p> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td class="rJust"> 
+                                                        <label>Telefono</label> 
+                                                    </td> 
+                                                    <td> <%= @company_selected.company_phone %></td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td class="rJust"> 
+                                                        <label>Industrias</label> 
+                                                    </td> 
+                                                    <td> 
+                                                        <p> 
+
+                                                            Software &amp; Internet: Software
+                                                            Computers &amp; Electronics: 
+                                                            Consumer Electronics, Parts and Repair
+                                                            Software &amp; Internet: Software
+                                                        </p> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td class="rJust"> 
+                                                        <label>Empleados</label> 
+                                                    </td> 
+                                                    <td> 
+                                                        <%= @company_selected.employee_number %>
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td class="rJust"> 
+                                                        <label>Ingresos</label> 
+                                                    </td> 
+                                                    <td> 
+                                                        $  <%= @company_selected.revenue %>
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td class="rJust"> 
+                                                        <label>Propietario</label> 
+                                                    </td> 
+                                                    <td> 
+                                                         <%= @company_selected.company_ownership %>
+                                                        - CEMEX&nbsp;:&nbsp;
+                                                        <a href="#">IBM</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td class="rJust"> 
+                                                        <label>Last Updated</label> 
+                                                    </td> 
+                                                    <td> 
+                                                        <a href="#">MichalineT</a>&nbsp;(<span title="Data Contributed: 271 / Rating: 96%"><a href="#">271</a></span>)&nbsp;<a href="#">96%</a> on 07/28/2010
+                                                    </td> 
+                                                </tr>  
+                                            </tbody> 
+                                        </table> 
+                                    </div> 
+                                    <div class="info-right"> 
+                                        <h5>33,313 Contacts at this Company</h5> 
+                                        <table cellspacing="0" cellpadding="0" width="100%"> 
+                                            <tbody> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        C-Level                     
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">1,208</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        VP-Level                        
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">1,208</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        Director-Level                          
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">1,208</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        Manager-Level                       
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">1,208</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        Staff                       
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">1,208</a> 
+                                                    </td> 
+                                                </tr> 
+                                            </tbody> 
+                                        </table> 
+                                        <hr class="dotted-grey"></hr> 
+                                        <table cellspacing="0" cellpadding="0" width="100%" border="0"> 
+                                            <tbody> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        Sales                           
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">5,629</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        Marketing                           
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">5,629</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        Finance &amp; Admin             
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">5,629</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        Human Resources                 
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">5,629</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        Support                             
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">5,629</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        Engineering &amp; Research
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">5,629</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        Operations
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">5,629</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        IT &amp; IS                             
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">5,629</a> 
+                                                    </td> 
+                                                </tr> 
+                                                <tr> 
+                                                    <td>                                          
+                                                        Other                               
+                                                    </td> 
+                                                    <td class="rJust"> 
+                                                        <a href="#">5,629</a> 
+                                                    </td> 
+                                                </tr> 
+                                            </tbody> 
+                                        </table> 
+                                        <p class="align-right"> 
+                                            <a href="#">see all</a> 
+                                        </p> 
+                                    </div> 
+                                    <div class="clear"></div> 
+                                </div> 
+                                <div class="btn-row"> 
+                                    <a href="#"><span class="btn-blank"><p>Vigilar</p></span></a> 
+                                    <a href="#"><span class="btn-blank"><p>Exportar</p></span></a> 
+                                    <a href="#"><span class="btn-blank"><p>Editar</p></span></a> 
+                                </div> 
+                            </div> 
+                        </div> 
+                    </div> 
+                    <div class="sidebar"> 
+                        <div id="related_contacts" class="pane"> 
+                            <div class="title"> 
+                                Recent Contact Changes 
+                            </div> 
+                            <div class="body gradient"> 
+                                <h5>Added contacts</h5> 
+                                <ul> 
+                                    <li> 
+                                        <a href="#">Michael Slim</a> 
+                                        <span>Developer</span> 
+                                        <span>Added 07/27/10 at 22:49</span> 
+                                    </li> 
+                                    <li> 
+                                        <a href="#">Steve Slim</a> 
+                                        <span>CTO</span> 
+                                        <span>Added 07/27/10 at 22:49</span> 
+                                    </li> 
+                                </ul> 
+                                <hr class="dotted-grey"></hr> 
+                                <h5>Graveyard contacts</h5> 
+                                <ul> 
+                                    <li> 
+                                        <a href="#">Michael Slim</a> 
+                                        <span>Developer</span> 
+                                        <span>Added 07/27/10 at 22:49</span> 
+                                    </li> 
+                                    <li> 
+                                        <a href="#">Steve Slim</a> 
+                                        <span>CTO</span> 
+                                        <span>Added 07/27/10 at 22:49</span> 
+                                    </li> 
+                                </ul> 
+                            </div> 
+                        </div> 
+                    </div> 
+                </div> 
