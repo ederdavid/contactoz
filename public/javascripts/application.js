@@ -8,7 +8,7 @@
      //jQuery.noConflict();
      
      // Put all your code in your document ready area
-jQuery(document).ready(function($){
+$(document).ready(function($){
 	//Modal Form
 	$(function() {
 			// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
