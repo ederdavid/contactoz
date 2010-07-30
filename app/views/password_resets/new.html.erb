@@ -9,12 +9,3 @@
 <div class="clear"></div>
 
 <%= render :partial => "shared/passwrdreset" %>
-
-<h1>Resetear Clave</h1>
-
-<p>Por favor pon tu clave nueva a actualizar y luego pulza el botón de "Resetear clave".</p>
-
-<% form_tag password_resets_path do %>
-  <%= text_field_tag :email %>
-  <%= submit_tag "Resetear Clave" %>
-<% end %>
