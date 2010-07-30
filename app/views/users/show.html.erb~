@@ -1,4 +1,4 @@
-
+<p><%= render :partial => '/shared/actualizaciones' %></p>
 <p>
   <b>Screen name:</b>
   <%=h @user.screen_name %>
@@ -52,4 +52,3 @@
 <p><%= render :partial => '/shared/invite' %></p>
 <p><%= render :partial => '/shared/import' %></p>
 <p><%= render :partial => '/shared/contacts_saved' %></p>
-<p><%= render :partial => '/shared/actualizaciones' %></p>
