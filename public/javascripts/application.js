@@ -288,13 +288,7 @@ jQuery(document).ready(function($){
 
 	
 
-	    /* tab menus */
-	    $(function() {
-        		// search tab selection
-        		//handleClick('#search_categories li', 'active');
-        		// search result categories
-        		//handleClick('#results ul.filters li', 'active');
-    		});
+	   
 
 	    
 
