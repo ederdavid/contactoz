@@ -1,5 +1,5 @@
 
-
+		<div class="middle">  
                 <div class="content"> 
                     <div class="pane"> 
                         <div class="title"> 
@@ -7,7 +7,7 @@
 
 
                         </div> 
-                        <div class="body"> 
+                        <div class="body" class="body gradient"> 
                             <div class="business-card"> 
                                 <span class="social-links"> 
                                     <a href="http://facebook.com" class="fb">Facebook</a> 
@@ -41,11 +41,11 @@
 
 			    <% if current_user %>
 				 <div class="btn-download">
-					<%= link_to "<span> Compra </span> ", :controller => "users", :action => "buy", :id => @contact_selected.id %>                                         
+					<%= link_to "<span class=\"btn-blank\"> <p> Compra </p> </span>", :controller => "users", :action => "buy", :id => @contact_selected.id %>                                         
 	                            </div>
 			   <% else %>
 				<div class="btn-download" >
-				<%= link_to "<span> Entrar</span>", login_path %>
+				<%= link_to "<span class=\"btn-blank\"> <p> Compra </p> </span>", login_path %>
 				</div>
 			   <% end %>
 
@@ -73,7 +73,7 @@
                         <div class="title"> 
 			Contactos Relacionados                            
                         </div> 
-                        <div class="body"> 
+                        <div class="body gradient"> 
                             <ul>
 <% if !@contact_selected.company_id.nil? %>
 <% @contacts_related = Contact.find_all_by_company_id( @contact_selected.company_id, :conditions => ['department = ? AND id != ?', @contact_selected.department, @contact_selected.id]) %>
@@ -107,7 +107,7 @@
                         <div class="title"> 
 			Búsquedas Relacionadas                     
                         </div> 
-                        <div class="body"> 
+                        <div class="body gradient"> 
                             <ul> 
                                 <li> 
                                     <a href="#">Michael Slim</a> 

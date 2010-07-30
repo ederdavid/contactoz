@@ -11,6 +11,8 @@
 <%= javascript_include_tag 'prototype', 'jquery-1.3.2.min.js', 'ui.core.js', 'ui.tabs.js', 'application', 'jquery-ui-1.7.3.custom.min.js', 'jquery.jgrowl.js', 'jquery.jgrowl_compressed.js', 'jquery.jgrowl_minimized.js', 'jquery.autocomplete.js' %>
 </head>
 <body class="contact">
+<!-- <body class="contact"> -->
+
 <script type="text/javascript">jQuery.noConflict();</script>
 <%= render :partial  => '/shared/header' %>
 <!-- \header -->
@@ -21,6 +23,7 @@
 <%= render :partial => '/shared/account' %>
     
 <%= yield %> 
+</div>
 </div>
 <!-- \container -->
 <%= render :partial => '/shared/footer' %>

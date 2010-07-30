@@ -1,4 +1,4 @@
-<div id="results">
+<div id="results" class="content">
 
 
                     <div class="categories">
@@ -10,15 +10,20 @@
                         <% form_tag :action => "cart", :name => "checkboxForm" do %>
                         <div class="export" >
                                  <span id="export_button" ><%= image_tag "/images/btn-export.gif",:class => "btn" %> </span>                            
-				<ul id="export_menu" style="display:none;" >
+				<ul id="export_menu" class="btn-slide-menu" style="display:none;" >
                                 <li id= "add_select"><a>Agregar seleccionados al carrito</a></li>
                                 <li id= "add_all"><a>Agregar todos al carrito</a></li>
                                 <li id= "get_select"></a>Comprar seleccionados</a></li>
                             </ul>
+<script type="text/javascript">     
+$(document).ready(function() { 
+slideMenu('#export_button'); 
+ });  
+</script>
                         </div>
                     </div>
                     <div class="table-wrap">
-                        <table id="result_table" border="0" width="100%" cellspacing="0" cellpadding="0">
+                        <table id="result_table" class="blue-head" border="0" width="100%" cellspacing="0" cellpadding="0">
                             <col width="25">
                             <col width="285">
                             <col width="67">
@@ -53,6 +58,15 @@
                                 <% end %>
                             </tbody>
                         </table>
+
+				<script type="text/javascript">
+                                        $(document).ready(function() {
+                                        initTable('#result_table', true, true);
+                                        });
+                                </script>
+
+
+
                 <% if @contacts.paginate %>
                 <%= will_paginate @contacts %>
                 <% end %>

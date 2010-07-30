@@ -1,4 +1,4 @@
-            <div id="results"> 
+            <div id="results" class="content"> 
                     <div class="categories"> 
                         <ul class="filters"> 
                             <li class="active"><a href="#">Contactos</a></li> 
@@ -11,14 +11,19 @@
 				 <span id="export_button" >
 				<%= image_tag "/images/btn-export.gif",:class => "btn" %> 
 				 </span> 
-                            <ul id="export_menu" style="display:none;" > 
+                            <ul id="export_menu" class="btn-slide-menu" style="display:none;" > 
                                 <li id= "export_select"><a>Aggregar Selectionados</a></li> 
                                 <li id= "export_all"><%= link_to "Aggregar Todos", :controller => "companies", :action => "export_to_csv", :all => "true"%></li> </li> 
-                            </ul> 
+                            </ul>
+<script type="text/javascript">     
+$(document).ready(function() { 
+slideMenu('#export_button'); 
+ });  
+</script> 
                         </div>
                     </div> 
                     <div class="table-wrap"> 
-                        <table id="result_table" border="0" width="100%" cellspacing="0" cellpadding="0"> 
+                        <table id="result_table" class="blue-head" border="0" width="100%" cellspacing="0" cellpadding="0"> 
                             <col width="25"> 
                             <col width="285"> 
                             <col width="67"> 
@@ -48,7 +53,12 @@
                                 </tr> 
       				<% end %>
                             </tbody> 
-                        </table> 
+                        </table>
+			 <script type="text/javascript">
+ 	 			$(document).ready(function() {                           
+	 			initTable('#result_table', true, true);       
+				});  
+ 			</script> 
 			<% end %>
 		<% if @companies.paginate %>
                 <%= will_paginate @companies %>
