@@ -51,11 +51,12 @@
                                                     </td> 
                                                     <td> 
                                                         <p> 
-
-                                                            Software &amp; Internet: Software
-                                                            Computers &amp; Electronics: 
-                                                            Consumer Electronics, Parts and Repair
-                                                            Software &amp; Internet: Software
+<% @industries = CompanyIndustry.find(:all,:conditions => ["company_id = ?", params[:id] ]) %>
+<% if @industries %>
+<% for industry in @industries %>
+<%= industry.name %>; 
+<% end %>
+<% end %>
                                                         </p> 
                                                     </td> 
                                                 </tr> 
@@ -97,7 +98,7 @@
                                         </table> 
                                     </div> 
                                     <div class="info-right"> 
-                                        <h5>33,313 Contacts at this Company</h5> 
+                                        <h5><label><%= Contact.find(:all,:conditions => ["company_id = ?", params[:id] ]).count %> Contactos en total<label></h5></ br></ br> 
                                         <table cellspacing="0" cellpadding="0" width="100%"> 
                                             <tbody> 
                                                 <tr> 
