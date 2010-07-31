@@ -1,5 +1,6 @@
 /* Binds a click event handler to a selection. 
 
+
     TODO: Replace with jQuery tabs
 
    params:
