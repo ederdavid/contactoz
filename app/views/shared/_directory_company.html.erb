@@ -55,7 +55,7 @@
                                 <tr>
                                     <td class="center"><input type="checkbox"></td>
                                     <td><a><%= contact.title %></a></td>
-                                    <td><a><%= contact.name %></a></td>
+                                    <td><a><%= link_to contact.name, display_contact_path(contact.id) %></a></td>
                                     <td> <%= contact.city %></td>
                                     <td><%= contact.state %></td>
                                     <td>Mx</td>
