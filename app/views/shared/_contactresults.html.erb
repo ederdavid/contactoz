@@ -9,11 +9,11 @@
                             <li><a href="#">Productos</a></li>                        </ul>
                         <% form_tag :action => "cart", :name => "checkboxForm" do %>
                         <div class="export" >
-                                 <span id="export_button" ><%= image_tag "/images/btn-export.gif",:class => "btn" %> </span>                            
-				<ul id="export_menu" class="btn-slide-menu" style="display:none;" >
+                                   <span id="export_button" class="btn-slide" > Obtener </span>
+				<ul class="btn-slide-menu" style="display:none;" >
                                 <li id= "add_select"><a>Agregar seleccionados al carrito</a></li>
                                 <li id= "add_all"><a>Agregar todos al carrito</a></li>
-                                <li id= "get_select"></a>Comprar seleccionados</a></li>
+                                <li id= "add_all"><a>Comprar seleccionados</a></li>
                             </ul>
 <script type="text/javascript">     
 $(document).ready(function() { 

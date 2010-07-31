@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100730043505) do
+ActiveRecord::Schema.define(:version => 20100731062608) do
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"
@@ -52,9 +52,27 @@ ActiveRecord::Schema.define(:version => 20100730043505) do
     t.string   "year_started"
     t.string   "company_city"
     t.integer  "industry_id"
+    t.integer  "company_location_id"
   end
 
   add_index "companies", ["company_name"], :name => "index_companies_on_company_name"
+
+  create_table "company_industries", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "company_locations", :force => true do |t|
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "code"
+    t.string   "phone_number"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "company_id"
+  end
 
   create_table "companycontacts", :force => true do |t|
     t.string   "title"

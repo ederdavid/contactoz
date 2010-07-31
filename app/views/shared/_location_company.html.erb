@@ -1,0 +1,70 @@
+<% @company_selected = Company.find(params[:id]) %>
+<% @location_group = CompanyLocation.find(:all,:conditions => ["company_id = ?", params[:id] ]) %>
+
+  <div class="middle"> 
+                    <div class="navigation"> 
+                        <ul class="tabs"> 
+               <li> <%= link_to "Info", :controller => "display_companies", :action => "show" %></li>
+           <li> <%= link_to "Directorio", :controller => "display_companies", :action => "show", :tab => "directorio" %></li>
+                            <li class="active"> <%= link_to "Ubicaciones", :controller => "display_companies", :action => "show", :tab => "ubicacion" %></li>
+                        </ul> 
+                    </div> 
+                    <div class="content location"> 
+                        <div class="actions"> 
+                            <div class="filtering"> 
+                                <input type="text" id="filter" data-default="filter directory" value="filter directory"/> 
+                                <span id="filter_count"></span> 
+                            </div> 
+                        </div> 
+                        <script type="text/javascript"> 
+                            $(document).ready(function() {
+                                inputHelperText('#filter');
+                                filterTable('#filter', '#filter_count', '#location_table');
+                            });
+                        </script>
+                        <table id="location_table" class="blue-head" border="0" width="100%" cellspacing="0" cellpadding="0"> 
+                            <col width="23"> 
+                            <col width="185"> 
+                            <col width="95"> 
+                            <col width="44"> 
+                            <col width="85"> 
+                            <col width="55"> 
+                            <col width="60"> 
+                            <col width="62"> 
+                            <thead> 
+                                <tr> 
+                                    <th class="center"><input type="checkbox" id="results_checkall"></th> 
+                                    <th class="sortable sort-carat-up">Address<span></span></th> 
+                                    <th class="sortable sort-carat-both">City<span></span></th> 
+                                    <th class="sortable sort-carat-both">State<span></span></th> 
+                                    <th class="sortable sort-carat-both">Country<span></span></th> 
+                                    <th class="sortable sort-carat-both">Zip Code<span></span></th> 
+                                    <th class="sortable sort-carat-both">Phone<span></span></th> 
+                                </tr> 
+                            </thead> 
+                            <tbody>
+				<% if @location_group %>
+				 <% for location in @location_group %> 
+                                <tr> 
+                                    <td class="center"><input type="checkbox"></td> 
+                                    <td><a><%= location.address %></a></td> 
+                                    <td><a><%= location.city %></a></td> 
+                                    <td><%= location.state %></td> 
+                                    <td><%= location.country %></td> 
+                                    <td><%= location.code %></td> 
+                                    <td><%= location.phone_number %></td> 
+                                </tr> 
+				<% end %>
+				<% end %>
+                            </tbody> 
+                        </table> 
+                        <script type="text/javascript"> 
+                            $(document).ready(function() {
+                                initTable('#location_table', true, true);
+                            });
+                        </script> 
+                    </div> 
+                </div> 
+
+
+

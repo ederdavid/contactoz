@@ -9,9 +9,8 @@
 			<% form_tag :action => "export_to_csv", :name => "checkboxForm" do %>
                         <div class="export" >
 				 <span id="export_button" class="btn-slide" >
-				<%= image_tag "/images/btn-export.gif",:class => "btn" %> 
-				 </span> 
-                            <ul id="export_menu" class="btn-slide-menu" style="display:none;" > 
+				 Exportar </span> 
+                            <ul class="btn-slide-menu" style="display:none;" > 
                                 <li id= "export_select"><a>Exportar Selectionados</a></li> 
                                 <li id= "export_all"><%= link_to "Exportar Todos", :controller => "companies", :action => "export_to_csv", :all => "true"%></li> </li> 
                             </ul>

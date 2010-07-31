@@ -1,0 +1,76 @@
+<% @company_selected = Company.find(params[:id]) %>
+<% @contact_group = Contact.find(:all,:conditions => ["company_id = ?", params[:id] ]) %>
+                <div class="middle">
+                    <div class="navigation">
+                        <ul class="tabs">
+		<li> <%= link_to "Info", :controller => "display_companies", :action => "show" %></li>
+           <li class="active"> <%= link_to "Directorio", :controller => "display_companies", :action => "show", :tab => "directorio" %></li>
+                            <li> <%= link_to "Ubicaciones", :controller => "display_companies", :action => "show", :tab => "ubicacion" %></li>
+                        </ul>
+                    </div>
+                    <div class="content directory">
+                        <div class="actions">
+                            <div class="filtering">
+                                <input type="text" id="filter" data-default="filter directory" value="filter directory"/>
+                                <span id="filter_count"></span>
+                            </div>
+                            <div class="fl-right">
+                                <span id="c_button" class="btn-slide">Obtener</span>
+                                <ul class="btn-slide-menu" style="display:none;">
+                                    <li><a href="#">Add Selection to Cart</a></li>
+                                    <li><a href="#">Add All to Cart</a></li>
+                                    <li><a href="#">Get Selected Now</a></li>
+                                </ul>
+                            </div>
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                    slideMenu('#cart_button');
+                                    inputHelperText('#filter');
+                                    filterTable('#filter', '#filter_count', '#directory_table');
+                                });
+                            </script>
+                        </div>   
+                        <table id="directory_table" class="blue-head" border="0" width="100%" cellspacing="0" cellpadding="0">
+                            <col width="25">
+                            <col width="253">
+                            <col width="140">
+                            <col width="100">
+                            <col width="45">
+                            <col width="80">
+                            <col width="60"> 
+                            <thead>
+                                <tr>
+                                    <th class="center"><input type="checkbox" id="results_checkall"></th> 
+                                    <th class="sortable sort-carat-up">Titulo<span></span></th>
+                                    <th class="sortable sort-carat-both">Nombre<span></span></th>
+                                    <th class="sortable sort-carat-both">Ciudad<span></span></th>
+                                    <th class="sortable sort-carat-both">Estado<span></span></th>
+                                    <th class="sortable sort-carat-both">Pais<span></span></th>
+                                    <th class="sortable sort-carat-both">Actualizado<span></span></th>
+                                </tr>
+                            </thead>
+				<% if @contact_group %>
+				<% for contact in @contact_group %>
+                            <tbody>
+                                <tr>
+                                    <td class="center"><input type="checkbox"></td>
+                                    <td><a><%= contact.title %></a></td>
+                                    <td><a><%= contact.name %></a></td>
+                                    <td> <%= contact.city %></td>
+                                    <td><%= contact.state %></td>
+                                    <td>Mx</td>
+                                    <td> <%= contact.updated_at.strftime("%m/%d/%Y") %></td>
+                                </tr>
+                            </tbody>
+				<% end %>
+				<% end %>
+                        </table>
+                        <script type="text/javascript">
+                            $(document).ready(function() {
+                                initTable('#directory_table', true, true);
+                            });
+                        </script>
+                    </div>
+                </div>
+
+
