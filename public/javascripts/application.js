@@ -302,7 +302,7 @@ $(document).ready(function($){
 							bValid = bValid && checkRegexp(password,/^([0-9a-zA-Z])+$/,"Password field only allow : a-z 0-9");
 					
 							if (bValid) {
-								JQuery.ajax({
+								$.ajax({
 								    url: 'login',
 								    type: 'POST',
 								    data: 'user_session[email]='+email.val()+'&user_session[password]='+password.val()+'&authenticity_token=fHMB08SvRjE0/kQU27JVnch8xaoZMp83Uy0gpbTxyKQ=',
@@ -371,7 +371,7 @@ $(document).ready(function($){
 			       }  
 			     }  
 			   }
-			JQuery.ajax({
+			$.ajax({
 				    url: 'export_to_csv',
 				    type: 'POST',
 				    data: array2,
