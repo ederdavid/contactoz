@@ -39,6 +39,7 @@ Rails::Initializer.run do |config|
 
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
   config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
+  config.gem "acts-as-taggable-on", :source => "http://gemcutter.org", :version => '2.0.6'
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]

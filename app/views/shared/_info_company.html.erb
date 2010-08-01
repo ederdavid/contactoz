@@ -51,12 +51,14 @@
                                                     </td> 
                                                     <td> 
                                                         <p> 
-<% @industries = CompanyIndustry.find(:all,:conditions => ["company_id = ?", params[:id] ]) %>
+
+<% @industries = @company_selected.industry_list %>
+
+
 <% if @industries %>
-<% for industry in @industries %>
-<%= industry.name %>; 
+<%= @industries %>
 <% end %>
-<% end %>
+
                                                         </p> 
                                                     </td> 
                                                 </tr> 
@@ -237,24 +239,48 @@
                     <div class="sidebar"> 
                         <div id="related_contacts" class="pane"> 
                             <div class="title"> 
-                                Recent Contact Changes 
+                                Empresas Relationadas  
                             </div> 
+
+			<% @related_companies = @company_selected.find_related_industries %>
                             <div class="body gradient"> 
-                                <h5>Added contacts</h5> 
-                                <ul> 
-                                    <li> 
-                                        <a href="#">Michael Slim</a> 
-                                        <span>Developer</span> 
-                                        <span>Added 07/27/10 at 22:49</span> 
-                                    </li> 
-                                    <li> 
-                                        <a href="#">Steve Slim</a> 
-                                        <span>CTO</span> 
-                                        <span>Added 07/27/10 at 22:49</span> 
-                                    </li> 
+                            <!--    <h5>Added contacts</h5> --> 
+                                <ul>
+				<% if @related_companies[0] %>
+                                    <li>
+					<a><%= link_to @related_companies[0].company_name, display_company_path(@related_companies[0]) %></a> 
+                                        <span><%= @related_companies[0].company_city %>, <%= @related_companies[0].company_state %></span> 
+                                        <span> <%= @related_companies[0].updated_at.strftime("%m/%d/%Y") %></span> 
+                                    </li>
+				<% end %>
+				<% if @related_companies[1] %> 
+				     <li>
+                                        <a><%= link_to @related_companies[1].company_name, display_company_path(@related_companies[0]) %></a>
+                                        <span><%= @related_companies[1].company_city %>, <%= @related_companies[0].company_state %></span>
+                                        <span> <%= @related_companies[1].updated_at.strftime("%m/%d/%Y") %></span>
+                                    </li>
+				<% end %>
+				   <% if @related_companies[2] %>
+				    <li>
+                                        <a><%= link_to @related_companies[2].company_name, display_company_path(@related_companies[0]) %></a>
+                                        <span><%= @related_companies[2].company_city %>, <%= @related_companies[0].company_state %></span>
+                                        <span> <%= @related_companies[2].updated_at.strftime("%m/%d/%Y") %></span>
+                                    </li>
+				   <% end %>
+
                                 </ul> 
                                 <hr class="dotted-grey"></hr> 
-                                <h5>Graveyard contacts</h5> 
+                                <h5><b><em>Productos y Servicios de Interes</em></b></h5>
+				
+<p></ p>
+<p></ p>
+
+(Annuncios de Productos 
+y servicios aqui)
+<p></ p>
+<p></ p>
+
+				<!-- 
                                 <ul> 
                                     <li> 
                                         <a href="#">Michael Slim</a> 
@@ -266,7 +292,8 @@
                                         <span>CTO</span> 
                                         <span>Added 07/27/10 at 22:49</span> 
                                     </li> 
-                                </ul> 
+                                </ul>
+				--> 
                             </div> 
                         </div> 
                     </div> 
