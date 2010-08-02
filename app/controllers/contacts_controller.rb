@@ -4,35 +4,35 @@ class ContactsController < ApplicationController
 
    
 
-def export_to_csv
-  if params[:all]
-	@contacts = Contact.find(:all)
-  else
-	  @contacts = Array.new
-	  for contact in params[:contact]
-	      if !contact[1]
-		@contacts << Contact.find(contact)
-	      else
-		@contacts << Contact.find(contact[1])
-	      end
-	  end
-
-  end
-  csv_string = FasterCSV.generate do |csv|
-    # header row
-    csv << ["id", "title", "name", "city", "state", "country", "linkedin_id", "contact_last_updated", "created_at", "updated_at", "accuracy", "company_id"]
-
+#def export_to_csv
+#  if params[:all]
+#	@contacts = Contact.find(:all)
+#  else
+#	  @contacts = Array.new
+#	  for contact in params[:contact]
+#	      if !contact[1]
+#		@contacts << Contact.find(contact)
+#	      else
+#		@contacts << Contact.find(contact[1])
+#	      end
+#	  end
+#
+#  end
+#  csv_string = FasterCSV.generate do |csv|
+#    # header row
+#    csv << ["id", "title", "name", "city", "state", "country", "linkedin_id", "contact_last_updated", "created_at", "updated_at", "accuracy", "company_id"]
+#
     # data rows
-    @contacts.each do |contact|
-      csv << [contact.id, contact.title, contact.name, contact.city, contact.state, contact.country, contact.linkedin_id, contact.contact_last_updated, contact.created_at, contact.updated_at, contact.accuracy, contact.company_id]
-    end
-  end
+#    @contacts.each do |contact|
+#      csv << [contact.id, contact.title, contact.name, contact.city, contact.state, contact.country, contact.linkedin_id, contact.contact_last_updated, contact.created_at, contact.updated_at, contact.accuracy, contact.company_id]
+#    end
+#  end
 
   # send it to the browsah
-  send_data csv_string,
-            :type => 'text/csv; charset=iso-8859-1; header=present',
-            :disposition => "attachment; filename=contacts.csv"
-end
+#  send_data csv_string,
+#            :type => 'text/csv; charset=iso-8859-1; header=present',
+#            :disposition => "attachment; filename=contacts.csv"
+#end
 
   def displayContacts
         redirect_to(:action => "index")

@@ -238,6 +238,43 @@ $("a").click(function(event){
 //changes...
 
 $(document).ready(function($){
+//modal notification
+	$(function() {
+		$('#must-login').click(function() {
+			$('#notification-form').dialog('open');
+		});
+		$("#notification-form").dialog({
+			autoOpen: false,
+			height: 120,
+			width: 350,
+			modal: true,
+			buttons: {
+				'aceptar': function() {
+
+					$(this).dialog('close');
+				}
+			},
+			close: function() {
+				//allfields.val('').removeclass('ui-state-error');
+			}
+		});
+		$("#notification-form2").dialog({
+			autoOpen: false,
+			height: 120,
+			width: 350,
+			modal: true,
+			buttons: {
+				'aceptar': function() {
+
+					$(this).dialog('close');
+				}
+			},
+			close: function() {
+				//allfields.val('').removeclass('ui-state-error');
+			}
+		});
+	});
+//end modal notification
 	//Modal Form
 	$(function() {
 			// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
@@ -332,7 +369,11 @@ $(document).ready(function($){
     
     
 
-      
+/* notification */
+$(function() {
+
+});
+/* notification */
         
         /* export */
         
@@ -383,6 +424,49 @@ $(document).ready(function($){
 				    error: function(){
 				    }
 				  });
+		    });
+		    $('#limited_export_select').click(function() {
+			   var inputs = document.getElementsByTagName("input"); //or document.forms[0].elements;    
+			   var array = []; //will contain all checked checkboxes  
+			   var array2 = ""
+			   var j = 1;
+			   for (var i = 0; i < inputs.length-1; i++) {  
+			     if (inputs[i].type == "checkbox" && inputs[i].id != "results_checkall") {
+			       if (inputs[i].checked) {  
+				 array.push(inputs[i]);
+				 if (inputs[i].id == "contact_") {
+					 if (array2 == "") {
+					     array2 = array2 + "contact[" + j + "]=" + inputs[i].value;
+				         } else {
+					     array2 = array2 + "&contact[" + j + "]=" + inputs[i].value;
+					 }
+				 }else{
+					if (array2 == "") {
+					     array2 = array2 + "company[" + j + "]=" + inputs[i].value;
+				         } else {
+					     array2 = array2 + "&company[" + j + "]=" + inputs[i].value;
+					 }
+				 }
+				 j ++;
+			       }  
+			     }  
+			   }
+			if (array.length < 6) {
+			$.ajax({
+				    url: 'export_to_csv',
+				    type: 'POST',
+				    data: array2,
+				    DataType: 'script',
+				    success: function(){
+                                            if (array2.length > 0)
+					        self.location= 'export_to_csv?'+ array2
+				    },
+				    error: function(){
+				    }
+				  });
+		       } else {
+				$('#notification-form2').dialog('open');
+		       }
 		    });
                     $('#add_select').click(function() {
 			   var inputs = document.getElementsByTagName("input"); //or document.forms[0].elements;    
