@@ -10,9 +10,13 @@
                         <div class="export" >
 				 <span id="export_button" class="btn-slide" >
 				 Exportar </span> 
-                            <ul class="btn-slide-menu" style="display:none;" > 
-                                <li id= "export_select"><a>Exportar Selectionados</a></li> 
-                                <li id= "export_all"><%= link_to "Exportar Todos", :controller => "companies", :action => "export_to_csv", :all => "true"%></li> </li> 
+                            <ul class="btn-slide-menu" style="display:none;" >
+				<% if current_user %>
+                                <li id= "export_select"><a>Exportar Seleccionados</a></li> 
+                                <li id= "export_all"><%= link_to "Exportar Todos", :controller => "companies", :action => "export_to_csv", :all => "true"%></li> </li>
+				<% else %> 
+				<li id= "limited_export_select"><a>Exportar Seleccionados</a></li> 
+				<% end %>
                             </ul>
 <script type="text/javascript">     
 $(document).ready(function() { 
@@ -64,4 +68,6 @@ slideMenu('#export_button');
                 <% end %>        
             </div>
                  </div> 
-
+<div id="notification-form2" title="Notification">
+	<p class="validateTips">Necesita tener una cuenta para exportar más de cinco contactos.</p>
+</div>

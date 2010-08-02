@@ -44,8 +44,8 @@
 					<%= link_to "<span class=\"btn-blank\"> <p> Compra </p> </span>", :controller => "users", :action => "buy", :id => @contact_selected.id %>                                         
 	                            </div>
 			   <% else %>
-				<div class="btn-download" >
-				<%= link_to "<span class=\"btn-blank\"> <p> Compra </p> </span>", login_path %>
+				<div class="btn-download" id = "must-login">
+				<%= link_to "<span class=\"btn-blank\"> <p> Compra </p> </span>" %>
 				</div>
 			   <% end %>
 
@@ -120,7 +120,11 @@
                             </ul> 
                         </div> 
                     </div> 
-                </div> 
+                </div>
+
+<div id="notification-form" title="Notification">
+	<p class="validateTips">Necesita tener una cuenta para comprar contactos.</p>
+</div>
  
  
 

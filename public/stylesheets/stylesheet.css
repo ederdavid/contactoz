@@ -2,7 +2,7 @@
 .autocomplete { border:2px solid #25A0CC; background:#FFF; cursor:default; text-align:left; max-height:350px; overflow:hidden; margin:-6px 12px 6px -6px; /* IE6 specific: */ _height:350px;  _margin:0; _overflow-x:hidden; }
 .autocomplete .selected { background:#F0F0F0; }
 .autocomplete div { background:url(img/person2.jpg) padding:30px 30px; white-space:nowrap; }
-.autocomplete strong { font-weight:normal; color:#3399FF; }
+.autocomplete strong { font-weight:normal; color:#3399FF; line-height: 2em;}
 a{
     outline: none;
     cursor: pointer;
