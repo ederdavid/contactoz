@@ -1,0 +1,44 @@
+<script type="text/javascript" >
+$(function()
+{
+$(".delete").click(function(){
+var element = $(this);
+var I = element.attr("id");
+$('li#list'+I).fadeOut('slow', function() {$(this).remove();});
+return false;
+});
+});
+</script>
+
+<div style=" margin-top:10px; margin-left:0px" align="left" class = "product-adds">
+
+<!-- <span style=" padding-left:20px; font-weight:bold;"> Annuncios Relacionados</span> -->
+<ul id="facebook">
+        <li id="list1">
+                <img src="img1.jpg" /> <span class="del"><a href="#" class="delete" title="Borrar " id="1">X</a></span>
+                <a href="" class="user-title">Productos de Cementos, Monterrey </a>
+                <span class="addas">Ver mass... </span>
+        </li> 
+        <li id="list2"> 
+                <img src="img2.jpg" /> <span class="del"><a href="#" class="delete" title="Delete this user " id="2" >X</a></span>
+                <a href="" class="user-title">Srujana</a> 
+                <span class="addas">Ver mass ...</span>
+        </li> 
+        <li id="list3"> 
+                <img src="img3.jpg" /> <span class="del"><a href="#" class="delete" title="Delete this user " id="3">X</a></span>
+                <a href="" class="user-title">Sudha</a>
+                <span class="addas">Add as Friend</span>
+        </li>  
+        <li id="list4"> 
+                <img src="img4.gif" /> <span class="del"><a href="#" class="delete" title="Delete this user " id="4">X</a></span>
+                <a href="" class="user-title">Chiranjeevi</a>
+                <span class="addas">Add as Friend</span>
+        </li>   
+</ul>  
+</div> 
+    
+
+
+
+
+
