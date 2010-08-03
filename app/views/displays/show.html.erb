@@ -1,3 +1,9 @@
+<script type="text/javascript">
+jQuery(document).ready(function($){
+options = { serviceUrl:'/contacts.js' };
+$('#search').autocomplete(options);
+});
+</script>
   <!-- search -->  
 
 
@@ -6,7 +12,7 @@
                 <div class="search"> 
                     <form id="search_form"> 
                         <div class="wrap"> 
-                            <input type="text" data-default="search" value="search"></input> 
+                            <input id="search" type="text" data-default="search" value="search"></input> 
                             <button type="submit"></button> 
                         </div> 
                     </form> 

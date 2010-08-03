@@ -1,0 +1,14 @@
+<%@data = ""%>
+<%for contact in @results
+    @aux = contact.name
+    if @data != ""
+       @data = "#{@data}','#{@aux}"
+    else
+       @data = "#{@aux}"
+    end
+end
+%>
+{
+ query:<%= array_or_string_for_javascript(params[:query])%>,
+ suggestions:[<%= array_or_string_for_javascript(@data)%>],
+}

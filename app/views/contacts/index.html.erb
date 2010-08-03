@@ -1,10 +1,15 @@
-
+<script type="text/javascript">
+jQuery(document).ready(function($){
+options = { serviceUrl:'/contacts.js' };
+$('#search').autocomplete(options);
+});
+</script>
 <% @query = params[:search] %>
 
 <div class="search">
 <form id="search_form">
 <div class="wrap">
-<input type="text" data-default="search" value="" name="search"></input>
+<input id="search" type="text" data-default="search" value="" name="search"></input>
 <button type="submit"></button>
 </div>
 </form>

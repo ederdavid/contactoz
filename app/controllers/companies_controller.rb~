@@ -96,12 +96,14 @@ def sortByName
       render :template => 'companies/index'
   end
   def sortByNumber
+      @companies = Company.find(:all, :conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_name')
+      @companies = Company.paginate(:page=>params[:page],:per_page=> $global_page, :order => @companies.contacts.count)
      render :template => 'companies/index'
   end
   # GET /companies
   # GET /companies.xml
   def index
-       @results = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:query]}%", :limit => "20"])
+       @results = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:query]}%"], :limit => "20")
 
 
 
@@ -127,7 +129,7 @@ def sortByName
 
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @company }
+      format.xml  { render :xml => @company.to_xml(:only => [:company_name]) }
     end
   end
 
