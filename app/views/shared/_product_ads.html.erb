@@ -9,36 +9,54 @@ return false;
 });
 });
 </script>
-
 <div style=" margin-top:10px; margin-left:0px" align="left" class = "product-adds">
 
 <!-- <span style=" padding-left:20px; font-weight:bold;"> Annuncios Relacionados</span> -->
+<% @industry_array = @company_selected.industry_list %>
+<% @industry_string = @industry_array.join(",") %>
+<% @fake =Advertisement.create(:name =>"test") %>
+<% @fake.industry_list = @industry_string %>
+<% @fake.save %>
+
+<% @advert_array = @fake.find_related_industries %>
+<% @fake.destroy %>
 <ul id="facebook">
+<% if @advert_array[0] %>
         <li id="list1">
-                <img src="img1.jpg" /> <span class="del"><a href="#" class="delete" title="Borrar " id="1">X</a></span>
-                <a href="" class="user-title">Productos de Cementos, Monterrey </a>
+                <img src="images/ads/<%= @advert_array[0].picture %>" /> <span class="del"><a href="#" class="delete" title="Borrar " id="1">X</a></span>
+                <a href="" class="user-title"> <%= @advert_array[0].name %> </a>
                 <span class="addas">Ver mass... </span>
         </li> 
+<% end %>
+<% if @advert_array[1] %>
         <li id="list2"> 
-                <img src="img2.jpg" /> <span class="del"><a href="#" class="delete" title="Delete this user " id="2" >X</a></span>
-                <a href="" class="user-title">Srujana</a> 
+                <img src="images/ads/<%= @advert_array[1].picture %> " /> <span class="del"><a href="#" class="delete" title=" Borrar " id="2" >X</a></span>
+                <a href="" class="user-title"> <%= @advert_array[1].name %></a> 
                 <span class="addas">Ver mass ...</span>
         </li> 
+<% end %>
+<% if @advert_array[2] %>
         <li id="list3"> 
-                <img src="img3.jpg" /> <span class="del"><a href="#" class="delete" title="Delete this user " id="3">X</a></span>
-                <a href="" class="user-title">Sudha</a>
-                <span class="addas">Add as Friend</span>
+                <img src="images/ads/<%= @advert_array[2].picture %>  " /> <span class="del"><a href="#" class="delete" title="Delete this user " id="3">X</a></span>
+                <a href="" class="user-title"> <%= @advert_array[2].name %> </a>
+                <span class="addas"> Ver mass ... </span>
         </li>  
+<% end %>
+<% if @advert_array[3] %>
         <li id="list4"> 
-                <img src="img4.gif" /> <span class="del"><a href="#" class="delete" title="Delete this user " id="4">X</a></span>
-                <a href="" class="user-title">Chiranjeevi</a>
-                <span class="addas">Add as Friend</span>
+                <img src="images/ads/<%= @advert_array[3].picture %> " /> <span class="del"><a href="#" class="delete" title="Delete this user " id="4">X</a></span>
+                <a href="" class="user-title"> <%= @advert_array[3].name %> </a>
+                <span class="addas"> Ver mass ...</span>
         </li>   
+<% end %>
+<% if @advert_array[4] %>
+	 <li id="list4"> 
+                <img src="images/ads/<%= @advert_array[4].picture %> " /> <span class="del"><a href="#" class="delete" title="Delete this user " id="4">X</a></span>
+                <a href="" class="user-title"> <%= @advert_array[4].name %></a>
+                <span class="addas">Ver mass ...</span>
+        </li> 
+<% end %>
 </ul>  
 </div> 
     
-
-
-
-
 
