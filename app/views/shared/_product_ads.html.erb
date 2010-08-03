@@ -1,0 +1,66 @@
+<script type="text/javascript" >
+$(function()
+{
+$(".delete").click(function(){
+var element = $(this);
+var I = element.attr("id");
+$('li#list'+I).fadeOut('slow', function() {$(this).remove();});
+return false;
+});
+});
+</script>
+<div style=" margin-top:10px; margin-left:0px" align="left" class = "product-adds">
+
+<!-- <span style=" padding-left:20px; font-weight:bold;"> Annuncios Relacionados</span> -->
+<% @industry_array = @company_selected.industry_list %>
+<% @industry_string = @industry_array.join(",") %>
+<% @fake =Advertisement.create(:name =>"test") %>
+<% @fake.industry_list = @industry_string %>
+<% @fake.save %>
+<% @advert_array = @fake.find_related_industries %>
+<% @fake.destroy %>
+<ul id="facebook">
+<% if @advert_array[0] %>
+        <li id="list1">
+		<%= image_tag(@advert_array[0].picture, :height => '32', :width => '32') %>
+		<span class="del"><a href="#" class="delete" title="Borrar " id="1">X</a></span>
+                <a href="" class="user-title"> <%= @advert_array[0].name %> </a>
+                <span class="addas">Ver mass... </span>
+        </li> 
+<% end %>
+<% if @advert_array[1] %>
+        <li id="list2">
+		<%= image_tag(@advert_array[1].picture, :height => '32', :width => '32') %> 
+		<span class="del"><a href="#" class="delete" title=" Borrar " id="2" >X</a></span>
+                <a href="" class="user-title"> <%= @advert_array[1].name %></a> 
+                <span class="addas">Ver mass ...</span>
+        </li> 
+<% end %>
+<% if @advert_array[2] %>
+        <li id="list3">
+		<%= image_tag(@advert_array[2].picture, :height => '32', :width => '32') %> 
+		<span class="del"><a href="#" class="delete" title="Delete this user " id="3">X</a></span>
+                <a href="" class="user-title"> <%= @advert_array[2].name %> </a>
+                <span class="addas"> Ver mass ... </span>
+        </li>  
+<% end %>
+<% if @advert_array[3] %>
+        <li id="list4">
+		<%= image_tag(@advert_array[3].picture, :height => '32', :width => '32') %> 
+		<span class="del"><a href="#" class="delete" title="Delete this user " id="4">X</a></span>
+                <a href="" class="user-title"> <%= @advert_array[3].name %> </a>
+                <span class="addas"> Ver mass ...</span>
+        </li>   
+<% end %>
+<% if @advert_array[4] %>
+	 <li id="list4">
+		<%= image_tag(@advert_array[4].picture, :height => '32', :width => '32') %> 
+		<span class="del"><a href="#" class="delete" title="Delete this user " id="4">X</a></span>
+                <a href="" class="user-title"> <%= @advert_array[4].name %></a>
+                <span class="addas">Ver mass ...</span>
+        </li> 
+<% end %>
+</ul>  
+</div> 
+    
+
