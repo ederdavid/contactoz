@@ -11,9 +11,21 @@ class ApplicationController < ActionController::Base
   helper_method :current_user  
 
   def index
-       @companies = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:query]}%"], :limit => "10")
-       @contacts = Contact.find(:all, :conditions => ['name LIKE ?', "%#{params[:query]}%"], :limit => "10")
-       respond_to do |format|
+	if params[:type] == "companies"
+		@companies = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:query]}%"], :limit => "20")
+	end
+	if params[:type] == "contacts"
+		@contacts = Contact.find(:all, :conditions => ['name LIKE ?', "%#{params[:query]}%"], :limit => "20")
+	end
+	if params[:type] == "products"
+	end
+	if params[:type] == "services"
+	end
+	if params[:type] == "all"
+		@companies = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:query]}%"], :limit => "10")
+		@contacts = Contact.find(:all, :conditions => ['name LIKE ?', "%#{params[:query]}%"], :limit => "10")
+	end
+	respond_to do |format|
            format.js
            format.html # index.html.erb
            format.xml  { render :xml => @contacts }

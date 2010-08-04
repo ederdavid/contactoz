@@ -7,8 +7,7 @@
        @data = "#{@aux}"
     end
 end
-%>
-<%for contact in @contacts
+for contact in @contacts
     @aux = contact.name
     if @data != ""
        @data = "#{@contactos}','#{@aux}"
@@ -17,7 +16,6 @@ end
     end
 end
 %>
-
 {
  query:<%= array_or_string_for_javascript(params[:query])%>,
  suggestions:[<%= array_or_string_for_javascript(@data)%>],

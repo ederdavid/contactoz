@@ -4,10 +4,10 @@
                 <ul id="search_categories">
               
 
-	            <li class="active" id="1"><div>Empresas</div></li>
-                    <li><div>Contactos</div></li>
-                    <li><div>Servicios</div></li>
-                    <li><div>Productos</div></li>            
+	            <li id = "companies"><div>Empresas</div></li>
+                    <li id = "contacts" ><div>Contactos</div></li>
+                    <li id = "services" ><div>Servicios</div></li>
+                    <li id = "products" ><div>Productos</div></li>            
 	        </ul>
 		    
                 <ul class="site">
