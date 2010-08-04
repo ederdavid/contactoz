@@ -1,0 +1,24 @@
+<%@data = ""%>
+<%for company in @companies
+    @aux = company.company_name
+    if @data != ""
+       @data = "#{@data}','#{@aux}"
+    else
+       @data = "#{@aux}"
+    end
+end
+%>
+<%for contact in @contacts
+    @aux = contact.name
+    if @data != ""
+       @data = "#{@contactos}','#{@aux}"
+    else
+       @data = "#{@aux}"
+    end
+end
+%>
+
+{
+ query:<%= array_or_string_for_javascript(params[:query])%>,
+ suggestions:[<%= array_or_string_for_javascript(@data)%>],
+}

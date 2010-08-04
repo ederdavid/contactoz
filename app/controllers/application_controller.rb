@@ -9,6 +9,16 @@ class ApplicationController < ActionController::Base
   # filter_parameter_logging :password
 
   helper_method :current_user  
+
+  def index
+       @companies = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:query]}%"], :limit => "10")
+       @contacts = Contact.find(:all, :conditions => ['name LIKE ?', "%#{params[:query]}%"], :limit => "10")
+       respond_to do |format|
+           format.js
+           format.html # index.html.erb
+           format.xml  { render :xml => @contacts }
+       end
+  end
   
   private  
   def current_user_session  

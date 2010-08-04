@@ -33,8 +33,6 @@ ActiveRecord::Schema.define(:version => 20100802230942) do
   create_table "application_accounts", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "api_key"
-    t.string   "api_secret"
   end
 
   create_table "companies", :force => true do |t|
@@ -56,23 +54,16 @@ ActiveRecord::Schema.define(:version => 20100802230942) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contact_id"
+    t.string   "company_city"
     t.string   "colonia"
     t.string   "scian"
     t.string   "giro"
     t.string   "year_started"
-    t.string   "company_city"
     t.integer  "industry_id"
     t.integer  "company_location_id"
   end
 
   add_index "companies", ["company_name"], :name => "index_companies_on_company_name"
-
-  create_table "company_industries", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "company_id"
-    t.string   "name"
-  end
 
   create_table "company_locations", :force => true do |t|
     t.string   "address"
@@ -84,22 +75,6 @@ ActiveRecord::Schema.define(:version => 20100802230942) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
-  end
-
-  create_table "companycontacts", :force => true do |t|
-    t.string   "title"
-    t.string   "name"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "linkedin_id"
-    t.date     "contact_last_updated"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "accuracy"
-    t.integer  "company_id"
-    t.string   "department"
-    t.string   "hierarchy"
   end
 
   create_table "contact_saveds", :force => true do |t|
@@ -131,8 +106,8 @@ ActiveRecord::Schema.define(:version => 20100802230942) do
     t.date     "contact_last_updated"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "accuracy"
     t.integer  "company_id"
+    t.integer  "accuracy"
     t.string   "department"
     t.string   "hierarchy"
     t.string   "address"

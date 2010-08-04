@@ -11,10 +11,35 @@
 
 var handleClick = function(selector, className) {
     var current = $(selector + '.' + className);
+    jQuery(function AutoScript(){
+    options = { serviceUrl:'/application.js' };
+    $('#search').autocomplete(options);
+    });
     $(selector).click(function() {
         current.length && current.removeClass(className);
         $(this).addClass(className);
         current = $(this);
+	if ($(this).text() == "Empresas") {
+		jQuery(function AutoScript(){
+		options = { serviceUrl:'/companies.js' };
+		$('#search').autocomplete(options);
+		});
+	} else if ($(this).text() == "Contactos") {
+		jQuery(function AutoScript(){
+		options = { serviceUrl:'/contacts.js' };
+		$('#search').autocomplete(options);
+		});
+	} else if ($(this).text() == "Servicios") {
+		jQuery(function AutoScript(){
+		options = { serviceUrl:'/services.js' };
+		$('#search').autocomplete(options);
+		});
+	} else if ($(this).text() == "Productos") {
+		jQuery(function AutoScript(){
+		options = { serviceUrl:'/products.js' };
+		$('#search').autocomplete(options);
+		});
+	}
     });
 };
 
