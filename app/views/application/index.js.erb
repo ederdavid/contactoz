@@ -1,19 +1,24 @@
 <%@data = ""%>
-<%for company in @companies
-    @aux = company.company_name
-    if @data != ""
-       @data = "#{@data}','#{@aux}"
-    else
-       @data = "#{@aux}"
-    end
+<%
+if @companies
+	for company in @companies
+	    @aux = company.company_name
+	    if @data != ""
+	       @data = "#{@data}','#{@aux}"
+	    else
+	       @data = "#{@aux}"
+	    end
+	end
 end
-for contact in @contacts
-    @aux = contact.name
-    if @data != ""
-       @data = "#{@contactos}','#{@aux}"
-    else
-       @data = "#{@aux}"
-    end
+if @contacts
+	for contact in @contacts
+	    @aux = contact.name
+	    if @data != ""
+	       @data = "#{@contactos}','#{@aux}"
+	    else
+	       @data = "#{@aux}"
+	    end
+	end
 end
 %>
 {
