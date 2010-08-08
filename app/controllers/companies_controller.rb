@@ -125,7 +125,7 @@ def sortByName
   def show
     @company = Company.find(params[:id])
     @signature = params[:signature]
-    params = request.query_parameters.reject {|key, value| key.to_s == "signature" || key.to_s == "app_key"}
+    params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
     @parameters = params.to_s
     @secret = ApplicationAccount.api_secret_field
