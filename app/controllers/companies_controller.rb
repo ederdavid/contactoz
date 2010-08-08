@@ -132,9 +132,11 @@ def sortByName
     @app_key = ApplicationAccount.api_key_field
     respond_to do |format|
       format.html # show.html.erb
-      if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-          format.xml  { render :xml => @company.to_xml(:only => [:id, :company_name, :company_city, :company_state, :updated_at]) }
-      end
+        if params[:app_key] == @app_key
+           if @signature == Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s
+               format.xml  { render :xml => @company.to_xml(:only => [:id, :company_name, :company_city, :company_state, :updated_at]) }
+           end
+        end
     end
   end
 
