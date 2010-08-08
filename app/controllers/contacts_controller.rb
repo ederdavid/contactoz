@@ -64,10 +64,17 @@ class ContactsController < ApplicationController
   # GET /contacts/1.xml
   def show
     @contact = Contact.find(params[:id])
-
+    @signature = params[:signature]
+    params = request.query_parameters.reject {|key, value| key.to_s == "signature" || key.to_s == "app_key"}
+    params.sort_by {|key, value| key.to_s.underscore}.join('')
+    @parameters = params.to_s
+    @secret = ApplicationAccount.api_secret_field
+    @app_key = ApplicationAccount.api_key_field
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @contact.to_xml(:only => [:name, :title, :city, :department, :hierarchy]) }
+      if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
+          format.xml  { render :xml => @contact.to_xml(:only => [:name, :title, :city, :department, :hierarchy]) }
+      end
     end
   end
 

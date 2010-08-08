@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates_presence_of :screen_name
 
   acts_as_recommendable :contacts, :through => :contact_saveds
+  acts_as_authentic#
 
   def buy_book(contact)
 	contacts << contact
