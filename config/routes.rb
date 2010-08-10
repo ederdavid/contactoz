@@ -5,6 +5,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :displays
 
+  map.resources :services
+
+  map.resources :products
+
   map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
 
   map.connect 'contacts/:action', :controller => 'contacts', :action => /[a-z_]+/i

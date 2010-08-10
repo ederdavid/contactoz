@@ -72,8 +72,10 @@ class ContactsController < ApplicationController
     @app_key = ApplicationAccount.api_key_field
     respond_to do |format|
       format.html # show.html.erb
-      if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-          format.xml  { render :xml => @contact.to_xml(:only => [:name, :title, :city, :department, :hierarchy]) }
+      if params[:app_key] == @app_key
+           if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
+               format.xml  { render :xml => @contact.to_xml(:only => [:name, :title, :city, :department, :hierarchy]) }
+           end
       end
     end
   end
