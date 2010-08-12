@@ -19,9 +19,9 @@ var handleClick = function(selector, className) {
 function type() {
 	array = document.getElementsByClassName("active");
 	if (array[0])
-		return array[0].id;
+	return array[0].id;
 	else
-		return "all";
+	return "all";
 };
 $(function AutoScript(){
 	$('#search').autocomplete({serviceUrl:'/application.js', params: {
