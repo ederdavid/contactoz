@@ -1,60 +1,152 @@
-      <% Juggernaut.send_to_all("alert('hi from juggernaut')") %>
+<div class="search">
 
- <%= form_remote_tag(
-            :url => { :action => :send_data },
-            :complete => "$('chat_input').value = ''" ) %>
-        <%= text_field_tag( 'chat_input', '', { :size => 20, :id => 'chat_input'} ) %>
-        <%= submit_tag "Add" %>
-      </form>
-      <ul id="chat_data" style="list-style:none">
-      </ul>
+<form id="search_form">
+<div class="wrap">
+<input id = "search" type="text" data-default="search" value="" name="search"></input>
+<button type="submit"></button>
+</div>
+</form>
+
+</div>
+<div class="clear"></div>
 
 
-<p>
-  <b>Screen name:</b>
-  <%=h @user.screen_name %>
-</p>
 
-<p>
-  <b>First name:</b>
-  <%=h @user.first_name %>
-</p>
 
-<p>
-  <b>Last name:</b>
-  <%=h @user.last_name %>
-</p>
+                <div class="middle">
+                    <div class="content">
+                        <div class="notification">
+                            <h5>New Notification</h5>
+                            <div class="text">This is a message linking to <a href="#">a random page</a>. <span class="timestamp">9:58pm</span></div>
+                            <div class="clear-button btn-grey" onclick="$(this).parent().fadeOut('fast')">Clear New Notification</div>
+                        </div>
+                        <div class="large-tabs">
+                            <ul>
+                                <li class="active first">
+                                    <span class="title">Actualizaciones</span>
+                                    <span class="extra">extra info</span>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="title">Comprar</span>
+                                        <span class="extra">extra info</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="title">Vendar</span>
+                                        <span class="extra">extra info</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="feed">
+                            <div class="feed-item">
+                                <a href="#">
+                                    <span class="profile-photo">img</span>
+                                </a>
+                                <a class="name">
+                                    Mexicana subio 23% de ingressos
+                                </a>
+                                <div class="info">
+                                    <a href="#">Wall Street Journal</a> 
+                                </div>
+                                <ul class="tags">
+                                    <li><a href="#">Mexicana</a></li>
+                                    <li><a href="#">Aerospace</a></li>
+                                </ul>
+                            </div>
+                            <div class="feed-item border">
+                                <span class="timestamp">6:24pm</span>
+                            </div>
+                            <div class="feed-item">
+                                <a href="#">
+                                    <span class="profile-photo">img</span>
+                                </a>
+                                <a class="name">
+                                    Productos de Cemento
+                                </a>
+                                <div class="info">
+                                    <a href="#">Cemex</a>
+                                    <span>Monterrey, NL</span>
+                                </div>
+                                <ul class="tags">
+                                    <li><a href="#">Mexicana</a></li>
+                                    <li><a href="#">Aerospace</a></li>
+                                    <li><a href="#">Monterrey</a></li>
+                                </ul>
+                            </div>
+                            <div class="feed-item">
+                                <a href="#">
+                                    <span class="profile-photo">img</span>
+                                </a>
+                                <a class="name">
+                                    Productos de Cemento
+                                </a>
+                                <div class="info">
+                                    <a href="#">Cemex</a>
+                                    <span>Monterrey, NL</span>
+                                </div>
+                                <ul class="tags">
+                                    <li><a href="#">Mexicana</a></li>
+                                    <li><a href="#">Aerospace</a></li>
+                                </ul>
+                            </div>
+                            <div class="feed-item">
+                                <a href="#">
+                                    <span class="profile-photo">img</span>
+                                </a>
+                                <a class="name">
+                                    Productos de Cemento
+                                </a>
+                                <div class="info">
+                                    <a href="#">Cemex</a>
+                                    <span>Monterrey, NL</span>
+                                </div>
+                                <ul class="tags">
+                                    <li><a href="#">Mexicana</a></li>
+                                    <li><a href="#">Aerospace</a></li>
+                                </ul>
+                            </div>
+                            <div class="more-button btn-grey">More</div>
+                        </div>
+                    </div>
+                    <div class="sidebar">
+                        <div class="section tabs-section">
+                            <ul>
+                                <li class="active">Mi Cuenta</li>
+                                <li><a href=#">Contactos</a></li>
+                                <li><a href=#">Tags</a></li>
+                                <li><a href=#">Invitaciones</a></li>
+                            </ul>
+                        </div>
+                        <div class="section bag-section">
+                            <h5>Mi Bolsas</h5>
+                            <ul>
+                                <li>
+                                <a href="#">
+                                    <span class="name">CEMEX</span>
+                                    <span class="val">0.02%</span>
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <span class="name">PEMEX</span>
+                                    <span class="val">0.02%</span>
+                                </a>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <span class="name">OJO</span>
+                                    <span class="val">0.02%</span>
+                                </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
-<p>
-  <b>Profession:</b>
-  <%=h @user.profession %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%=h @user.email %>
-</p>
-
-<p>
-  <b>Password:</b>
-  <%=h @user.password %>
-</p>
-
-<p>
-  <b>Level:</b>
-  <%=h @user.level %>
-</p>
-
-<p>
-  <b>Rating:</b>
-  <%=h @user.rating %>
-</p>
-
-<p>
-  <b>Points:</b>
-  <%=h @user.points %>
-</p>
-
+<!--
 <p>
   <b>Date created:</b>
   <%=h @user.date_created %>
@@ -63,3 +155,4 @@
 <p><%= render :partial => '/shared/invite' %></p>
 <p><%= render :partial => '/shared/import' %></p>
 <p><%= render :partial => '/shared/contacts_saved' %></p>
+-->

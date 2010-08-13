@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	layout 'secondary'
+	layout 'user'
   # GET /users
   # GET /users.xml
   def index
@@ -8,13 +8,6 @@ class UsersController < ApplicationController
       format.html # index.html.erb
       format.xml  { render :xml => @users }
     end
-  end
-
-   def send_data
-    render :juggernaut do |page|
-      page.insert_html :top, 'chat_data', "<li>#{h params[:chat_input]}</li>"
-    end
-    render :nothing => true
   end
 
   # GET /users/1
