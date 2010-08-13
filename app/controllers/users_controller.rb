@@ -10,6 +10,13 @@ class UsersController < ApplicationController
     end
   end
 
+   def send_data
+    render :juggernaut do |page|
+      page.insert_html :top, 'chat_data', "<li>#{h params[:chat_input]}</li>"
+    end
+    render :nothing => true
+  end
+
   # GET /users/1
   # GET /users/1.xml
   def show
