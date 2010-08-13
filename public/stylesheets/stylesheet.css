@@ -749,7 +749,8 @@ span.btn-blank p {
 }
 
 .btn-grey {
-    -moz-border-radius:3px 3px 3px 3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
     background:url("../images/feed-more.gif") repeat-x scroll left top #D8D8D8;
     border-color:#BBBBBB #BBBBBB #999999;
     border-style:solid;
@@ -768,7 +769,8 @@ span.btn-blank p {
 
 /* notification box */
 .notification {
-    -moz-border-radius:3px 3px 3px 3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
     background-color:#E5EEF6;
     border:3px solid #3591b3;
     padding:9px;
@@ -1822,17 +1824,17 @@ body.account {
 
 body.account .content {
     border-right:3px dashed #AAA;
-    padding:0 80px 0 0;
+    padding:0 204px 0 0;
     width:500px;
 }
 
 body.account .middle {
     background: #FFFFFF;
     border-top: 3px solid #C0C0C0;
-    margin: 20px 0 0 70px;
-    padding:20px 0 10px;
-    width:922px;
     float:left;
+    margin: 20px 0 0;
+    padding:20px 0 10px;
+    width:996px;
 }
 
 body.account .sidebar {
@@ -1987,7 +1989,8 @@ body.account .feed-item span.timestamp {
 }
 
 .tabs-section li {
-    -moz-border-radius:5px 5px 5px 5px;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
     background:url("../images/tabs-section.gif") no-repeat scroll left center;
     clear:both;
     display:block;
@@ -2012,7 +2015,8 @@ body.account .feed-item span.timestamp {
 }
 
 .bag-section li a {
-    -moz-border-radius:3px 3px 3px 3px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
     background-color:#DFEAF4;
     margin:0 0 8px;
     padding: 5px 10px;
