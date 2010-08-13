@@ -6,9 +6,9 @@ class CreateAdvertisements < ActiveRecord::Migration
       t.string :picture
       t.string :price
       t.text :description
-
       t.timestamps
     end
+
   end
 
   def self.down
