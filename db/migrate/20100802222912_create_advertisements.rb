@@ -1,4 +1,5 @@
 class CreateAdvertisements < ActiveRecord::Migration
+
   def self.up
     create_table :advertisements do |t|
       t.int :company_id
@@ -8,7 +9,6 @@ class CreateAdvertisements < ActiveRecord::Migration
       t.text :description
       t.timestamps
     end
-
   end
 
   def self.down
