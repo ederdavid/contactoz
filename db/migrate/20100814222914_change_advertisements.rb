@@ -1,4 +1,4 @@
-class CreateAdvertisements < ActiveRecord::Migration
+class ChangeAdvertisements < ActiveRecord::Migration
 
   def self.up
     create_table :advertisements do |t|
