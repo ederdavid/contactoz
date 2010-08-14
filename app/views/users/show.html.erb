@@ -143,6 +143,31 @@
                                 </li>
                             </ul>
                         </div>
+<!-- notes -->
+
+
+<% form_for :post, @post, :url => { "action"=>"create", "controller"=>"posts" } do |f| %>
+  <%= f.error_messages %>
+
+ <p>
+ </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+
+<!-- notes -->
+
+
                     </div>
                 </div>
 

@@ -20,4 +20,21 @@ class ServicesController < ApplicationController
     end
   end
 
+        @thing = Post.new(params[:post])
+        Pusher['post'].trigger('thing-create', 'success')
+        if @thing.save
+                Pusher['things'].trigger('thing-create', @thing.attributes)
+        end
+
+
+    def create
+        @thing = Service.new(params[:service])
+        Pusher['post'].trigger('thing-create', 'success')
+        if @thing.save
+                Pusher['things'].trigger('thing-create', @thing.attributes)
+        end
+    end
+
+
+
 end
