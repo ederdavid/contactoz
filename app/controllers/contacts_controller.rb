@@ -80,6 +80,25 @@ class ContactsController < ApplicationController
     end
   end
 
+  # GET /contacts/apiSearch/0.xml?search=""
+  def apiSearch
+    @contact = Contact.find(params[:id])
+    @signature = params[:signature]
+    params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
+    params.sort_by {|key, value| key.to_s.underscore}.join('')
+    @parameters = params.to_s
+    @secret = ApplicationAccount.api_secret_field
+    @app_key = ApplicationAccount.api_key_field
+    respond_to do |format|
+      format.html # show.html.erb
+      if params[:app_key] == @app_key
+           if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
+               format.xml  { render :xml => @contact.to_xml(:only => [:id, :name, :title, :city, :department, :hierarchy]) }
+           end
+      end
+    end
+  end
+
   # GET /contacts/new
   # GET /contacts/new.xml
   def new
