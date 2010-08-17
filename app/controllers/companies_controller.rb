@@ -142,7 +142,7 @@ def sortByName
 
   # GET /companies/apiSearch/0.xml?search=""
   def apiSearch
-    @company = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:search]}%"], :limit => "20")
+    @company = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:search]}%"], :limit => "10")
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
@@ -154,6 +154,7 @@ def sortByName
         if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s
                format.xml  { render :xml => @company.to_xml(:only => [:id, :company_name, :company_city, :company_state, :updated_at]) }
+		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s }
            end
         end
     end
