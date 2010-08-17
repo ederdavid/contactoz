@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 	layout 'user'
+
+
   # GET /users
   # GET /users.xml
   def index
@@ -33,6 +35,38 @@ class UsersController < ApplicationController
       format.xml  { render :xml => @user }
     end
   end
+
+    def add_post
+	
+	require 'pusher'
+
+        Pusher.app_id = '1749'
+        Pusher.key = '92a18c1392e252d076c6'
+        Pusher.secret = '2a253676fad3558f8446'
+
+        @name = params[:name]
+        @description = params[:description]
+        @contact_name = params[:contact_name]
+        @contact_phone = params[:contact_phone]
+        @contact_email = params[:contact_email]
+        @contact_title = params[:contact_title]
+        @type =params[:type]
+
+        #if @type.equals("service")
+
+        @service = Service.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
+                if @service.save
+                                Pusher['post'].trigger('thing-create', "string_passed")
+				#Pusher['post'].trigger('thing-create', @service.attributes)
+
+                end
+        #else
+        #@product = Product.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
+        #       if @product.save
+        #               Pusher['things'].trigger('thing-create', @product.attributes)
+        #       end
+        #end
+     end
 
   # GET /users/1/edit
   def edit

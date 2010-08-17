@@ -14,15 +14,6 @@
 
 </head>
 
-<script type="text/javascript">
-var server = new Pusher('92a18c1392e252d076c6', 'post');
-// Bind to server events
-server.bind('thing-create', function(thing) {
-alert('A thing was created: ');
-})
-</script>
-
-
 <% if params[:search] %>
 <body class="search-results">
 <% else %>

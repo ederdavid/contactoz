@@ -50,28 +50,7 @@ class PostsController < ApplicationController
   # POST /posts.xml
 
     def create
-	Pusher['post'].trigger('thing-create', 'success')
 
-        @name = params[:name]
-	@description = params[:description]
-        @contact_name = params[:contact_name]
-        @contact_phone = params[:contact_phone]
-	@contact_email = params[:contact_email]
-        @contact_title = params[:contact_title]
-        @type =params[:type]
-
-	#if @type.equals("service")
-
-        @service = Service.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
-		if @service.save
-			Pusher['things'].trigger('thing-create', @service.attributes)
-		end
-	#else
-	#@product = Product.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
-	#	if @product.save
-	#		Pusher['things'].trigger('thing-create', @product.attributes)
-	#	end
-	#end
 
     end
 

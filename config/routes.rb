@@ -42,6 +42,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :homes, :collection => {:cart => :put}
 
   map.connect '/cart', :controller => 'contacts'
+  map.connect '/add_post', :controller => 'users', :action => 'add_post'
 
   map.connect '/export_to_csv', :controller => 'companies', :action => 'export_to_csv'
 

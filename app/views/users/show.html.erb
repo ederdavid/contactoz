@@ -1,3 +1,5 @@
+
+
 <div class="search">
 
 <form id="search_form">
@@ -9,9 +11,6 @@
 
 </div>
 <div class="clear"></div>
-
-
-
 
                 <div class="middle">
                     <div class="content">
@@ -40,7 +39,8 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="feed">
+                        <div class="feed" id="feedhead">
+
                             <div class="feed-item">
                                 <a href="#">
                                     <span class="profile-photo">img</span>
@@ -59,6 +59,7 @@
                             <div class="feed-item border">
                                 <span class="timestamp">6:24pm</span>
                             </div>
+
                             <div class="feed-item">
                                 <a href="#">
                                     <span class="profile-photo">img</span>
@@ -146,36 +147,54 @@
 <!-- notes -->
 
 
-<% form_for :post, @post, :url => { "action"=>"create", "controller"=>"posts" } do |f| %>
-  <%= f.error_messages %>
-
- <p>
- </p>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </p>
-  <p>
-    <%= f.label :contact_name %><br />
-    <%= f.text_field :contact_name %>
-  </p>
-  <p>
-    <%= f.label :contact_title %><br />
-    <%= f.text_field :contact_title %>
-  </p>
+<script type="text/javascript">
+$(document).ready(function(){
 
 
 
-  <p>
-    <%= f.submit 'Create' %>
+// Create a Pusher server object with your app's key
+var server = new Pusher('92a18c1392e252d076c6', 'post');
+// Bind to server events
+
+server.bind('thing-create', function(thing) {
+alert('A thing was: ');
+
+
+var currentTime = new Date()
+var hours = currentTime.getHours()
+var minutes = currentTime.getMinutes()
+
+var month = currentTime.getMonth() + 1
+var day = currentTime.getDate()
+
+var html = '<div class=\"feed-item\"><a href=\"#\"><span class=\"profile-photo\">img</span></a><a class=\"name\">' +  thing.name + '</a><div class=\"info\"><a href=\"#\">' + thing.contact_name + '</a></div><ul class=\"tags\"><li><a href=\"#\">Mexicana</a></li><li><a href=\"#\">Aerospace</a></li></ul></div><div class=\"feed-item border\"><span class=\"timestamp\">' + hours + ':' + minutes + '</span></div>'
+
+
+//TO DO: check the date on post
+//var html = '<div class=\"feed-item\"><a href=\"#\"><span class=\"profile-photo\">img</span></a><a class=\"name\">' +  thing.name + '</a><div class=\"info\"><a href=\"#\">' + thing.contact_name + '</a></div><ul class=\"tags\"><li><a href=\"#\">Mexicana</a></li><li><a href=\"#\">Aerospace</a></li></ul></div><div class=\"feed-item border\"><span class=\"timestamp\">' + hours + ':' + minutes + '  ' + month + ' / ' + day + '</span></div>'
+
+$(".feed").hide().prepend(html).fadeIn('slow');
+
+
+});
+
+
+
+});
+</script>
+
+<% form_tag :action => "#", :id => '4' do %>
+  <p> Name: 
+    <%= text_field_tag :name, params[:name] %>
+    Description: <%= text_field_tag :description, params[:description] %>
+    Contact name: <%= text_field_tag :contact_name, params[:contact_name] %>
+    phone: <%= text_field_tag :contact_phone, params[:contact_phone] %>
+    email:    <%= text_field_tag :contact_email, params[:contact_email] %>
+    <span id="add_post" class="btn-slide" > Add post</span>
+
+    <%= submit_tag "Search", :name => nil %>
   </p>
 <% end %>
-
-
 <!-- notes -->
 
 

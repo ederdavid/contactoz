@@ -248,9 +248,46 @@ $("a").click(function(event){
  
  
 //changes...
+//"javascript: $.facebox({div:'#box'});"
+
 
 $(document).ready(function($){
 
+
+
+
+//add post 
+
+ $(function() {
+                    $('#add_post').click(function() {
+			 var inputs = document.forms[1].elements;
+                         var name = inputs[1].value
+                         var description = inputs[2].value
+                         var contact_name = inputs[3].value
+                         var contact_phone = inputs[4].value
+			 var contact_email = inputs[5].value
+			var url = 'name=' + inputs[1].value + '&description=' + inputs[2].value + '&contact_name=' + inputs[3].value + '&contact_phone=' + inputs[4].value + '&contact_email=' + inputs[5].value
+			alert(url)
+                             
+                        $.ajax({
+                                    url: 'add_post',
+                                    type: 'GET',
+                                    data: url,
+                                    DataType: 'script',
+                                    success: function(){
+                                                self.location= 'users/add_post'+ url
+                                    },
+                                    error: function(){
+                                    }
+                                  });
+                    
+                    });
+
+                    
+});
+
+
+//add post
 
 
 //modal notification
@@ -394,7 +431,6 @@ $(function() {
         
         	    /* export menu */
 	    $(function() {
-
 		$('#export_button').click(function() {
 		    var menu = $(this).next('ul');
 		    menu.slideDown('fast').show();
