@@ -1,5 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-    map.resources :registers
+  map.resources :registers
   map.connect 'companies.:format', :controller => 'companies', :action => 'apiSearch'
 
   map.connect 'contacts.:format', :controller => 'companies', :action => 'apiSearch'
