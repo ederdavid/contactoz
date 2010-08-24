@@ -1,5 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :registers
+    map.resources :registers
+  map.connect 'companies.:format', :controller => 'companies', :action => 'apiSearch'
+
+  map.connect 'contacts.:format', :controller => 'companies', :action => 'apiSearch'
 
   map.resources :posts
 
@@ -54,6 +57,7 @@ ActionController::Routing::Routes.draw do |map|
   map.display_company "display_companies/:id", :controller => "display_companies", :action => "show"  
   map.display_contact "display_contacts/:id", :controller => "displays", :action => "show" 
   map.login "login", :controller => "user_sessions", :action => "create"
+  map.register "registrar", :controller => "registers", :action => "index"
 
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,13 +1,19 @@
 ActionController::Routing::Routes.draw do |map|
+  map.connect 'companies.:format', :controller => 'companies', :action => 'apiSearch'
+
+  map.connect 'contacts.:format', :controller => 'companies', :action => 'apiSearch'
+
+  map.resources :posts
+
   map.resources :application
 
   map.resources :display_companies
 
   map.resources :displays
 
-  map.connect 'products/:action', :controller => 'products', :action => /[a-z_]+/i
+  map.resources :services
 
-  map.connect 'services/:action', :controller => 'services', :action => /[a-z_]+/i
+  map.resources :products
 
   map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
 
