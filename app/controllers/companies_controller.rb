@@ -140,7 +140,7 @@ def sortByName
     end
   end
 
-  # GET /companies/apiSearch/0.xml?search=""
+  # GET /companies.xml?search=""
   def apiSearch
     @company = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:search]}%"], :limit => "10")
     @signature = params[:signature]
