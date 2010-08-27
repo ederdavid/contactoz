@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
       format.html # show.html.erb
       if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               format.xml  { render :xml => @product.to_xml(:only => [:id, :created_at, :updated_at]) }
+               format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :created_at, :updated_at]) }
            end
       end
     end
