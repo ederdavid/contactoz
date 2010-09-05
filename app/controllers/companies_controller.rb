@@ -133,9 +133,9 @@ def sortByName
     respond_to do |format|
       format.html # show.html.erb
         if params[:app_key] == @app_key
-           if @signature == Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s
+           if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
                format.xml  { render :xml => @company.to_xml(:only => [:id, :company_name, :company_city, :company_state, :updated_at]) }
-		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s }
+		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
            end
         end
     end
@@ -153,9 +153,9 @@ def sortByName
     respond_to do |format|
         format.html # show.html.erb
         if params[:app_key] == @app_key
-           if @signature == Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s
+           if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
                format.xml  { render :xml => @company.to_xml(:only => [:id, :company_name, :company_city, :company_state, :updated_at]) }
-		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s }
+		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
            end
         end
     end
