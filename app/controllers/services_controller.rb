@@ -37,7 +37,11 @@ class ServicesController < ApplicationController
                format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
                @service.buy = @buy
 	       @service.save
-               format.xml  { render :xml => @service.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :created_at, :updated_at]) }
+               if @service
+                   format.xml  { render :xml => @service.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :created_at, :updated_at]) }
+               else
+                   format.xml  { render :xml => "there is not a service with that id" }
+               end
            end
       end
     end
