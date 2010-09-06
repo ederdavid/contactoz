@@ -37,7 +37,7 @@ class ProductsController < ApplicationController
 	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
                @product.buy = @buy
 	       @product.save
-               format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :created_at, :updated_at]) }
+               format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
            end
       end
     end
@@ -46,6 +46,16 @@ class ProductsController < ApplicationController
 # GET /products.xml?search=""
   def apiSearch
     @product = Product.find(params[:id])
+    @product = Product.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"], :limit => "20")
+    if params[:buy] && params[:sell]
+        @product = Product.find(:all, :id => params[:id], :buy => params[:buy], :sell => params[:sell])
+    end
+    if params[:buy]
+        @product = Product.find(:all, :id => params[:id], :buy => params[:buy])
+    end
+    if params[:sell]
+        @product = Product.find(:all, :id => params[:id], :sell => params[:sell])
+    end
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
@@ -56,7 +66,7 @@ class ProductsController < ApplicationController
       format.html # show.html.erb
       if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :created_at, :updated_at]) }
+               format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
            end
       end
     end
