@@ -11,6 +11,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def infoUser
+    @user_session = UserSession.new(params[:user_session])
+    if @user_session.save
+    #code for returning user account information in xml --> tu codigo esta aqui
+    @user = current_user
+    format.xml { render :xml => @user }
+    #then destroy session
+    @user_session.destroy
+
+    else
+        #code for returning error message (pswrd and username are not correct) in xml
+        format.xml { render :xml => "There is a problem with the username or password" }
+     end
+  end
+
   # GET /users/1
   # GET /users/1.xml
   def show
