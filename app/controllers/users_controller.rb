@@ -14,6 +14,13 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
+    #@user_session = UserSession.new(params[:user_session])
+    #if @user_session.save
+       # code for returning user account information in xml --> tu codigo esta aqui
+       # then destroy session
+    #else
+       # code for returning error message (pswrd and username are not correct) in xml
+    #end
     @user = User.find(params[:id])
     @contact_saveds = ContactSaved.all
     @signature = params[:signature]

@@ -14,17 +14,6 @@ class ProductsController < ApplicationController
     #        @auth = false
     #    end
     #end
-    @buy = 0
-    if params[:buy] == "1"
-        @buy = 1
-    else
-        @buy = @buy
-    end
-    if params[:sell] == "1"
-        @buy = 0
-    else
-        @buy = @buy
-    end
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
     @parameters = params.to_s
@@ -35,9 +24,11 @@ class ProductsController < ApplicationController
       if params[:app_key] == @app_key #and @auth
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
 	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
-               @product.buy = @buy
-	       @product.save
-               format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
+               if @product
+                   format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
+               else
+                   format.xml  { render :xml => "there is not a product for that product" }
+               end
            end
       end
     end
