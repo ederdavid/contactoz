@@ -1,6 +1,11 @@
 <% @query = params[:search] %>
-<div class="search">
 
+
+<%= render :partial => 'shared/search' %>
+
+
+<!--
+<div class="search">
 <form id="search_form">
 <div class="wrap">
 <input id = "search" type="text" data-default="search" value="" name="search"></input>
@@ -10,6 +15,7 @@
 
 </div>
 <div class="clear"></div>
+-->
 
 <!-- \search -->
 
