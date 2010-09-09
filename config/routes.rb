@@ -1,8 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
-<<<<<<< HEAD
   map.resources :registers
-=======
->>>>>>> 3c23650246a6e0ef3137acda7f0faf063bb6ef0c
   map.connect 'users.:format', :controller => 'users', :action => 'apiSearch'
 
   map.connect 'companies.:format', :controller => 'companies', :action => 'apiSearch'
