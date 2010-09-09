@@ -135,12 +135,13 @@ def sortByName
         if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s
                format.xml  { render :xml => @company.to_xml(:only => [:id, :company_name, :company_city, :company_state, :updated_at]) }
+		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s }
            end
         end
     end
   end
 
-  # GET /companies/apiSearch/0.xml?search=""
+  # GET /companies.xml?search=""
   def apiSearch
     @company = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:search]}%"], :limit => "10")
     @signature = params[:signature]
@@ -151,12 +152,12 @@ def sortByName
     @app_key = ApplicationAccount.api_key_field
     respond_to do |format|
         format.html # show.html.erb
-        #if params[:app_key] == @app_key
-           #if @signature == Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s
+        if params[:app_key] == @app_key
+           if @signature == Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s
                format.xml  { render :xml => @company.to_xml(:only => [:id, :company_name, :company_city, :company_state, :updated_at]) }
 		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s }
-           #end
-        #end
+           end
+        end
     end
   end
 

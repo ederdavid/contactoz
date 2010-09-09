@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 	layout 'user'
-
-
   # GET /users
   # GET /users.xml
   def index
@@ -17,11 +15,45 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @contact_saveds = ContactSaved.all
-
+    @signature = params[:signature]
+    params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
+    params.sort_by {|key, value| key.to_s.underscore}.join('')
+    @parameters = params.to_s
+    @secret = ApplicationAccount.api_secret_field
+    @app_key = ApplicationAccount.api_key_field
     respond_to do |format|
-	response.headers['Content-type'] = 'text/javascript; charset=utf-8'
       format.html # show.html.erb
-      format.xml  { render :xml => @contact_saveds }
+        if params[:app_key] == @app_key
+           if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
+	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+               format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
+           end
+        end
+    end
+    #respond_to do |format|
+#	response.headers['Content-type'] = 'text/javascript; charset=utf-8'
+ #     format.html # show.html.erb
+  #    format.xml  { render :xml => @contact_saveds }
+   # end
+  end
+
+  # GET /users.xml?search=""
+  def apiSearch
+    @user = User.find(:all, :conditions => ['first_name LIKE ?', "%#{params[:search]}%"], :limit => "10")
+    @signature = params[:signature]
+    params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
+    params.sort_by {|key, value| key.to_s.underscore}.join('')
+    @parameters = params.to_s
+    @secret = ApplicationAccount.api_secret_field
+    @app_key = ApplicationAccount.api_key_field
+    respond_to do |format|
+        format.html # show.html.erb
+        if params[:app_key] == @app_key
+           if @signature == Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s
+               format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
+		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s }
+           end
+        end
     end
   end
 

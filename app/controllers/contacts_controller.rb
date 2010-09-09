@@ -80,7 +80,7 @@ class ContactsController < ApplicationController
     end
   end
 
-  # GET /contacts/apiSearch/0.xml?search=""
+  # GET /contacts.xml?search=""
   def apiSearch
     @contact = Contact.find(params[:id])
     @signature = params[:signature]
