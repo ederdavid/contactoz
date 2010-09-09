@@ -1,4 +1,6 @@
 //follow API documentation
+//specify values where applicable
+
 /* Binds a click event handler to a selection. 
 
 
