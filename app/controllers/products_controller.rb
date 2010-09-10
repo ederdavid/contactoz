@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
                if @product
                    format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
                else
-                   format.xml  { render :xml => "<WARNING>there is not a product for that if</WARNING>" }
+                   format.xml  { render :xml => "<WARNING>there is not a product for that id</WARNING>" }
                end
            end
       end
