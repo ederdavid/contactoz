@@ -3,7 +3,11 @@ class ServicesController < ApplicationController
   # GET /services/1
   # GET /services/1.xml
   def show
+    begin
     @service = Service.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    return render :xml => "<WARNING>there is not a company for that id</WARNING>"
+    end
     @signature = params[:signature]
     #@auth = false
     #if params[:email] and params[:password]

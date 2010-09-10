@@ -63,7 +63,11 @@ class ContactsController < ApplicationController
   # GET /contacts/1
   # GET /contacts/1.xml
   def show
+    begin
     @contact = Contact.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    return render :xml => "<WARNING>there is not a company for that id</WARNING>"
+    end
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')

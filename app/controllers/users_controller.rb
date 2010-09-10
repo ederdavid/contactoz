@@ -51,7 +51,11 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
+    begin
     @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    return render :xml => "<WARNING>there is not a company for that id</WARNING>"
+    end
     @contact_saveds = ContactSaved.all
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
