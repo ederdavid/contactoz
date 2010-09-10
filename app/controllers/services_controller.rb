@@ -49,6 +49,7 @@ class ServicesController < ApplicationController
     if params[:sell]
         @service = Product.find(:all, :conditions => ['sell LIKE ?', "#{params[:sell]}"], :limit => "20")
     end
+
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
@@ -69,4 +70,12 @@ class ServicesController < ApplicationController
       end
     end
   end
+
+    def create
+        @thing = Service.new(params[:service])
+        Pusher['post'].trigger('thing-create', 'success')
+        if @thing.save
+                Pusher['things'].trigger('thing-create', @thing.attributes)
+        end
+    end
 end

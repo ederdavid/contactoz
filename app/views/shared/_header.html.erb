@@ -1,14 +1,10 @@
 
   <div id="header">
             <div class="links">
-                <ul id="search_categories">
-              
 
-	            <li id = "companies"><div>Empresas</div></li>
-                    <li id = "contacts"><div>Contactos</div></li>
-                    <li id = "services"><div>Servicios</div></li>
-                    <li id = "products"><div>Productos</div></li>            
-	        </ul>
+
+<img src="images/logo_Kontacto.png" alt="Kontacto logo" style="position:absolute; top:-7px;">
+                <h1>Kontactoz</h1>
 		    
                 <ul class="site">
 	        <% if current_user %> 
@@ -16,7 +12,7 @@
                     <li><span class="sep">|</span></li>
                     <li> <%= link_to "Salir", logout_path %></li>
 		<% else %>
-                    <li><%= link_to "Registrarse", new_user_path %> </li>
+                    <li><%= link_to "Registrarse", registers_path %> </li>
         	    <li><span class="sep">|</span></li>
 		    <li id ="log-in"><%= link_to "Entrar", login_path%></li>         
 		<% end %>

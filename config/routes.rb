@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :registers
   map.connect 'users.:format', :controller => 'users', :action => 'apiSearch'
 
   map.connect 'companies.:format', :controller => 'companies', :action => 'apiSearch'
@@ -52,12 +53,17 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :homes, :collection => {:cart => :put}
 
   map.connect '/cart', :controller => 'contacts'
+  map.connect '/add_post', :controller => 'users', :action => 'add_post'
 
   map.connect '/export_to_csv', :controller => 'companies', :action => 'export_to_csv'
+
+
+  map.register "registrar", :controller => "registers", :action => "index"
 
   map.display_company "display_companies/:id", :controller => "display_companies", :action => "show"  
   map.display_contact "display_contacts/:id", :controller => "displays", :action => "show" 
   map.login "login", :controller => "user_sessions", :action => "create"
+  map.register "registrar", :controller => "registers", :action => "index"
 
   map.logout "logout", :controller => "user_sessions", :action => "destroy"
   # The priority is based upon order of creation: first created -> highest priority.
