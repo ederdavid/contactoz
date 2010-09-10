@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
     else
         #code for returning error message (pswrd and username are not correct) in xml
-        format.xml { render :xml => "There is a problem with the username or password" }
+        format.xml { render :xml => "<WARNING>There is a problem with the username or password<WARNING>" }
      end
   end
 
