@@ -16,8 +16,11 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def infoUser
 
-
+    ############
+    #sacamos estos por post
     #user_session[email]=cristinarandall@gmail.com&user_session[password]=12341234
+    ###########
+
 
     @user_session = UserSession.new(params[:user_session])  
     @email = params[:user_session][0]
