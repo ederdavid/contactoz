@@ -1,4 +1,7 @@
 class ActionsController < ApplicationController
+       layout 'secondary'
+
+
   # GET /actions
   # GET /actions.xml
   def index
