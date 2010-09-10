@@ -11,6 +11,25 @@ class UsersController < ApplicationController
     end
   end
 
+  def infoUser
+    @user_session = UserSession.new(params[:user_session])
+    if @user_session.save
+    #code for returning user account information in xml --> tu codigo esta aqui
+    respond_to do |format|
+            #format.html # show.html.erb
+            format.xml { render :xml => @user }
+    end
+    #then destroy session
+    @user_session.destroy
+
+    else
+        #code for returning error message (pswrd and username are not correct) in xml
+        respond_to do |format|
+            #format.html # show.html.erb
+            format.xml { render :xml => "<WARNING>There is a problem with the username or password</WARNING>" }
+        end
+     end
+  end
 
   # GET /users/1
   # GET /users/1.xml
@@ -41,7 +60,12 @@ class UsersController < ApplicationController
       format.html # show.html.erb
         if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
+               if @user
+                   format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
+               else
+                   format.xml  { render :xml => "<WARNING>there is not a user for that id</WARNING>" }
+               end
+	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
            end
         end
     end

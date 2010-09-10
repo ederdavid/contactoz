@@ -74,7 +74,11 @@ class ContactsController < ApplicationController
       format.html # show.html.erb
       if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               format.xml  { render :xml => @contact.to_xml(:only => [:id, :name, :title, :city, :department, :hierarchy]) }
+               if @contact
+                   format.xml  { render :xml => @contact.to_xml(:only => [:id, :name, :title, :city, :department, :hierarchy]) }
+               else
+                   format.xml  { render :xml => "<WARNING>there is not a contact for that id</WARNING>" }
+               end
            end
       end
     end
@@ -82,7 +86,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts.xml?search=""
   def apiSearch
-    @contact = Contact.find(params[:id])
+    @contact = Contact.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"], :limit => "10")
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
@@ -94,6 +98,7 @@ class ContactsController < ApplicationController
       if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
                format.xml  { render :xml => @contact.to_xml(:only => [:id, :name, :title, :city, :department, :hierarchy]) }
+                #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
            end
       end
     end

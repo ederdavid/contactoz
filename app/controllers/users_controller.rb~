@@ -15,13 +15,19 @@ class UsersController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
     #code for returning user account information in xml --> tu codigo esta aqui
-    format.xml { render :xml => @user_session }
+    respond_to do |format|
+            #format.html # show.html.erb
+            format.xml { render :xml => @user }
+    end
     #then destroy session
     @user_session.destroy
 
     else
         #code for returning error message (pswrd and username are not correct) in xml
-        format.xml { render :xml => "There is a problem with the username or password" }
+        respond_to do |format|
+            #format.html # show.html.erb
+            format.xml { render :xml => "<WARNING>There is a problem with the username or password</WARNING>" }
+        end
      end
   end
 
@@ -39,17 +45,14 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
         if params[:app_key] == @app_key
-<<<<<<< HEAD
-           #if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-	       format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
-               #format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
-           #end
-=======
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
+               if @user
+                   format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
+               else
+                   format.xml  { render :xml => "<WARNING>there is not a user for that id</WARNING>" }
+               end
 	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
-               format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
            end
->>>>>>> 3c23650246a6e0ef3137acda7f0faf063bb6ef0c
         end
     end
     #respond_to do |format|
@@ -71,10 +74,10 @@ class UsersController < ApplicationController
     respond_to do |format|
         format.html # show.html.erb
         if params[:app_key] == @app_key
-           if @signature == Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s
-               format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
-		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s }
-           end
+           #if @signature == Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s
+            #   format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
+		format.xml  { render :xml => Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s }
+           #end
         end
     end
   end
@@ -89,6 +92,38 @@ class UsersController < ApplicationController
       format.xml  { render :xml => @user }
     end
   end
+
+    def add_post
+	
+	require 'pusher'
+
+        Pusher.app_id = '1749'
+        Pusher.key = '92a18c1392e252d076c6'
+        Pusher.secret = '2a253676fad3558f8446'
+
+        @name = params[:name]
+        @description = params[:description]
+        @contact_name = params[:contact_name]
+        @contact_phone = params[:contact_phone]
+        @contact_email = params[:contact_email]
+        @contact_title = params[:contact_title]
+        @type =params[:type]
+
+        #if @type.equals("service")
+
+        @service = Service.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
+                if @service.save
+                                Pusher['post'].trigger('thing-create', "string_passed")
+				#Pusher['post'].trigger('thing-create', @service.attributes)
+
+                end
+        #else
+        #@product = Product.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
+        #       if @product.save
+        #               Pusher['things'].trigger('thing-create', @product.attributes)
+        #       end
+        #end
+     end
 
   # GET /users/1/edit
   def edit
