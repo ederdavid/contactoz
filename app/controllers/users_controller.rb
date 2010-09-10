@@ -11,26 +11,23 @@ class UsersController < ApplicationController
     end
   end
 
-  def infoUser
-    @user_session = UserSession.new(params[:user_session])
-    if @user_session.save
-    #code for returning user account information in xml --> tu codigo esta aqui
-    @user = current_user
-    format.xml { render :xml => @user }
-    #then destroy session
-    @user_session.destroy
-
-    else
-        #code for returning error message (pswrd and username are not correct) in xml
-        format.xml { render :xml => "There is a problem with the username or password" }
-     end
-  end
 
   # GET /users/1
   # GET /users/1.xml
-  def show
-    @user = User.find(params[:id])
-    @contact_saveds = ContactSaved.all
+  def infoUser
+
+
+    #user_session[email]=cristinarandall@gmail.com&user_session[password]=12341234
+
+    @user_session = UserSession.new(params[:user_session])  
+    @email = params[:user_session][0]
+     #@email = "cristinarandall@gmail.com"
+
+    if @user_session.save
+    	@user = User.find(:all, :conditions => ['email = ?', @email], :limit => "1")
+     	@user_session.destroy
+    end
+
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
@@ -41,16 +38,10 @@ class UsersController < ApplicationController
       format.html # show.html.erb
         if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
                format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
            end
         end
     end
-    #respond_to do |format|
-#	response.headers['Content-type'] = 'text/javascript; charset=utf-8'
- #     format.html # show.html.erb
-  #    format.xml  { render :xml => @contact_saveds }
-   # end
   end
 
   # GET /users.xml?search=""
