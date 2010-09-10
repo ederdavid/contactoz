@@ -33,21 +33,12 @@ class UsersController < ApplicationController
     #user_session[email]=cristinarandall@gmail.com&user_session[password]=12341234
     ###########
 
-<<<<<<< HEAD
-    @user_session = UserSession.new(params[:user_session])  
-=======
     @user_session = UserSession.new(params[:user_session])
->>>>>>> e13471b3b7324b73574f3909b0eb7427793fd5b4
     @email = params[:user_session][0]
      #@email = "cristinarandall@gmail.com"
 
     if @user_session.save
-<<<<<<< HEAD
-    	@user = User.find(:all, :conditions => ['email = ?', @email], :limit => "1")
-     	@user_session.destroy
-    end
 
-=======
         @user = User.find(:all, :conditions => ['email = ?', @email], :limit => "1")
         @user_session.destroy
     end
