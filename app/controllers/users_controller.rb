@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
     #code for returning user account information in xml --> tu codigo esta aqui
-    @user = current_user
     respond_to do |format|
             #format.html # show.html.erb
             format.xml { render :xml => @user }
