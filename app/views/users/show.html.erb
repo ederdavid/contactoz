@@ -1,46 +1,58 @@
 
 
-<div class="search">
+<%= render :partial => 'shared/search' %>
 
-<form id="search_form">
-<div class="wrap">
-<input id = "search" type="text" data-default="search" value="" name="search"></input>
-<button type="submit"></button>
-</div>
-</form>
-
-</div>
-<div class="clear"></div>
-
-                <div class="middle">
+    <div class="middle">
                     <div class="content">
-                        <div class="notification">
-                            <h5>New Notification</h5>
-                            <div class="text">This is a message linking to <a href="#">a random page</a>. <span class="timestamp">9:58pm</span></div>
-                            <div class="clear-button btn-grey" onclick="$(this).parent().fadeOut('fast')">Clear New Notification</div>
+
+                        <div id="post_box">
+                            <input id="post_content" type="text" onclick="$('#post_details').slideDown('fast')" data-default="post something"></input>
+                            <div id="post_details" style="display:none">
+                                <div class="disable-box">
+                                    <input id="post_save_checkbox" type="checkbox" name="asdf"></input>
+                                    <span>some text here</span>
+                                </div>
+                                <input type="text" data-default="Quen?"></input>
+                                <input type="text" data-default="Su titulo"></input>
+                                <input type="text" data-default="Numero de telefono"></input>
+                                <input type="text" data-default="Correo directo"></input>
+                                <div class="actions">
+                                    <span id="post_type_btn">Type</span>
+                                    <ul id="post_type_menu" style="display:none;">
+                                        <li id="type_product">Producto</li>
+                                        <li id="type_service">Servicio</li>
+                                    </ul>
+                                    <span id="post_btn" class="btn-grey">Post</span>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(document).ready(function() {
+                                        var postBox = new PostBox(); 
+                                });
+                            </script>
                         </div>
+
                         <div class="large-tabs">
                             <ul>
                                 <li class="active first">
-                                    <span class="title">Actualizaciones</span>
+                                <span class="title">Actualizaciones</span>
+                                <span class="extra">extra info</span>
+                                </li>
+                                <li>
+                                <a href="#">
+                                    <span class="title">Comprar</span>
                                     <span class="extra">extra info</span>
+                                </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <span class="title">Comprar</span>
-                                        <span class="extra">extra info</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <span class="title">Vendar</span>
-                                        <span class="extra">extra info</span>
-                                    </a>
+                                <a href="#">
+                                    <span class="title">Vendar</span>
+                                    <span class="extra">extra info</span>
+                                </a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="feed" id="feedhead">
-
+                        <div class="feed">
                             <div class="feed-item">
                                 <a href="#">
                                     <span class="profile-photo">img</span>
@@ -59,7 +71,6 @@
                             <div class="feed-item border">
                                 <span class="timestamp">6:24pm</span>
                             </div>
-
                             <div class="feed-item">
                                 <a href="#">
                                     <span class="profile-photo">img</span>
@@ -113,15 +124,40 @@
                         </div>
                     </div>
                     <div class="sidebar">
-                        <div class="section tabs-section">
+                        <div id="notification-section">
+                            <h5>New Notification</h5>
+                            <div class="text">This is a message linking to <a href="#">a random page</a>. <span class="timestamp">9:58pm</span></div>
+                            <div class="clear-button btn-grey" onclick="$(this).parent().fadeOut('fast')">Clear New Notification</div>
+                        </div>
+
+                        <div id="tabs-section" class="section">
                             <ul>
                                 <li class="active">Mi Cuenta</li>
-                                <li><a href=#">Contactos</a></li>
-                                <li><a href=#">Tags</a></li>
-                                <li><a href=#">Invitaciones</a></li>
+                                <li><a href="#">Contactos</a></li>
+                                <li><a href="#">Tags</a></li>
+                                <li id="toggleInvitations"><a href="#">Invitaciones</a></li>
                             </ul>
                         </div>
-                        <div class="section bag-section">
+
+                        <div id="invitation-section" class="section">
+                            <ol>
+                                <li><input type="text" name="invitation_email" placeholder="Email Address 1"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Email Address 2"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Email Address 3"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Email Address 4"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Email Address 5"></li>
+                                <!--
+                                <li><input type="text" name="invitation_email" placeholder="Email Address 6"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Email Address 7"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Email Address 8"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Email Address 9"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Email Address 10"></li>
+                                -->
+                                <li><input type="submit" id="sendButton" class="send-button clear-button btn-grey" value="Invite"></li>
+                            </ol>
+                        </div>
+
+                        <div id="bag-section" class="section">
                             <h5>Mi Bolsas</h5>
                             <ul>
                                 <li>
@@ -144,6 +180,8 @@
                                 </li>
                             </ul>
                         </div>
+                    </div>
+                </div>            
 <!-- notes -->
 
 
@@ -183,31 +221,7 @@ $(".feed").hide().prepend(html).fadeIn('slow');
 });
 </script>
 
-<% form_tag :action => "#", :id => '4' do %>
-  <p> Name: 
-    <%= text_field_tag :name, params[:name] %>
-    Description: <%= text_field_tag :description, params[:description] %>
-    Contact name: <%= text_field_tag :contact_name, params[:contact_name] %>
-    phone: <%= text_field_tag :contact_phone, params[:contact_phone] %>
-    email:    <%= text_field_tag :contact_email, params[:contact_email] %>
-    <span id="add_post" class="btn-slide" > Add post</span>
-
-    <%= submit_tag "Search", :name => nil %>
-  </p>
-<% end %>
-<!-- notes -->
 
 
-                    </div>
-                </div>
+                 
 
-<!--
-<p>
-  <b>Date created:</b>
-  <%=h @user.date_created %>
-</p>
-
-<p><%= render :partial => '/shared/invite' %></p>
-<p><%= render :partial => '/shared/import' %></p>
-<p><%= render :partial => '/shared/contacts_saved' %></p>
--->

@@ -1,6 +1,5 @@
 /* Binds a click event handler to a selection. 
 
-
     TODO: Replace with jQuery tabs
 
    params:
@@ -9,8 +8,7 @@
      @api (private)
 */
 
-
-var handleClick = function(selector, className) {
+function handleClick(selector, className) {
     var current = $(selector + '.' + className);
     $(selector).click(function() {
         current.length && current.removeClass(className);
@@ -18,6 +16,7 @@ var handleClick = function(selector, className) {
         current = $(this);
     });
 };
+
 function type() {
 	array = document.getElementsByClassName("active");
 	if (array[0])
@@ -25,9 +24,13 @@ function type() {
 	else
 		return "all";
 };
+
 $(function AutoScript(){
-	$('#search').autocomplete({serviceUrl:'/application.js', params: {
-       type: function() { return type(); }}, noCache: true});
+    var search = $('#search');
+    if (search.length) {
+        search.autocomplete({serviceUrl:'/application.js', params: {
+            type: function() { return type(); }}, noCache: true});
+    }
 });
 
 /* Initiates a table by adding various effects to it. 
@@ -38,7 +41,7 @@ $(function AutoScript(){
      @hover (boolean) - add a background colour to the row being hovered on
      @api (public)
 */
-var initTable = function(selector, rows, hover) {
+function initTable(selector, rows, hover) {
     if (rows === true) {
         var td = $(selector + ' tbody tr:odd td');
         td.addClass('odd'); 
@@ -68,7 +71,7 @@ var initTable = function(selector, rows, hover) {
             th.hasClass(uc) ? th.removeClass(uc).addClass(dc) : th.removeClass(dc).addClass(uc);
         }
     });
-}
+};
 
 /* Filters out the selector matches based on a text query
 
@@ -94,7 +97,7 @@ function filter(selector, query) {
         }
     });
     return count;
-}  
+};
 
 /* Filters the content of a table. 
 
@@ -138,7 +141,7 @@ function filterTable(filter_id, filter_count, table_id) {
             $(table_id + ' tbody tr:visible:odd td').addClass('odd');
         }
     });
-}
+};
 
 /* Adds helper text to an input. 
 
@@ -146,16 +149,26 @@ function filterTable(filter_id, filter_count, table_id) {
      @selector (string) - the input to add helper text to
      @api (public)
 */
-function inputHelperText(selector) {
+function inputHelperText(selector, use_self) {
+    use_self = use_self || false;
+
     $(selector).each(function() {
         var input = $(this);
+        
+        if (!input.attr('data-default')) {
+            console.log('no default data');
+            return;
+        }
+
+        var target = (use_self === true) ? input : input.parent();
+
         // reset the value
         input.val(input.attr('data-default'));
-        input.parent().addClass('idle-field');
+        target.addClass('idle-field');
     
         input.focus(function() {
             var self = $(this);
-            self.parent().removeClass('idle-field').addClass('focused-field');
+            target.removeClass('idle-field').addClass('focused-field');
             // remove the helper text
             if (self.val() === self.attr('data-default')) {
                 self.val('');
@@ -164,15 +177,15 @@ function inputHelperText(selector) {
 
         input.blur(function() {
             var self = $(this);
-            self.parent().removeClass('focused-field');
+            target.removeClass('focused-field');
             if ($.trim(self.val()) === '') {
                 var value = self.attr('data-default') || '';
-                self.parent().addClass('idle-field');
+                target.addClass('idle-field');
                 self.val(value);
             }
         });
     });
-}
+};
 
 /* Creates a dropdown that hides when it looses focus or is clicked. 
 
@@ -180,29 +193,201 @@ function inputHelperText(selector) {
      @selector (string) - the element to display (typically a list)
      @api (public)
 */
+function slideMenu(selector) {
+    var parent = $(selector);
 
- 
-var slideMenu = function(selector) {
+    if (!parent.length) {
+        return;
+    }
+
+    var menu = parent.next('ul');
+    
     $(selector).click(function() {
-        var menu = $(this).next('ul');
         menu.slideDown('fast').show();
         menu.parent().hover(function() {}, function() {
             menu.slideUp('fast');
         });
-        menu.click(function() {
-            menu.slideUp('fast');
+    });
+    
+    menu.click(function() {
+        menu.slideUp('fast');
+        parent.removeClass('click');
+    });
+};
+
+/* The PostBox class manages the posting functionality on the account page. 
+
+   params:
+     @api (public)
+*/
+function PostBox() {
+    // type slide menu
+    this.button = $('#post_type_btn');
+    this.menu = this.button.next('ul');
+    this.types = $('#post_type_menu li');
+    this.state = {
+        type: undefined,
+        error: false
+    }
+
+    // configure 
+    this.init();
+};
+
+/* Initializes the Postbox by setting the field helper text and event listeners. 
+
+   params:
+     @api (private)
+*/
+PostBox.prototype.init = function() {
+    inputHelperText('#post_box input[type=text]', true);
+    $('#post_details input[type=text]:odd').addClass('odd');
+    var self = this;
+    
+    // add listener for post button
+    $('#post_btn').click(function() {
+        self.post();
+    });
+
+    // listener for the save checkbox
+    $('#post_save_checkbox').click(function() {
+        var checkbox = this;
+        $('#post_details input[type=text]').each(function() {
+            (checkbox.checked) ? 
+                $(this).attr("disabled", "disabled") : $(this).attr("disabled", "");
         });
     });
+
+    // check for enter key
+    $('#post_box').keypress(function(e) {
+        if (e.keyCode == 13) {
+            self.post();
+        }
+    });
+
+    // add event listeners for the post type slide menu
+    this.button.click(function() {
+        if (!self.state.error)  {
+            $(this).addClass('click');
+        }
+        self.menu.slideDown('fast').show();
+        self.menu.parent().hover(function() {}, function() {
+            self.menu.slideUp('fast');
+            self.button.removeClass('click');
+        });
+    });
+
+    this.types.click(function() {
+        $(this).parent().slideUp('fast');
+        self.button.removeClass('click');
+        self.types.removeClass('checked'); // remove the checked class from previous li
+        $(this).addClass('checked');
+
+        // select a type
+        self.state.type = this.id;
+        if (self.state.error) {
+            self.state.error = false;
+            self.button.removeClass('error');
+        }
+    });
+};
+
+/* Post to the server. 
+
+   params:
+     @api (public)
+*/
+PostBox.prototype.post = function() {
+    if (!this.state.type) {
+        // need to select a type before posting...
+        this.button.addClass('error');
+        this.state.error = true;
+    }
+    else {
+        // make the post and reset everything
+        this.reset();
+    }
 }
+
+/* Reset the state of the post box. 
+
+   params:
+     @api (public)
+*/
+PostBox.prototype.reset = function() {
+    this.state.type = undefined;
+    this.state.error = false;
+    this.types.removeClass('checked');
+    $('#post_details').slideUp('fast', function() {
+        $('#post_box input').each(function() {
+            $(this).val($(this).attr('data-default'));
+            $(this).addClass('idle-field');
+        });
+    });
+};
 
 /* Runs when the page is ready */
 $(document).ready(function() {
+
+$(document).ready(function(){
+
+	$('#changefollow').click(function() {
+
+        if ($(this).hasClass("follow")){
+            $(this).removeClass("follow");
+            $(this).addClass("unfollow");
+            $(this).html('<span> No quero seguir </span>');
+
+
+
+		}
+		else {
+            $(this).removeClass("unfollow");
+            $(this).addClass("follow");
+            $(this).html('<span> Seguir este post </span>');
+
+
+		}
+	});
+	
+});
+
+
+
+
+	$(function(){
+		var $invitationToggle = $("#toggleInvitations");
+		var $invitationSection = $("#invitation-section ol");
+		var $invitationsNotificationSection = $(".invitation-notifications");
+		
+		$invitationToggle.bind("click", function(){
+		
+			if ($(this).hasClass("activeShow"))
+				$(this).removeClass("activeShow");
+			else
+				$(this).addClass("activeShow");
+				
+			$invitationSection.find("input[type=text]").val("")
+			$invitationSection.slideToggle();
+		})
+		
+		$("#sendButton").bind("click", function(){
+			$invitationToggle.removeClass("activeShow");
+			$invitationSection.fadeOut('fast');
+			$invitationsNotificationSection.slideDown();
+		})
+		
+		$(".invitation-notifications .close-button").bind("click", function(){
+			$invitationsNotificationSection.slideUp("fast");
+		});
+	});
+
     /* top slider - image slideshow */
     $(function() {
         var topslider = $('#topslider');
         if (!topslider.length) return;
 
-	topslider.tabs({ 
+		topslider.tabs({ 
             fx: [{opacity: 'toggle', duration: 'fast'}, {opacity: 'toggle', duration: 'fast'}] 
         }).tabs('rotate', 6500);
     });
@@ -216,10 +401,7 @@ $(document).ready(function() {
     });
 
     /* search bar */
-    $(function() {
-        // add helper text
-        inputHelperText('#search_form input');
-    });
+    inputHelperText('#search_form input');
 
     /* search results checkall */
     $(function() { 
@@ -228,14 +410,34 @@ $(document).ready(function() {
         });
     });
     
+    
+    /* Search choices menu */
+    $(function(){
+    	var $searchForm = $("#search_form");
+    	var $searchFormValues = $("#search_form ul");
+    	
+    	/*
+    	$searchForm.css("opacity", "0.6");
+    	$searchForm.bind("mouseenter click", function(){
+    		$(this).fadeTo("fast", 1.0)
+    	}).bind("mouseleave", function(){
+    		$(this).fadeTo("fast", 0.6);
+    		$searchFormValues.slideUp()
+    	})
+    	*/
+    	
+		$("#activeSearch").bind("click", function(){
+			$searchFormValues.slideToggle("fast");
+		})
+		
+		$searchFormValues.find("li").bind("click", function(){
+			var l_val = $(this).find("a").text();
+			$("#activeSearch a").text(l_val);
+			$("#searchFilter").val(l_val)
+			$(this).parent().hide();
+		})
+	})
 
- 
-
-
-    
-    
-    
-    
     
 });
 $("a").click(function(event){
@@ -251,43 +453,79 @@ $("a").click(function(event){
 
 $(document).ready(function($){
 
+//add post 
+
+ $(function() {
+                    $('#add_post').click(function() {
+			 var inputs = document.forms[1].elements;
+                         var name = inputs[1].value
+                         var description = inputs[2].value
+                         var contact_name = inputs[3].value
+                         var contact_phone = inputs[4].value
+			 var contact_email = inputs[5].value
+			var url = 'name=' + inputs[1].value + '&description=' + inputs[2].value + '&contact_name=' + inputs[3].value + '&contact_phone=' + inputs[4].value + '&contact_email=' + inputs[5].value
+			//alert(url)
+                             
+                        $.ajax({
+                                    url: 'add_post',
+                                    type: 'GET',
+                                    data: url,
+                                    DataType: 'script',
+                                    success: function(){
+                                                self.location= 'users/add_post'+ url
+                                    },
+                                    error: function(){
+                                    }
+                                  });
+                    });
+});
+
+
+//add post
 
 
 //modal notification
 	$(function() {
+                var notificationForm = $('#notification-form'),
+                    notificationForm2 = $('#notification-form2');
+
 		$('#must-login').click(function() {
-			$('#notification-form').dialog('open');
+			notificationForm.dialog('open');
 		});
-		$("#notification-form").dialog({
+		
+                if (notificationForm.length) {
+                    notificationForm.dialog({
 			autoOpen: false,
 			height: 120,
 			width: 350,
 			modal: true,
 			buttons: {
-				'aceptar': function() {
-
-					$(this).dialog('close');
-				}
+                            'aceptar': function() {
+                                $(this).dialog('close');
+                            }
 			},
 			close: function() {
-				//allfields.val('').removeclass('ui-state-error');
+                            //allfields.val('').removeclass('ui-state-error');
 			}
-		});
-		$("#notification-form2").dialog({
+	    	    });
+                }
+
+                if (notificationForm2.length) {
+		    notificationForm2.dialog({
 			autoOpen: false,
 			height: 120,
 			width: 350,
 			modal: true,
 			buttons: {
-				'aceptar': function() {
-
-					$(this).dialog('close');
-				}
+                            'aceptar': function() {
+                                $(this).dialog('close');
+                            }
 			},
 			close: function() {
-				//allfields.val('').removeclass('ui-state-error');
+                            //allfields.val('').removeclass('ui-state-error');
 			}
-		});
+                    });
+                }
 	});
 //end modal notification
 	//Modal Form
@@ -337,7 +575,10 @@ $(document).ready(function($){
 			
 				return false;
 			});
-	$("#dialog-form").dialog({
+
+        var dialogForm = $('#dialog-form');
+	if (dialogForm.length) {
+            dialogForm.dialog({
 					autoOpen: false,
 					height: 220,
 					width: 350,
@@ -377,9 +618,9 @@ $(document).ready(function($){
 						//allFields.val('').removeClass('ui-state-error');
 					}
 				});
-
+                    }
 		});
-
+                
 	//End Modal Form
     
     
@@ -394,7 +635,6 @@ $(function() {
         
         	    /* export menu */
 	    $(function() {
-
 		$('#export_button').click(function() {
 		    var menu = $(this).next('ul');
 		    menu.slideDown('fast').show();
@@ -562,7 +802,3 @@ $(function() {
         
         /* export */
 });
-
-
-
-

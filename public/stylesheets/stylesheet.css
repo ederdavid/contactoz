@@ -1,3 +1,7 @@
+#buslogo{
+position:absolute; 
+top:-7px;
+}
 body .product-adds{
     font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
     font-size:12px;
@@ -748,6 +752,25 @@ span.btn-blank p {
     font-weight:bold;
     padding:8px 0 0;
     text-align:center;
+}
+
+.unfollow {
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    background:url("../images/feed-more.gif") repeat-x scroll left top #D8D8D8;
+    border-color:#BBBBBB #BBBBBB #999999;
+    border-style:solid;
+    border-width:1px;
+    color:#333333;
+    cursor:pointer;
+    font-size:0.9em;
+    font-weight:bold;
+    text-align:center;
+    text-shadow:0 1px #F0F0F0;
+}
+
+.unfollow:hover {
+    border-color: #888888 #888888 #666666;
 }
 
 .btn-grey {
@@ -1833,6 +1856,7 @@ body.account .sidebar {
 This isn't specified under body.account because other pages
 will probably be using this tab style too.
  */
+
     .large-tabs {
         float: left;
         width: 100%;
@@ -1885,6 +1909,7 @@ will probably be using this tab style too.
 .large-tabs a span.extra {
     color: #538DC2;
 }
+
 
 body.account .feed {
     clear:both;
@@ -1969,6 +1994,8 @@ body.account .feed-item span.timestamp {
     background-color:#E5EEF6;
     /*border:1px solid #538DC2;*/
     margin-bottom:10px;
+        width:480px;
+/* 996px */
     padding:10px;
     float: left;
 }
@@ -1977,16 +2004,17 @@ body.account .feed-item span.timestamp {
     border: 1px solid #3591B3;
     font-family:Arial, sans-serif;
     color:#333333;
+    width:460px;
+
 }
 
 #post_box input#post_content {
     font-size:14px;
     padding:5px 6px;
-    width:466px;
 }
 
 #post_box #post_details {
-    margin-top: 10px;
+    margin-top: 0px;
 }
 
 #post_details .disable-box {
@@ -1996,6 +2024,8 @@ body.account .feed-item span.timestamp {
 #post_details .disable-box input {
     vertical-align: bottom; 
     margin-right: 2px;
+    width:20px;
+
 }
 
 #post_details .disable-box span {

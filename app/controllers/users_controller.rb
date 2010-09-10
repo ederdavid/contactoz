@@ -1,6 +1,19 @@
 class UsersController < ApplicationController
 	layout 'user'
 
+    # GET /posts/1
+  # GET /posts/1.xml
+  def show
+    @user = User.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.xml  { render :xml => @user }
+    end
+  end
+
+
+
   # GET /users
   # GET /users.xml
   def index
@@ -11,26 +24,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def infoUser
-    @user_session = UserSession.new(params[:user_session])
-    if @user_session.save
-    #code for returning user account information in xml --> tu codigo esta aqui
-    respond_to do |format|
-            #format.html # show.html.erb
-            format.xml { render :xml => @user }
-    end
-    #then destroy session
-    @user_session.destroy
-
-    else
-        #code for returning error message (pswrd and username are not correct) in xml
-        respond_to do |format|
-            #format.html # show.html.erb
-            format.xml { render :xml => "<WARNING>There is a problem with the username or password</WARNING>" }
-        end
-     end
-  end
-
   # GET /users/1
   # GET /users/1.xml
   def infoUser
@@ -39,7 +32,6 @@ class UsersController < ApplicationController
     #sacamos estos por post
     #user_session[email]=cristinarandall@gmail.com&user_session[password]=12341234
     ###########
-
 
     @user_session = UserSession.new(params[:user_session])  
     @email = params[:user_session][0]
