@@ -1,7 +1,6 @@
 class CreateRegisters < ActiveRecord::Migration
   def self.up
     create_table :registers do |t|
-
       t.timestamps
     end
   end
