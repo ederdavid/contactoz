@@ -60,7 +60,7 @@ class UsersController < ApplicationController
         format.html # show.html.erb
         if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s
-               format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
+               format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', ':first_name', ':last_name', ':email', ':level', ':points']) }
 		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@parameters}#{@secret}").to_s }
            end
         end
