@@ -3,11 +3,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'companies.:format', :controller => 'companies', :action => 'apiSearch'
 
-  map.connect 'contacts.:format', :controller => 'companies', :action => 'apiSearch'
+  map.connect 'contacts.:format', :controller => 'contacts', :action => 'apiSearch'
 
-  map.connect 'products.:format', :controller => 'companies', :action => 'apiSearch'
+  map.connect 'products.:format', :controller => 'products', :action => 'apiSearch'
 
-  map.connect 'services.:format', :controller => 'companies', :action => 'apiSearch'
+  map.connect 'services.:format', :controller => 'services', :action => 'apiSearch'
 
   map.resources :posts
 

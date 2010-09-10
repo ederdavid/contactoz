@@ -5,6 +5,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'contacts.:format', :controller => 'companies', :action => 'apiSearch'
 
+  map.connect 'products.:format', :controller => 'companies', :action => 'apiSearch'
+
+  map.connect 'services.:format', :controller => 'companies', :action => 'apiSearch'
+
   map.resources :posts
 
   map.resources :application

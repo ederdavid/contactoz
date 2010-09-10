@@ -27,7 +27,7 @@ class ServicesController < ApplicationController
                if @service
                    format.xml  { render :xml => @service.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :created_at, :updated_at]) }
                else
-                   format.xml  { render :xml => "there is not a service with that id" }
+                   format.xml  { render :xml => "<WARNING>there is not a product for that if</WARNING>" }
                end
            end
       end
@@ -35,16 +35,19 @@ class ServicesController < ApplicationController
   end
 
 # GET /services.xml?search=""
+# GET /products.xml?search=""
   def apiSearch
-    @service = Service.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"], :limit => "20")
+    if (params[:search])
+       @service = Product.find(params[:search])
+    end
     if params[:buy] && params[:sell]
-        @service = Service.find(:all, :id => params[:id], :buy => params[:buy], :sell => params[:sell])
+        @service = Product.find(:all, :conditions => ['buy LIKE ? AND sell LIKE ?', "#{params[:buy]}", "#{params[:sell]}"], :limit => "20")
     end
     if params[:buy]
-        @service = Service.find(:all, :id => params[:id], :buy => params[:buy])
+        @service = Product.find(:all, :conditions => ['buy LIKE ?', "#{params[:buy]}"], :limit => "20")
     end
     if params[:sell]
-        @service = Service.find(:all, :id => params[:id], :sell => params[:sell])
+        @service = Product.find(:all, :conditions => ['sell LIKE ?', "#{params[:sell]}"], :limit => "20")
     end
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
@@ -56,14 +59,14 @@ class ServicesController < ApplicationController
       format.html # show.html.erb
       if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               if @service
-                   format.xml  { render :xml => @service.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :created_at, :updated_at]) }
+	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+               if @service == nil
+                   format.xml  { render :xml => @service.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
                else
-                   format.xml  { render :xml => "there is not a service with that id" }
+                   format.xml  { render :xml => "<WARNING>there is not such a product</WARNING>" }
                end
            end
       end
     end
   end
-
 end

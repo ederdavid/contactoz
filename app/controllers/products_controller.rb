@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
                if @product
                    format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
                else
-                   format.xml  { render :xml => "there is not a product for that product" }
+                   format.xml  { render :xml => "<WARNING>there is not a product for that if</WARNING>" }
                end
            end
       end
@@ -36,16 +36,17 @@ class ProductsController < ApplicationController
 
 # GET /products.xml?search=""
   def apiSearch
-    @product = Product.find(params[:id])
-    @product = Product.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"], :limit => "20")
+    if (params[:search])
+       @product = Product.find(params[:search])
+    end
     if params[:buy] && params[:sell]
-        @product = Product.find(:all, :id => params[:id], :buy => params[:buy], :sell => params[:sell])
+        @product = Product.find(:all, :conditions => ['buy LIKE ? AND sell LIKE ?', "#{params[:buy]}", "#{params[:sell]}"], :limit => "20")
     end
     if params[:buy]
-        @product = Product.find(:all, :id => params[:id], :buy => params[:buy])
+        @product = Product.find(:all, :conditions => ['buy LIKE ?', "#{params[:buy]}"], :limit => "20")
     end
     if params[:sell]
-        @product = Product.find(:all, :id => params[:id], :sell => params[:sell])
+        @product = Product.find(:all, :conditions => ['sell LIKE ?', "#{params[:sell]}"], :limit => "20")
     end
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
@@ -57,10 +58,11 @@ class ProductsController < ApplicationController
       format.html # show.html.erb
       if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               if @product
+	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+               if @product == nil
                    format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
                else
-                   format.xml  { render :xml => "there is not a product for that product" }
+                   format.xml  { render :xml => "<WARNING>there is not such a product</WARNING>" }
                end
            end
       end
