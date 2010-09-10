@@ -123,7 +123,11 @@ def sortByName
   # GET /companies/1
   # GET /companies/1.xml
   def show
+    begin
     @company = Company.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    return render :xml => "<WARNING>there is not a company for that id</WARNING>"
+    end
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
@@ -139,7 +143,7 @@ def sortByName
                else
                    format.xml  { render :xml => "<WARNING>there is not a company for that id</WARNING>" }
                end
-		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s 
            end
         end
     end

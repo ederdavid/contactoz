@@ -33,15 +33,56 @@ class UsersController < ApplicationController
     #user_session[email]=cristinarandall@gmail.com&user_session[password]=12341234
     ###########
 
+<<<<<<< HEAD
     @user_session = UserSession.new(params[:user_session])  
+=======
+    @user_session = UserSession.new(params[:user_session])
+>>>>>>> e13471b3b7324b73574f3909b0eb7427793fd5b4
     @email = params[:user_session][0]
      #@email = "cristinarandall@gmail.com"
 
     if @user_session.save
+<<<<<<< HEAD
     	@user = User.find(:all, :conditions => ['email = ?', @email], :limit => "1")
      	@user_session.destroy
     end
 
+=======
+        @user = User.find(:all, :conditions => ['email = ?', @email], :limit => "1")
+        @user_session.destroy
+    end
+
+    @signature = params[:signature]
+    params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
+    params.sort_by {|key, value| key.to_s.underscore}.join('')
+    @parameters = params.to_s
+    @secret = ApplicationAccount.api_secret_field
+    @app_key = ApplicationAccount.api_key_field
+    respond_to do |format|
+      format.html # show.html.erb
+        if params[:app_key] == @app_key
+           if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
+               if @user
+                   format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
+               else
+                   format.xml  { render :xml => "<WARNING>there is not a user for that id</WARNING>" }
+               end
+               #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+           end
+        end
+    end
+ end
+
+  # GET /users/1
+  # GET /users/1.xml
+  def show
+    begin
+    @user = User.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    return render :xml => "<WARNING>there is not a company for that id</WARNING>"
+    end
+    @contact_saveds = ContactSaved.all
+>>>>>>> e13471b3b7324b73574f3909b0eb7427793fd5b4
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')

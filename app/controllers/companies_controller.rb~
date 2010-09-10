@@ -123,7 +123,11 @@ def sortByName
   # GET /companies/1
   # GET /companies/1.xml
   def show
+    begin
     @company = Company.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+    return 
+    end
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
@@ -139,7 +143,7 @@ def sortByName
                else
                    format.xml  { render :xml => "<WARNING>there is not a company for that id</WARNING>" }
                end
-		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s 
            end
         end
     end
@@ -157,10 +161,10 @@ def sortByName
     respond_to do |format|
         format.html # show.html.erb
         if params[:app_key] == @app_key
-           #if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               #format.xml  { render :xml => @company.to_xml(:only => [:id, :company_name, :company_city, :company_state, :updated_at]) }
-		format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
-           #end
+           if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
+               format.xml  { render :xml => @company.to_xml(:only => [:id, :company_name, :company_city, :company_state, :updated_at]) }
+		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+           end
         end
     end
   end
