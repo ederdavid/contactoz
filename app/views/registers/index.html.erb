@@ -1,14 +1,18 @@
- <!-- search -->
-                <div class="search">
-                    <form id="search_form">
-                        <div class="wrap">
-                            <input type="text" data-default="search" value="search"></input>
-                            <button type="submit"></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="clear"></div>
-                <!--/ search -->
+<h1>Listing registers</h1>
 
-<%= render :partial => "shared/register" %>
+<table>
+  <tr>
+  </tr>
 
+<% @registers.each do |register| %>
+  <tr>
+    <td><%= link_to 'Show', register %></td>
+    <td><%= link_to 'Edit', edit_register_path(register) %></td>
+    <td><%= link_to 'Destroy', register, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New register', new_register_path %>
