@@ -16,13 +16,19 @@ class UsersController < ApplicationController
     if @user_session.save
     #code for returning user account information in xml --> tu codigo esta aqui
     @user = current_user
-    format.xml { render :xml => @user }
+    respond_to do |format|
+            #format.html # show.html.erb
+            format.xml { render :xml => @user }
+    end
     #then destroy session
     @user_session.destroy
 
     else
         #code for returning error message (pswrd and username are not correct) in xml
-        format.xml { render :xml => "<WARNING>There is a problem with the username or password<WARNING>" }
+        respond_to do |format|
+            #format.html # show.html.erb
+            format.xml { render :xml => "<WARNING>There is a problem with the username or password</WARNING>" }
+        end
      end
   end
 
