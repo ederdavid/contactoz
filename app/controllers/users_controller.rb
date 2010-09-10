@@ -73,7 +73,6 @@ class UsersController < ApplicationController
     return render :xml => "<WARNING>there is not a company for that id</WARNING>"
     end
     @contact_saveds = ContactSaved.all
->>>>>>> e13471b3b7324b73574f3909b0eb7427793fd5b4
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
