@@ -1,6 +1,6 @@
 class ActionsController < ApplicationController
-       layout 'secondary'
-
+    
+	layout 'secondary'
 
   # GET /actions
   # GET /actions.xml
@@ -72,15 +72,4 @@ class ActionsController < ApplicationController
     end
   end
 
-  # DELETE /actions/1
-  # DELETE /actions/1.xml
-  def destroy
-    @action = Action.find(params[:id])
-    @action.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(actions_url) }
-      format.xml  { head :ok }
-    end
-  end
 end
