@@ -1,4 +1,4 @@
-class CreateRegisters < ActiveRecord::Migration
+class AgainRegisters < ActiveRecord::Migration
   def self.up
     create_table :registers do |t|
       t.timestamps
