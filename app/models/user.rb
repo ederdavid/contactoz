@@ -4,17 +4,23 @@ class User < ActiveRecord::Base
   has_many :contacts, :through => :contact_saveds
   has_many :topics, :through => :categorizations
   has_many :categorizations
-
+  #named_scope :with_topics, :conditions => 'id in (select distinct user_id from categorizations)'
 
   validates_presence_of :screen_name
 
 
   acts_as_recommendable :contacts, :through => :contact_saveds
 
-  def buy_book(contact)
-	contacts << contact
-	self.save
+
+  def find_topics
+  	@topic = Topic.find(:all, :conditions => ['id in (select distinct topic_id from categorizations where user_id = ?)', self])
   end
+
+  def buy_book(contact)
+        contacts << contact
+        self.save
+  end
+
 
 
   #validates_format_of :email, :with => /\A([^@\s]+)@[^?!snow]((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
