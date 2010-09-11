@@ -30,16 +30,6 @@ class FeedsController < ApplicationController
     end
   end
 
-  # GET /posts/new
-  # GET /posts/new.xml
-  def new
-    @post = Feed.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @post }
-    end
-  end
 
 
 
