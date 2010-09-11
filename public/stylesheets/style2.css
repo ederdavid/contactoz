@@ -1,0 +1,185 @@
+/*Accounts*/
+
+#post_box{
+	padding:0px;
+	padding-top:15px;
+	background:none;
+}
+
+#post_box input#post_content {
+    font-size:14px;
+    padding:5px 6px;
+	height:30px;
+	width:540px;
+}
+
+#post_details{
+	padding:10px;
+	background-color:#E5EEF6;
+}
+.topic-page {
+	margin-top:30px;
+}
+.feed-item .info{
+	margin-bottom:10px;
+}
+body.account .middle{border:none;}
+body.account .content{padding-right:50px;border:none;width:650px;}
+
+.feed-item ul.tags {
+    float: none;
+	width:100%;
+	height:25px;
+}
+
+.feed-item a.title-name{
+	font-size:24px;
+	margin-top:20px;
+	margin-left:5px;
+    font-weight:bold;
+    color: #2985a7;
+}
+
+.feed-item a.title-name:hover{text-decoration:underline;}
+
+.feed-item .info a{margin-top:5px; color:black;margin-left:6px;}
+
+body.account .feed .feed-item{padding:0px;}
+
+.large-tabs2 {overflow:hidden;}
+.large-tabs2 a.photo{float:left;padding:10px;}
+
+#topic-feed{margin-left:90px;}
+
+
+/*
+This isn't specified under body.account because other pages
+will probably be using this tab style too.
+ */
+    .large-tabs2 {
+        float: left;
+        width: 100%;
+        margin-bottom: 10px;
+}
+
+.large-tabs2 ul {
+    border-bottom:3px solid #C0C0C0;
+    overflow: auto;
+}
+
+.large-tabs2 li {
+    float: left;
+    width: 140px;
+    padding: 6px 10px;
+    margin-left: 10px;
+}
+
+.large-tabs2 li:hover {
+    background-color: #DFEAF4;
+}
+
+.large-tabs2 li.active, .large-tabs2 li.active:hover {
+    background-color: #EAEAEA;
+    color: #AAAAAA;
+}
+
+.large-tabs2 li.first {
+    margin-left: 0;
+}
+
+.large-tabs2 span.title {
+    display:block;
+    font-weight: bold;
+}
+
+.large-tabs2 li.active span.title {
+    color: #333333;
+}
+
+.large-tabs2 a span.title {
+    color: #19558D;
+}
+
+.large-tabs2 span.extra {
+    font-size: 93%;
+}
+
+.large-tabs2 a span.extra {
+    color: #538DC2;
+}
+
+/* RIGHT PANEL or SIDEBAR */
+
+#notification-section{margin-top:30px;position:relative;}
+#notification-section .text p{padding: 5px 0px;}
+
+body.account .sidebar{
+	border-left: 3px dashed #AAA;
+	padding-left: 30px;
+}
+
+.sidebar .section {
+	position:relative;
+	border-bottom: 2px dotted #CCC;
+	padding-bottom:20px;
+	margin-top:15px;
+}
+
+.sidebar .section h5{
+	margin-top:0px;
+}
+
+#bag-section li{overflow:hidden;}
+
+a.follow, a.unfollow{
+	background: transparent url(../images/blue_btn_span.gif) no-repeat top right;
+    color:#FFF;
+    display: block;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 10px; /* sliding doors padding */
+    text-decoration: none;
+	font-weight:bold;
+	text-align:center;
+}
+
+a.follow span, a.unfollow span {
+    background: transparent url(../images/blue_btn.gif) no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 10px;
+}
+
+a.unfollow{background:#d2d1d1; color:#000; font-weight:normal;}
+a.unfollow span{background:#d2d1d1;}
+a.unfollow:hover{background:#8d8d8d; color:#FFF;}
+a.unfollow:hover span{background:#8d8d8d;}
+
+
+a.follow:active, a.follow:hover {
+    background-position: bottom right;
+    outline: none; /* hide dotted outline in Firefox */
+}
+a.follow:active span, a.follow:hover span {
+    background-position: bottom left;
+}
+
+.social-media{
+	border-bottom: 2px dotted #CCC;
+	padding-bottom:15px;
+	margin-top:15px;
+}
+
+.social-media ul{
+	overflow:hidden;
+}
+
+.social-media ul li{
+	float:left;
+	padding-top:5px;
+	padding-right:20px;
+}
+.social-media ul li a{padding-left:20px; height:40px;font-size:14px;padding-bottom:15px; padding-top:15px;}
+.social-media ul li a.twitter{background: transparent url(../images/social/twitter_small.gif) no-repeat 0.1em center;}
+.social-media ul li a.email{background: transparent url(../images/social/email_small.gif) no-repeat 0.1em center;}
+.social-media ul li a.in_social{background: transparent url(../images/social/in_social_small.gif) no-repeat 0.1em center;}

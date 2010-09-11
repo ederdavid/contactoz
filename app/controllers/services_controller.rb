@@ -1,4 +1,5 @@
 class ServicesController < ApplicationController
+	    layout 'user'
 
   # GET /services/1
   # GET /services/1.xml

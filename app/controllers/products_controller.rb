@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+           layout 'user'
+
 
   # GET /products/1
   # GET /products/1.xml

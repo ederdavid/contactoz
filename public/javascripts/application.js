@@ -329,28 +329,7 @@ PostBox.prototype.reset = function() {
 /* Runs when the page is ready */
 $(document).ready(function() {
 
-$(document).ready(function(){
 
-	$('#changefollow').click(function() {
-
-        if ($(this).hasClass("follow")){
-            $(this).removeClass("follow");
-            $(this).addClass("unfollow");
-            $(this).html('<span> No quero seguir </span>');
-
-
-
-		}
-		else {
-            $(this).removeClass("unfollow");
-            $(this).addClass("follow");
-            $(this).html('<span> Seguir este post </span>');
-
-
-		}
-	});
-	
-});
 
 
 

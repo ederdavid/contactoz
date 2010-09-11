@@ -1,7 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :registers
-
+  map.resources :services
   map.resources :registers
+
+
   map.connect 'users.:format', :controller => 'users', :action => 'apiSearch'
 
   map.connect 'companies.:format', :controller => 'companies', :action => 'apiSearch'
@@ -20,10 +22,11 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :displays
 
-  map.resources :services
-
   map.resources :products
 
+  map.connect 'services/:action', :controller => 'services', :action => /[a-z_]+/i
+
+  
   map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
 
   map.connect 'contacts/:action', :controller => 'contacts', :action => /[a-z_]+/i
@@ -37,6 +40,11 @@ ActionController::Routing::Routes.draw do |map|
   map.activate '/activate/:activation_code', :controller => 'activations', :action => 'create'
 
   map.resources :plans
+
+
+  map.resources :services
+
+  map.resources :products
 
   map.resources :contact_saveds
 
