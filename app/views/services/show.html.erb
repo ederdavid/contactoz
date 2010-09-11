@@ -12,10 +12,11 @@
                                     <li><a href="#">More Tags</a></li>
                                 </ul>
                                 <a class="title-name">
-                                    Mexicana subio 23% de ingressos
+<% @service = Service.find(params[:id]) %>
+                                    <%= @service.name %>
                                 </a>
                                 <div class="info">
-                                    <a href="#">Description here...</a> 
+                                    <a href="#"> <%= @service.description %></a> 
                                 </div>
                             </div>
                         </div>
