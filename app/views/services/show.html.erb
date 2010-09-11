@@ -1,3 +1,5 @@
+<% @service = Service.find(params[:id]) %>
+<% @categories = Categorization.find_all_by_service_id(params[:id]) %>
 
 <%= render :partial => 'shared/search' %>
 
@@ -5,19 +7,24 @@
                     <div class="content">
 
                         <div class="feed">
+
                             <div class="feed-item">
                                 <ul class="tags">
-                                    <li><a href="#"follow>Mexicana</a></li>
-                                    <li><a href="#">Aerospace</a></li>
-                                    <li><a href="#">More Tags</a></li>
+					<% i = 0 %>
+					<% while @categories[i] %>    
+                                    <li><a href="#"follow> <%= Topic.find(@categories[i].topic_id).name %></a></li>
+					<% i = i+1 %>
+					<% end %>
+
                                 </ul>
+
                                 <a class="title-name">
-<% @service = Service.find(params[:id]) %>
                                     <%= @service.name %>
                                 </a>
                                 <div class="info">
                                     <a href="#"> <%= @service.description %></a> 
                                 </div>
+
                             </div>
                         </div>
                     </div>
