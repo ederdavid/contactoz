@@ -14,6 +14,8 @@
                                 </div>
                             </div>
                         </div>
+<% @categories = Categorization.find_all_by_topic_id(@topic.id) %>
+
 <% if Service.tagged_with("web") %>
 <% @service_collection = Service.tagged_with("web").by_date %>
 
