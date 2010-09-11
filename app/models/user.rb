@@ -2,7 +2,12 @@ class User < ActiveRecord::Base
   has_many :actions
   has_many :contact_saveds
   has_many :contacts, :through => :contact_saveds
+  has_many :topics, :through => :categorizations
+  has_many :categorizations
+
+
   validates_presence_of :screen_name
+
 
   acts_as_recommendable :contacts, :through => :contact_saveds
 
