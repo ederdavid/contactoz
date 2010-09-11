@@ -14,6 +14,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect 'services.:format', :controller => 'services', :action => 'apiSearch'
 
+  map.resources :topics
+
   map.resources :posts
 
   map.resources :application

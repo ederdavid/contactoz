@@ -3,6 +3,7 @@ class CompaniesController < ApplicationController
     set_tab :companies
     $global_page = 20
 
+
 require 'fastercsv'
 
 def export_to_csv

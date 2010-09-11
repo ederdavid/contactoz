@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100906160830) do
+ActiveRecord::Schema.define(:version => 20100911030952) do
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"
@@ -28,6 +28,15 @@ ActiveRecord::Schema.define(:version => 20100906160830) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
+  end
+
+  create_table "adverts", :force => true do |t|
+    t.string   "name"
+    t.string   "picture"
+    t.string   "price"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "application_accounts", :force => true do |t|
@@ -56,16 +65,23 @@ ActiveRecord::Schema.define(:version => 20100906160830) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "contact_id"
-    t.string   "company_city"
     t.string   "colonia"
     t.string   "scian"
     t.string   "giro"
     t.string   "year_started"
+    t.string   "company_city"
     t.integer  "industry_id"
     t.integer  "company_location_id"
   end
 
   add_index "companies", ["company_name"], :name => "index_companies_on_company_name"
+
+  create_table "company_industries", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "company_id"
+    t.string   "name"
+  end
 
   create_table "company_locations", :force => true do |t|
     t.string   "address"
@@ -77,6 +93,22 @@ ActiveRecord::Schema.define(:version => 20100906160830) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
+  end
+
+  create_table "companycontacts", :force => true do |t|
+    t.string   "title"
+    t.string   "name"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "linkedin_id"
+    t.date     "contact_last_updated"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "accuracy"
+    t.integer  "company_id"
+    t.string   "department"
+    t.string   "hierarchy"
   end
 
   create_table "contact_saveds", :force => true do |t|
@@ -108,8 +140,8 @@ ActiveRecord::Schema.define(:version => 20100906160830) do
     t.date     "contact_last_updated"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "company_id"
     t.integer  "accuracy"
+    t.integer  "company_id"
     t.string   "department"
     t.string   "hierarchy"
     t.string   "address"
@@ -172,11 +204,16 @@ ActiveRecord::Schema.define(:version => 20100906160830) do
     t.text     "description"
     t.integer  "contact_id"
     t.string   "contact_name"
+    t.string   "contact_phone"
     t.string   "contact_email"
-    t.string   "contact_number"
-    t.date     "date_updated"
+    t.string   "contact_title"
     t.string   "buy"
     t.string   "sell"
+  end
+
+  create_table "registers", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "services", :force => true do |t|
@@ -186,9 +223,9 @@ ActiveRecord::Schema.define(:version => 20100906160830) do
     t.text     "description"
     t.integer  "contact_id"
     t.string   "contact_name"
+    t.string   "contact_phone"
     t.string   "contact_email"
-    t.string   "contact_number"
-    t.date     "date_updated"
+    t.string   "contact_title"
     t.string   "buy"
     t.string   "sell"
   end
@@ -208,6 +245,14 @@ ActiveRecord::Schema.define(:version => 20100906160830) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_session", :force => true do |t|
@@ -236,20 +281,5 @@ ActiveRecord::Schema.define(:version => 20100906160830) do
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
-
-  create_table "usuarios", :force => true do |t|
-    t.string   "login",                     :limit => 40
-    t.string   "name",                      :limit => 100, :default => ""
-    t.string   "email",                     :limit => 100
-    t.string   "crypted_password",          :limit => 40
-    t.string   "salt",                      :limit => 40
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "remember_token",            :limit => 40
-    t.datetime "remember_token_expires_at"
-    t.string   "api_key",                   :limit => 40,  :default => ""
-  end
-
-  add_index "usuarios", ["login"], :name => "index_usuarios_on_login", :unique => true
 
 end

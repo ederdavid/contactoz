@@ -6,15 +6,8 @@ $('#search').autocomplete(options);
 </script>
 
   <!-- search -->
-                <div class="search">
-                    <form id="search_form">
-                        <div class="wrap">
-                            <input id="search" type="text" data-default="search" value="search"></input>
-                            <button type="submit"></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="clear"></div>
+
+<%= render :partial => 'shared/search' %>
                 <!--/ search -->
 
 <% if "directorio".eql? params[:tab] %>
