@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100911085638) do
+ActiveRecord::Schema.define(:version => 20100911143023) do
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(:version => 20100911085638) do
     t.datetime "updated_at"
     t.string   "api_key"
     t.string   "api_secret"
+  end
+
+  create_table "categorizations", :force => true do |t|
+    t.integer  "topic_id"
+    t.integer  "service_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "companies", :force => true do |t|
