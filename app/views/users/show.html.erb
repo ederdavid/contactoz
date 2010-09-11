@@ -1,4 +1,6 @@
+<% @user = User.find(params[:id]) %>
 
+<% @user_topics = @user.find_topics %>
 
 <%= render :partial => 'shared/search' %>
 
