@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-           layout 'user'
+           layout 'feed'
 
 
   # GET /products/1

@@ -47,7 +47,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :services
 
   map.resources :products
-
+   map.resources :feeds
   map.resources :contact_saveds
 
   map.resources :actions

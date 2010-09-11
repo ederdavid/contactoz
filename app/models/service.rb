@@ -1,4 +1,4 @@
-class Service < ActiveRecord::Base
+class Service < Feed
 	belongs_to :company
 	belongs_to :contact
         acts_as_taggable
