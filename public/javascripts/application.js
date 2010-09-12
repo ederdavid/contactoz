@@ -33,6 +33,7 @@ $(function AutoScript(){
     }
 });
 
+// Initiaties 
 /* Initiates a table by adding various effects to it. 
 
    params:
