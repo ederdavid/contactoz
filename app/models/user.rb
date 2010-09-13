@@ -16,6 +16,11 @@ class User < ActiveRecord::Base
   	@topic = Topic.find(:all, :conditions => ['id in (select distinct topic_id from categorizations where user_id = ?)', self])
   end
 
+  def find_feeds
+        @feeds = Feed.find(:all, :conditions => ['id in (select distinct feed_id from categorizations where user_id = ?)', self])
+  end
+
+
   def buy_book(contact)
         contacts << contact
         self.save

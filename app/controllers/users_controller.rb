@@ -125,6 +125,27 @@ class UsersController < ApplicationController
     end
   end
 
+  def follow
+  
+    @user = params[:user_id]
+    @topic = params[:topic_id]
+    @feed = params[:feed_id]
+
+
+    if @feed
+    	Categorization.create(:user_id=>@user,:feed_id=> @feed)
+    end
+
+    if @topic
+        Categorization.create(:user_id=>@user,:topic_id=> @topic)
+    end
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @user }
+    end
+  end
+
     def add_post
 	
 	require 'pusher'

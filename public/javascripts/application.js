@@ -1,3 +1,30 @@
+function followFeed(user,feed) {
+
+//$("#firstname");
+alert("User id is " + user);
+alert("Feed id is " + feed);
+
+//userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
+data = "user_id=" + user + "&feed_id= " + feed;
+
+ $.ajax({
+                                    url: '/users/follow',
+                                    type: 'GET',
+                                    data: data,
+                                    DataType: 'script',
+                                    success: function(){
+                                                self.location= url + data
+                                    },
+                                    error: function(){
+                                    }
+                                  });
+
+
+};
+
+
+
+
 /* Binds a click event handler to a selection. 
 
     TODO: Replace with jQuery tabs

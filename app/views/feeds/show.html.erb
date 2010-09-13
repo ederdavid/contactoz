@@ -1,6 +1,10 @@
 <% @feed = Feed.find(params[:id]) %>
-<% @categories = Categorization.find_all_by_feed_id(params[:id]) %>
+<% @categories = Categorization.find_all_by_feed_id(@feed.id) %>
 
+<% if current_user %>
+<% @user = User.find(current_user.id) %>
+<% end %>
+ 
 <%= render :partial => 'shared/search' %>
 
    <div class="middle">
@@ -10,10 +14,16 @@
 
                             <div class="feed-item">
                                 <ul class="tags">
-					<% i = 0 %>
-					<% while @categories[i] %>    
-                                    <li><a href="#"follow> <%= Topic.find(@categories[i].topic_id).name %></a></li>
-					<% i = i+1 %>
+
+					<% if @categories.nil? %>
+no topics
+					<% else %>
+						<% for cat in @categories %> 
+						<% if cat.topic_id %>   
+                                    		<li><a href="#"follow> <%= Topic.find(cat.topic_id).name %></a></li>
+                                                <% end %>
+
+						<% end %>
 					<% end %>
 
                                 </ul>
@@ -29,8 +39,13 @@
                         </div>
                     </div>
                     <div class="sidebar">
-						
-						<a href="#" class="follow" id="changefollow"><span> Sigue </span></a>
+	
+<% if @user.find_feeds.include?@feed %>
+                                                <a href="#" class="unfollow" id="changefollow"><span> Sigue </span></a>
+<% else %>
+                                               <a href="#" class="follow" id="changefollow"><span> No quero seguir </span></a>
+<% end %>
+
                         <div id="bag-section" class="section">
                             <h5>Related Questions</h5>
                             <ul>

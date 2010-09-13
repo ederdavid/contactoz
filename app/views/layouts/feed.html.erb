@@ -23,8 +23,12 @@
             $(this).html('<span> No quero seguir </span>');
 	<% if current_user %>
             var user = <%= current_user.id %>
-	<% end %>
-       alert("user");
+            var feed = <%= @feed.id %>
+
+       followFeed(user,feed);
+       
+        <% end %>
+
 		}
 		else {
             $(this).removeClass("unfollow");
