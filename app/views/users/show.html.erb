@@ -87,7 +87,9 @@
 <% i = 0 %>
 
 <% for feed in @feed %>
-                             
+                            
+<% @feed_cat = Categorization.find(:all, :conditions=> ['feed_id = ?', feed.id]) %> 
+
 <% if i.eql? 4  %>
 <div id="hiddenfeed"  style="display:none">
 <% end %> 
@@ -106,8 +108,10 @@
 
                                 </div>
                                 <ul class="tags">
-                                    <li><a href="#">Mexicana</a></li>
-                                    <li><a href="#">Aerospace</a></li>
+<% for cat in @feed_cat %>
+                                    <li><a href="#"><%= Topic.find(cat.topic_id).name %></a></li>
+                                    <!-- <li><a href="#">Aerospace</a></li> -->
+<% end %>
                                 </ul>
                       </div>
 
