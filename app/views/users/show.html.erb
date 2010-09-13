@@ -105,8 +105,11 @@
                                 </div>
                                 <ul class="tags">
 					<% for cat in @feed_cat %>
+                                        <% if cat.topic_id %>
                                     	<li><a href="#"><%= Topic.find(cat.topic_id).name %></a></li>
 					<% end %>
+                                        <% end %>
+
                                 </ul>
                       </div>
 
