@@ -8,19 +8,11 @@ $(document).ajaxSend(function(event, request, settings) {
 });
 */
 
-
 function createUser() {
 
-var firstname = document.getElementById("firstname").value;
-var lastname = document.getElementById("lastname").value;
-var email = document.getElementById("email").value;
-var password = document.getElementById("password").value;
-
-
-
 //$("#firstname");
-alert("submitted this!" + firstname + lastname + email + password);
-userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password; 
+//alert("submitted this!" + firstname + lastname + email + password);
+//userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password; 
  
  $.ajax({
                                     url: 'users/create',
