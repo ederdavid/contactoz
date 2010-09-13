@@ -30,7 +30,6 @@
                                 <div class="contact-form"> 
  
 				    <% form_for(@user) do |f| %>
-				    <%= f.error_messages %>
 
                                         <p class="inputtext"><label>Nombre *</label> <%= f.text_field :screen_name %></p>
                                         <p class="inputtext"><label> Contrasena </label><%= f.password_field :password %></p> 

@@ -1,3 +1,14 @@
+// Always send the authenticity_token with ajax
+/*
+$(document).ajaxSend(function(event, request, settings) {
+    if ( settings.type == 'post' ) {
+        settings.data = (settings.data ? settings.data + "&" : "")
+            + "authenticity_token=" + encodeURIComponent( AUTH_TOKEN );
+    }
+});
+*/
+
+
 function createUser() {
 
 var firstname = document.getElementById("firstname").value;
@@ -9,11 +20,11 @@ var password = document.getElementById("password").value;
 
 //$("#firstname");
 alert("submitted this!" + firstname + lastname + email + password);
-userdata="firstname=" + firstname + "&lastname=" + lastname + "&email=" + email + "&password=" + password; 
+userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password; 
  
  $.ajax({
                                     url: 'users/create',
-                                    type: 'GET',
+                                    type: 'POST',
                                     data: userdata,
                                     DataType: 'script',
                                     success: function(){
@@ -55,7 +66,7 @@ document.getElementById("connectuser").style.display='none';
 			terms: "required"
 		},
 		messages: {
-			firstname: "Su nombre",
+		        firstname: "Su nombre",
 			lastname: "Su apellido",
 			password: {
 				required: "Su contraseña",
@@ -77,9 +88,10 @@ document.getElementById("connectuser").style.display='none';
 				error.appendTo( element.parent().next() );
 		},
 		// specifying a submitHandler prevents the default submit, good for the demo
-		submitHandler: function() {
-				createUser();			
-//alert("submitted!");
+		submitHandler: function(form) {
+ 				form.submit();
+				//createUser();			
+				//alert("submitted!");
 		},
 		// set this class to error-labels to indicate valid fields
 		success: function(label) {

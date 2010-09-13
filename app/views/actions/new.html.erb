@@ -78,28 +78,30 @@
 
                   <p></p>
             <div id="signupwrap" >
-      		<form id="signupform" autocomplete="on" method="get" action="">
+
+<% form_for(@user, :html => { :id => "signupform" }) do |f| %>
+
 	  		  <table border="0">
 	  		  <tr>
 	  		  	<td class="label"><label id="lfirstname" for="firstname">Nombre</label></td>
-	  		  	<td class="field"><input id="firstname" name="firstname" type="text" value="" maxlength="100" /></td>
+	  		  	<td class="field"><%= text_field_tag(:firstname) %> <!-- <input id="firstname" name="firstname" type="text" value="" maxlength="100" /> --> </td>
 	  		  	<td class="status"> </td>
 	  		  </tr>
 	  		  <tr>
 	  			<td class="label"><label id="llastname" for="lastname">Apellido</label></td>
-	  			<td class="field"><input id="lastname" name="lastname" type="text" value="" maxlength="100" /></td>
+	  			<td class="field"><%= text_field_tag(:lastname) %> <!-- <input id="lastname" name="lastname" type="text" value="" maxlength="100" /> --> </td>
 	  			<td class="status"></td>
 	  		  </tr>
 	  		
 	  		  <tr>
 	  			<td class="label"><label id="lpassword" for="password">Contraseña</label></td>
-	  			<td class="field"><input id="password" name="password" type="password" maxlength="50" value="" /></td>
+	  			<td class="field"><%= password_field_tag(:password) %> </td>
 	  			<td class="status"></td>
 	  		  </tr>
 	  		 
 	  		  <tr>
 	  			<td class="label"><label id="lemail" for="email">Correo Electrónico</label></td>
-	  			<td class="field"><input id="email" name="email" type="text" value="" maxlength="50" /></td>
+	  			<td class="field"><%= text_field_tag(:email) %> </td>
 	  			<td class="status"></td>
 	  		  </tr>
               	  		 
@@ -131,8 +133,7 @@
 	  		  </table>
                             <div align="center" style="padding-left:92px;"> <input id="signupsubmit" class="clear-button btn-grey" name="signup" type="submit" value="Listo" />
 </div>
-
-          </form>
+	<% end %>
           </div>
                   
                                     <div class="clear"></div>

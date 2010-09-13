@@ -27,11 +27,11 @@ class ActionsController < ApplicationController
   # GET /actions/new
   # GET /actions/new.xml
   def new
-    @action = Action.new
+    @user = User.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.xml  { render :xml => @action }
+      format.xml  { render :xml => @user }
     end
   end
 

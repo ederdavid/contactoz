@@ -185,7 +185,14 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(params[:user])
+
+  @firstname = params[:firstname]
+  @lastname = params[:lastname]
+  @password = params[:password]
+  @email = params[:email]
+
+
+    @user = User.new(:firstname=> @firstname, :lastname=> @lastname, :email => @email, :password => @password)
     @user.points = 0
 #    respond_to do |format|
     if @user.save_without_session_maintenance
