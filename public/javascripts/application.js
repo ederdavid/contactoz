@@ -22,6 +22,27 @@ data = "user_id=" + user + "&feed_id= " + feed;
 
 };
 
+function invite(users) {
+
+//userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
+data = "user_id=" + user + "&feed_id= " + feed;
+
+ $.ajax({
+                                    url: '/users/follow',
+                                    type: 'GET',
+                                    data: data,
+                                    DataType: 'script',
+                                    success: function(){
+                                                self.location= url + data
+                                    },
+                                    error: function(){
+                                    }
+                                  });
+
+
+};
+
+
 
 
 
