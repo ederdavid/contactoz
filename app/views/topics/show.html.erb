@@ -16,85 +16,51 @@
                         </div>
 <% @categories = Categorization.find_all_by_topic_id(@topic.id) %>
 
-<% if Service.tagged_with("web") %>
-<% @service_collection = Service.tagged_with("web").by_date %>
-
-<% end %> 
-
-<% if Product.tagged_with("web") %>
-<% @product_collection = Product.tagged_with("web").by_date %>
-<% end %>
-
 							
 								<div class="large-tabs2">
 									<a href="#" class="photo"><img src="images/ico-purchase-3.gif" alt=""/></a>
 									<ul>
 										<li class="active first">
 											<span class="title">Actualizaciones</span>
-											<span class="extra">extra info</span>
+											<span class="extra">Destacas ahora </span>
 										</li>
 										<li>
 										<a href="#">
 											<span class="title">Comprar</span>
-											<span class="extra">extra info</span>
+											<span class="extra">Ver mass </span>
 										</a>
 										</li>
 										<li>
 										<a href="#">
 											<span class="title">Vendar</span>
-											<span class="extra">extra info</span>
+											<span class="extra">Ver mass</span>
 										</a>
 										</li>
 									</ul>
 								</div>
 								<div id="topic-feed">
-								<div class="feed">
-									<% if @service_collection[0] %>
-									<div class="feed-item topic-page">
-<%= link_to @service_collection[1].name, service_path(@service_collection[1]),  :class => "name" -%>
-
+										
+ 								        <% for cat in @categories %>
+									<% if cat.feed_id %>
+                                                                        <% @feed = Feed.find(cat.feed_id) %>
+									<div class="feed">
+										<div class="feed-item topic-page">
+										<%= link_to @feed.name, feed_path(@feed),  :class => "name" -%>
 										<div class="info">
-											<a href="#"><%= @service_collection[0].description %></a>
+											<a href="#"><%= @feed.description %></a>
 										</div>
-									</div>
-									<% end %>
-								</div>
-								<div class="feed">
-	                                                                  <% if @service_collection[1] %>
-
-									<div class="feed-item topic-page">
- 
-<%= link_to @service_collection[1].name, service_path(@service_collection[1]),  :class => "name" -%>
-
-										<div class="info">
-											<a href="#"> <%= @service_collection[1].description %></a> 
 										</div>
-									</div>
-									<% end %>
-
-								</div>
-								<div class="feed">
-
-								 <% if @service_collection[2] %>
-
-                                                                        <div class="feed-item topic-page">
-
-<%= link_to @service_collection[2].name, service_path(@service_collection[2]),  :class => "name" -%>
-
-                                                                                <div class="info">
-                                                                                        <a href="#"> <%= @service_collection[2].description %></a>
-                                                                                </div>
-                                                                        </div>
+								        </div>
                                                                         <% end %>
 
-								</div>
+									<% end %>
 							</div>
 					
 					</div>
                     <div class="sidebar">
 					<a href="#" class="follow" id="changefollow"><span> Sigue </span></a>
                         <div id="bag-section" class="section">
-                            <h5>Related Questions</h5>
+                            <h5>Etiquetas Relacionados</h5>
                             <ul>
                                 <li>
                                 <a href="#">
@@ -129,8 +95,8 @@
                             <h5>Question Stats</h5>
                             <div class="text">
                             	<p>Latest activity <a href="#">6:19pm on Saturday</a>.</p>
-                                <p>This question has been viewed <strong>28</strong> times.</p> 
-                                <p><strong>8</strong> people are following this question..</p>
+                                <p> Esta página ha sido vista <strong>28</strong>  veces .</p> 
+                                <p><strong>8</strong> personas están siguiendo este tema..</p>
                             </div>
                         </div>
                         

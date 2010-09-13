@@ -1,13 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
+ map.resources :topics 
   map.resources :services
+  map.resources :users
+ 
   map.connect 'users.:format', :controller => 'users', :action => 'apiSearch'
   map.connect 'companies.:format', :controller => 'companies', :action => 'apiSearch'
   map.connect 'contacts.:format', :controller => 'contacts', :action => 'apiSearch'
   map.connect 'products.:format', :controller => 'products', :action => 'apiSearch'
   map.connect 'services.:format', :controller => 'services', :action => 'apiSearch'
 
- map.resources :users
-  map.resources :topics
   map.resources :posts
   map.resources :application
   map.resources :display_companies

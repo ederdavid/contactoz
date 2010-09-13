@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100913053430) do
+ActiveRecord::Schema.define(:version => 20100913150830) do
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"
@@ -311,6 +311,8 @@ ActiveRecord::Schema.define(:version => 20100913053430) do
     t.integer  "points",            :limit => 8
     t.string   "perishable_token",               :default => "",    :null => false
     t.boolean  "active",                         :default => false, :null => false
+    t.string   "firstname"
+    t.string   "lastname"
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"

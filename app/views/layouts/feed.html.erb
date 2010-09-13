@@ -21,6 +21,10 @@
             $(this).removeClass("follow");
             $(this).addClass("unfollow");
             $(this).html('<span> No quero seguir </span>');
+	<% if current_user %>
+            var user = <%= current_user.id %>
+	<% end %>
+       alert("user");
 		}
 		else {
             $(this).removeClass("unfollow");

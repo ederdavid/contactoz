@@ -1,4 +1,4 @@
-<% @service = Service.find(params[:id]) %>
+<% @feed = Feed.find(params[:id]) %>
 <% @categories = Categorization.find_all_by_feed_id(params[:id]) %>
 
 <%= render :partial => 'shared/search' %>
@@ -19,10 +19,10 @@
                                 </ul>
 
                                 <a class="title-name">
-                                    <%= @service.name %>
+                                    <%= @feed.name %>
                                 </a>
                                 <div class="info">
-                                    <a href="#"> <%= @service.description %></a> 
+                                    <a href="#"> <%= @feed.description %></a> 
                                 </div>
 
                             </div>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="sidebar">
 						
-						<a href="#" class="follow" id="changefollow"><span>Follow This Question</span></a>
+						<a href="#" class="follow" id="changefollow"><span> Sigue </span></a>
                         <div id="bag-section" class="section">
                             <h5>Related Questions</h5>
                             <ul>
@@ -64,12 +64,15 @@
 						</div>
 						
                         <div id="notification-section">
-                            <h5>Question Stats</h5>
+                
+ <h5>Statisticas</h5>
                             <div class="text">
-                            	<p>Latest activity <a href="#">6:19pm on Saturday</a>.</p>
-                                <p>This question has been viewed <strong>28</strong> times.</p> 
-                                <p><strong>8</strong> people are following this question..</p>
+                                <p>Latest activity <a href="#">6:19pm on Saturday</a>.</p>
+                                <p> Esta página ha sido vista <strong>28</strong>  veces .</p>
+                                <p><strong>8</strong> personas están siguiendo este tema..</p>
                             </div>
+
+
                         </div>
                         
                     </div>
