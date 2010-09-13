@@ -1,28 +1,111 @@
-<h1>Listing actions</h1>
 
-<table>
-  <tr>
-    <th>Created at</th>
-    <th>Points</th>
-    <th>Entity changed</th>
-    <th>Action</th>
-    <th>User</th>
-  </tr>
+<%= render :partial => 'shared/search' %>
 
-<% @actions.each do |action| %>
-  <tr>
-    <td><%=h action.created_at %></td>
-    <td><%=h action.points %></td>
-    <td><%=h action.entity_changed %></td>
-    <td><%=h action.action %></td>
-    <td><%=h action.user_id %></td>
-    <td><%= link_to 'Show', action %></td>
-    <td><%= link_to 'Edit', edit_action_path(action) %></td>
-    <td><%= link_to 'Destroy', action, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
 
-<br />
 
-<%= link_to 'New action', new_action_path %>
+
+ <!-- middle -->
+                <div class="middle">
+
+                    <!-- content -->     
+                    <div class="wrapper">
+                        <div class="content">
+
+                            <!-- text content -->
+                            <div class="text">
+      
+                                <!--<div class="contact-form"> -->
+                                <div class="comment-form" id="addcomment" >
+                                	<DIV ALIGN="left">
+                                		<!-- <h1 class="blue">Registrarte</h1> -->
+                                	</div>
+
+
+<!-- here -->
+                                <div class="comment-one-reg" id="connectuser">
+                <div class="comment-box-reg">
+                	                   
+                    <div class="comment-text">
+
+                    <h5  align="center"> empezar a utilizar los servicios ahora... Por favor, revise su buzón de correo.</h5>
+                    <p></p>
+                     <div class="social-list" align="center"> 
+                     <table cellspacing="15" >
+                     <tr>
+
+                   </tr>
+                   </table>
+                </div>
+                    <p></p>
+                    <div align="center"><h5> Recibirás un correo electrónico de registro </h5>
+                    </div>
+                    </div>
+                    
+                    <div class="comment-meta">
+                    
+
+                    
+                    	<strong class="author"> </strong> <!-- <div id="clickme"><a href="#" class="link-reply" id="regtrigger">No tengo ... </a> </div> --> <br />
+                    	<span class="comment-date"> </span>
+                    </div> 
+                    
+                </div>
+                <div class="comment-bot"></div>
+            </div> 
+            
+            <!-- here -->
+                                
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+ 	          <div id="registeruser" style="display:none">
+
+                  <p></p>
+            <div id="signupwrap" >
+
+          </div>
+                  
+                                    <div class="clear"></div>
+                                    </div>
+                                    
+                                    
+                                </div>  
+                                
+                                </div>
+                            <!--/ text content -->
+
+                        </div>
+                    </div>
+
+                    <!--/ content -->        
+
+                    <!-- navigation -->        
+                    <div class="navigation"> 
+
+
+		<div class="left-menu"> 
+            	<ul> 
+                	<li class="active"><a href="#">Basico</a></li> 
+                    <li><a href="#">Premio</a></li> 
+                    <li><a href="#">Empresa</a></li> 
+                </ul> 
+            </div> 
+            
+               <div class="blogmenu">
+               
+               
+                
+            </div>
+
+
+                    </div>
+                    <!--/ navigation -->
+
+                    <div class="clear"></div>
+                </div>
+                <!--/ middle -->
+
