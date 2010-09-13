@@ -17,6 +17,7 @@ function handleClick(selector, className) {
     });
 };
 
+//active elements
 function type() {
 	array = document.getElementsByClassName("active");
 	if (array[0])
