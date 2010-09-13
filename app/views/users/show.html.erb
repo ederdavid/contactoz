@@ -21,8 +21,6 @@
                     <div class="content">
 
                     <div id="post_box">
-
-
             <input id="post_content" type="text" data-default="Mensaje de su producto o servicio ... "></input>
                             <div id="post_details" style="display:none">
 
@@ -55,8 +53,6 @@
 					$("#post_content").click(function () {
 					$('#post_details').slideDown('fast');
     					});
-
-
                                 });
                             </script>
 
@@ -108,10 +104,9 @@
 
                                 </div>
                                 <ul class="tags">
-<% for cat in @feed_cat %>
-                                    <li><a href="#"><%= Topic.find(cat.topic_id).name %></a></li>
-                                    <!-- <li><a href="#">Aerospace</a></li> -->
-<% end %>
+					<% for cat in @feed_cat %>
+                                    	<li><a href="#"><%= Topic.find(cat.topic_id).name %></a></li>
+					<% end %>
                                 </ul>
                       </div>
 
