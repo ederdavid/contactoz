@@ -198,11 +198,11 @@ class UsersController < ApplicationController
     if @user.save_without_session_maintenance
       @user.deliver_activation_instructions!
       flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-      redirect_to users_url
+      redirect_to actions_url
     else
       if @user.save
        flash[:notice]= "Registration successful."
-       redirect_to users_url
+       redirect_to actions_url
   
       #format.html { redirect_to(@home, :notice => 'User was successfully created.') }
       #format.xml  { render :xml => @home, :status => :created, :location => @user }
