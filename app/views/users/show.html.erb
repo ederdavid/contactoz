@@ -12,6 +12,7 @@
 
 <% if params[:tab].nil? %>
 <% @feed = Feed.most_recent %>
+
 <% end %>
 
 <%= render :partial => 'shared/search' %>
@@ -79,14 +80,19 @@
                                 </li>
                             </ul>
                         </div>
+
+
+
                         <div class="feed">
 <% i = 0 %>
+
 <% for feed in @feed %>
-                              
-<% if i > 1 %>
-<div id="hiddenfeed" style="display:none">
-<% end %>
-                            <div class="feed-item">
+                             
+<% if i.eql? 4  %>
+<div id="hiddenfeed"  style="display:none">
+<% end %> 
+			<div class="feed-item" >
+
                                 <a href="#">
                                     <span class="profile-photo">img</span>
                                 </a>
@@ -103,74 +109,20 @@
                                     <li><a href="#">Mexicana</a></li>
                                     <li><a href="#">Aerospace</a></li>
                                 </ul>
-                            </div>
+                      </div>
+
                             <div class="feed-item border">
-                                <span class="timestamp"><%= feed.updated_at.strftime("%m/%d/%Y") %></span>
+                                <span class="timestamp"><%= feed.updated_at.strftime("%m/%d") %></span>
                             </div>
-
-<% if i > 1 %>            
-</div>
-<% end %>
-
 
 <% i = i+1 %>
 <% end %>
 
-
-<!--
-                            <div class="feed-item">
-                                <a href="#">
-                                    <span class="profile-photo">img</span>
-                                </a>
-                                <a class="name">
-                                    Productos de Cemento
-                                </a>
-                                <div class="info">
-                                    <a href="#">Cemex</a>
-                                    <span>Monterrey, NL</span>
-                                </div>
-                                <ul class="tags">
-                                    <li><a href="#">Mexicana</a></li>
-                                    <li><a href="#">Aerospace</a></li>
-                                    <li><a href="#">Monterrey</a></li>
-                                </ul>
-                            </div>
-                            <div class="feed-item">
-                                <a href="#">
-                                    <span class="profile-photo">img</span>
-                                </a>
-                                <a class="name">
-                                    Productos de Cemento
-                                </a>
-                                <div class="info">
-                                    <a href="#">Cemex</a>
-                                    <span>Monterrey, NL</span>
-                                </div>
-                                <ul class="tags">
-                                    <li><a href="#">Mexicana</a></li>
-                                    <li><a href="#">Aerospace</a></li>
-                                </ul>
-                            </div>
-                            <div class="feed-item">
-                                <a href="#">
-                                    <span class="profile-photo">img</span>
-                                </a>
-                                <a class="name">
-                                    Productos de Cemento
-                                </a>
-                                <div class="info">
-                                    <a href="#">Cemex</a>
-                                    <span>Monterrey, NL</span>
-                                </div>
-                                <ul class="tags">
-                                    <li><a href="#">Mexicana</a></li>
-                                    <li><a href="#">Aerospace</a></li>
-                                </ul>
-                            </div>
--->
+</div>
                             <div id="morefeeds" class="more-button btn-grey">Ver Mass</div>
-                        </div>
+                         </div>
                     </div>
+
                     <div class="sidebar">
                         <div id="notification-section">
                             <h5>New Notification</h5>
@@ -189,18 +141,11 @@
 
                         <div id="invitation-section" class="section">
                             <ol>
-                                <li><input type="text" name="invitation_email" placeholder="Email Address 1"></li>
-                                <li><input type="text" name="invitation_email" placeholder="Email Address 2"></li>
-                                <li><input type="text" name="invitation_email" placeholder="Email Address 3"></li>
-                                <li><input type="text" name="invitation_email" placeholder="Email Address 4"></li>
-                                <li><input type="text" name="invitation_email" placeholder="Email Address 5"></li>
-                                <!--
-                                <li><input type="text" name="invitation_email" placeholder="Email Address 6"></li>
-                                <li><input type="text" name="invitation_email" placeholder="Email Address 7"></li>
-                                <li><input type="text" name="invitation_email" placeholder="Email Address 8"></li>
-                                <li><input type="text" name="invitation_email" placeholder="Email Address 9"></li>
-                                <li><input type="text" name="invitation_email" placeholder="Email Address 10"></li>
-                                -->
+                                <li><input type="text" name="invitation_email" placeholder="Correo Electronico 1"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Correo Electronico 2"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Correo Electronico 3"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Correo Electronico 4"></li>
+                                <li><input type="text" name="invitation_email" placeholder="Correo Electronico 5"></li>
                                 <li><input type="submit" id="sendButton" class="send-button clear-button btn-grey" value="Invite"></li>
                             </ol>
                         </div>
