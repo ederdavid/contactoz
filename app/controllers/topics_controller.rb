@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-        layout 'user'
+        layout 'topic'
 	require 'pusher'
 
 	Pusher.app_id = '1749'

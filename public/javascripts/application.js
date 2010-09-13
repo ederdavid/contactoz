@@ -331,7 +331,11 @@ PostBox.prototype.reset = function() {
 $(document).ready(function() {
 
 
-
+$("#morefeeds").click(function () {
+alert("show more");
+ $("#hiddenfeed").fadeIn("slow");
+//document.getElementById("hiddenfeed").fadeIn("slow");
+    });
 
 
 

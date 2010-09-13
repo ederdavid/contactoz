@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :contacts, :through => :contact_saveds
   has_many :topics, :through => :categorizations
   has_many :categorizations
-  #named_scope :with_topics, :conditions => 'id in (select distinct user_id from categorizations)'
+  named_scope :with_topics, :conditions => 'id in (select distinct user_id from categorizations)'
 
   validates_presence_of :screen_name
 

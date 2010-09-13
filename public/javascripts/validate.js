@@ -3,17 +3,12 @@
 /* Runs when the page is ready */
 $(document).ready(function() {
 
-////
 
 $("#clickme").click(function () {
 document.getElementById("connectuser").style.display='none';
     $("#registeruser").fadeIn("slow");
     });
-    
-	// validate signup form on keyup and submit
-//$("#signupform").validate();
 
-///////////
 
 
 	var validator = $("#signupform").validate({

@@ -1,37 +1,65 @@
-<% @user = User.find(params[:id]) %>
 
+
+<% @cat = Categorization.find(:all, :conditions => ["user_id =?",@user.id]) %>
+
+<% if "comprar".eql? params[:tab] %>
+<% @feed = Feed.most_recent_buy %>
+<% end %>
+
+<% if "vendar".eql? params[:tab] %>
+<% @feed = Feed.most_recent_sell %>
+<% end %>
+
+<% if params[:tab].nil? %>
+<% @feed = Feed.most_recent %>
+<% end %>
 
 <%= render :partial => 'shared/search' %>
 
     <div class="middle">
                     <div class="content">
 
-                        <div id="post_box">
-                            <input id="post_content" type="text" onclick="$('#post_details').slideDown('fast')" data-default="post something"></input>
+                    <div id="post_box">
+
+
+            <input id="post_content" type="text" data-default="Mensaje de su producto o servicio ... "></input>
                             <div id="post_details" style="display:none">
+
                                 <div class="disable-box">
                                     <input id="post_save_checkbox" type="checkbox" name="asdf"></input>
-                                    <span>some text here</span>
+                                    <span> Incluyen los datos mios</span>
                                 </div>
-                                <input type="text" data-default="Quen?"></input>
+                         
+			        <input type="text" data-default="Quen?"></input>
                                 <input type="text" data-default="Su titulo"></input>
                                 <input type="text" data-default="Numero de telefono"></input>
                                 <input type="text" data-default="Correo directo"></input>
+
                                 <div class="actions">
                                     <span id="post_type_btn">Type</span>
                                     <ul id="post_type_menu" style="display:none;">
                                         <li id="type_product">Producto</li>
                                         <li id="type_service">Servicio</li>
                                     </ul>
-                                    <span id="post_btn" class="btn-grey">Post</span>
+
+                                  <span id="post_btn" class="btn-grey">Postar</span>
                                 </div>
+
                             </div>
+
                             <script type="text/javascript">
                                 $(document).ready(function() {
                                         var postBox = new PostBox(); 
+
+					$("#post_content").click(function () {
+					$('#post_details').slideDown('fast');
+    					});
+
+
                                 });
                             </script>
-                        </div>
+
+                    </div>
 
                         <div class="large-tabs">
                             <ul>
@@ -39,30 +67,37 @@
                                 <span class="title">Actualizaciones</span>
                                 <span class="extra">extra info</span>
                                 </li>
-                                <li>
-                                <a href="#">
-                                    <span class="title">Comprar</span>
-                                    <span class="extra">extra info</span>
-                                </a>
+                                <li>  <%= link_to "<span class=\"title\">Comprar</span><span class=\"extra\">extra info</span> ", :controller => "users", :action => "show", :id=> @user.id, :tab => "comprar" %> 
                                 </li>
                                 <li>
-                                <a href="#">
-                                    <span class="title">Vendar</span>
-                                    <span class="extra">extra info</span>
+                                <a href=" ">
+
+<%= link_to "<span class=\"title\">Vendar</span><span class=\"extra\">extra info</span> ", :controller => "users", :action => "show", :id=>
+ @user.id, :tab => "vendar" %>        
+
                                 </a>
                                 </li>
                             </ul>
                         </div>
                         <div class="feed">
+<% i = 0 %>
+<% for feed in @feed %>
+                              
+<% if i > 1 %>
+<div id="hiddenfeed" style="display:none">
+<% end %>
                             <div class="feed-item">
                                 <a href="#">
                                     <span class="profile-photo">img</span>
                                 </a>
                                 <a class="name">
-                                    Mexicana subio 23% de ingressos
+					        <%= feed.name %>
+
                                 </a>
                                 <div class="info">
-                                    <a href="#">Wall Street Journal</a> 
+					   <a href="#">Cemex</a>^M
+                                    <span>Monterrey, NL</span>^M
+
                                 </div>
                                 <ul class="tags">
                                     <li><a href="#">Mexicana</a></li>
@@ -70,8 +105,19 @@
                                 </ul>
                             </div>
                             <div class="feed-item border">
-                                <span class="timestamp">6:24pm</span>
+                                <span class="timestamp"><%= feed.updated_at.strftime("%m/%d/%Y") %></span>
                             </div>
+
+<% if i > 1 %>            
+</div>
+<% end %>
+
+
+<% i = i+1 %>
+<% end %>
+
+
+<!--
                             <div class="feed-item">
                                 <a href="#">
                                     <span class="profile-photo">img</span>
@@ -121,7 +167,8 @@
                                     <li><a href="#">Aerospace</a></li>
                                 </ul>
                             </div>
-                            <div class="more-button btn-grey">More</div>
+-->
+                            <div id="morefeeds" class="more-button btn-grey">Ver Mass</div>
                         </div>
                     </div>
                     <div class="sidebar">

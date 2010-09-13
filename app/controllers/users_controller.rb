@@ -143,11 +143,10 @@ class UsersController < ApplicationController
 
         #if @type.equals("service")
 
-        @service = Service.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
-                if @service.save
+        @feed = Feed.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
+                if @feed.save
                                 Pusher['post'].trigger('thing-create', "string_passed")
 				#Pusher['post'].trigger('thing-create', @service.attributes)
-
                 end
         #else
         #@product = Product.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
@@ -155,6 +154,7 @@ class UsersController < ApplicationController
         #               Pusher['things'].trigger('thing-create', @product.attributes)
         #       end
         #end
+
      end
 
   # GET /users/1/edit
