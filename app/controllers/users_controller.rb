@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 	layout 'user'
 
+skip_before_filter :verify_authenticity_token
+
     # GET /posts/1
   # GET /posts/1.xml
   def show
