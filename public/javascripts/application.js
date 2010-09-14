@@ -1,8 +1,5 @@
 function followFeed(user,feed) {
 
-//$("#firstname");
-alert("User id is " + user);
-alert("Feed id is " + feed);
 
 //userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
 data = "user_id=" + user + "&feed_id= " + feed;
@@ -283,6 +280,11 @@ function PostBox() {
     this.init();
 };
 
+function post() {
+	alert("this is posted");
+};
+
+
 /* Initializes the Postbox by setting the field helper text and event listeners. 
 
    params:
@@ -296,6 +298,13 @@ PostBox.prototype.init = function() {
     // add listener for post button
     $('#post_btn').click(function() {
         self.post();
+
+	var product = $('#type_product').hasClass('checked') 
+        var service = $('#type_service').hasClass('checked')
+
+        if (product || service){
+              alert("posted");
+	}
     });
 
     // listener for the save checkbox
@@ -495,7 +504,6 @@ $(document).ready(function($){
                          var contact_phone = inputs[4].value
 			 var contact_email = inputs[5].value
 			var url = 'name=' + inputs[1].value + '&description=' + inputs[2].value + '&contact_name=' + inputs[3].value + '&contact_phone=' + inputs[4].value + '&contact_email=' + inputs[5].value
-			//alert(url)
                              
                         $.ajax({
                                     url: 'add_post',

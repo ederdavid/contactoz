@@ -229,7 +229,8 @@ class UsersController < ApplicationController
       #format.xml  { render :xml => @home, :status => :created, :location => @user }
 
       else
-         render :action => 'new'
+         #render :action => 'new'
+         redirect_to actions_url
 
 #        format.html { render :action => "new" }
 #        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
