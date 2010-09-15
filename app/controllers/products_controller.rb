@@ -1,6 +1,46 @@
 class ProductsController < ApplicationController
            layout 'feed'
 
+  # POST /homes
+  # POST /homes.xml
+  def create
+    @product = Product.new(params[:product])
+
+    respond_to do |format|
+      if @product.save
+        format.html {  }
+        format.xml  { render :xml => @product }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @product }
+      end
+    end
+  end
+
+     # POST /homes
+  # POST /homes.xml
+  def create_feed
+
+    @product = Product.new(params[:service])
+    respond_to do |format|
+      if @service.save
+
+        Pusher['post'].trigger('thing-create', @product.attributes)
+         #Pusher['things'].trigger('thing-create', @thing.attributes)
+
+        format.html {  }
+        format.xml  { render :xml => @product }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @product }
+      end
+    end
+  end
+
+
+
+
+
 
   # GET /products/1
   # GET /products/1.xml

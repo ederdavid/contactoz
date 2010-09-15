@@ -1,6 +1,14 @@
+// Always send the authenticity_token with ajax
+
+$(document).ajaxSend(function(event, request, settings) {
+    if ( settings.type == 'post' ) {
+        settings.data = (settings.data ? settings.data + "&" : "") + "authenticity_token=" + encodeURIComponent( AUTH_TOKEN );
+    }
+});
+
+
 function followFeed(user,feed) {
 
-
 //userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
 data = "user_id=" + user + "&feed_id= " + feed;
 
@@ -16,17 +24,79 @@ data = "user_id=" + user + "&feed_id= " + feed;
                                     }
                                   });
 
+};
+
+
+function invite() {
+
+
+var emails = [];
+var i = 0;
+
+
+//grab all the inputs
+  $('#invitation-section input[type=text]').each(function() {
+        var input = $(this);
+         email[i] =this.value;
+         i = i+1;
+    });
+
+var url_email = '';
+var j= 0;
+
+while(email[j]){
+var url_email = url_email + '&email_' + j + '=' + email[j];
+j = 1+j;
+}
+
+//userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
+//data = "user_id=" + user + "&feed_id= " + feed;
+
+
+ $.ajax({
+                                    url: '/users/invite',
+                                    type: 'GET',
+                                    data: url_email,
+                                    DataType: 'script',
+                                    success: function(){
+                                                self.location= url + url_email
+                                    },
+                                    error: function(){
+                                    }
+                                  });
+
 
 };
 
-function invite(users) {
+function sendMessage() {
 
-//userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
-data = "user_id=" + user + "&feed_id= " + feed;
+var inputArray = [];
+var i = 0;
+
+
+//grab all the inputs
+  $('#post_box input[type=text]').each(function() {
+        var input = $(this);
+         inputArray[i] =this.value;
+         i = i+1;
+    });
+
+
+
+//form url
+if ($('#type_product').hasClass('checked')){
+       var data = '&product[name]=' + inputArray[0] + '&product[contact_name]=' + inputArray[1] + '&product[contact_title]=' + inputArray[2] + '&product[contact_phone]=' + inputArray[3] + '&product[contact_email]=' + inputArray[4];
+      url = '/products/create_feed';
+}
+else
+{
+       var data = '&service[name]=' + inputArray[0] + '&service[contact_name]=' + inputArray[1] + '&service[contact_title]=' + inputArray[2] + '&service[contact_phone]=' + inputArray[3] + '&service[contact_email]=' + inputArray[4];
+       url = '/services/create_feed';
+}
 
  $.ajax({
-                                    url: '/users/follow',
-                                    type: 'GET',
+                                    url: url,
+                                    type: 'POST',
                                     data: data,
                                     DataType: 'script',
                                     success: function(){
@@ -36,11 +106,30 @@ data = "user_id=" + user + "&feed_id= " + feed;
                                     }
                                   });
 
+ };
 
+function postFeed() {
+
+//var message = $('#post_content').value;
+var mess = document.getElementById('post_content').value;
+alert(mess);
+
+
+//alert(inputArray[0] + inputArray[1] + inputArray[2] + inputArray[3]);
+
+//userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
+//data = "user_id=" + user + "&feed_id= " + feed;
+
+
+
+// $.facebox('<h2> Add Post</h2><form>Name:<br /><input type=\"text\" name=\"name\" value=\"' + message + '\"/>Descripción:<br /><input type=\"text\" name=\"description\" /><div id=\"post-desc\"><span>Comprar</span></div></form>')
+
+//$.facebox('<h2> Add Post</h2><form>Name:<br /><input type=\"text\" name=\"name\"/>Descripción:<br /><input type=\"text\" name=\"description\" /></form>')
+
+
+$.facebox('<h2> Add Post</h2><form><br /><input type="text" name="description" value="' + mess + '"/><br /> <em><h5> Descripcion:</h5><em><input type="text" name="description" /><br /><a href="" id="sendfeed" class="bot-face" onclick="sendMessage();" ><span>Sigue</span></a></form>')
+    
 };
-
-
-
 
 
 /* Binds a click event handler to a selection. 
@@ -280,10 +369,6 @@ function PostBox() {
     this.init();
 };
 
-function post() {
-	alert("this is posted");
-};
-
 
 /* Initializes the Postbox by setting the field helper text and event listeners. 
 
@@ -299,12 +384,7 @@ PostBox.prototype.init = function() {
     $('#post_btn').click(function() {
         self.post();
 
-	var product = $('#type_product').hasClass('checked') 
-        var service = $('#type_service').hasClass('checked')
 
-        if (product || service){
-              alert("posted");
-	}
     });
 
     // listener for the save checkbox
@@ -362,6 +442,7 @@ PostBox.prototype.post = function() {
         this.state.error = true;
     }
     else {
+        postFeed();
         // make the post and reset everything
         this.reset();
     }
@@ -413,6 +494,7 @@ $("#morefeeds").click(function () {
 		
 		$("#sendButton").bind("click", function(){
 			$invitationToggle.removeClass("activeShow");
+			invite();
 			$invitationSection.fadeOut('fast');
 			$invitationsNotificationSection.slideDown();
 		})

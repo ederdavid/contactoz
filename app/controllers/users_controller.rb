@@ -153,6 +153,7 @@ class UsersController < ApplicationController
         Pusher.app_id = '1749'
         Pusher.key = '92a18c1392e252d076c6'
         Pusher.secret = '2a253676fad3558f8446'
+        # Pusher['post'].trigger('thing-create', "string_passed")
 
         @name = params[:name]
         @description = params[:description]
@@ -195,12 +196,34 @@ class UsersController < ApplicationController
   end
 
   def invite
-      @action = Action.new({:points => 2, :entity_changed => "user" , :action => "invite", :user_id => current_user.id })
-      @action.save
-      @user = User.find(current_user.id)
-      current_user.points= 5 + @user.points
-      current_user.save
-      UserMailer.deliver_invite_email(params[:email])
+
+      //deactivate points 
+      #@action = Action.new({:points => 2, :entity_changed => "user" , :action => "invite", :user_id => current_user.id })
+      #@action.save
+      #@user = User.find(current_user.id)
+      #current_user.points= 5 + @user.points
+      #current_user.save
+
+
+      if params[:email_0]
+	      UserMailer.deliver_invite_email(params[:email_0])
+      end
+      if params[:email_1]
+              UserMailer.deliver_invite_email(params[:email_1])
+      end
+      if params[:email_2]
+              UserMailer.deliver_invite_email(params[:email_2])
+      end
+      if params[:email_3]
+              UserMailer.deliver_invite_email(params[:email_3])
+      end
+      if params[:email_4]
+              UserMailer.deliver_invite_email(params[:email_4])
+      end
+      if params[:email_5]
+              UserMailer.deliver_invite_email(params[:email_5])
+      end
+
       redirect_to root_url
   end
   # POST /users

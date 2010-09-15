@@ -1,6 +1,11 @@
 class ServicesController < ApplicationController
 	    layout 'feed'
 
+	require 'pusher'
+        Pusher.app_id = '1749'
+        Pusher.key = '92a18c1392e252d076c6'
+        Pusher.secret = '2a253676fad3558f8446'
+
   # GET /services/1
   # GET /services/1.xml
   def show
@@ -76,11 +81,45 @@ class ServicesController < ApplicationController
     end
   end
 
-    def create
-        @thing = Service.new(params[:service])
-        Pusher['post'].trigger('thing-create', 'success')
-        if @thing.save
-                Pusher['things'].trigger('thing-create', @thing.attributes)
-        end
+     # POST /homes
+  # POST /homes.xml
+  def create
+
+    @service = Service.new(params[:service])
+    respond_to do |format|
+      if @service.save
+
+        format.html {  }
+        format.xml  { render :xml => @product }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @product }
+      end
     end
+  end
+
+     # POST /homes
+  # POST /homes.xml
+  def create_feed
+
+    @service = Service.new(params[:service])
+    respond_to do |format|
+      if @service.save
+
+        Pusher['post'].trigger('thing-create', @service.attributes)
+
+        format.html {  }
+        format.xml  { render :xml => @product }
+      else
+        format.html { render :action => "new" }
+        format.xml  { render :xml => @product }
+      end
+    end
+  end
+
+
+
+
+
+
 end

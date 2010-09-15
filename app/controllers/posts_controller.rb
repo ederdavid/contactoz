@@ -49,10 +49,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.xml
 
-    def create
 
-
-    end
 
 
   # PUT /posts/1
