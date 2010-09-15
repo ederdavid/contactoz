@@ -1,0 +1,131 @@
+a.bot-face span {
+    background: transparent url(../images/blue_btn.gif) no-repeat;
+    display: block;
+    line-height: 14px;
+    padding: 5px 0 5px 10px;
+}
+
+a.bot-face{
+    background: transparent url(../images/blue_btn_span.gif) no-repeat top right;
+    color:#FFF;
+    display: block;
+    height: 24px;
+    margin-right: 6px;
+    padding-right: 10px; /* sliding doors padding */
+    text-decoration: none;
+    font-weight:bold;
+    text-align:center;
+}
+
+
+#facebox .b {
+  background:url('../images/facebox/b.png');
+}
+
+#facebox .tl {
+  background:url('../images/facebox/tl.png');
+}
+
+#facebox .tr {
+  background:url('../images/facebox/tr.png');
+}
+
+#facebox .bl {
+  background:url('../images/facebox/bl.png');
+}
+
+#facebox .br {
+  background:url('../images/facebox/br.png');
+}
+
+#facebox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  text-align: left;
+}
+
+#facebox .popup {
+  position: relative;
+}
+
+#facebox table {
+  border-collapse: collapse;
+}
+
+#facebox td {
+  border-bottom: 0;
+  padding: 0;
+}
+
+#facebox .content-face {
+  background-color: #CCC;
+  width: 400px;
+}
+
+#facebox .bot-face {
+ border-top: 2px solid #DDDDDD;
+}
+
+#facebox .body {
+ background-color: #CCC;
+  padding: 10px;
+  width: 400px;
+}
+
+#facebox .body input {
+  padding: 10px;
+  width: 375px;
+
+}
+
+
+#facebox .loading {
+  text-align: center;
+}
+
+#facebox .image {
+  text-align: center;
+}
+
+#facebox img {
+  border: 0;
+  margin: 0;
+}
+
+#facebox .footer-face {
+  #border-top: 1px solid #DDDDDD;
+  padding-top: 5px;
+  margin-top: 10px;
+  text-align: right;
+}
+
+#facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {
+  height: 10px;
+  width: 10px;
+  overflow: hidden;
+  padding: 0;
+}
+
+#facebox_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+}
+
+.facebox_hide {
+  z-index:-100;
+}
+
+.facebox_overlayBG {
+  background-color: #000;
+  z-index: 99;
+}
+
+* html #facebox_overlay { /* ie6 hack */
+  position: absolute;
+  height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
