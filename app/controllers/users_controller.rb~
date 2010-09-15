@@ -36,7 +36,7 @@ skip_before_filter :verify_authenticity_token
     ###########
 
     @user_session = UserSession.new(params[:user_session])
-    @email = params[:user_session][:email]
+    @email = "mauricio_murga@hotmail.com"#params[:user_session][:email]
      #@email = "cristinarandall@gmail.com"
 
     if @user_session.save

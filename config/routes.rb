@@ -1,6 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
  map.resources :topics 
-  map.resources :services
 
  map.connect 'users/:action.:format', :controller => 'users', :action => /[a-z_]+/i
 
