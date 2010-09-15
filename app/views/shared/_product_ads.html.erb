@@ -14,7 +14,7 @@ return false;
 <!-- <span style=" padding-left:20px; font-weight:bold;"> Annuncios Relacionados</span> -->
 <% @industry_array = @company_selected.industry_list %>
 <% @industry_string = @industry_array.join(",") %>
-<% @fake =Advert.create(:name =>"other") %>
+<% @fake =Advertisement.create(:name =>"other") %>
 <% @fake.industry_list = @industry_string %>
 <% @fake.save %>
 <% @advert_array = @fake.find_related_industries %>
