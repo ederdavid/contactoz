@@ -72,7 +72,7 @@ skip_before_filter :verify_authenticity_token
     begin
     @user = User.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-    return render :xml => "<WARNING>there is not a company for that id</WARNING>"
+    return render :xml => "<WARNING>there is not a user for that id</WARNING>"
     end
     @contact_saveds = ContactSaved.all
     @signature = params[:signature]
