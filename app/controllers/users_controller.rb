@@ -36,7 +36,7 @@ skip_before_filter :verify_authenticity_token
     ###########
 
     @user_session = UserSession.new(params[:user_session])
-    @email = params[:user_session][0]
+    @email = params[:user_session][:email]
      #@email = "cristinarandall@gmail.com"
 
     if @user_session.save
@@ -44,7 +44,6 @@ skip_before_filter :verify_authenticity_token
         @user = User.find(:all, :conditions => ['email = ?', @email], :limit => "1")
         @user_session.destroy
     end
-
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
