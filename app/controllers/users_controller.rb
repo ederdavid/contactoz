@@ -198,7 +198,7 @@ skip_before_filter :verify_authenticity_token
 
   def invite
 
-      //deactivate points 
+      #deactivate points 
       #@action = Action.new({:points => 2, :entity_changed => "user" , :action => "invite", :user_id => current_user.id })
       #@action.save
       #@user = User.find(current_user.id)
