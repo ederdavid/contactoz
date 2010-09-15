@@ -2,8 +2,10 @@ ActionController::Routing::Routes.draw do |map|
  map.resources :topics 
   map.resources :services
 
+ map.connect 'users/:action.:format', :controller => 'users', :action => /[a-z_]+/i
+
  map.resources :users 
-    map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
+  map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
   map.connect 'users.:format', :controller => 'users', :action => 'apiSearch'
 
 
