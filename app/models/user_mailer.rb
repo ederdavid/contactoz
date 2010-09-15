@@ -13,4 +13,15 @@ class UserMailer < ActionMailer::Base
   sent_on Time.now
  body :url => "http://contacto.heroku.com/"
  end
+
+ def feed_email(email, feed)
+  recipients email
+  from "Destacas de Interes <no-reply@contacto.com>"
+  subject feed.name + ": Destacas de Interes "
+  sent_on Time.now
+ body :url => "http://contacto.heroku.com/feeds/" + topic.id
+ end
+
+
+
 end 
