@@ -6,11 +6,8 @@ class User < ActiveRecord::Base
   has_many :categorizations
   named_scope :with_topics, :conditions => 'id in (select distinct user_id from categorizations)'
 
-  validates_presence_of :screen_name
-
-
+  #validates_presence_of :screen_name
   acts_as_recommendable :contacts, :through => :contact_saveds
-
 
   def find_topics
   	@topic = Topic.find(:all, :conditions => ['id in (select distinct topic_id from categorizations where user_id = ?)', self])
@@ -18,6 +15,10 @@ class User < ActiveRecord::Base
 
   def find_feeds
         @feeds = Feed.find(:all, :conditions => ['id in (select distinct feed_id from categorizations where user_id = ?)', self])
+  end
+
+  def find_all_by_topic(topic)
+        @users_with_topic = User.with_topics.find(:all, :conditions => ['id in (select distinct user_id from categorizations where topic_id = ?)', topic.id])
   end
 
 

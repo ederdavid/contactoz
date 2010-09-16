@@ -6,5 +6,6 @@ class Feed < ActiveRecord::Base
        	has_many :topics, :through => :categorizations
         has_many :categorizations
 
+
 end
 
