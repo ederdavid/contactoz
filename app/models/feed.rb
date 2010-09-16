@@ -6,7 +6,6 @@ class Feed < ActiveRecord::Base
        	has_many :topics, :through => :categorizations
         has_many :categorizations
 
-
     def update_users
             
         @topics = Topic.find(:all, :conditions => ['id in (select distinct topic_id from categorizations where feed_id = ?)', self])
