@@ -17,18 +17,6 @@ class User < ActiveRecord::Base
         @feeds = Feed.find(:all, :conditions => ['id in (select distinct feed_id from categorizations where user_id = ?)', self])
   end
 
-  def find_all_by_topic(topic)
-        @users_with_topic = User.with_topics.find(:all, :conditions => ['id in (select distinct user_id from categorizations where topic_id = ?)', topic.id])
-  end
-
-
-  def buy_book(contact)
-        contacts << contact
-        self.save
-  end
-
-
-
   #validates_format_of :email, :with => /\A([^@\s]+)@[^?!snow]((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
 
   acts_as_authentic do |c|

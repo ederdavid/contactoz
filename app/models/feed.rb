@@ -7,5 +7,20 @@ class Feed < ActiveRecord::Base
         has_many :categorizations
 
 
+    def update_users
+            
+        @topics = Topic.find(:all, :conditions => ['id in (select distinct topic_id from categorizations where feed_id = ?)', self])
+
+		for topic in @topics
+
+			@users = topic.find_users_following
+			for user in @users
+				UserMailer.feed_email(@user.email, feed)
+			end
+		end
+
+    end
+   
+
 end
 

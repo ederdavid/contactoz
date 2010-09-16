@@ -105,8 +105,9 @@ class ServicesController < ApplicationController
     @service = Service.new(params[:service])
     respond_to do |format|
       if @service.save
-
+       
         Pusher['post'].trigger('thing-create', @service.attributes)
+        #@service.update_followers
 
         format.html {  }
         format.xml  { render :xml => @product }
