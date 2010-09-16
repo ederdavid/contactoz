@@ -8,3 +8,4 @@ acts-as-taggable-on -v 2.0.6
 simple-rss -v 1.2.3
 pusher -v 0.6.0
 feed-normalizer -v 1.5.2
+delayed_job -v 2.0.3

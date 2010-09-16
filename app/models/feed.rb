@@ -15,12 +15,12 @@ class Feed < ActiveRecord::Base
 
 			@users = topic.find_users_following
 			for user in @users
-				UserMailer.feed_email(@user.email, feed)
+				UserMailer.feed_email(@user.email, this)
 			end
 		end
 
     end
-   
-
+    #handle_asynchronously :update_users  
+    
 end
 
