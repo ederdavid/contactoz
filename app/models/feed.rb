@@ -20,7 +20,7 @@ class Feed < ActiveRecord::Base
 		end
 
     end
-    #handle_asynchronously :update_users  
+    handle_asynchronously :update_users  
     
 end
 
