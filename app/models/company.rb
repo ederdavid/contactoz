@@ -21,7 +21,7 @@ class Company < ActiveRecord::Base
 				
 			for topic in @topic
 				@topic_array << topic.id
-			        puts topic.id	
+			        #puts topic.id	
 			end
 
 		end
