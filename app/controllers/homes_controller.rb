@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-    layout 'application'
+    layout 'landing'
     set_tab :home
 
   def dataUpdated
