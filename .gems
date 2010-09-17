@@ -5,7 +5,6 @@ fastercsv -v 1.5.3
 tabs_on_rails -v 1.0.0
 authlogic -v 2.1.5
 acts-as-taggable-on -v 2.0.6
-simple-rss -v 1.2.3
 pusher -v 0.6.0
 feed-normalizer -v 1.5.2
 delayed_job -v 2.0.3
