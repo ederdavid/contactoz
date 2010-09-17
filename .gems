@@ -9,3 +9,4 @@ simple-rss -v 1.2.3
 pusher -v 0.6.0
 feed-normalizer -v 1.5.2
 delayed_job -v 2.0.3
+linkedin -v 0.1.7
