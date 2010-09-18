@@ -8,6 +8,5 @@ acts-as-taggable-on -v 2.0.6
 pusher -v 0.6.0
 delayed_job -v 2.0.3
 json -v 1.4.6
-oauth -v 0.4.3
 linkedin -v 0.1.7
 authlogic-oauth -v 1.0.8
