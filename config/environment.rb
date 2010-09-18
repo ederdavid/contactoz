@@ -40,14 +40,16 @@ Rails::Initializer.run do |config|
 
   # All gems to include
   config.gem "authlogic"
-  #config.gem "oauth", :version => "0.1.7"
-  config.gem "authlogic-oauth", :lib => "authlogic_oauth"
+  config.gem "oauth", :version => "0.3.5"
+  #config.gem "authlogic-oauth", :lib => "authlogic_oauth"
 
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
   config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
   config.gem "acts-as-taggable-on", :source => "http://gemcutter.org", :version => '2.0.6'
   config.gem 'delayed_job'
-  config.gem 'linkedin',  :version => '0.1.7'
+  config.gem 'linkedin'
+  #,  :version => '0.1.7'
+
 
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
