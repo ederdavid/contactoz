@@ -41,8 +41,7 @@ Rails::Initializer.run do |config|
   # All gems to include
   config.gem "authlogic"
   config.gem "oauth", :version => "0.3.5"
-  config.gem "authlogic-oauth"
-   #, :lib => "authlogic_oauth"
+  config.gem "authlogic-oauth", :lib => "authlogic_oauth"
 
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
   config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
