@@ -39,7 +39,7 @@ Rails::Initializer.run do |config|
   config.time_zone = 'UTC'
 
   # All gems to include
-  config.gem "authlogic"
+  config.gem "authlogic", :lib => "authlogic_oauth"
   config.gem "oauth", :version => "0.3.5"
   #config.gem "authlogic-oauth", :lib => "authlogic_oauth"
 
