@@ -4,9 +4,9 @@ will_paginate -v 2.3.14
 fastercsv -v 1.5.3
 tabs_on_rails -v 1.0.0
 authlogic -v 2.1.5
+oauth -v 0.3.5
 acts-as-taggable-on -v 2.0.6
 pusher -v 0.6.0
 delayed_job -v 2.0.3
 json -v 1.4.6
 linkedin -v 0.1.7
-authlogic-oauth -v 1.0.8
