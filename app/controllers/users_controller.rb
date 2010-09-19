@@ -237,30 +237,17 @@ skip_before_filter :verify_authenticity_token
 
 
     @user = User.new(:firstname=> @firstname, :lastname=> @lastname, :email => @email, :password => @password)
+    #@user = User.new(params[:user])
+
     @user.points = 0
-#    respond_to do |format|
-    if @user.save_without_session_maintenance
-      @user.deliver_activation_instructions!
-      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-      redirect_to actions_url
-    else
-      if @user.save
-       flash[:notice]= "Registration successful."
-       redirect_to actions_url
-  
-      #format.html { redirect_to(@home, :notice => 'User was successfully created.') }
-      #format.xml  { render :xml => @home, :status => :created, :location => @user }
-
+    @user.save_without_session_maintenance do |result|
+      if result
+      	  	@user.deliver_activation_instructions!	
+		flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+      		redirect_to actions_url
       else
-         #render :action => 'new'
-         redirect_to actions_url
-
-#        format.html { render :action => "new" }
-#        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-
-      #end
-    end
-    end
+         	redirect_to actions_url
+      end
   end
 
   # PUT /users/1
@@ -296,4 +283,7 @@ skip_before_filter :verify_authenticity_token
       format.xml  { head :ok }
     end
   end
+
+end
+
 end

@@ -27,22 +27,33 @@
                     <h5  align="center">Tienen una cuenta de Twitter o LinkedIn? </h5>
                     <p></p>
                      <div class="social-list" align="center"> 
-                     <table cellspacing="15" >
-                     <tr>
-                   <td>
- <a href="#"><%= image_tag("twitter.gif", :alt=>"Follow us on Facebook", :width=>"33", :height=>"33") %> </a>
+                     <table cellspacing="15" border="1">
 
-                 <!-- <a href="#"><img src="images/social/twitter.gif" alt="" width="33" height="33" border="0" /></a>-->  
+<% form_tag(signup_url, :id=>'connectext', :method=>'post') do %>
+
+			 <%= hidden_field_tag('authentication_type', current_user.nil? ? :user : :session) %>
+
+                     	<tr>
+                   	<td>
+ 			<%= image_tag("twitter.gif", :alt=>"Follow us on Facebook", :width=>"33", :height=>"33") %> 
+
+  			<%= radio_button_tag(:oauth_provider, "twitter", false) %>
+
                     </td>
                     <td><p>  </p></td>
                     
                     <td>
 
- <a href="#"><%= image_tag("in_social.gif", :alt=>"Follow us on Facebook", :width=>"33", :height=>"33") %> </a>
+ <%= image_tag("in_social.gif", :alt=>"Follow us on Facebook", :width=>"33", :height=>"33") %> 
 
-                   <!-- <a href="#"><img src="images/social/in_social.gif" alt="" width="33" height="33" border="0" /></a>-->
+                        <%= radio_button_tag(:oauth_provider, "linked_in", false) %>
+ 
+
                    </td>
                    </tr>
+    <% submit_tag ("Save") %>
+
+		<% end %>
                    </table>
                 </div>
                     <p></p>
@@ -76,7 +87,7 @@
                   <p></p>
             <div id="signupwrap" >
 
-<% form_for(@user, :html => { :id => "signupform" }) do |f| %>
+			<% form_for(@user, :html => { :id => "signupform" }) do |f| %>
 
 	  		  <table border="0">
 	  		  <tr>

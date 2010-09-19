@@ -1,9 +1,14 @@
 ActionController::Routing::Routes.draw do |map|
  map.resources :topics 
+ map.resource :account, :controller => "users"
+ map.signup 'signup', :controller => :users, :action => :create, :conditions => {:method => :post}
+  
+  map.resources :users
 
  map.connect 'users/:action.:format', :controller => 'users', :action => /[a-z_]+/i
 
- map.resources :users 
+#  map.resources :users 
+
   map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
   map.connect 'users.:format', :controller => 'users', :action => 'apiSearch'
 
