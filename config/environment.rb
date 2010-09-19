@@ -48,9 +48,6 @@ Rails::Initializer.run do |config|
   config.gem "acts-as-taggable-on", :source => "http://gemcutter.org", :version => '2.0.6'
   config.gem 'delayed_job'
   config.gem 'linkedin'
-  #,  :version => '0.1.7'
-
-
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
