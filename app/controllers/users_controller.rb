@@ -30,16 +30,10 @@ skip_before_filter :verify_authenticity_token
   # GET /users/1.xml
   def infoUser
 
-    ############
-    #sacamos estos por post
-    #user_session[email]=cristinarandall@gmail.com&user_session[password]=12341234
-    ###########
-
     @user_session = UserSession.new(params[:user_session])
     @email = params[:user_session][:email]
 
     if @user_session.save
-
         @user = User.find(:all, :conditions => ['email = ?', @email], :limit => "1")
         @user_session.destroy
     end
@@ -170,13 +164,6 @@ skip_before_filter :verify_authenticity_token
                                 Pusher['post'].trigger('thing-create', "string_passed")
 				#Pusher['post'].trigger('thing-create', @service.attributes)
                 end
-        #else
-        #@product = Product.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
-        #       if @product.save
-        #               Pusher['things'].trigger('thing-create', @product.attributes)
-        #       end
-        #end
-
      end
 
   # GET /users/1/edit
@@ -242,12 +229,12 @@ skip_before_filter :verify_authenticity_token
     @user.points = 0
 
     if @user.save_without_session_maintenance 
-    #@user.save_without_session_maintenance do |result|
-    #  if result
+    	#@user.save_without_session_maintenance do |result|
+    	#  if result
       	  	@user.deliver_activation_instructions!	
 		flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
       		redirect_to actions_url
-      else
+    else
          	redirect_to actions_url
       end
   end
@@ -257,9 +244,6 @@ skip_before_filter :verify_authenticity_token
   def update
     @user = current_user
 
-#User.find(params[:id])
-
-#    respond_to do |format|
       if @user.update_attributes(params[:user])
          flash[:notice] = "Successfully updated profile."  
          redirect_to root_url  
