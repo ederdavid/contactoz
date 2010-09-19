@@ -37,10 +37,10 @@ $(document).ready(function() {
 
 
 $("#clickme").click(function () {
-document.getElementById("connectuser").style.display='none';
+//document.getElementById("alternate-login").style.display='none';
+		$("#alternate-login").fadeOut("fast");
     $("#registeruser").fadeIn("slow");
     });
-
 
 
 	var validator = $("#signupform").validate({

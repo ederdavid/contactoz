@@ -7,142 +7,90 @@
                     <!-- content -->     
                     <div class="wrapper">
                         <div class="content">
-
-                            <!-- text content -->
                             <div class="text">
-      
-                                <!--<div class="contact-form"> -->
-                                <div class="comment-form" id="addcomment" >
-                                	<DIV ALIGN="left">
-                                		<!-- <h1 class="blue">Registrarte</h1> -->
-                                	</div>
-
-
-<!-- here -->
-                                <div class="comment-one-reg" id="connectuser">
-                <div class="comment-box-reg">
-                	                   
-                    <div class="comment-text">
+      				<div >
+                                   <div class="panel" id="connectuser">
+		                		<div id="alternate-login">
+                    				<h5  align="center">Tienen una cuenta de Twitter o LinkedIn? </h5>
+			                 <div class="social-list" align="center"> 
+                     				<table cellspacing="15" border="0">
+						<% form_tag(signup_url, :id=>'connectext', :method=>'post') do %>
+			 			<%= hidden_field_tag('authentication_type', current_user.nil? ? :user : :session) %>
+						<tr>
+                   				<td>
+ 						<a href="#"><%= image_tag("twitter.gif", :alt=>"Twitter", :width=>"33", :height=>"33") %> 
+						<%= radio_button_tag(:oauth_provider, "twitter", false) %></a>
+						</td>
+                                                <td>&nbsp;</td>
+						<td>
+						<%= image_tag("in_social.gif", :alt=>"Follow us on Facebook", :width=>"33", :height=>"33") %> 
+						<%= radio_button_tag(:oauth_provider, "linked_in", false) %>
+						</td>
+						<td>&nbsp;</td>
+						<td>
+						<%= image_tag("facebook.gif", :alt=>"FB", :width=>"33", :height=>"33") %> 
+						<%= radio_button_tag(:oauth_provider, "facebook", false) %>
+						</td>
+                   				</tr>
+    						<% submit_tag ("Save") %>
+						<% end %>
+                   				</table>
+                			</div>
+                    				<div align="center"><h5>Connectar sus cuentas. </h5>
+	                        </div>
                     
-                    <h5  align="center">Tienen una cuenta de Twitter o LinkedIn? </h5>
-                    <p></p>
-                     <div class="social-list" align="center"> 
-                     <table cellspacing="15" border="0">
-
-<% form_tag(signup_url, :id=>'connectext', :method=>'post') do %>
-
-			 <%= hidden_field_tag('authentication_type', current_user.nil? ? :user : :session) %>
-
-                     	<tr>
-                   	<td>
- 			<%= image_tag("twitter.gif", :alt=>"Follow us on Facebook", :width=>"33", :height=>"33") %> 
-
-  			<%= radio_button_tag(:oauth_provider, "twitter", false) %>
-
-                    </td>
-                    <td><p>  </p></td>
-                    
-                    <td>
-
- <%= image_tag("in_social.gif", :alt=>"Follow us on Facebook", :width=>"33", :height=>"33") %> 
-
-                        <%= radio_button_tag(:oauth_provider, "linked_in", false) %>
- 
-
-                   </td>
-                   </tr>
-    <% submit_tag ("Save") %>
-
-		<% end %>
-                   </table>
-                </div>
-                    <p></p>
-                    <div align="center"><h5>Connectar sus cuentas. </h5>
-                    </div>
-                    </div>
-                    
-                    <div class="comment-meta">
-                    
-
-                    
-                    	<strong class="author"> </strong> <div id="clickme"><a href="#postdialog" rel="facebox" class="link-reply" id="regtrigger">No tengo ... </a> </div> <br />
-                    	<span class="comment-date"> </span>
+                    				<div class="comment-meta">
+						<strong class="author"> </strong> <div id="clickme"><a href="#postdialog" rel="facebox" class="link-reply" id="regtrigger">No tengo ... </a> </div> <br />
+                    				<span class="comment-date"> </span>
                     </div> 
                     
                 </div>
-                <div class="comment-bot"></div>
-            </div> 
-            
-            <!-- here -->
-                                
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
+                <!--<div class="comment-bot"></div>-->
+                                       
+                                                                   
  	          <div id="registeruser" style="display:none">
-
-                  <p></p>
-            <div id="signupwrap" >
+ 
+           <div id="signupwrap" >
 
 			<% form_for(@user, :html => { :id => "signupform" }) do |f| %>
-
 	  		  <table border="0">
 	  		  <tr>
 	  		  	<td class="label"><label id="lfirstname" for="firstname">Nombre</label></td>
-	  		  	<td class="field"><%= text_field_tag(:firstname) %> <!-- <input id="firstname" name="firstname" type="text" value="" maxlength="100" /> --> </td>
+	  		  	<td class="field"><%= text_field_tag(:firstname, nil, :class => "textbox") %> </td>
 	  		  	<td class="status"> </td>
 	  		  </tr>
 	  		  <tr>
 	  			<td class="label"><label id="llastname" for="lastname">Apellido</label></td>
-	  			<td class="field"><%= text_field_tag(:lastname) %> <!-- <input id="lastname" name="lastname" type="text" value="" maxlength="100" /> --> </td>
+	  			<td class="field"><%= text_field_tag(:lastname, nil, :class=>"textbox")  %> </td>
 	  			<td class="status"></td>
 	  		  </tr>
-	  		
 	  		  <tr>
 	  			<td class="label"><label id="lpassword" for="password">Contraseña</label></td>
-	  			<td class="field"><%= password_field_tag(:password) %> </td>
+	  			<td class="field"><%= password_field_tag(:password, nil, :class=>"textbox") %> </td>
 	  			<td class="status"></td>
 	  		  </tr>
-	  		 
 	  		  <tr>
 	  			<td class="label"><label id="lemail" for="email">Correo Electrónico</label></td>
-	  			<td class="field"><%= text_field_tag(:email) %> </td>
+	  			<td class="field"><%= text_field_tag(:email, nil, :class=>"textbox") %> </td>
 	  			<td class="status"></td>
 	  		  </tr>
-              	  		 
-
 	  		  <tr>
 	  			<td class="label">&nbsp;</td>
 	  			<td class="field" colspan="2">
 		  			<div id="termswrap">
 			  			<input id="terms" type="checkbox" name="terms" />
-			            <label id="lterms" for="terms">He leido los terminos de servicios</label>
-		            </div> <!-- /termswrap -->
+			            		<label id="lterms" for="terms">He leido los terminos de servicios</label>
+		            		</div>
 	  			</td>
 	  		  </tr>
-	  		  <tr>
-	  			<td class="label"><label id="lsignupsubmit" for="signupsubmit"> </label></td>
-	  			<td class="field" colspan="1">
-	  			</td>
-                <tr>
-                </tr>
-                <td></td>
-                                <td></td>
-
-                <td width="75px">
-
-                </td>
-                <td></td>
-	  		  </tr>
+	  		
+         
 
 	  		  </table>
-                            <div align="center" style="padding-left:92px;"> <input id="signupsubmit" class="clear-button btn-grey" name="signup" type="submit" value="Listo" />
-</div>
-	<% end %>
-          </div>
+                            <div align="center" style="padding-left:92px;"> <input id="signupsubmit" class="clear-button btn-grey" name="signup" type="submit" value="Listo" /> </div>
+			
+			<% end %>
+          		</div> <!-- registeruser -->
                   
                                     <div class="clear"></div>
                                     </div>
@@ -155,6 +103,7 @@
 
                         </div>
                     </div>
+ </div> 
 
                     <!--/ content -->        
 
