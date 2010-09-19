@@ -52,11 +52,10 @@ skip_before_filter :verify_authenticity_token
                else
                    format.xml  { render :xml => "<WARNING>there is not a user for that id</WARNING>" }
                end
-               #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
            end
         end
-       end
     end
+   end
  end
 
   # GET /users/1
@@ -83,9 +82,9 @@ skip_before_filter :verify_authenticity_token
                else
                    format.xml  { render :xml => "<WARNING>there is not a user for that id</WARNING>" }
                end
-	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
            end
         end
+    end
     end
   end
 
@@ -148,8 +147,6 @@ skip_before_filter :verify_authenticity_token
         Pusher.app_id = '1749'
         Pusher.key = '92a18c1392e252d076c6'
         Pusher.secret = '2a253676fad3558f8446'
-        # Pusher['post'].trigger('thing-create', "string_passed")
-
         @name = params[:name]
         @description = params[:description]
         @contact_name = params[:contact_name]
@@ -158,19 +155,15 @@ skip_before_filter :verify_authenticity_token
         @contact_title = params[:contact_title]
         @type =params[:type]
 
-        #if @type.equals("service")
-
         @feed = Feed.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
                 if @feed.save
                                 Pusher['post'].trigger('thing-create', "string_passed")
-				#Pusher['post'].trigger('thing-create', @service.attributes)
                 end
      end
 
   # GET /users/1/edit
   def edit
     @user = current_user
-#User.find(params[:id])
   end
 
    def buy
@@ -225,10 +218,8 @@ skip_before_filter :verify_authenticity_token
 
 
     @user = User.new(:firstname=> @firstname, :lastname=> @lastname, :email => @email, :password => @password)
-    #@user = User.new(params[:user])
 
     @user.points = 0
-
     if @user.save_without_session_maintenance 
     	#@user.save_without_session_maintenance do |result|
     	#  if result
@@ -237,7 +228,8 @@ skip_before_filter :verify_authenticity_token
       		redirect_to actions_url
     else
          	redirect_to actions_url
-      end
+    end
+
   end
 
   # PUT /users/1
@@ -248,15 +240,9 @@ skip_before_filter :verify_authenticity_token
       if @user.update_attributes(params[:user])
          flash[:notice] = "Successfully updated profile."  
          redirect_to root_url  
-
-	#format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-        #format.xml  { head :ok }
       else
 	render :action => 'edit'
-        #format.html { render :action => "edit" }
-        #format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
-    #end
   end
 
   # DELETE /users/1
@@ -271,6 +257,5 @@ skip_before_filter :verify_authenticity_token
     end
   end
 
-end
 
 end
