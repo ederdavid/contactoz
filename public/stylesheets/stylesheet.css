@@ -1992,10 +1992,8 @@ body.account .feed-item span.timestamp {
 
 #post_box {
     background-color:#E5EEF6;
-    /*border:1px solid #538DC2;*/
     margin-bottom:10px;
-        width:480px;
-/* 996px */
+    width:480px;
     padding:10px;
     float: left;
 }
@@ -2005,7 +2003,13 @@ body.account .feed-item span.timestamp {
     font-family:Arial, sans-serif;
     color:#333333;
     width:460px;
+}
 
+#post_box input:focus {
+    border: 1px solid #89B229;
+    -moz-box-shadow:inset 0px 0px 5px #FFF008;
+  	-webkit-box-shadow:inset 0px 0px 5px #FFF008;
+		box-shadow:inset 0px 0px 5px #FFF008;
 }
 
 #post_box input#post_content {
@@ -2332,7 +2336,8 @@ body.account .feed-item span.timestamp {
   background:url("../images/unchecked.gif") no-repeat 0px 0px;
   padding-left: 16px;
   padding-bottom: 2px;
-  font-weight: bold;
+  font-weight: normal;
+  font-size: 0.85em;
   color: #EA5200;
 }
 
@@ -2347,30 +2352,54 @@ body.account .feed-item span.timestamp {
   empty-cells: show;
 }
 
+#signupform table td label {
+  font-weight: normal;
+}
+
+#signupform table td {
+  font-weight: normal;
+}
+
+#signupform input.textbox {
+  width: 200px;
+  height: 18px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin: 1px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+#signupform input.textbox:hover {
+  border: 2px solid #aaa;
+  margin: 0px;
+}
+
+#signupform input.textbox:focus {
+  border: 2px solid #25A0CC;
+  margin: 0px;
+}
+
+#signupform tr {
+  height: 40px;
+}
+
 #signupform .label {
-  padding-top: 2px;
-  padding-right: 8px;
-  vertical-align: top;
+  vertical-align: middle;
   text-align: right;
-  width: 125px;
   white-space: nowrap;
+  padding-right: 10px;
 }
 
 #signupform .field {
-  padding-bottom: 10px;
   white-space: nowrap;
+  vertical-align: middle;
 }
 
 #signupform .status {
-  padding-top: 2px;
-  padding-left: 8px;
-  vertical-align: top;
-  width: 246px;
-  white-space: nowrap;
-}
-
-#signupform .textfield {
-  width: 150px;
+  vertical-align: middle;
+  padding-left: 5px;
+  width: 400px;
 }
 
 #signupform .clear-button {
@@ -2389,3 +2418,84 @@ body.account .feed-item span.timestamp {
 }
 
 
+/* top menu */
+
+.logo {
+  display: block;
+  float: left;
+}
+    
+.topmenu {
+	float: right;
+	margin-left: 10px;
+	margin-top: 20px;
+}
+
+.topmenu li {
+	display: inline;
+	padding-left: 10px;
+	padding-right: 10px;
+	border-right: 1px solid #eee;
+}
+
+.topmenu li.last {
+	border-right: none !important;
+}
+
+.comment-heading {
+	vertical-align: middle important!;
+	margin-bottom: 20px;
+}
+
+a.btn-addcomment:hover {
+	color:#fff;
+}
+
+a.btn-addcomment {
+	color:#fff;
+	display:block;
+	font-family:"MergeRegular-1","MergeRegular-2",Arial,sans-serif;
+	font-size: 14px;
+	background-color: #2daebf;
+	text-align:center;
+	padding: 5px;
+	-moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+#postdialog {
+	background-color: #eee;
+}
+
+#postdialog #pd-header {
+	background-color: #eee;
+}
+#postdialog #post-desc {
+	width: 400px;
+	height: 120px;
+	border: 1px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+}
+
+#postdialog #pd-footer {
+	text-align: right;
+}
+
+.btn {
+	padding: 4px;
+	display: inline-block;
+}
+
+.right-align {
+	text-align: right;
+}
+
+.panel {
+	background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}

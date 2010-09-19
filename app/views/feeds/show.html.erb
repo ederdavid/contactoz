@@ -39,9 +39,10 @@ no topics
                         </div>
                     </div>
                     <div class="sidebar">
-	
+<% if current_user %>	
 <% if @user.find_feeds.include?@feed %>
                                                 <a href="#" class="unfollow" id="changefollow"><span> Sigue </span></a>
+<% end %>
 <% else %>
                                                <a href="#" class="follow" id="changefollow"><span> No quero seguir </span></a>
 <% end %>
