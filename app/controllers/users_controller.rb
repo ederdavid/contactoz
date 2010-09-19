@@ -55,6 +55,7 @@ skip_before_filter :verify_authenticity_token
                #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
            end
         end
+       end
     end
  end
 
