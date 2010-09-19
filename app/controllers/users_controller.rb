@@ -14,8 +14,6 @@ skip_before_filter :verify_authenticity_token
     end
   end
 
-
-
   # GET /users
   # GET /users.xml
   def index
@@ -55,7 +53,7 @@ skip_before_filter :verify_authenticity_token
            end
         end
     end
-   end
+
  end
 
   # GET /users/1
@@ -84,7 +82,6 @@ skip_before_filter :verify_authenticity_token
                end
            end
         end
-    end
     end
   end
 
@@ -258,4 +255,5 @@ skip_before_filter :verify_authenticity_token
   end
 
 
-end
+
+end 
