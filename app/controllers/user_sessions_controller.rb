@@ -1,5 +1,6 @@
 class UserSessionsController < ApplicationController
-	layout 'application'
+       layout 'secondary'
+
   def new
     @user_session = UserSession.new
   end
@@ -15,7 +16,7 @@ class UserSessionsController < ApplicationController
       flash[:notice] = "Successfully logged in."
       redirect_to account_url
     else
-      render :action => 'new'
+      render :action => 'index'
     end
   end
   

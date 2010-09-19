@@ -1,4 +1,5 @@
 
+
 <%= render :partial => 'shared/search' %>
  <!-- middle -->
                 <div class="middle">
@@ -15,10 +16,11 @@
 <!-- here -->
                                 <div class="comment-one-reg" id="connectuser">
                 <div class="comment-box-reg">
+		<% form_for @user_session do |f| %>
                 	                   
                     <div class="comment-text">
 
-                    <h5  align="center"> empezar a utilizar los servicios ahora... Por favor, revise su buzón de correo.</h5>
+                    <h5  align="center"> <%= f.error_messages %> </h5>
                     <p></p>
                      <div class="social-list" align="center"> 
                      <table cellspacing="15" >
@@ -27,7 +29,7 @@
                    </table>
                 </div>
                     <p></p>
-                    <div align="center"><h5> Recibirás un correo electrónico de registro </h5>
+                    <div align="center"><h5> Por favor intentar de nuevo </h5>
                     </div>
                     </div>
                     <div class="comment-meta">
@@ -36,6 +38,7 @@
                     </div> 
                 </div>
                 <div class="comment-bot"></div>
+		<% end %>
             </div> 
             <!-- here -->
  	          <div id="registeruser" style="display:none">
