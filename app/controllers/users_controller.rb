@@ -240,8 +240,10 @@ skip_before_filter :verify_authenticity_token
     #@user = User.new(params[:user])
 
     @user.points = 0
-    @user.save_without_session_maintenance do |result|
-      if result
+
+    if @user.save_without_session_maintenance 
+    #@user.save_without_session_maintenance do |result|
+    #  if result
       	  	@user.deliver_activation_instructions!	
 		flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
       		redirect_to actions_url
