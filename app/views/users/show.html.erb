@@ -16,10 +16,8 @@
 <% end %>
 
 <%= render :partial => 'shared/search' %>
-
     <div class="middle">
                     <div class="content">
-
                     <div id="post_box">
             <input id="post_content" type="text" data-default="Mensaje de su producto o servicio ... "></input>
                             <div id="post_details" style="display:none">
@@ -48,11 +46,20 @@
 
                             <script type="text/javascript">
                                 $(document).ready(function() {
-                                        var postBox = new PostBox(); 
+                                         var postBox = new PostBox(); 
 
 					$("#post_content").click(function () {
 					$('#post_details').slideDown('fast');
     					});
+
+					$("#buy-post").click(function () {
+					alert('this');
+                                        });
+
+
+
+
+
                                 });
                             </script>
 
@@ -181,7 +188,22 @@
                 </div>            
 <!-- notes -->
 
-
+    <!-- PostBox Dialog -->
+								<div id="postdialog" style="display:none;">
+			 						<div id="pd-header">
+			 							<h4>Post Name</h4>
+			 						</div>
+			 						<div id="pd-content">
+			 							<p>
+			 							<label for="post-desc">Post Description:</label>
+			 					 		<textarea name="post-desc" id="post-desc"></textarea>
+			 					 	</p>
+									</div>
+			 						<div id="pd-footer">
+			 							<div id="buy-post" class="clear-button btn-grey btn post-wide">Comprar</div>
+			 							<div id="sell" onclick="sendMessage('sell');" class="clear-button btn-grey btn post-wide">Vendar</div>
+			 						</div>
+								</div> 
 <script type="text/javascript">
 $(document).ready(function(){
 

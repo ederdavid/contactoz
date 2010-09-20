@@ -68,29 +68,33 @@ j = 1+j;
 
 };
 
-function sendMessage() {
-
+function sendMessage(type, postBox) {
 var inputArray = [];
 var i = 0;
 
-
-//grab all the inputs
   $('#post_box input[type=text]').each(function() {
         var input = $(this);
          inputArray[i] =this.value;
          i = i+1;
     });
 
+var buy_sell;
+if(type == "sell")
+{
+buy_sell = '[sell]=1'; 
+}
+else
+{
+buy_sell = '[buy]=1';
+}
 
-
-//form url
 if ($('#type_product').hasClass('checked')){
-       var data = '&product[name]=' + inputArray[0] + '&product[contact_name]=' + inputArray[1] + '&product[contact_title]=' + inputArray[2] + '&product[contact_phone]=' + inputArray[3] + '&product[contact_email]=' + inputArray[4];
+       var data = '&product[name]=' + inputArray[0] + '&product[contact_name]=' + inputArray[1] + '&product[contact_title]=' + inputArray[2] + '&product[contact_phone]=' + inputArray[3] + '&product[contact_email]=' + inputArray[4] + '&product' + buy_sell;
       url = '/products/create_feed';
 }
 else
 {
-       var data = '&service[name]=' + inputArray[0] + '&service[contact_name]=' + inputArray[1] + '&service[contact_title]=' + inputArray[2] + '&service[contact_phone]=' + inputArray[3] + '&service[contact_email]=' + inputArray[4];
+       var data = '&service[name]=' + inputArray[0] + '&service[contact_name]=' + inputArray[1] + '&service[contact_title]=' + inputArray[2] + '&service[contact_phone]=' + inputArray[3] + '&service[contact_email]=' + inputArray[4] + '&service' + buy_sell;
        url = '/services/create_feed';
 }
 
@@ -106,28 +110,27 @@ else
                                     }
                                   });
 
- };
+        jQuery.facebox.close()
+
+        //call postbox
+	postBox.reset()
+	//$(this).reset()
+};
 
 function postFeed() {
+
+
+        jQuery.facebox({ div: '#postdialog' });
+
+//var html = '<div id="postdialog" style="display:none;"><div id="pd-header"><h4>Post Name</h4></div><div id="pd-content"><p><label for="post-desc">Post Description:</label><textarea name="post-desc" id="post-desc"></textarea></p></div><div id="pd-footer"><div class="clear-button btn-grey btn">Buy</div><div class="clear-button btn-grey btn">Sell</div></div></div>';
+
+//jQuery.facebox('this is ');
+
+
 
 //var message = $('#post_content').value;
 //var mess = document.getElementById('post_content').value;
 //alert(mess);
-
-
-//alert(inputArray[0] + inputArray[1] + inputArray[2] + inputArray[3]);
-
-//userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
-//data = "user_id=" + user + "&feed_id= " + feed;
-
-
-
-// $.facebox('<h2> Add Post</h2><form>Name:<br /><input type=\"text\" name=\"name\" value=\"' + message + '\"/>Descripción:<br /><input type=\"text\" name=\"description\" /><div id=\"post-desc\"><span>Comprar</span></div></form>')
-
-//$.facebox('<h2> Add Post</h2><form>Name:<br /><input type=\"text\" name=\"name\"/>Descripción:<br /><input type=\"text\" name=\"description\" /></form>')
-
-
-//$.facebox('<h2> Add Post</h2><form><br /><input type="text" name="description" value="' + mess + '"/><br /> <em><h5> Descripcion:</h5><em><input type="text" name="description" /><br /><a href="" id="sendfeed" class="bot-face" onclick="sendMessage();" ><span>Sigue</span></a></form>')
     
 };
 
@@ -415,6 +418,7 @@ PostBox.prototype.init = function() {
         });
     });
 
+
     this.types.click(function() {
         $(this).parent().slideUp('fast');
         self.button.removeClass('click');
@@ -444,7 +448,8 @@ PostBox.prototype.post = function() {
     else {
         postFeed();
         // make the post and reset everything
-        this.reset();
+//        this.reset();
+
     }
 }
 
@@ -575,15 +580,8 @@ $("a").click(function(event){
    $(this).hide("slow");
  });
  
- 
- 
- 
- 
-//changes...
 
 $(document).ready(function($){
-
-//add post 
 
  $(function() {
                     $('#add_post').click(function() {
@@ -610,10 +608,6 @@ $(document).ready(function($){
 });
 
 
-//add post
-
-
-//modal notification
 	$(function() {
                 var notificationForm = $('#notification-form'),
                     notificationForm2 = $('#notification-form2');

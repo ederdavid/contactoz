@@ -1,41 +1,21 @@
-a.bot-face span {
-    background: transparent url(../images/blue_btn.gif) no-repeat;
-    display: block;
-    line-height: 14px;
-    padding: 5px 0 5px 10px;
-}
-
-a.bot-face{
-    background: transparent url(../images/blue_btn_span.gif) no-repeat top right;
-    color:#FFF;
-    display: block;
-    height: 24px;
-    margin-right: 6px;
-    padding-right: 10px; /* sliding doors padding */
-    text-decoration: none;
-    font-weight:bold;
-    text-align:center;
-}
-
-
 #facebox .b {
-  background:url('../images/facebox/b.png');
+  background:url(b.png);
 }
 
 #facebox .tl {
-  background:url('../images/facebox/tl.png');
+  background:url(tl.png);
 }
 
 #facebox .tr {
-  background:url('../images/facebox/tr.png');
+  background:url(tr.png);
 }
 
 #facebox .bl {
-  background:url('../images/facebox/bl.png');
+  background:url(bl.png);
 }
 
 #facebox .br {
-  background:url('../images/facebox/br.png');
+  background:url(br.png);
 }
 
 #facebox {
@@ -59,27 +39,11 @@ a.bot-face{
   padding: 0;
 }
 
-#facebox .content-face {
-  background-color: #CCC;
-  width: 400px;
-}
-
-#facebox .bot-face {
- border-top: 2px solid #DDDDDD;
-}
-
 #facebox .body {
- background-color: #CCC;
   padding: 10px;
-  width: 400px;
+  background: #eee;
+  width: 370px;
 }
-
-#facebox .body input {
-  padding: 10px;
-  width: 375px;
-
-}
-
 
 #facebox .loading {
   text-align: center;
@@ -94,11 +58,12 @@ a.bot-face{
   margin: 0;
 }
 
-#facebox .footer-face {
-  #border-top: 1px solid #DDDDDD;
+#facebox .fbox-footer {
+  border-top: 1px solid #DDDDDD;
   padding-top: 5px;
   margin-top: 10px;
   text-align: right;
+  display: none !important;	/* hide close label */
 }
 
 #facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {
