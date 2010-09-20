@@ -16,8 +16,10 @@
 <% end %>
 
 <%= render :partial => 'shared/search' %>
+
     <div class="middle">
                     <div class="content">
+
                     <div id="post_box">
             <input id="post_content" type="text" data-default="Mensaje de su producto o servicio ... "></input>
                             <div id="post_details" style="display:none">
@@ -45,22 +47,20 @@
                             </div>
 
                             <script type="text/javascript">
+				var postBox;
                                 $(document).ready(function() {
-                                         var postBox = new PostBox(); 
+                                       postBox = new PostBox(); 
 
 					$("#post_content").click(function () {
 					$('#post_details').slideDown('fast');
     					});
-
-					$("#buy-post").click(function () {
-					alert('this');
-                                        });
-
-
-
-
-
                                 });
+
+//				       $("#buy").click(function () {
+//						alert("this");
+//						//sendMessage('buy',postBox);
+  	//                                      });
+
                             </script>
 
                     </div>
@@ -200,8 +200,8 @@
 			 					 	</p>
 									</div>
 			 						<div id="pd-footer">
-			 							<div id="buy-post" class="clear-button btn-grey btn post-wide">Comprar</div>
-			 							<div id="sell" onclick="sendMessage('sell');" class="clear-button btn-grey btn post-wide">Vendar</div>
+			 							<div id="buy" onclick="sendMessage('buy',postBox);" class="clear-button btn-grey btn post-wide">Comprar</div>
+			 							<div id="sell"  onclick="sendMessage('sell',postBox);" class="clear-button btn-grey btn post-wide">Vendar</div>
 			 						</div>
 								</div> 
 <script type="text/javascript">
@@ -216,7 +216,6 @@ server.bind('thing-create', function(thing) {
 var currentTime = new Date()
 var hours = currentTime.getHours()
 var minutes = currentTime.getMinutes()
-//alert(thing.name);
 var month = currentTime.getMonth() + 1
 var day = currentTime.getDate()
 

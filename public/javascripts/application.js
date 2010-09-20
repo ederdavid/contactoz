@@ -1,3 +1,7 @@
+//var postBox = new PostBox();
+// var postBox;
+// = new PostBox();
+                                        
 // Always send the authenticity_token with ajax
 
 $(document).ajaxSend(function(event, request, settings) {
@@ -68,7 +72,7 @@ j = 1+j;
 
 };
 
-function sendMessage(type, postBox) {
+function sendMessage(type,postBox) {
 var inputArray = [];
 var i = 0;
 
