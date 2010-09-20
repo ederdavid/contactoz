@@ -47,7 +47,6 @@ Rails::Initializer.run do |config|
   config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
   config.gem "acts-as-taggable-on", :source => "http://gemcutter.org", :version => '2.0.6'
   config.gem 'delayed_job'
-  config.gem 'linkedin'
   config.gem 'pusher'
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
