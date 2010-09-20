@@ -111,8 +111,8 @@ else
 function postFeed() {
 
 //var message = $('#post_content').value;
-var mess = document.getElementById('post_content').value;
-alert(mess);
+//var mess = document.getElementById('post_content').value;
+//alert(mess);
 
 
 //alert(inputArray[0] + inputArray[1] + inputArray[2] + inputArray[3]);
@@ -127,7 +127,7 @@ alert(mess);
 //$.facebox('<h2> Add Post</h2><form>Name:<br /><input type=\"text\" name=\"name\"/>Descripción:<br /><input type=\"text\" name=\"description\" /></form>')
 
 
-$.facebox('<h2> Add Post</h2><form><br /><input type="text" name="description" value="' + mess + '"/><br /> <em><h5> Descripcion:</h5><em><input type="text" name="description" /><br /><a href="" id="sendfeed" class="bot-face" onclick="sendMessage();" ><span>Sigue</span></a></form>')
+//$.facebox('<h2> Add Post</h2><form><br /><input type="text" name="description" value="' + mess + '"/><br /> <em><h5> Descripcion:</h5><em><input type="text" name="description" /><br /><a href="" id="sendfeed" class="bot-face" onclick="sendMessage();" ><span>Sigue</span></a></form>')
     
 };
 
