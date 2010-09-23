@@ -37,11 +37,13 @@ Rails::Initializer.run do |config|
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'UTC'
-
+  
   # All gems to include
   config.gem "authlogic"
+  config.gem "json"
   config.gem "oauth", :version => "0.3.5"
-  config.gem "authlogic-oauth", :lib => "authlogic_oauth"
+  config.gem "oauth2"
+  config.gem "authlogic-connect"
 
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
   config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
@@ -53,5 +55,5 @@ Rails::Initializer.run do |config|
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
 
-config.active_record.observers = :user_observer
+  config.active_record.observers = :user_observer
 end

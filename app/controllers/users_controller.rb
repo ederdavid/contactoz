@@ -207,26 +207,33 @@ skip_before_filter :verify_authenticity_token
   # POST /users
   # POST /users.xml
   def create
-
-  @firstname = params[:firstname]
-  @lastname = params[:lastname]
-  @password = params[:password]
-  @email = params[:email]
-
-
-    @user = User.new(:firstname=> @firstname, :lastname=> @lastname, :email => @email, :password => @password)
-
+    @user = User.new(
+      :firstname=> params[:firstname], 
+      :lastname=> params[:lastname], 
+      :email => params[:email], 
+      :password => params[:password]
+    )
     @user.points = 0
-    if @user.save_without_session_maintenance 
-    	#@user.save_without_session_maintenance do |result|
-    	#  if result
-      	  	@user.deliver_activation_instructions!	
-		flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-      		redirect_to actions_url
-    else
-         	redirect_to actions_url
-    end
+    
+    @user.save do |result|
+      if result
+        
+        flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+        
+        #If user signs up with twitter/facebook/linked_in
+        #skip sending email and go to 'users/:id' page
+        if @user.authenticated_with.empty?
+          @user.deliver_activation_instructions!	
+          redirect_to actions_url and return
+        else
+          redirect_to user_path(@user) and return
+        end
 
+        redirect_to actions_url and return
+      else
+        redirect_to actions_url and return
+      end
+    end
   end
 
   # PUT /users/1

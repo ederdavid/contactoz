@@ -1,4 +1,14 @@
 class User < ActiveRecord::Base
+  
+  acts_as_authentic do |config|
+    config.login_field = 'email'
+    config.validate_email_field    = false
+    config.validate_login_field    = false
+    config.validate_password_field = false
+  end
+  
+  include Profile
+  
   has_many :actions
   has_many :contact_saveds
   has_many :contacts, :through => :contact_saveds
@@ -17,11 +27,6 @@ class User < ActiveRecord::Base
         @feeds = Feed.find(:all, :conditions => ['id in (select distinct feed_id from categorizations where user_id = ?)', self])
   end
 
-  #validates_format_of :email, :with => /\A([^@\s]+)@[^?!snow]((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create
-
-  acts_as_authentic do |c|
-     c.login_field = 'email'
-  end
 
   def self.find_by_login_or_email(login)
   	User.find_by_email(login)
