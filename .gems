@@ -1,3 +1,5 @@
+activesupport -v 2.3.8
+activerecord -v 2.3.8
 rails -v 2.3.8
 charguess -v 1.3
 will_paginate -v 2.3.14
@@ -9,4 +11,8 @@ acts-as-taggable-on -v 2.0.6
 pusher -v 0.6.0
 delayed_job -v 2.0.3
 json -v 1.4.6
-authlogic-oauth -v 1.0.8
+oauth2 -v 0.0.13
+ruby-openid
+rack-openid -v 0.2.1
+foreverman-authlogic-connect
+

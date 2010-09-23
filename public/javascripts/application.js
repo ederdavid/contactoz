@@ -483,11 +483,16 @@ $("#morefeeds").click(function () {
 //document.getElementById("hiddenfeed").fadeIn("slow");
     });
 
+
 $("#oauth_provider_twitter").click(function () {
 $("#connectext").submit();
     });
 
 $("#oauth_provider_linked_in").click(function () {
+$("#connectext").submit();
+    });
+
+$("#oauth_provider_facebook").click(function () {
 $("#connectext").submit();
     });
 

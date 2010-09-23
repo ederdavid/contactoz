@@ -9,7 +9,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20100921040404) do
+=======
+ActiveRecord::Schema.define(:version => 20100922062449) do
+
+  create_table "access_tokens", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "type",       :limit => 30
+    t.string   "key"
+    t.string   "token",      :limit => 1024
+    t.string   "secret"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "access_tokens", ["key"], :name => "index_access_tokens_on_key", :unique => true
+>>>>>>> 3721225aab9ec3a1ad485aeb7980273bad6782d1
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"
@@ -27,30 +44,9 @@ ActiveRecord::Schema.define(:version => 20100921040404) do
     t.integer  "advertisement_id"
   end
 
-  create_table "advertisements", :force => true do |t|
-    t.string   "name"
-    t.string   "picture"
-    t.string   "price"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "company_id"
-  end
-
-  create_table "adverts", :force => true do |t|
-    t.string   "name"
-    t.string   "picture"
-    t.string   "price"
-    t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "application_accounts", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "api_key"
-    t.string   "api_secret"
   end
 
   create_table "categorizations", :force => true do |t|
@@ -84,7 +80,6 @@ ActiveRecord::Schema.define(:version => 20100921040404) do
     t.string   "scian"
     t.string   "giro"
     t.string   "year_started"
-    t.string   "company_city"
     t.integer  "company_location_id"
     t.string   "source"
   end
@@ -96,41 +91,6 @@ ActiveRecord::Schema.define(:version => 20100921040404) do
     t.datetime "updated_at"
     t.integer  "company_id"
     t.integer  "topic_id"
-  end
-
-  create_table "company_industries", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "company_id"
-    t.string   "name"
-  end
-
-  create_table "company_locations", :force => true do |t|
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "code"
-    t.string   "phone_number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "company_id"
-  end
-
-  create_table "companycontacts", :force => true do |t|
-    t.string   "title"
-    t.string   "name"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country"
-    t.string   "linkedin_id"
-    t.date     "contact_last_updated"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "accuracy"
-    t.integer  "company_id"
-    t.string   "department"
-    t.string   "hierarchy"
   end
 
   create_table "contact_saveds", :force => true do |t|
@@ -227,16 +187,6 @@ ActiveRecord::Schema.define(:version => 20100921040404) do
     t.datetime "updated_at"
   end
 
-  create_table "industries", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
-    t.string   "contact_id"
-    t.integer  "company_id"
-  end
-
-  add_index "industries", ["company_id"], :name => "index_industries_on_company_id"
-
   create_table "news", :force => true do |t|
     t.string   "url"
     t.datetime "created_at"
@@ -261,13 +211,6 @@ ActiveRecord::Schema.define(:version => 20100921040404) do
   create_table "products", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.text     "description"
-    t.integer  "contact_id"
-    t.string   "contact_name"
-    t.string   "contact_phone"
-    t.string   "contact_email"
-    t.string   "contact_title"
     t.string   "buy"
     t.string   "sell"
   end
@@ -280,13 +223,6 @@ ActiveRecord::Schema.define(:version => 20100921040404) do
   create_table "services", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
-    t.text     "description"
-    t.integer  "contact_id"
-    t.string   "contact_name"
-    t.string   "contact_phone"
-    t.string   "contact_email"
-    t.string   "contact_title"
     t.string   "buy"
     t.string   "sell"
   end
