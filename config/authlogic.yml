@@ -5,8 +5,8 @@ connect:
     label: "Twitter"
 
   facebook:
-    key: "f0780ef6fac6423f5b33c974d1997455"
-    secret: "663a5ef8b192e75ee79ce0c92f03ebea"
+    key: "632c2359465b9d7dc88a4f26d1f0c35f"
+    secret: "d251756d57255e090a14caa1c7ab31c3"
     label: "Facebook"
     
   linked_in:
