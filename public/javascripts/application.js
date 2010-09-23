@@ -8,6 +8,13 @@ $(document).ajaxSend(function(event, request, settings) {
 });
 
 
+function shareFeed(type) {
+alert('please'); 
+    jQuery.facebox({ div: '#sharedialog' });
+    };
+
+
+
 function followFeed(user,feed) {
 
 //userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
@@ -115,23 +122,11 @@ else
 
         //call postbox
 	postBox.reset()
-	//$(this).reset()
 };
 
 function postFeed() {
 
-
         jQuery.facebox({ div: '#postdialog' });
-
-//var html = '<div id="postdialog" style="display:none;"><div id="pd-header"><h4>Post Name</h4></div><div id="pd-content"><p><label for="post-desc">Post Description:</label><textarea name="post-desc" id="post-desc"></textarea></p></div><div id="pd-footer"><div class="clear-button btn-grey btn">Buy</div><div class="clear-button btn-grey btn">Sell</div></div></div>';
-
-//jQuery.facebox('this is ');
-
-
-
-//var message = $('#post_content').value;
-//var mess = document.getElementById('post_content').value;
-//alert(mess);
     
 };
 
@@ -347,7 +342,11 @@ function slideMenu(selector) {
             menu.slideUp('fast');
         });
     });
-    
+   
+
+
+
+ 
     menu.click(function() {
         menu.slideUp('fast');
         parent.removeClass('click');

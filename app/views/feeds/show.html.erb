@@ -16,7 +16,6 @@
                                 <ul class="tags">
 
 					<% if @categories.nil? %>
-no topics
 					<% else %>
 						<% for cat in @categories %> 
 						<% if cat.topic_id %>   
@@ -73,9 +72,9 @@ no topics
                         
 						<div class="social-media">
 							<ul>
-								<li><a href="#" class="twitter">Twitter</a></li>
-								<li><a href="#" class="email">Email</a></li>
-								<li><a href="#" class="in_social">Linked In</a></li>
+								<li><a href="#" class="twitter" id="sharedialog-trigger">Twitter</a></li>
+								<li><a href="#" class="email" id="sharedialog-trigger" >Email</a></li>
+								<li><a href="#" class="in_social" onclick="shareFeed('linkedin');">Linked In</a></li>
 							</ul>
 						</div>
 						
@@ -93,3 +92,9 @@ no topics
                         
                     </div>
                 </div>
+
+
+<%= render :partial => 'shared/share' %>
+
+
+
