@@ -10,4 +10,7 @@ pusher -v 0.6.0
 delayed_job -v 2.0.3
 json -v 1.4.6
 oauth2 -v 0.0.13
+ruby-openid
+rack-openid -v 0.2.1
 authlogic-connect -v 0.0.6
+
