@@ -1,3 +1,31 @@
+
+
+/* CSS for login dialog */
+#logindialog {
+background-color: #fff;
+padding: 0;
+margin: 0;
+border: 1px solid #ccc;
+}
+
+#logindialog div {
+padding: 5px;
+}
+
+#logindialog #ld-header {
+background-color: #eee;
+}
+
+#logindialog #ld-form table {
+width: 100%;
+}
+
+#logindialog #ld-form table td {
+padding: 3px;
+}
+/* CSS for login dialog */
+
+
 #header li span.mobile a {
     color: #777;
     /* color: #EC0707;

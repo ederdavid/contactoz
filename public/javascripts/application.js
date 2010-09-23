@@ -7,11 +7,19 @@ $(document).ajaxSend(function(event, request, settings) {
     }
 });
 
+/*
+$('.linked_in').click(function() {
+    alert('this');
+        //current.length && current.removeClass(className);
+        //$(this).addClass(className);
+        //current = $(this);
+    });
+*/
 
 function shareFeed(type) {
-alert('please'); 
     jQuery.facebox({ div: '#sharedialog' });
     };
+
 
 
 

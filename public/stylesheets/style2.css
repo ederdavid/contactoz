@@ -179,6 +179,7 @@ a.follow:active span, a.follow:hover span {
 	padding-top:5px;
 	padding-right:20px;
 }
+.social-media ul li a.facebook{background: transparent url(../images/social/facebook_small.gif) no-repeat 0.1em center;}
 .social-media ul li a{padding-left:20px; height:40px;font-size:14px;padding-bottom:15px; padding-top:15px;}
 .social-media ul li a.twitter{background: transparent url(../images/social/twitter_small.gif) no-repeat 0.1em center;}
 .social-media ul li a.email{background: transparent url(../images/social/email_small.gif) no-repeat 0.1em center;}
