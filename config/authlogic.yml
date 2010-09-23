@@ -3,11 +3,11 @@ connect:
     key: "bzWqLnz2mB970s8OZ4hP1w"
     secret: "vMLQAzsVH6W821mPpQInifYmKXv2zyrlbgtdfaPZGA"
     label: "Twitter"
+
+ facebook:
+    key: "f0780ef6fac6423f5b33c974d1997455"
+    secret: "663a5ef8b192e75ee79ce0c92f03ebea"
     
   linked_in:
     key: "ldY1NBcIYDqhmtFnfrgrHu_Diu1-TmOgVHHggpgv_wlKPhXB0v9BbNE4z09sCx_B"
     secret: "VE_YDYbTKuszoKuOCcgsCYw2h1GogDCWHHVMC3ND7nQk0F8MQf4nswXQ8SVdCOXV"
-    
-  facebook:
-    key: "f0780ef6fac6423f5b33c974d1997455"
-    secret: "663a5ef8b192e75ee79ce0c92f03ebea"
