@@ -1,6 +1,3 @@
-//var postBox = new PostBox();
-// var postBox;
-// = new PostBox();
                                         
 // Always send the authenticity_token with ajax
 

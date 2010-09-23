@@ -9,10 +9,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20100921040404) do
-=======
-ActiveRecord::Schema.define(:version => 20100922062449) do
+#ActiveRecord::Schema.define(:version => 20100922062449) do
 
   create_table "access_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -26,7 +24,6 @@ ActiveRecord::Schema.define(:version => 20100922062449) do
   end
 
   add_index "access_tokens", ["key"], :name => "index_access_tokens_on_key", :unique => true
->>>>>>> 3721225aab9ec3a1ad485aeb7980273bad6782d1
 
   create_table "actions", :force => true do |t|
     t.datetime "created_at"
