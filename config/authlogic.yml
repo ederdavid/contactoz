@@ -9,9 +9,5 @@ connect:
     secret: "VE_YDYbTKuszoKuOCcgsCYw2h1GogDCWHHVMC3ND7nQk0F8MQf4nswXQ8SVdCOXV"
     
   facebook:
-    key: "154318834588520"
-    secret: "e1882f2f797f0b9c332cd8b24eb1182c"
-    
-  #facebook:
-    #key: "103963339668040"
-    #secret: "efafd19e100e348950298b4ec245996e"
+    key: "103963339668040"
+    secret: "efafd19e100e348950298b4ec245996e"
