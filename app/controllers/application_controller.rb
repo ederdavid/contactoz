@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
+
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
@@ -34,7 +35,10 @@ class ApplicationController < ActionController::Base
   end
   
   private  
-  def current_user_session  
+
+
+
+def current_user_session  
     return @current_user_session if defined?(@current_user_session)  
     @current_user_session = UserSession.find
   end  

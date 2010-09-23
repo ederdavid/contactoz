@@ -6,7 +6,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :users
 
  map.connect 'users/:action.:format', :controller => 'users', :action => /[a-z_]+/i
-
+  map.connect 'homes/:action', :controller => 'homes', :action => /[a-z_]+/i
+ 
 #  map.resources :users 
 
   map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i

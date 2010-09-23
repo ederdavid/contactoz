@@ -6,6 +6,11 @@ class CompaniesController < ApplicationController
 
 require 'fastercsv'
 
+def set_layout
+ session["layout"] = (params[:mobile] == "1" ? "mobile" : "normal")
+ redirect_to :action => "index"
+end
+
 def export_to_csv
   if params[:all]
 	@companies = Company.find(:all)

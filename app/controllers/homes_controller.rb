@@ -1,6 +1,7 @@
 class HomesController < ApplicationController
-    layout 'landing'
+layout 'application'
     set_tab :home
+
 
   def dataUpdated
     @Company = Company.find(:first, :order => "updated_at DESC")
