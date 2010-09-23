@@ -250,6 +250,7 @@ ActiveRecord::Schema.define(:version => 20100922062449) do
     t.integer  "service_id"
     t.integer  "product_id"
     t.integer  "user_id"
+    t.string   "specific"
   end
 
   create_table "user_session", :force => true do |t|
