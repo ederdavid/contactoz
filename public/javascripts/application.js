@@ -28,7 +28,6 @@ var email = document.getElementById("email_login");
 var password = document.getElementById("password_login");
  
 var data = 'user_session[email]='+email.value+'&user_session[password]='+password.value;
-alert(data);
 
 $.ajax({
                                     url: '/user_sessions/create',
