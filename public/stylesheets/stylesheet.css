@@ -18,6 +18,8 @@ padding: 5px;
 
 #logindialog #ld-header {
 background-color: #eee;
+border-bottom:2px solid solid #ccc;
+
 }
 
 #logindialog #ld-form table {

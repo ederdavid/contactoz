@@ -16,7 +16,7 @@
 		<% else %>
                     <li><%= link_to "Registrarse", register_path %> </li>
         	    <li><span class="sep">|</span></li>
-		    <li id ="log-in"><%= link_to "Entrar", login_path%></li>         
+		    <li id ="log-in2" onclick=><a href="#" onClick="signin();">Entrar</a></li>         
 	         <% end %>
 		   <li><span class="sep">|</span></li>
 	          <li> <span class="mobile"><%= link_to "Movil", :mobile => 1 %></span></li>
@@ -24,17 +24,4 @@
             </div>
   </div>
 
-<div id="dialog-form" title="Log in">
-	<p class="validateTips">Todos los campos son requeridos.</p>
-
-	<form>
-	<fieldset>
-		<p><label for="email">Email</label>
-		<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" /></p>
-		<p><label for="password">Clave</label>
-		<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" /></p>
-		<p><%= link_to "¿Olvidaste tu contraseña?", :controller => "password_resets", :action => "new" %></p>
-	</fieldset>
-	</form>
-</div>
 

@@ -10,36 +10,40 @@ $(document).ajaxSend(function(event, request, settings) {
 function wallPost(type) {
     };
 
-$('#social-share ul li a').click(function(){ //When any link is clicked
-
-alert('thing');
- 
- 
-//$('.social-media ul li').removeClass('active'); // Remove active class from all links
-//$(this).parent().addClass('active'); //Set clicked link class to active
- 
- 
-//var currentTab = $(this).attr('href'); // Set variable currentTab to value of href attribute of clicked link
-//$('#sharedialog div.tab-content').hide(); // Hide all divs
-
-//$(currentTab).show(); // Show div with id equal to variable currentTab
-
-//return false;
-
-});
-
-
-
-
-
-
-
-
 function shareFeed(type) {
     jQuery.facebox({ div: '#sharedialog' });
     };
 
+function signin() {
+    jQuery.facebox({ div: '#logindialog' });
+    };
 
+function closeFacebox() {
+ jQuery.facebox.close()
+    };
+
+function login_send(){
+
+var email = document.getElementById("email_login");
+var password = document.getElementById("password_login");
+ 
+var data = 'user_session[email]='+email.value+'&user_session[password]='+password.value;
+alert(data);
+
+$.ajax({
+                                    url: '/user_sessions/create',
+                                    type: 'POST',
+                                    data: data,
+                                    DataType: 'script',
+                                    success: function(){
+                                                self.location= '/user_sessions/create'
+                                    },
+                                    error: function(){
+                                    }
+                                  });
+
+        jQuery.facebox.close()
+};
 
 
 function followFeed(user,feed) {
@@ -64,7 +68,6 @@ data = "user_id=" + user + "&feed_id= " + feed;
 
 function invite() {
 
-
 var emails = [];
 var i = 0;
 
@@ -86,7 +89,6 @@ j = 1+j;
 
 //userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
 //data = "user_id=" + user + "&feed_id= " + feed;
-
 
  $.ajax({
                                     url: '/users/invite',
@@ -369,11 +371,7 @@ function slideMenu(selector) {
             menu.slideUp('fast');
         });
     });
-   
-
-
-
- 
+    
     menu.click(function() {
         menu.slideUp('fast');
         parent.removeClass('click');
@@ -639,146 +637,6 @@ $(document).ready(function($){
                     });
 });
 
-
-	$(function() {
-                var notificationForm = $('#notification-form'),
-                    notificationForm2 = $('#notification-form2');
-
-		$('#must-login').click(function() {
-			notificationForm.dialog('open');
-		});
-		
-                if (notificationForm.length) {
-                    notificationForm.dialog({
-			autoOpen: false,
-			height: 120,
-			width: 350,
-			modal: true,
-			buttons: {
-                            'aceptar': function() {
-                                $(this).dialog('close');
-                            }
-			},
-			close: function() {
-                            //allfields.val('').removeclass('ui-state-error');
-			}
-	    	    });
-                }
-
-                if (notificationForm2.length) {
-		    notificationForm2.dialog({
-			autoOpen: false,
-			height: 120,
-			width: 350,
-			modal: true,
-			buttons: {
-                            'aceptar': function() {
-                                $(this).dialog('close');
-                            }
-			},
-			close: function() {
-                            //allfields.val('').removeclass('ui-state-error');
-			}
-                    });
-                }
-	});
-//end modal notification
-	//Modal Form
-	$(function() {
-			// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
-			/*$("#dialog").dialog("destroy");*/
-		
-			var email = $("#email"),
-				password = $("#password"),
-				allFields = $([]).add(email).add(password),
-				tips = $(".validateTips");
-
-			function updateTips(t) {
-				tips
-					.text(t)
-					.addClass('ui-state-highlight');
-				setTimeout(function() {
-					tips.removeClass('ui-state-highlight', 1500);
-				}, 500);
-			}
-
-			function checkLength(o,n,min,max) {
-
-				if ( o.val().length > max || o.val().length < min ) {
-					o.addClass('ui-state-error');
-					updateTips("Length of " + n + " must be between "+min+" and "+max+".");
-					return false;
-				} else {
-					return true;
-				}
-
-			}
-
-			function checkRegexp(o,regexp,n) {
-
-				if ( !( regexp.test( o.val() ) ) ) {
-					o.addClass('ui-state-error');
-					updateTips(n);
-					return false;
-				} else {
-					return true;
-				}
-
-			}
-			$('#log-in').click(function() {
-				$('#dialog-form').dialog('open');
-			
-				return false;
-			});
-
-        var dialogForm = $('#dialog-form');
-	if (dialogForm.length) {
-            dialogForm.dialog({
-					autoOpen: false,
-					height: 220,
-					width: 350,
-					modal: true,
-					buttons: {
-						'Log in': function() {
-							var bValid = true;
-							allFields.removeClass('ui-state-error');
-							bValid = bValid && checkLength(email,"email",6,80);
-							bValid = bValid && checkLength(password,"password",5,16);
-
-							// From jquery.validate.js (by joern), contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
-							bValid = bValid && checkRegexp(email,/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i,"eg. ui@jquery.com");
-							bValid = bValid && checkRegexp(password,/^([0-9a-zA-Z])+$/,"Password field only allow : a-z 0-9");
-					
-							if (bValid) {
-								$.ajax({
-								    url: 'login',
-								    type: 'POST',
-								    data: 'user_session[email]='+email.val()+'&user_session[password]='+password.val()+'&authenticity_token=fHMB08SvRjE0/kQU27JVnch8xaoZMp83Uy0gpbTxyKQ=',
-								    DataType: 'script',
-								    success: function(){
-									self.location='login/?user_session[email]='+email.val()+'&user_session[password]='+password.val()+'&authenticity_token=fHMB08SvRjE0/kQU27JVnch8xaoZMp83Uy0gpbTxyKQ='
-								    },
-								    error: function(){
-								    }
-								  });
-								$(this).dialog('close');
-							}
-						},
-						Cancel: function() {
-
-							$(this).dialog('close');
-						}
-					},
-					close: function() {
-						//allFields.val('').removeClass('ui-state-error');
-					}
-				});
-                    }
-		});
-                
-	//End Modal Form
-    
-    
 
 /* notification */
 $(function() {
