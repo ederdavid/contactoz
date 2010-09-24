@@ -12,8 +12,7 @@
 <%= javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery? -%>
 <script src="http://js.pusherapp.com/1.6/pusher.min.js" type="text/javascript"></script>
 
-		<script type="text/javascript">
-//            	 postBox = new PostBox(); 
+<script type="text/javascript">
                 
                 $('#changefollow').click(function() {
 
@@ -28,9 +27,12 @@
             $(this).html('<span> Seguir este post </span>');
 		}
 	});
+
+});
+
+</script>
+
 	
-            });
-        </script>
 </head>
 
 <body class="account">

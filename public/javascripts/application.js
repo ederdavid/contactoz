@@ -7,30 +7,31 @@ $(document).ajaxSend(function(event, request, settings) {
     }
 });
 
-
-
-$(document).ready(function(){
-
-$('#sharedialog div.tab-content').hide(); // Hide all divs
-$('#sharedialog div.tab-content:first').show();
-$('#sharedialog .social-media ul li:first').addClass('active');
+function wallPost(type) {
+    };
 
 $('#social-share ul li a').click(function(){ //When any link is clicked
 
+alert('thing');
+ 
+ 
+//$('.social-media ul li').removeClass('active'); // Remove active class from all links
+//$(this).parent().addClass('active'); //Set clicked link class to active
+ 
+ 
+//var currentTab = $(this).attr('href'); // Set variable currentTab to value of href attribute of clicked link
+//$('#sharedialog div.tab-content').hide(); // Hide all divs
 
-$('.social-media ul li').removeClass('active'); // Remove active class from all links
-$(this).parent().addClass('active'); //Set clicked link class to active
+//$(currentTab).show(); // Show div with id equal to variable currentTab
 
+//return false;
 
-var currentTab = $(this).attr('href'); // Set variable currentTab to value of href attribute of clicked link
-$('#sharedialog div.tab-content').hide(); // Hide all divs
-
-$(currentTab).show(); // Show div with id equal to variable currentTab
-return false;
 });
 
 
-});
+
+
+
 
 
 

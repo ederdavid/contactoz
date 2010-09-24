@@ -13,10 +13,8 @@
 
 		<script type="text/javascript">
             $(document).ready(function() {
-            	var postBox = new PostBox(); 
                 
                 $('#changefollow').click(function() {
-
         if ($(this).hasClass("follow")){
             $(this).removeClass("follow");
             $(this).addClass("unfollow");
@@ -24,11 +22,8 @@
 	<% if current_user %>
             var user = <%= current_user.id %>
             var feed = <%= @feed.id %>
-
-       followFeed(user,feed);
-       
+            followFeed(user,feed);       
         <% end %>
-
 		}
 		else {
             $(this).removeClass("unfollow");
@@ -36,6 +31,25 @@
             $(this).html('<span> Seguir este post </span>');
 		}
 	});
+
+$('#sharedialog div.tab-content').hide();
+$('#sharedialog div.tab-content:first').show();
+$('#sharedialog .social-media ul li:first').addClass('active');
+
+$('#social-share ul li a').click(function(){
+alert('this');
+$('#sharedialog ul li').removeClass('active');
+$(this).parent().addClass('active');
+var currentTab = $(this).attr('href');
+$('#sharedialog div.tab-content').hide();
+
+$(currentTab).show();
+
+return false;
+
+
+});
+
 	
             });
         </script>
