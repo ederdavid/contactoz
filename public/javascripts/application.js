@@ -22,17 +22,11 @@ function closeFacebox() {
     };
 
 
-function login_send(){
+function login_send(email,password){
 
-//var email = document.signinform.loginname.value;
+alert("email is " + email + " while password is " + password); 
 
-//var email= JQuery.("#email_login");
-
-//document.getElementById("email_login");
-var password = document.getElementById("password_login");
- 
-var data = 'user_session[email]='+email.value+'&user_session[password]='+password.value;
-alert(data);
+var data = 'user_session[email]='+email+'&user_session[password]='+password;
 
 $.ajax({
                                     url: '/user_sessions/create',
@@ -40,7 +34,7 @@ $.ajax({
                                     data: data,
                                     DataType: 'script',
                                     success: function(){
-                                                self.location= '/user_sessions/create'
+                                                self.location= ''
                                     },
                                     error: function(){
                                     }
@@ -501,7 +495,6 @@ PostBox.prototype.reset = function() {
 /* Runs when the page is ready */
 $(document).ready(function() {
 
-
 $("#morefeeds").click(function () {
  $("#hiddenfeed").fadeIn("slow");
 //document.getElementById("hiddenfeed").fadeIn("slow");
@@ -523,6 +516,8 @@ $("#connectext").submit();
 $("#oauth_provider_facebook").click(function () {
 $("#connectext").submit();
     });
+
+
 
 
 

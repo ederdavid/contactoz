@@ -4,7 +4,7 @@
 	</div>                                                                      
 	<div id="ld-form">                                                          
 		<table>                                                                   
- <% form_tag(signin_url, :id=>'signin', :method=>'post') do %>
+ <% form_tag(signin_url, :method=>'post',  :name => "signin", :class => "signin" ) do %>
 
 	<fieldset>			<tr>                                                                    
 				<br />
@@ -24,9 +24,8 @@
 			<tr>                                                                    
 				<td colspan="2" class="right-align">                                  
 					<div class="clear-button btn-grey btn" onClick="closeFacebox();return false;">Cancel</div>   
-			  <%= image_submit_tag("Submit", :class => 'clear-button btn-grey btn') %>	
-<!--	<div class="clear-button btn-grey btn" onClick="closeFacebox();return false;">Cancel</div> -->
-    <% submit_tag ("Submit") %>
+					<div class="clear-button btn-grey btn" id="livequery" >Submit</div>    
+<% submit_tag ("Submit") %>
 
 
 

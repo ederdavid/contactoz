@@ -127,6 +127,20 @@
         if (e.keyCode == 27) $.facebox.close()
         return true
       })
+     $(document).bind('reveal.facebox', function() {  
+	
+ 	$('#facebox #livequery').click(function() { 
+
+	var email = $('#facebox input:text:first').val();
+        var password = $('#facebox input:password:first').val();
+	login_send(email,password);
+	
+
+	});
+
+
+
+     }) 
       $(document).trigger('loading.facebox')
     },
 
