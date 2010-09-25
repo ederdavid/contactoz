@@ -2,6 +2,7 @@ ActionController::Routing::Routes.draw do |map|
  map.resources :topics 
  map.resource :account, :controller => "users"
  map.signup 'signup', :controller => :users, :action => :create, :conditions => {:method => :post}
+ map.signin 'signin', :controller => :user_sessions, :action => :create, :conditions => {:method => :post}
   
   map.resources :users
 

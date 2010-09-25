@@ -1,12 +1,14 @@
                                         
 // Always send the authenticity_token with ajax
 
+/*
 $(document).ajaxSend(function(event, request, settings) {
     if ( settings.type == 'post' ) {
         settings.data = (settings.data ? settings.data + "&" : "") + "authenticity_token=" + encodeURIComponent( AUTH_TOKEN );
     }
 });
 
+*/
 function wallPost(type) {
     };
 
@@ -14,20 +16,23 @@ function shareFeed(type) {
     jQuery.facebox({ div: '#sharedialog' });
     };
 
-function signin() {
-    jQuery.facebox({ div: '#logindialog' });
-    };
 
 function closeFacebox() {
  jQuery.facebox.close()
     };
 
+
 function login_send(){
 
-var email = document.getElementById("email_login");
+//var email = document.signinform.loginname.value;
+
+//var email= JQuery.("#email_login");
+
+//document.getElementById("email_login");
 var password = document.getElementById("password_login");
  
 var data = 'user_session[email]='+email.value+'&user_session[password]='+password.value;
+alert(data);
 
 $.ajax({
                                     url: '/user_sessions/create',
@@ -43,7 +48,6 @@ $.ajax({
 
         jQuery.facebox.close()
 };
-
 
 function followFeed(user,feed) {
 
@@ -516,6 +520,10 @@ $("#oauth_provider_facebook").click(function () {
 $("#connectext").submit();
     });
 
+$("#oauth_provider_facebook").click(function () {
+$("#connectext").submit();
+    });
+
 
 
 	$(function(){
@@ -611,6 +619,15 @@ $("a").click(function(event){
  
 
 $(document).ready(function($){
+
+
+     $(document).bind('reveal.facebox', function() {  
+         $('#signin').submit(function() {  
+             $.post(this.action, $(this).serialize(), null, "script");  
+             return false;  
+         });  
+     });
+
 
  $(function() {
                     $('#add_post').click(function() {

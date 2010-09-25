@@ -4,30 +4,36 @@
 	</div>                                                                      
 	<div id="ld-form">                                                          
 		<table>                                                                   
-<form id="signinform"> 
+ <% form_tag(signin_url, :id=>'signin', :method=>'post') do %>
+
 	<fieldset>			<tr>                                                                    
 				<br />
 <!-- <td colspan="2">Todos los campos son requeridos.</td> --> 
              			</tr>                                                                   
 			<tr>  
 				<td><label for="loginUsername">Username</label></td>                  
-				<td><input type="text"  ></input></td>    
+				<td>  <%= text_field_tag(:email, params[:email]) %>  <!-- <input type="text"  ></input> --></td>    
 			</tr>                                                                   
 			<tr>                                                                    
 				<td><label for="loginPassword">Password</label></td>                  
-				<td><input type="password"  ></input></td>
+				<td>   <%= password_field_tag(:password, params[:password]) %> <!-- <input type="password"  ></input>--> </td>
 			</tr>                                                                   
 			<tr>                                                                    
 				<td colspan="2"><a href="#">Forgot password?</a></td>                 
 			<tr>                                                                    
 			<tr>                                                                    
 				<td colspan="2" class="right-align">                                  
-					<div class="clear-button btn-grey btn" onClick="closeFacebox();return false;">Cancel</div>                 
-					<div class="clear-button btn-grey btn" onClick="jQuery.facebox.close();">Login</div>                  
+					<div class="clear-button btn-grey btn" onClick="closeFacebox();return false;">Cancel</div>   
+			  <%= image_submit_tag("Submit", :class => 'clear-button btn-grey btn') %>	
+<!--	<div class="clear-button btn-grey btn" onClick="closeFacebox();return false;">Cancel</div> -->
+    <% submit_tag ("Submit") %>
+
+
+
 				</td>
 			<tr>                                                                    
 
-</form>                  
+<% end %>
         </fieldset> 		
 
 
