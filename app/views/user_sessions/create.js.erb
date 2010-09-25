@@ -1,0 +1,15 @@
+var user_id = <%= current_user.id %>
+
+if (user_id){
+self.location= '/users/'+ user_id;
+
+}
+if (user_id == null)
+{
+//$('#facebox #logindialog').append("<p>contrasena y usaurio no son correctos</p>");
+self.location= '/actions/';
+
+//alert('bad password');
+}
+
+

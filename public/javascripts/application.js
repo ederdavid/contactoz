@@ -8,6 +8,10 @@ $(document).ajaxSend(function(event, request, settings) {
     }
 });
 
+jQuery.ajaxSetup({ 
+  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+})
+
 */
 function wallPost(type) {
     };
@@ -24,20 +28,24 @@ function closeFacebox() {
 
 function login_send(email,password){
 
+$.ajaxSettings.accepts.html = $.ajaxSettings.accepts.script;
+
 var data = 'user_session[email]='+email+'&user_session[password]='+password;
 $.ajax({
-                                    url: '/user_sessions/create',
+                                    url: '/user_sessions/create.js',
                                     type: 'POST',
                                     data: data,
-                                    DataType: 'script',
-                                    success: function(){
-                                                self.location= ''
-                                    },
+                                    dataType: 'script',
+                                    //success: function(){
+                                    //            self.location= '/users'
+                                    //},
                                     error: function(){
                                     }
                                   });
 
-        jQuery.facebox.close()
+jQuery.facebox.close();
+
+
 };
 
 function followFeed(user,feed) {

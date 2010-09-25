@@ -9,15 +9,15 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
 
     if @user_session.save
-    	#@user_session.save do |result|
-    	#if result
-    	#@user_session.save
-
-      flash[:notice] = "Successfully logged in."
-      redirect_to account_url
+      flash[:notice] = "Bienvenido" 
     else
-      render :action => 'index'
+       flash[:notice] = "Contrasena y usaurio no son correctos"
     end
+
+       respond_to do |format|
+                        format.html { account_url }
+                        format.js 
+       end
   end
   
   def destroy
