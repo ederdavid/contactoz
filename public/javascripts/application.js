@@ -24,10 +24,7 @@ function closeFacebox() {
 
 function login_send(email,password){
 
-alert("email is " + email + " while password is " + password); 
-
 var data = 'user_session[email]='+email+'&user_session[password]='+password;
-
 $.ajax({
                                     url: '/user_sessions/create',
                                     type: 'POST',
@@ -45,7 +42,6 @@ $.ajax({
 
 function followFeed(user,feed) {
 
-//userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
 data = "user_id=" + user + "&feed_id= " + feed;
 
  $.ajax({
@@ -83,9 +79,6 @@ while(email[j]){
 var url_email = url_email + '&email_' + j + '=' + email[j];
 j = 1+j;
 }
-
-//userdata="user[firstname]=" + firstname + "&user[lastname]=" + lastname + "&user[email]=" + email + "&user[password]=" + password;
-//data = "user_id=" + user + "&feed_id= " + feed;
 
  $.ajax({
                                     url: '/users/invite',
