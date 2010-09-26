@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
 
   def detect_browser
 
+    #agent detection takes precedence
     agent = request.env["HTTP_USER_AGENT"].downcase
     MOBILE_BROWSERS.each do |m|
       return mobile_application() if agent.match(m)
