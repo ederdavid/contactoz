@@ -16,9 +16,6 @@ jQuery.ajaxSetup({
 function wallPost(type) {
     };
 
-function shareFeed(type) {
-    jQuery.facebox({ div: '#sharedialog' });
-    };
 
 
 function closeFacebox() {

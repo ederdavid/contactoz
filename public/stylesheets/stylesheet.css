@@ -2,6 +2,9 @@
     width: 350px;  
 }
 
+.oauth_provider{
+cursor: pointer; 
+}
 
 
 /* CSS for login dialog */

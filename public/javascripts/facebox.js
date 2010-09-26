@@ -138,6 +138,23 @@
 
 	});
 
+	//setup facebox tabs
+	$('#sharedialog div.tab-content').hide();
+	$('#facebox div.tab-content:first').show();
+	$('#sharedialog .social-media ul li:first').addClass('active');
+
+	//listener for click
+	$('#facebox ul li a').click(function(){
+	$('#facebox #sharedialog ul li').removeClass('active');
+	$(this).parent().addClass('active');
+	var currentTab = $(this).attr('href');
+	$('#facebox div.tab-content').hide();
+        var element = "#facebox " + currentTab;
+	$(element).show();
+
+	return false;
+
+	});
 
 
      }) 

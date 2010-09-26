@@ -18,8 +18,8 @@
 			 			<%= hidden_field_tag('authentication_type', current_user.nil? ? :user : :session) %>
 						<tr>
                    				<td>
- 						<a href="#"><%= image_tag("twitter.gif", :alt=>"Twitter", :width=>"33", :height=>"33") %> 
-						<%= radio_button_tag(:oauth_provider, "twitter", false) %></a>
+ 						<%= image_tag("twitter.gif", :alt=>"Twitter", :width=>"33", :height=>"33") %> 
+						<%= radio_button_tag(:oauth_provider, "twitter", false) %>
 						</td>
                                                 <td>&nbsp;</td>
 						<td>
