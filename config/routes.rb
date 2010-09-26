@@ -9,11 +9,9 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'users/:action.:format', :controller => 'users', :action => /[a-z_]+/i
   map.connect 'homes/:action', :controller => 'homes', :action => /[a-z_]+/i
  
-#  map.resources :users 
 
   map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
   map.connect 'users.:format', :controller => 'users', :action => 'apiSearch'
-
 
   map.connect 'companies.:format', :controller => 'companies', :action => 'apiSearch'
   map.connect 'contacts.:format', :controller => 'contacts', :action => 'apiSearch'
@@ -26,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :displays
   map.resources :products
 
+  map.connect 'homes/:action', :controller => 'homes', :action => /[a-z_]+/i
   map.connect 'services/:action', :controller => 'services', :action => /[a-z_]+/i
   map.connect 'contacts/:action', :controller => 'contacts', :action => /[a-z_]+/i
   map.connect 'contact_saveds/:action', :controller => 'contact_saveds', :action => /[a-z_]+/i

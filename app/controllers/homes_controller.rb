@@ -1,7 +1,13 @@
 class HomesController < ApplicationController
-layout 'application'
+ layout :detect_browser
+
+
     set_tab :home
 
+def set_layout
+ session["layout"] = (params[:mobile] == "1" ? "mobile" : "normal")
+ redirect_to :action => "index"
+end
 
   def dataUpdated
     @Company = Company.find(:first, :order => "updated_at DESC")

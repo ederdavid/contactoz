@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  before_filter :prepare_for_mobile
+  layout :detect_browser
+
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
@@ -36,23 +37,30 @@ class ApplicationController < ActionController::Base
   
   private  
 
-MOBILE_USER_AGENTS =  'palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|mobile'
+  MOBILE_BROWSERS = ["android", "ipod", "opera mini", "blackberry", "palm","hiptop","avantgo","plucker", "xiino","blazer","elaine", "windows ce; ppc;", "windows ce; smartphone;","windows ce; iemobile", "up.browser","up.link","mmp","symbian","smartphone", "midp","wap","vodafone","o2","pocket","kindle", "mobile","pda","psp","treo"]
 
-def mobile_device?
-  if session[:mobile_param]
-    session[:mobile_param] == "1"
-  else
-   #request.user_agent =~ /Mobile|webOS/
-   request.env['HTTP_USER_AGENT'].downcase =~ Regexp.new(MOBILE_USER_AGENTS)
+  def detect_browser
+    layout = selected_layout
+    return layout if layout
+    agent = request.env["HTTP_USER_AGENT"].downcase
+    MOBILE_BROWSERS.each do |m|
+      return mobile_application() if agent.match(m)
+    end
+    return "application"
   end
-end
-helper_method :mobile_device?
 
-def prepare_for_mobile
-  session[:mobile_param] = params[:mobile] if params[:mobile]
-  request.format = :mobile if mobile_device?
-end
+ def mobile_layout 
+    return "mobile_application" 
+ end
 
+  def selected_layout
+    session.inspect # force session load
+    if session.has_key? "layout"
+      return (session["layout"] == "mobile") ? 
+        "mobile_application" : "application"
+    end
+    return nil
+  end
 
   def current_user_session  
     return @current_user_session if defined?(@current_user_session)  

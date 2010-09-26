@@ -19,7 +19,7 @@
 		    <li id ="log-in2" onclick=><a href="#" onClick="jQuery.facebox({ div: '#logindialog' });">Entrar</a></li>         
 	         <% end %>
 		   <li><span class="sep">|</span></li>
-	          <li> <span class="mobile"><%= link_to "Movil", :mobile => 1 %></span></li>
+	          <li> <span class="mobile"><%= link_to "Movil",  :controller => "homes", :action => "set_layout", :mobile => "1" %></span></li>
 	       </ul>
             </div>
   </div>
