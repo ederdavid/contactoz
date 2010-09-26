@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  has_mobile_fu
 
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
@@ -36,9 +35,29 @@ class ApplicationController < ActionController::Base
   
   private  
 
+MOBILE_USER_AGENTS =  'palm|blackberry|nokia|phone|midp|mobi|symbian|chtml|ericsson|minimo|' +
+                          'audiovox|motorola|samsung|telit|upg1|windows ce|ucweb|astel|plucker|' +
+                          'x320|x240|j2me|sgh|portable|sprint|docomo|kddi|softbank|android|mmp|' +
+                          'pdxgw|netfront|xiino|vodafone|portalmmm|sagem|mot-|sie-|ipod|up\\.b|' +
+                          'webos|amoi|novarra|cdm|alcatel|pocket|ipad|iphone|mobileexplorer|' +
+                          'mobile'
+def mobile_device?
+  if session[:mobile_param]
+    session[:mobile_param] == "1"
+  else
+   #request.user_agent =~ /Mobile|webOS/
+   request.user_agent.to_s.downcase =~ Regexp.new(MOBILE_USER_AGENTS)
+  end
+end
+helper_method :mobile_device?
+
+def prepare_for_mobile
+  session[:mobile_param] = params[:mobile] if params[:mobile]
+  request.format = :mobile if mobile_device?
+end
 
 
-def current_user_session  
+  def current_user_session  
     return @current_user_session if defined?(@current_user_session)  
     @current_user_session = UserSession.find
   end  

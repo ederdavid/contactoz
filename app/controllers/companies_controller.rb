@@ -1,5 +1,7 @@
 class CompaniesController < ApplicationController
-    layout 'application'
+
+		layout 'application'
+
     set_tab :companies
     $global_page = 20
 
