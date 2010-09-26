@@ -46,7 +46,7 @@ def mobile_device?
     session[:mobile_param] == "1"
   else
    #request.user_agent =~ /Mobile|webOS/
-   request.user_agent.to_s.downcase =~ Regexp.new(MOBILE_USER_AGENTS)
+   request.env['HTTP_USER_AGENT'].to_s.downcase =~ Regexp.new(MOBILE_USER_AGENTS)
   end
 end
 helper_method :mobile_device?
