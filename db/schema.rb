@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100928204222) do
+ActiveRecord::Schema.define(:version => 20100928210753) do
 
   create_table "access_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -334,6 +334,7 @@ ActiveRecord::Schema.define(:version => 20100928204222) do
     t.string   "specific"
     t.string   "company"
     t.integer  "type"
+    t.text     "related"
   end
 
   create_table "user_session", :force => true do |t|

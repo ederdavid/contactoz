@@ -7,4 +7,12 @@ class Topic < ActiveRecord::Base
         @users_following = User.with_topics.find(:all, :conditions => ['id in (select distinct user_id from categorizations where topic_id = ?)', self])
   end
 
+
+   def self.update_specific
+       @topics = Topic.find(:all, :conditions => ["specific LIKE ?", "%2%"])
+       @topics.each do |p|
+       		p.update_attributes(:type=>2)
+       end
+  end
+
 end
