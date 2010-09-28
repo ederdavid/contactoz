@@ -11,7 +11,8 @@ class Topic < ActiveRecord::Base
    def self.update_specific
        @topics = Topic.find(:all, :conditions => ["specific LIKE ?", "%2%"])
        @topics.each do |p|
-       		p.update_attributes(:type=>2)
+       		p.type= 2
+		p.save
        end
   end
 
