@@ -9,9 +9,9 @@ class Topic < ActiveRecord::Base
 
 
    def self.update_specific
-       @topics = Topic.find(:all, :conditions => ["specific LIKE ?", "%2%"])
+       @topics = Topic.find(:all, :conditions => ["specific LIKE ?", "%1%"])
        @topics.each do |p|
-       		p.type= 2
+       		p.specific_bool= 1
 		p.save
        end
   end
