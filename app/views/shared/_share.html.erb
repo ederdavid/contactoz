@@ -1,38 +1,64 @@
-
-
 <div id="sharedialog" style="display:none;">
 
-       <h4>Compartir</h4>
-	 <div class="social-media" id="social-share">
-	    		<ul> 
-			<li><a href="#twitterlink" class="twitter">Twitter</a></li> 
-			<li><a href="#emaillink" class="email">Correo</a></li> 
-			<li><a href="#in_sociallink" class="in_social" >Linked In</a></li> 
-			<li><a href="#facebooklink"  class="facebook">Facebook</a></li>
-			</ul> 
-	 </div> 
-			<div id="twitterlink"  class="tab-content">
-                        <p><label for="post-desc">Tweet as: </label><br /><textarea name="post-desc" id="post-desc"> <%= @feed.name %> :  <%= @feed.description %> </textarea></p>
-			<div id="pd-footer" align="right"><div id="buy" style="align:right;" onclick="wallPost('twitter');" class="clear-button btn-grey btn post-wide">Postar</div></div>
-			</div>
+  <h4>Compartir</h4>
+  
+  <div class="social-media" id="social-share">
+    <ul> 
+      <li><a href="#twitterlink" class="twitter">Twitter</a></li> 
+      <li><a href="#emaillink" class="email">Correo</a></li> 
+      <li><a href="#in_sociallink" class="in_social" >Linked In</a></li> 
+      <li><a href="#facebooklink"  class="facebook">Facebook</a></li>
+    </ul> 
+  </div> 
+  
+  <div id="twitterlink"  class="tab-content">
+    <p>
+      <label for="post-desc">Tweet as: </label>
+      <br />
+      <textarea name="post-desc">This is just a test!</textarea>
+    </p>
+    
+    <div id="pd-footer" align="right">
+      <div id="buy" onclick="wallPost('twitter')" style="align:right;" class="clear-button btn-grey btn post-wide">Postar</div>
+    </div>
+  </div>
 
-                        <div id="emaillink"  class="tab-content">
-                        <p><label for="post-desc">To: </label><input type="text" name="sendto" /><br />
-			<label for="post-desc">Correo Description:</label> <textarea name="post-desc" id="post-desc"><%= @feed.name %> :  <%= @feed.description %> </textarea></p>
-			<div id="pd-footer" align="right"><div id="buy" onclick="wallPost('email');" class="clear-button btn-grey btn post-wide">Postar </div></div>
-                        </div>
+  <div id="emaillink"  class="tab-content">
+    <p>
+      <label for="post-desc">To: </label><input type="text" name="sendto" /><br />
+      <label for="post-desc">Correo Description:</label> 
+      <textarea name="post-desc" id="post-desc">
+        <%= @feed.name %> :  <%= @feed.description %> 
+      </textarea>
+    </p>
+    <div id="pd-footer" align="right">
+      <div id="buy" onclick="wallPost('email');" class="clear-button btn-grey btn post-wide">
+      Postar 
+      </div>
+    </div>
+  </div>
 
- 			<div id="in_sociallink"  class="tab-content">
-                        <p><label for="post-desc">Mensaje Al Linkedin :</label><textarea name="post-desc" id="post-desc"> <%= @feed.name %> : <%= @feed.description %></textarea></p>
-			<div id="pd-footer" align="right"><div id="buy" onclick="wallPost('in_social');" class="clear-button btn-grey btn post-wide">Postar</div> </div>
-                        </div>
+  <div id="in_sociallink"  class="tab-content">
+    <p>
+      <label for="post-desc">Mensaje Al Linkedin :</label>
+      <textarea name="post-desc" id="post-desc"> <%= @feed.name %> : <%= @feed.description %></textarea>
+    </p>
+    <div id="pd-footer" align="right">
+      <div id="buy" onclick="wallPost('in_social');" class="clear-button btn-grey btn post-wide">Postar</div> 
+    </div>
+  </div>
 
-                        <div id="facebooklink"  class="tab-content">
-                        <p><label for="post-desc">Mensaje al Facebook:</label><textarea name="post-desc" id="post-desc"> <%= @feed.name %> : <%= @feed.description %> </textarea></p>
-                        <div id="pd-footer" align="right"><div id="buy" onclick="wallPost('facebook');" class="clear-button btn-grey btn post-wide">Postar</div></div>
-                        </div>
+  <div id="facebooklink"  class="tab-content">
+    <p>
+      <label for="post-desc">Mensaje al Facebook:</label>
+      <textarea name="post-desc" id="post-desc"> <%= @feed.name %> : <%= @feed.description %> </textarea>
+    </p>
+    <div id="pd-footer" align="right">
+      <div id="buy" onclick="wallPost('facebook');" class="clear-button btn-grey btn post-wide">Postar</div>
+    </div>
+  </div>
 
- </div>
+</div>
 
 
 

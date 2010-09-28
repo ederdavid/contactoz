@@ -42,7 +42,8 @@ Rails::Initializer.run do |config|
   config.gem "oauth", :version => "0.3.5"
   config.gem "oauth2"
   config.gem "foreverman-authlogic-connect", :lib => 'authlogic-connect'
-
+  config.gem "twitter_oauth"
+  
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
   config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
   config.gem "acts-as-taggable-on", :source => "http://gemcutter.org", :version => '2.0.6'
