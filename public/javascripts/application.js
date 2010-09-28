@@ -14,7 +14,9 @@ jQuery.ajaxSetup({
 
 */
 function wallPost(type) {
-    };
+	var msg = $("#" + type + "link textarea").val();
+	$.post('/wall_posts', {social_type: type, msg: msg}, null, 'javascript');
+};
 
 
 

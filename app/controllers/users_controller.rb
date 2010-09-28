@@ -226,6 +226,11 @@ skip_before_filter :verify_authenticity_token
           @user.deliver_activation_instructions!	
           redirect_to actions_url and return
         else
+          session[:current_user] = @user
+          # seesion = UserSession.find
+          #        puts seesion
+          #        puts seesion.record
+          #        puts result
           redirect_to user_path(@user) and return
         end
 
