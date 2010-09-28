@@ -15,4 +15,5 @@ oauth2 -v 0.0.13
 ruby-openid
 rack-openid -v 0.2.1
 foreverman-authlogic-connect
+twitter_oauth
 
