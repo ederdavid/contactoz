@@ -8,7 +8,7 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 
 require 'tasks/rails'
-
+require 'sunspot/rails/tasks'
 begin
   require 'delayed_job'
   require 'delayed/tasks'
