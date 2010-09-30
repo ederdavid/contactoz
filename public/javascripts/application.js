@@ -1,6 +1,22 @@
                                         
 // Always send the authenticity_token with ajax
 
+/* wall posting */
+
+function wallTwitter(){
+
+var name = $('#feed-name').html();
+var description = $('#feed-description').html();
+if (description.length > 140)
+{
+description = description.substring(0,130) + '...';
+}
+jQuery.facebox.close()
+}
+
+
+/* wall posting */
+
 /*
 $(document).ajaxSend(function(event, request, settings) {
     if ( settings.type == 'post' ) {
