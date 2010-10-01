@@ -12,6 +12,8 @@ if (description.length > 140)
 description = description.substring(0,130) + '...';
 }
 jQuery.facebox.close()
+//send to server
+
 }
 
 

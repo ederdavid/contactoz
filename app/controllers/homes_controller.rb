@@ -42,7 +42,7 @@ end
   # GET /homes
   # GET /homes.xml
   def index
-    #@homes = Home.all
+    @companies = Company.all
 
     respond_to do |format|
       format.html # index.html.erb
