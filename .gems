@@ -17,4 +17,5 @@ rack-openid -v 0.2.1
 foreverman-authlogic-connect
 twitter_oauth
 sunspot_rails
+text -v 0.2.0
 levenshtein -v 0.2.0
