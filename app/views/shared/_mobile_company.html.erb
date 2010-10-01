@@ -1,0 +1,24 @@
+
+        <table class="results">
+                        <thead>
+                                <tr>
+                                        <td> Nombre </td><td>Cuidad, Estado</td>
+
+                                </tr>
+                        </thead>
+<% i = 0 %>
+  <% for company in @mobile %>
+
+  <% if i%2==0 %>
+                      <tr class="entry even"><td><%= company.company_name %> </td><td> <%= company.company_state %> </td></tr>
+  <% else %>
+<tr class="entry odd"><td><%= company.company_name %></td><td> <%= company.company_state %> </td></tr>
+  <% end %>
+
+  <% i = i+1 %>
+  <% end %>    
+          </table>
+
+
+
+

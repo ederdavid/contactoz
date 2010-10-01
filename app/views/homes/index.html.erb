@@ -1,20 +1,14 @@
-	<table class="results">
-			<thead>
-				<tr>
-					<td>Name</td><td>City/State</td>
+<% @mobile %>
+<% if params[:servicios] %>
+<%= render :partial => "shared/mobile_service", :object => @mobile %>
+<% end %>
 
-				</tr>
-			</thead>
-                                		
-			<tr class="entry even"><td>Lorem Ipsum</td><td>Lorem Ipsum</td></tr>
-		<tr class="entry odd"><td>Lorem Ipsum</td><td>Lorem Ipsum</td></tr>
-			<tr class="entry even"><td>Lorem Ipsum</td><td>Lorem Ipsum</td></tr>
-			<tr class="entry odd"><td>Lorem Ipsum</td><td>Lorem Ipsum</td></tr>
+<% if params[:productos] %>
+<%= render :partial => "shared/mobile_product", :object => @mobile %>
+<% end %>
 
-			<tr class="entry even"><td>Lorem Ipsum</td><td>Lorem Ipsum</td></tr>
-			<tr class="entry odd"><td>Lorem Ipsum</td><td>Lorem Ipsum</td></tr>
-			<tr class="entry even"><td>Lorem Ipsum</td><td>Lorem Ipsum</td></tr>
-			<tr class="entry odd"><td>Lorem Ipsum</td><td>Lorem Ipsum</td></tr>
-				
-		</table>
+<% if params[:productos].nil? && params[:servicios].nil?  %>
+<%= render :partial => "shared/mobile_company", :object => @mobile %>
+<% end %>
+
 
