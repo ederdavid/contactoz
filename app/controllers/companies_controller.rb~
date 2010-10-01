@@ -1,9 +1,17 @@
 class CompaniesController < ApplicationController
-    layout 'application'
+
+		layout 'application'
+
     set_tab :companies
     $global_page = 20
 
+
 require 'fastercsv'
+
+def set_layout
+ session["layout"] = (params[:mobile] == "1" ? "mobile" : "normal")
+ redirect_to :action => "index"
+end
 
 def export_to_csv
   if params[:all]
@@ -126,7 +134,7 @@ def sortByName
     begin
     @company = Company.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-    return 
+    return render :xml => "<WARNING>there is not a company for that id</WARNING>"
     end
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
