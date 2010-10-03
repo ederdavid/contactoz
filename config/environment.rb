@@ -44,6 +44,10 @@ Rails::Initializer.run do |config|
   config.gem "foreverman-authlogic-connect", :lib => 'authlogic-connect'
   config.gem "twitter_oauth"
   config.gem 'sunspot_rails', :version => '~> 1.1', :lib => 'sunspot/rails'
+  config.gem 'text'
+  config.gem 'levenshtein'
+
+
 
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
   config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
