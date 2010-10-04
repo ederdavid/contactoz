@@ -1,6 +1,7 @@
 class LandingsController < ApplicationController
-   layout 'landings'
-
+ 
+  layout 'landings'
+#change later 
   # GET /landings
   # GET /landings.xml
   def index
