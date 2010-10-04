@@ -1,0 +1,284 @@
+body {
+background:url(../images/landing/back.png) no-repeat top center #5d2121;
+text-align:center;
+font-family:Helvetica, Arial, 'Sans Serif';
+font-size:13px;
+display:block;
+height:100%;
+color:#FFF;
+}
+
+a {
+color: #FFF;
+text-decoration: none;
+}
+
+a:hover {
+text-decoration: underline;
+}
+
+h1 {
+font-size:13px;
+font-weight:bold;
+line-height:22px;
+margin:0 0 10px 0;
+}
+
+h2 {
+font-size:20px;
+font-weight:bold;
+margin:0 0 10px 0;
+}
+
+h3 {
+font-size:13px;
+font-weight:bold;
+margin:0 0 10px 0;
+}
+
+h4 {
+font-size:12px;
+font-weight:normal;
+margin:0 0 10px 0;
+}
+
+p, ul, ol {
+line-height:22px;
+margin:0 0 10px 0;
+}
+
+small {
+font-size:11px;
+display:block;
+}
+
+.clear {
+clear:both;
+}
+
+
+#container {
+margin:-230px -336px;
+position:absolute;
+display:block;
+height:460px;
+width:672px;
+top:50%;
+left:50%;
+}
+
+#page {
+width: 672px;
+height: 392px;
+text-align: left;
+display:block;
+background: url(../images/landing/container.png) no-repeat bottom left;
+}
+
+#page #status {
+height:32px;
+display:block;
+font-size:10px;
+width:610px;
+margin:0 0 0 23px;
+position:relative;
+}
+
+#status p {
+width:100px;
+margin:0px;
+font-size:10px;
+color: #a38181;
+position:absolute;
+top:0px;
+margin-left:-30px;
+left:0px;
+}
+
+#status .arrow {
+background:url(../images/landing/statusarrow.png) no-repeat;
+width:14px;
+height:12px;
+display:block;
+bottom:0px;
+left:0%;
+position:absolute;
+}
+
+#content {
+display:block;
+height:210px;
+padding:30px 40px 0 50px;
+}
+
+#content .left {
+width:310px;
+display:block;
+height:200px;
+float:left;
+}
+
+.scroller {
+display:block;
+width:300px;
+height:200px;
+padding:0 10px 0 0;
+overflow: auto;
+}
+
+.jScrollPaneContainer {
+position: relative;
+overflow: hidden;
+z-index: 1;
+}
+
+.jScrollPaneTrack {
+position: absolute;
+cursor: pointer;
+right: 0;
+top: 0;
+}
+
+.jScrollPaneDrag {
+position: absolute;
+background: #8d6262;
+cursor: pointer;
+overflow: hidden;
+}
+
+.jScrollPaneDrag:hover {
+background: #FFF;
+}
+
+.jScrollPaneDragTop {
+position: absolute;
+top: 0;
+left: 0;
+overflow: hidden;
+}
+
+.jScrollPaneDragBottom {
+position: absolute;
+bottom: 0;
+left: 0;
+overflow: hidden;
+}
+
+#content .left p {
+color: #c1a6a6;
+}
+
+#content .right {
+display:block;
+width:240px;
+float:right;
+}
+
+#content .twitter {
+background: url(../images/landing/twitterback.png) no-repeat;
+padding:20px 40px 10px 35px;
+position:relative;
+}
+
+#content .twitter img {
+position:absolute;
+top:15px;
+left:100px;
+}
+
+#content .twitter ul {
+font-size:13px;
+height:140px;
+overflow: hidden;
+line-height:18px;
+margin:0px;
+}
+
+#content .twitter ul li {
+display:block;
+margin:10px 0  0  0;
+}
+
+#content .twitter ul li span { font-size:10px; color: #c7a6a6; }
+
+#content .twitterbottom {
+background: url(../images/landing/twitterback.png) no-repeat bottom left;
+height:32px;
+text-align: right;
+padding:0 20px 0 0;
+}
+
+#content .twitterbottom a {
+display: block;
+color: #c7a6a6;
+float:right;
+background: url(../images/landing/twitter.png) no-repeat top right;
+padding:17px 40px 0  0;
+height:25px;
+font-size:10px;
+}
+
+#content .twitterbottom a:hover { color: #FFF; text-decoration: none; }
+
+#emailform {
+display:block;
+background: url(../images/landing/textbox.png) no-repeat;
+width:555px;
+height:96px;
+clear:both;
+margin:0 0 0 28px;
+padding:19px 27px 0 35px;
+}
+
+#emailform input {
+display:block;
+float:left;
+border:0;
+background: none transparent;
+font-size:20px;
+color: #FFF;
+line-height:20px;
+padding:20px 0 0 0;
+width:425px;
+outline:none;
+}
+
+#emailform input.submit {
+display:block;
+float:right;
+font-size:14px;
+font-weight: bold;
+border:0;
+background: url(../images/landing/submit.png) no-repeat transparent;
+color: #FFF;
+width:114px;
+height:49px;
+margin:0px;
+padding:0px;
+outline:none;
+}
+
+#footer {
+text-align: center;
+width: 672px;
+display:block;
+}
+
+#footer ul.social {
+margin:0px;
+}
+
+#footer ul.social li {
+display:inline;
+padding:0 7px;
+}
+
+#footer p {
+font-size:10px;
+color: #7d4d4d;
+margin:0px;
+}
+
+#footer p a {
+color: #7d4d4d;
+}
