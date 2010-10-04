@@ -86,7 +86,7 @@
 <% i = 0 %>
 <% for feed in @feed %>
 <% @feed_cat = Categorization.find(:all, :conditions=> ['feed_id = ?', feed.id]) %> 
-<% if i.eql? 4  %>
+<% if i.eql? 6  %>
 <div id="hiddenfeed"  style="display:none">
 <% end %> 
 

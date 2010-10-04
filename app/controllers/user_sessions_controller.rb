@@ -14,6 +14,7 @@ class UserSessionsController < ApplicationController
        flash[:notice] = "Contrasena y usaurio no son correctos"
     end
 
+
        respond_to do |format|
                         format.html { account_url }
                         format.js 

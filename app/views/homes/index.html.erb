@@ -1,3 +1,14 @@
+  <div class="search">
+                        <div class="search-box">
+
+                                <!-- using type search fixes iphone style problem (used by google) -->
+                                <input type="search"></input>
+                                <button class="clear"></button>
+                                <button class="submit"></button>
+                        </div>
+                </div>
+
+
 <% @mobile %>
 <% if params[:servicios] %>
 <%= render :partial => "shared/mobile_service", :object => @mobile %>
@@ -11,4 +22,4 @@
 <%= render :partial => "shared/mobile_company", :object => @mobile %>
 <% end %>
 
-
+<button class="more">Mas</button>

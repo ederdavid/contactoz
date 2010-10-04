@@ -22,34 +22,18 @@
 		<div class="header">
 <%= image_tag("logo_Kontacto.png", :id=>"buslogo", :alt=>"Kontactoz") %>
 
-			<!-- <img src="./images/logo_kontacto.png"/> -->		<span class="title">Kontactoz</span>
+		<span class="title">Kontactoz</span>
 			
-			<span class="login"><a href="#"> Entrar </a></span>
+			<span class="login"> <%= link_to 'Entrar', entrar_mobile_url %> </span>
 			
 		</div>
 		
-		<div class="search">
-			<div class="search-box">
-
-				<!-- using type search fixes iphone style problem (used by google) -->
-				<input type="search"></input>
-			 	<button class="clear"></button>
-				<button class="submit"></button>
-			</div>
-		</div>
 		
-		<ul class="filters">
-			<li class="selected"><a href="#">Empresas</a></li>
-
-			<li><a href="#">Servicios </a></li>
-			<li><a href="#">Productos</a></li>
-		</ul>
 		
 		<%= yield %>
 	
 
 		
-		<button class="more">Mas</button>
 		
 		<div class="footer">
 			<div class="content">
@@ -61,7 +45,7 @@
 					 <a href="#">Sobre Nosotros</a>
 
 				</span>	
-				<a href="#"> Pagina Completa </a>
+		<%= link_to "Pagina Completa",  :controller => "companies", :action => "index" %>
 			</div>
 		</div>
 	</body>

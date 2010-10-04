@@ -1,0 +1,18 @@
+<ul class="filters">
+			<li class="selected"><a href="#">Entrar</a></li>
+
+			<li> <%= link_to 'Registrarse', new_mobile_url %> </li>
+</ul>
+
+
+ <% form_tag(mobile_session_url, :method=>'post',  :name => "signin", :class => "login-signup" ) do %>
+
+	<label for="username"> Correo Electrónico </label>
+<%= text_field_tag(:email, params[:email], :class => "field") %> 
+	<label for="password"> Confirmación de Contraseña </label>
+<%= password_field_tag(:password, params[:password], :class => "field") %>
+	
+	<button>Login</button>
+
+<% end %>
+

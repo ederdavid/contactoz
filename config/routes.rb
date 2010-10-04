@@ -1,15 +1,22 @@
 ActionController::Routing::Routes.draw do |map|
+
+ map.resources :companies
  map.resources :topics 
  map.resources :wall_posts, :only => [:create]
  map.resource :account, :controller => "users"
  map.signup 'signup', :controller => :users, :action => :create, :conditions => {:method => :post}
  map.signin 'signin', :controller => :user_sessions, :action => :create, :conditions => {:method => :post}
+
+ map.connect 'homes/:action', :controller => 'homes', :action => /[a-z_]+/i
+ map.entrar_mobile 'entrar_mobile', :controller => :homes, :action => :login
+ map.new_mobile 'new_mobile', :controller => :homes, :action => :new
+ map.mobile_session 'mobile_session', :controller => :homes, :action => :mobile_session
+
   
   map.resources :users
+  map.resources :homes
 
   map.connect 'users/:action.:format', :controller => 'users', :action => /[a-z_]+/i
-  map.connect 'homes/:action', :controller => 'homes', :action => /[a-z_]+/i
- 
 
   map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
   map.connect 'users.:format', :controller => 'users', :action => 'apiSearch'
@@ -22,10 +29,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :posts
   map.resources :application
   map.resources :display_companies
-  map.resources :displays
   map.resources :products
 
-  map.connect 'homes/:action', :controller => 'homes', :action => /[a-z_]+/i
   map.connect 'services/:action', :controller => 'services', :action => /[a-z_]+/i
   map.connect 'contacts/:action', :controller => 'contacts', :action => /[a-z_]+/i
   map.connect 'contact_saveds/:action', :controller => 'contact_saveds', :action => /[a-z_]+/i
