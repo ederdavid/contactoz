@@ -46,7 +46,7 @@ Rails::Initializer.run do |config|
   config.gem 'sunspot_rails', :version => '~> 1.1', :lib => 'sunspot/rails'
   config.gem 'text'
   config.gem 'levenshtein'
-
+  config.gem "pauldix-feedzirra", :lib =>"feedzirra", :source => "http://gems.github.com"
 
 
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'

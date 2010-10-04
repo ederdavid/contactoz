@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101004073714) do
+ActiveRecord::Schema.define(:version => 20101004192252) do
 
   create_table "access_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -210,6 +210,16 @@ ActiveRecord::Schema.define(:version => 20101004073714) do
   end
 
   create_table "displays", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feed_entries", :force => true do |t|
+    t.string   "name"
+    t.text     "summary"
+    t.string   "url"
+    t.datetime "published_at"
+    t.string   "guid"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
