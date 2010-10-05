@@ -47,7 +47,8 @@ Rails::Initializer.run do |config|
   config.gem 'text'
   config.gem 'levenshtein'
   config.gem "feedzirra", :lib =>"feedzirra", :source => "http://gems.github.com"
-
+  config.gem "scrapi"
+  config.gem "nokogiri"
 
   config.gem 'will_paginate', :version => '~> 2.3.11', :source => 'http://gemcutter.org'
   config.gem "tabs_on_rails", :source => "http://gemcutter.org" 
