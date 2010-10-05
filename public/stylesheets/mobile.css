@@ -57,7 +57,7 @@ body {
 div.header {
 	padding: 0 3%;
 	height:40px;
-	background-image:url("../images/mobile/header-strip.png");
+	background-image:url(../images/mobile/header-strip.png);
 }
 
 div.header img {
@@ -87,7 +87,7 @@ div.header span.login a {
 
 div.search {
 	height:50px;
-	background-image: url("../images/mobile/search-strip.png");
+	background-image: url(../images/mobile/search-strip.png);
 	padding:0 3%;
 }
 
@@ -111,7 +111,7 @@ div.search button.clear {
 	padding-right:10px;
 	right:36px;
 	bottom:3px;
-	background: url("../images/mobile/search-clear.png") no-repeat;
+	background: url(../images/mobile/search-clear.png) no-repeat;
 }
 
 div.search button.submit {
@@ -122,7 +122,7 @@ div.search button.submit {
 	padding-right:10px;
 	right:2px;
 	bottom:3px;
-	background: url("../images/mobile/search-button.png") no-repeat white;
+	background: url(../images/mobile/search-button.png) no-repeat white;
 }
 
 ul.filters li a {
@@ -170,7 +170,7 @@ table.results tr.entry td {
 }
 
 table.results thead {
-	background:url("../images/mobile/results-header.png") repeat-x;
+	background:url(../images/mobile/results-header.png) repeat-x;
 	color:#fff;
 	font-weight:bold;
 }
@@ -198,12 +198,12 @@ button.more {
 	display: block;
 	margin: 0 auto 20px auto;
 	border-style:none;
-	background-image:url("../images/mobile/more-button.png");
+	background-image:url(../images/mobile/more-button.png);
 }
 
 div.footer {
 	height:60px;
-	background: url("../images/mobile/footer-strip.png") repeat-x; 
+	background: url(../images/mobile/footer-strip.png) repeat-x; 
 	color:#fff;
 	text-decoration: none;
 	font-size:12px;	
@@ -228,6 +228,7 @@ div.footer span a {
 	display:inline;	
 }
 
+
 /* Login/Signup Page */
 
 form.login-signup {
@@ -250,8 +251,15 @@ form.login-signup input.field {
 	font-size:16px;
 }
 
+textarea.terms {
+	width:98%;
+	margin-bottom:10px;
+	height:70px;
+	font-size:16px;
+}
+
 form.login-signup button {
-	background-image:url("../images/mobile/blue-button.png");
+	background-image:url(../images/mobile/blue-button.png);
 	width:145px;
 	height:44px;
 	border-style:none;
@@ -264,21 +272,4 @@ form.login-signup button {
 
 form.signup button {
 	margin-bottom:0px;
-}
-
-div.terms {
-	background-color:#fff;
-	border-left:1px solid #d2d2d2;
-	border-right:1px solid #d2d2d2;
-	overflow:hidden;
-	margin:0 3%;
-	padding-bottom:20px;
-	padding-right:5%
-}
-
-div.terms a {
-	float:right;
-	
-	color:#333;
-	
 }

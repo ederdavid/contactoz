@@ -11,6 +11,9 @@
 <%= text_field_tag(:email, params[:email], :class => "field") %> 
 	<label for="password"> Confirmación de Contraseña </label>
 <%= password_field_tag(:password, params[:password], :class => "field") %>
+
+<div class="terms" align="center">Terms of Service</div>
+	<textarea id="terms-of-service" class="terms" readonly="readonly"> Estos son los términos de servicio, que describen el uso de esta aplicación </textarea>
 	
 	<button>Login</button>
 
