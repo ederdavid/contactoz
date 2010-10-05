@@ -19,4 +19,5 @@ twitter_oauth
 sunspot_rails
 text -v 0.2.0
 levenshtein -v 0.2.0
+scrapi -v 1.2.0
 feedzirra
