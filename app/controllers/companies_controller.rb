@@ -25,45 +25,45 @@ end
 def clean
     @fd = File.open("/home/mauricio/contacto/MexicoJSON")
     @JSONMexicoInfo = ActiveSupport::JSON.decode(@fd.read)
-    @companies = Company.find(:all, :conditions => ["company_location_id IS NOT NULL"])
+    @companies = Company.all
     @companiesCount = Company.count
     @companyLocationCount = CompanyLocation.count
     for i in @companies
-        @jcompanies = Company.find(:all, :conditions => ["company_name like ? AND company_location_id IS NOT NULL", "%#{i.company_name}%"], :limit => 30)#@companiesCount)
-        for j in @jcompanies
-            @name = j.company_name
-            if @name == nil
-                @name = ""
-            end
-            #filtro de estado y municipio
-            for estado in @JSONMexicoInfo.keys
-                @name = @name.sub(estado, "").strip()
-                for municipio in @JSONMexicoInfo[estado]
-                    @name = @name.sub(municipio, "").strip()
+        @jcompanies = Company.find(:all, :conditions => ["company_name like ? AND company_location_id IS NULL", "%#{i.company_name}%"], :limit => 30)#@companiesCount)
+        if i != nil && @jcompanies != nil
+            for j in @jcompanies
+                @name = j.company_name
+                if @name == nil
+                    @name = ""
                 end
-            end
-            #filtro de region
-            @name = @name.sub(/(DEL)? (NORTE|SUR|ESTE|OESTE|NORESTE|SURESTE|NOROESTE|SUROESTE|CENTRO)/, "").strip()
-            #filtro de SA DE CV
-            @name = @name.sub(/S(.?)A(.?) DE C(.?)V(.?)/, "").strip()
-            if i.company_name.length <= (@name.length + 4) 
-                @stringDistance = Text::Levenshtein.distance(i.company_name, @name)
-                if (@name.length*0.2) < (Float(@stringDistance)/Float(@name.length))*@name.length
-                    begin
-                        @cl = CompanyLocation.find_by_company_id(i.id)
-                        if @cl
-                            @cl.company_id = i.id
-                            @cl.city = j.company_city
-                            @cl.address = j.company_address
-                            @cl.state = j.company_state
-                            @cl.phone_number = j.company_phone
-                            @i = i
-                            @i.company_location_id = @cl.id
-                            @i.save
-                            @j = j
-                            @j.company_location_id = @cl.id
-                            @j.save
-                        else
+                #filtro de estado y municipio
+                for estado in @JSONMexicoInfo.keys
+                    @name = @name.sub(estado, "").strip()
+                    for municipio in @JSONMexicoInfo[estado]
+                        @name = @name.sub(municipio, "").strip()
+                    end
+                end
+                #filtro de region
+                @name = @name.sub(/(DEL)? (NORTE|SUR|ESTE|OESTE|NORESTE|SURESTE|NOROESTE|SUROESTE|CENTRO)/, "").strip()
+                #filtro de SA DE CV
+                @name = @name.sub(/S(.?)A(.?) DE C(.?)V(.?)/, "").strip()
+                if i.company_name != nil && @name != ""
+                    if i.company_name.length <= (@name.length + 4) 
+                        @stringDistance = Text::Levenshtein.distance(i.company_name, @name)
+                        if (@name.length*0.2) < (Float(@stringDistance)/Float(@name.length))*@name.length
+                            @cl = CompanyLocation.find_by_company_id(i.id)
+                            if @cl == nil
+                                @cl = CompanyLocation.new
+                                @cl.company_id = i.id
+                                @cl.city = j.company_city
+                                @cl.address = j.company_address
+                                @cl.state = j.company_state
+                                @cl.phone_number = j.company_phone
+                                @cl.save
+                                @i = i
+                                @i.company_location_id = @cl.id
+                                @i.save
+                            end
                             @cl = CompanyLocation.new
                             @cl.company_id = i.id
                             @cl.city = j.company_city
@@ -71,12 +71,9 @@ def clean
                             @cl.state = j.company_state
                             @cl.phone_number = j.company_phone
                             @cl.save
-                            @i = i
-                            @i.company_location_id = @cl.id
-                            @i.save
                             @j = j
                             @j.company_location_id = @cl.id
-                            @j.save
+                            @j.save                                
                         end
                     end
                 end
