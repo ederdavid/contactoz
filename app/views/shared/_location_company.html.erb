@@ -1,5 +1,5 @@
 <% @company_selected = Company.find(params[:id]) %>
-<% @location_group = CompanyLocation.find(:all,:conditions => ["company_id = ?", params[:id] ]) %>
+<% @location_group = CompanyLocation.find(:all,:conditions => ["company_id = ? OR id = ?", params[:id], @company_selected.company_location_id ]) %>
 
   <div class="middle"> 
                     <div class="navigation"> 
