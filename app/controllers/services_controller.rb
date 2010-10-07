@@ -80,9 +80,6 @@ class ServicesController < ApplicationController
            end
       end
     end
-
-
-
   end
 
      # POST /homes
