@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
     begin
     @product = Product.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-    return render :xml => "<WARNING>there is not a company for that id</WARNING>"
+    return render :xml => "<WARNING>there is not a product for that id</WARNING>"
     end
     @signature = params[:signature]
     #@auth = false
