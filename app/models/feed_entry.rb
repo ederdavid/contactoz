@@ -1,20 +1,19 @@
 class FeedEntry < ActiveRecord::Base
 
  searchable do
-    text    :name
-    text    :summary
+    text    :name,  :boost=>2 
+    text    :summary, :boost=>2 
     text    :content
+   time    :published_at
   end
+
+
+	def self.test_search
+		@search = FeedEntry.search { keywords 'acerca mexico Monterrey', :minimum_match => 2 }
+	end
 
 require 'nokogiri'
 require 'open-uri'
-
-# searchable do
-#    text    :summary
-#    text    :name
-#    text  :content
-#    time    :published_at
-#  end
 
 
   def self.update_from_feed(feed_url)

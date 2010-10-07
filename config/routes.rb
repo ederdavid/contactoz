@@ -1,7 +1,9 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :landings
 
+  map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
 
+ map.resources :users
  map.resources :companies
  map.resources :topics 
  map.resources :wall_posts, :only => [:create]
@@ -15,13 +17,10 @@ ActionController::Routing::Routes.draw do |map|
  map.mobile_session 'mobile_session', :controller => :homes, :action => :mobile_session
 
   
-  map.resources :users
   map.resources :homes
 
-  map.connect 'users/:action.:format', :controller => 'users', :action => /[a-z_]+/i
 
   map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
-  map.connect 'users.:format', :controller => 'users', :action => 'apiSearch'
 
   map.connect 'companies.:format', :controller => 'companies', :action => 'apiSearch'
   map.connect 'contacts.:format', :controller => 'contacts', :action => 'apiSearch'
@@ -50,7 +49,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :contacts
   map.resources :user_sessions
 
-  map.resources :users, :collection => {:borrar => :delete}
+  #map.resources :users, :collection => {:borrar => :delete}
   map.resources :homes, :collection => {:cart => :put}
   map.connect '/cart', :controller => 'contacts'
   map.connect '/add_post', :controller => 'users', :action => 'add_post'

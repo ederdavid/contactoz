@@ -16,4 +16,17 @@ class Topic < ActiveRecord::Base
        end
   end
 
+
+        def  self.update_tags
+
+	    #@topic = Topic.create(:name=> "Manufacturas Varias", :related=>"obreros máquinas obra fábricas mantenimiento ingeniería producción ensamblaje cadena producción suministro", :specific_bool=>4)
+	   #@topic.save
+	   @tags = Topic.find(124).related
+    
+		# @tags = @topic.related
+	   @search = FeedEntry.search { keywords @tags, :minimum_match => 2 }
+
+        end
+
+
 end
