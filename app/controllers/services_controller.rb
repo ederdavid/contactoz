@@ -33,8 +33,8 @@ class ServicesController < ApplicationController
       format.html # show.html.erb
       if params[:app_key] == @app_key #and @auth
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
-               if @service
+               #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+               if @service != nil
                    format.xml  { render :xml => @service.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :created_at, :updated_at]) }
                else
                    format.xml  { render :xml => "<WARNING>there is not a service for that if</WARNING>" }
