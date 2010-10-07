@@ -18,8 +18,6 @@ ActionController::Routing::Routes.draw do |map|
 
   
   map.resources :homes
-
-
   map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i
 
   map.connect 'companies.:format', :controller => 'companies', :action => 'apiSearch'

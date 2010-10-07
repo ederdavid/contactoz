@@ -2,8 +2,8 @@ class CompaniesController < ApplicationController
     require 'text/levenshtein'
     require 'fastercsv'
     layout 'application'
-    set_tab :companies
     $global_page = 20
+
 
 def clInCNil
     @companies = Company.find(:all, :conditions => ["company_location_id IS NOT NULL"])
@@ -18,6 +18,22 @@ def clNil
     @companiesLocations = CompanyLocation.all
     for i in @companiesLocations
         @companiesLocations.destroy
+    end
+end
+
+
+def root
+    @companies= Company.all
+    for i in @companies
+        @i = i
+        @companyLocation = CompanyLocation.find_by_company_id(i.id)
+        if @companyLocation != nil
+            @i.root = true
+            @i.save
+        else
+            @i.root = false
+            @i.save
+        end
     end
 end
 
@@ -190,7 +206,7 @@ def sortByName
        @query = params[:search]
        if @query 
         	if params[:sort].nil?
-			@companies = Company.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_name')
+			@companies = Company.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['(company_name like ? AND root = ?) OR (company_name like ? AND company_location_id is NULL)', "%#{params[:search]}%", "t", "%#{params[:search]}%"], :order => 'company_name')
 		end       
        end
        respond_to do |format|
