@@ -62,11 +62,9 @@ skip_before_filter :verify_authenticity_token
         if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
                if @user
-		format.xml  { render :xml => "<NOTWARNING> #{@app_key}#{@parameters}#{@secret} </NOTWARNING>" }
-                   #format.xml  { render :xml => @user.to_xml(:only => [:id, :profession, :screen_name, :first_name, :last_name, :email, :level, string]) }
+                   format.xml  { render :xml => @user.to_xml(:only => [:id, :profession, :screen_name, :first_name, :last_name, :email, :level, string]) }
                else
-		format.xml  { render :xml => "<NOTWARNING> #{@app_key}#{@parameters}#{@secret} </NOTWARNING>" }	
-                   #format.xml  { render :xml => "<WARNING>there is not a user for that id</WARNING>" }
+                   format.xml  { render :xml => "<WARNING>there is not a user for that id</WARNING>" }
                end
            else
                @test = Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
