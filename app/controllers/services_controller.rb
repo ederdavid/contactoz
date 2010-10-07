@@ -48,7 +48,6 @@ class ServicesController < ApplicationController
 # GET /services.xml?search=""
   def apiSearch
     if params[:search]
-
 	@service = Service.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"], :limit => "10")
     end
     if params[:buy] && params[:search]
@@ -57,7 +56,6 @@ class ServicesController < ApplicationController
     if params[:sell] && params[:search]
         @service = Service.find(:all, :conditions => ['sell LIKE ? AND name LIKE ?', "#{params[:sell]}", "%#{params[:search]}%" ], :limit => "20")
     end
-
     @signature = params[:signature]
     params = request.query_parameters.reject {|key, value| key.to_s == "signature"}
     params.sort_by {|key, value| key.to_s.underscore}.join('')
