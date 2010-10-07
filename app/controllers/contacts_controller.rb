@@ -105,7 +105,7 @@ class ContactsController < ApplicationController
       format.html # show.html.erb
       if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               format.xml  { render :xml => @contact.to_xml(:only => [:id, :name, :title, :city, :department, :hierarchy]) }
+               format.xml  { render :xml => @contact.to_xml(:only => [:id, :name, :title, :city, :state, :country, :company_id, :department, :number, :email]) }
                #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
            else
                @test = Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
