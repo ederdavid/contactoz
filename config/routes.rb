@@ -1,7 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
   map.resources :landings
 
-
  map.resources :companies
  map.resources :topics 
  map.resources :wall_posts, :only => [:create]

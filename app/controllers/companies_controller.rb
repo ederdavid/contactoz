@@ -21,6 +21,21 @@ def clNil
     end
 end
 
+def root
+    @companies= Company.all
+    for i in @companies
+        @i = i
+        @companyLocation = CompanyLocation.find_by_company_id(i.id)
+        if @companyLocation != nil
+            @i.root = true
+            @i.save
+        else
+            @i.root = false
+            @i.save
+        end
+    end
+end
+
 
 def clean
     @fd = File.open("/home/mauricio/contacto/MexicoJSON")
@@ -190,7 +205,7 @@ def sortByName
        @query = params[:search]
        if @query 
         	if params[:sort].nil?
-			@companies = Company.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['company_name like ?', "%#{params[:search]}%"], :order => 'company_name')
+			@companies = Company.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['(company_name like ? AND root = ?) OR (company_name like ? AND company_location_id is NULL)', "%#{params[:search]}%", "t", "%#{params[:search]}%"], :order => 'company_name')
 		end       
        end
        respond_to do |format|

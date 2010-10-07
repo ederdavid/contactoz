@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101004233803) do
+ActiveRecord::Schema.define(:version => 20101006214614) do
 
   create_table "access_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20101004233803) do
     t.string   "company_city"
     t.integer  "company_location_id"
     t.string   "source"
+    t.string   "root"
   end
 
   add_index "companies", ["company_name"], :name => "index_companies_on_company_name"
@@ -212,18 +213,6 @@ ActiveRecord::Schema.define(:version => 20101004233803) do
   create_table "displays", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "feed_entries", :force => true do |t|
-    t.string   "name"
-    t.text     "summary"
-    t.string   "url"
-    t.datetime "published_at"
-    t.string   "guid"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.text     "content"
-    t.string   "categories"
   end
 
   create_table "feeds", :force => true do |t|
@@ -381,5 +370,20 @@ ActiveRecord::Schema.define(:version => 20101004233803) do
   end
 
   add_index "users", ["perishable_token"], :name => "index_users_on_perishable_token"
+
+  create_table "usuarios", :force => true do |t|
+    t.string   "login",                     :limit => 40
+    t.string   "name",                      :limit => 100, :default => ""
+    t.string   "email",                     :limit => 100
+    t.string   "crypted_password",          :limit => 40
+    t.string   "salt",                      :limit => 40
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remember_token",            :limit => 40
+    t.datetime "remember_token_expires_at"
+    t.string   "api_key",                   :limit => 40,  :default => ""
+  end
+
+  add_index "usuarios", ["login"], :name => "index_usuarios_on_login", :unique => true
 
 end
