@@ -76,7 +76,7 @@ class ProductsController < ApplicationController
                    format.xml  { render :xml => "<WARNING>there is not a product for that id</WARNING>" }
                end
            else
-               @test = Digest::MD5.hexdigest('#{@app_key}#{@parameters}#{@secret}').to_s
+               @test = Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
                format.xml  { render :xml => "<WARNING>El signature debe ser: #{@test} </WARNING>" }
            end
       end
