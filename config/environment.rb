@@ -43,6 +43,7 @@ Rails::Initializer.run do |config|
   config.gem "oauth2"
   config.gem "foreverman-authlogic-connect", :lib => 'authlogic-connect'
   config.gem "twitter_oauth"
+  config.gem 'mini_fb'
   config.gem 'sunspot_rails', :version => '~> 1.1', :lib => 'sunspot/rails'
   config.gem 'text'
   config.gem 'levenshtein'

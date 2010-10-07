@@ -33,11 +33,11 @@ class ServicesController < ApplicationController
       format.html # show.html.erb
       if params[:app_key] == @app_key #and @auth
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
-               if @service
+               #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+               if @service != nil
                    format.xml  { render :xml => @service.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :created_at, :updated_at]) }
                else
-                   format.xml  { render :xml => "<WARNING>there is not a product for that if</WARNING>" }
+                   format.xml  { render :xml => "<WARNING>there is not a service for that if</WARNING>" }
                end
            end
       end
@@ -45,19 +45,19 @@ class ServicesController < ApplicationController
   end
 
 # GET /services.xml?search=""
-# GET /products.xml?search=""
+# GET /services.xml?search=""
   def apiSearch
     if (params[:search])
-       @service = Product.find(params[:search])
+       @service = Service.find_by_name(params[:search])
     end
     if params[:buy] && params[:sell]
-        @service = Product.find(:all, :conditions => ['buy LIKE ? AND sell LIKE ?', "#{params[:buy]}", "#{params[:sell]}"], :limit => "20")
+        @service = Service.find(:all, :conditions => ['buy LIKE ? AND sell LIKE ?', "#{params[:buy]}", "#{params[:sell]}"], :limit => "20")
     end
     if params[:buy]
-        @service = Product.find(:all, :conditions => ['buy LIKE ?', "#{params[:buy]}"], :limit => "20")
+        @service = Service.find(:all, :conditions => ['buy LIKE ?', "#{params[:buy]}"], :limit => "20")
     end
     if params[:sell]
-        @service = Product.find(:all, :conditions => ['sell LIKE ?', "#{params[:sell]}"], :limit => "20")
+        @service = Service.find(:all, :conditions => ['sell LIKE ?', "#{params[:sell]}"], :limit => "20")
     end
 
     @signature = params[:signature]
@@ -71,10 +71,10 @@ class ServicesController < ApplicationController
       if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
 	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
-               if @service == nil
+               if @service != nil
                    format.xml  { render :xml => @service.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
                else
-                   format.xml  { render :xml => "<WARNING>there is not such a product</WARNING>" }
+                   format.xml  { render :xml => "<WARNING>there is not such a service</WARNING>" }
                end
            end
       end
@@ -90,10 +90,10 @@ class ServicesController < ApplicationController
       if @service.save
 
         format.html {  }
-        format.xml  { render :xml => @product }
+        format.xml  { render :xml => @service }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @product }
+        format.xml  { render :xml => @service }
       end
     end
   end
@@ -110,10 +110,10 @@ class ServicesController < ApplicationController
         #@service.update_followers
 
         format.html {  }
-        format.xml  { render :xml => @product }
+        format.xml  { render :xml => @service }
       else
         format.html { render :action => "new" }
-        format.xml  { render :xml => @product }
+        format.xml  { render :xml => @service }
       end
     end
   end

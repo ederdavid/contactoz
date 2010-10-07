@@ -48,7 +48,7 @@ class ProductsController < ApplicationController
     begin
     @product = Product.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-    return render :xml => "<WARNING>there is not a company for that id</WARNING>"
+    return render :xml => "<WARNING>there is not a product for that id</WARNING>"
     end
     @signature = params[:signature]
     #@auth = false
@@ -70,7 +70,7 @@ class ProductsController < ApplicationController
       if params[:app_key] == @app_key #and @auth
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
 	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
-               if @product
+               if @product != nil
                    format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
                else
                    format.xml  { render :xml => "<WARNING>there is not a product for that id</WARNING>" }
@@ -83,7 +83,7 @@ class ProductsController < ApplicationController
 # GET /products.xml?search=""
   def apiSearch
     if (params[:search])
-       @product = Product.find(params[:search])
+       @product = Product.find_by_name(params[:search])
     end
     if params[:buy] && params[:sell]
         @product = Product.find(:all, :conditions => ['buy LIKE ? AND sell LIKE ?', "#{params[:buy]}", "#{params[:sell]}"], :limit => "20")
@@ -105,7 +105,7 @@ class ProductsController < ApplicationController
       if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
 	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
-               if @product == nil
+               if @product != nil
                    format.xml  { render :xml => @product.to_xml(:only => [:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
                else
                    format.xml  { render :xml => "<WARNING>there is not such a product</WARNING>" }

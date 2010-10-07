@@ -78,7 +78,8 @@ class ContactsController < ApplicationController
       format.html # show.html.erb
       if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               if @contact
+               #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+               if @contact != nil
                    format.xml  { render :xml => @contact.to_xml(:only => [:id, :name, :title, :city, :department, :hierarchy]) }
                else
                    format.xml  { render :xml => "<WARNING>there is not a contact for that id</WARNING>" }
@@ -102,7 +103,7 @@ class ContactsController < ApplicationController
       if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
                format.xml  { render :xml => @contact.to_xml(:only => [:id, :name, :title, :city, :department, :hierarchy]) }
-                #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+               #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
            end
       end
     end
