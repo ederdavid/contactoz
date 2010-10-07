@@ -11,6 +11,23 @@ class Company < ActiveRecord::Base
   end
 
 
+def self.add_root
+    @companies= Company.all
+    for i in @companies
+        @i = i
+        @companyLocation = CompanyLocation.find_by_company_id(i.id)
+        if @companyLocation != nil
+            @i.root = true
+            @i.save
+        else
+            @i.root = false
+            @i.save
+        end
+    end
+end
+
+
+
   def find_related_advertisements
                @topic_array = Array.new         
         	@topic = Topic.find(:all, :conditions => ['id in (select distinct topic_id from company_categorizations where company_id = ?)', self])

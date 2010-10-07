@@ -22,7 +22,7 @@ def clNil
 end
 
 
-def root
+def self.root
     @companies= Company.all
     for i in @companies
         @i = i

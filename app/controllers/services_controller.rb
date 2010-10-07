@@ -47,17 +47,17 @@ class ServicesController < ApplicationController
 # GET /services.xml?search=""
 # GET /services.xml?search=""
   def apiSearch
-    if (params[:search])
-       @service = Service.find_by_name(params[:search])
+    if params[:search]
+
+	@service = Service.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"], :limit => "10")
+
+       #@service = Service.find_by_name(params[:search])
     end
-    if params[:buy] && params[:sell]
-        @service = Service.find(:all, :conditions => ['buy LIKE ? AND sell LIKE ?', "#{params[:buy]}", "#{params[:sell]}"], :limit => "20")
+    if params[:buy] && params[:search]
+        @service = Service.find(:all, :conditions => ['buy LIKE ? AND name LIKE ?', "#{params[:buy]}", "%#{params[:search]}%"], :limit => "20")
     end
-    if params[:buy]
-        @service = Service.find(:all, :conditions => ['buy LIKE ?', "#{params[:buy]}"], :limit => "20")
-    end
-    if params[:sell]
-        @service = Service.find(:all, :conditions => ['sell LIKE ?', "#{params[:sell]}"], :limit => "20")
+    if params[:sell] && params[:search]
+        @service = Service.find(:all, :conditions => ['sell LIKE ? AND name LIKE ?', "#{params[:sell]}", "%#{params[:search]}%" ], :limit => "20")
     end
 
     @signature = params[:signature]
@@ -79,6 +79,9 @@ class ServicesController < ApplicationController
            end
       end
     end
+
+
+
   end
 
      # POST /homes
