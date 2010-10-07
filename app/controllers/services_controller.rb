@@ -78,7 +78,7 @@ class ServicesController < ApplicationController
                end
            else
                @test = Digest::MD5.hexdigest('#{@app_key}#{@parameters}#{@secret}').to_s
-               format.xml  { render :xml => "<WARNING>El signature debe ser: #{@test} </WARNING" }
+               format.xml  { render :xml => "<WARNING>El signature debe ser: #{@test} </WARNING>" }
            end
       end
     end
