@@ -227,6 +227,9 @@ def sortByName
                    format.xml  { render :xml => "<WARNING>there is not a company for that id</WARNING>" }
                end
 		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s 
+           else
+               @test = Digest::MD5.hexdigest('#{@app_key}#{@parameters}#{@secret}').to_s
+               format.xml  { render :xml => "<WARNING>El signature debe ser: #{@test} </WARNING>" }
            end
         end
     end
@@ -247,6 +250,9 @@ def sortByName
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
                format.xml  { render :xml => @company.to_xml(:only => [:id, :company_name, :company_city, :company_state, :updated_at]) }
 		#format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+           else
+               @test = Digest::MD5.hexdigest('#{@app_key}#{@parameters}#{@secret}').to_s
+               format.xml  { render :xml => "<WARNING>El signature debe ser: #{@test} </WARNING>" }
            end
         end
     end

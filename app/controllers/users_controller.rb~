@@ -14,8 +14,6 @@ skip_before_filter :verify_authenticity_token
     end
   end
 
-
-
   # GET /users
   # GET /users.xml
   def index
@@ -30,17 +28,10 @@ skip_before_filter :verify_authenticity_token
   # GET /users/1.xml
   def infoUser
 
-    ############
-    #sacamos estos por post
-    #user_session[email]=cristinarandall@gmail.com&user_session[password]=12341234
-    ###########
-
     @user_session = UserSession.new(params[:user_session])
-    @email = "mauricio_murga@hotmail.com"#params[:user_session][:email]
-     #@email = "cristinarandall@gmail.com"
+    @email = params[:user_session][:email]
 
     if @user_session.save
-
         @user = User.find(:all, :conditions => ['email = ?', @email], :limit => "1")
         @user_session.destroy
     end
@@ -55,14 +46,17 @@ skip_before_filter :verify_authenticity_token
         if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
                if @user
-                   format.xml  { render :xml => @user.to_xml(:only => [:id, ':profession', :screen_name, ':first_name', ':last_name', ':email', ':level', ':points']) }
+                   format.xml  { render :xml => @user.to_xml(:only => [:id, :profession, :screen_name, :first_name, :last_name, :email, :level, :points]) }
                else
                    format.xml  { render :xml => "<WARNING>there is not a user for that id</WARNING>" }
                end
-               #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+           else
+               @test = Digest::MD5.hexdigest('#{@app_key}#{@parameters}#{@secret}').to_s
+               format.xml  { render :xml => "<WARNING>El signature debe ser: #{@test} </WARNING>" }
            end
         end
     end
+
  end
 
   # GET /users/1
@@ -89,7 +83,9 @@ skip_before_filter :verify_authenticity_token
                else
                    format.xml  { render :xml => "<WARNING>there is not a user for that id</WARNING>" }
                end
-	       #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
+           else
+               @test = Digest::MD5.hexdigest('#{@app_key}#{@parameters}#{@secret}').to_s
+               format.xml  { render :xml => "<WARNING>El signature debe ser: #{@test} </WARNING>" }
            end
         end
     end
@@ -154,7 +150,6 @@ skip_before_filter :verify_authenticity_token
         Pusher.app_id = '1749'
         Pusher.key = '92a18c1392e252d076c6'
         Pusher.secret = '2a253676fad3558f8446'
-
         @name = params[:name]
         @description = params[:description]
         @contact_name = params[:contact_name]
@@ -163,26 +158,15 @@ skip_before_filter :verify_authenticity_token
         @contact_title = params[:contact_title]
         @type =params[:type]
 
-        #if @type.equals("service")
-
         @feed = Feed.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
                 if @feed.save
                                 Pusher['post'].trigger('thing-create', "string_passed")
-				#Pusher['post'].trigger('thing-create', @service.attributes)
                 end
-        #else
-        #@product = Product.new(:name => @name, :description => @description, :contact_name => @contact_name, :contact_phone => @contact_phone, :contact_email => @contact_email, :contact_title => @contact_title)
-        #       if @product.save
-        #               Pusher['things'].trigger('thing-create', @product.attributes)
-        #       end
-        #end
-
      end
 
   # GET /users/1/edit
   def edit
     @user = current_user
-#User.find(params[:id])
   end
 
    def buy
@@ -196,48 +180,70 @@ skip_before_filter :verify_authenticity_token
   end
 
   def invite
-      @action = Action.new({:points => 2, :entity_changed => "user" , :action => "invite", :user_id => current_user.id })
-      @action.save
-      @user = User.find(current_user.id)
-      current_user.points= 5 + @user.points
-      current_user.save
-      UserMailer.deliver_invite_email(params[:email])
+
+      #deactivate points 
+      #@action = Action.new({:points => 2, :entity_changed => "user" , :action => "invite", :user_id => current_user.id })
+      #@action.save
+      #@user = User.find(current_user.id)
+      #current_user.points= 5 + @user.points
+      #current_user.save
+
+
+      if params[:email_0]
+	      UserMailer.deliver_invite_email(params[:email_0])
+      end
+      if params[:email_1]
+              UserMailer.deliver_invite_email(params[:email_1])
+      end
+      if params[:email_2]
+              UserMailer.deliver_invite_email(params[:email_2])
+      end
+      if params[:email_3]
+              UserMailer.deliver_invite_email(params[:email_3])
+      end
+      if params[:email_4]
+              UserMailer.deliver_invite_email(params[:email_4])
+      end
+      if params[:email_5]
+              UserMailer.deliver_invite_email(params[:email_5])
+      end
+
       redirect_to root_url
   end
   # POST /users
   # POST /users.xml
   def create
-
-  @firstname = params[:firstname]
-  @lastname = params[:lastname]
-  @password = params[:password]
-  @email = params[:email]
-
-
-    @user = User.new(:firstname=> @firstname, :lastname=> @lastname, :email => @email, :password => @password)
+    @user = User.new(
+      :firstname=> params[:firstname], 
+      :lastname=> params[:lastname], 
+      :email => params[:email], 
+      :password => params[:password]
+    )
     @user.points = 0
-#    respond_to do |format|
-    if @user.save_without_session_maintenance
-      @user.deliver_activation_instructions!
-      flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
-      redirect_to actions_url
-    else
-      if @user.save
-       flash[:notice]= "Registration successful."
-       redirect_to actions_url
-  
-      #format.html { redirect_to(@home, :notice => 'User was successfully created.') }
-      #format.xml  { render :xml => @home, :status => :created, :location => @user }
+    
+    @user.save do |result|
+      if result
+        
+        flash[:notice] = "Your account has been created. Please check your e-mail for your account activation instructions!"
+        
+        #If user signs up with twitter/facebook/linked_in
+        #skip sending email and go to 'users/:id' page
+        if @user.authenticated_with.empty?
+          @user.deliver_activation_instructions!	
+          redirect_to actions_url and return
+        else
+          session[:current_user] = @user
+          # seesion = UserSession.find
+          #        puts seesion
+          #        puts seesion.record
+          #        puts result
+          redirect_to user_path(@user) and return
+        end
 
+        redirect_to actions_url and return
       else
-         #render :action => 'new'
-         redirect_to actions_url
-
-#        format.html { render :action => "new" }
-#        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
-
-      #end
-    end
+        redirect_to actions_url and return
+      end
     end
   end
 
@@ -246,21 +252,12 @@ skip_before_filter :verify_authenticity_token
   def update
     @user = current_user
 
-#User.find(params[:id])
-
-#    respond_to do |format|
       if @user.update_attributes(params[:user])
          flash[:notice] = "Successfully updated profile."  
          redirect_to root_url  
-
-	#format.html { redirect_to(@user, :notice => 'User was successfully updated.') }
-        #format.xml  { head :ok }
       else
 	render :action => 'edit'
-        #format.html { render :action => "edit" }
-        #format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
       end
-    #end
   end
 
   # DELETE /users/1
@@ -274,4 +271,7 @@ skip_before_filter :verify_authenticity_token
       format.xml  { head :ok }
     end
   end
-end
+
+
+
+end 

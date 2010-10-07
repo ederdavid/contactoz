@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101007035237) do
+ActiveRecord::Schema.define(:version => 20101007183944) do
 
   create_table "access_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -181,6 +181,8 @@ ActiveRecord::Schema.define(:version => 20101007035237) do
     t.string   "department"
     t.string   "hierarchy"
     t.string   "address"
+    t.string   "number"
+    t.string   "email"
   end
 
   add_index "contacts", ["company_id"], :name => "index_contacts_on_company_id"
