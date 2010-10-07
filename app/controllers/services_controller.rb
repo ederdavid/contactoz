@@ -50,8 +50,6 @@ class ServicesController < ApplicationController
     if params[:search]
 
 	@service = Service.find(:all, :conditions => ['name LIKE ?', "%#{params[:search]}%"], :limit => "10")
-
-       #@service = Service.find_by_name(params[:search])
     end
     if params[:buy] && params[:search]
         @service = Service.find(:all, :conditions => ['buy LIKE ? AND name LIKE ?', "#{params[:buy]}", "%#{params[:search]}%"], :limit => "20")
