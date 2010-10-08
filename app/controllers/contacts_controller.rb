@@ -85,7 +85,7 @@ class ContactsController < ApplicationController
                    format.xml  { render :xml => "<WARNING>there is not a contact for that id</WARNING>" }
                end
            else
-               @test = Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
+               @test = Digest::MD5.hexdigest('#{@app_key}#{@parameters}#{@secret}').to_s
                format.xml  { render :xml => "<WARNING>El signature debe ser: #{@test} </WARNING>" }
            end
       end
@@ -107,9 +107,6 @@ class ContactsController < ApplicationController
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
                format.xml  { render :xml => @contact.to_xml(:only => [:id, :name, :title, :city, :department, :hierarchy]) }
                #format.xml  { render :xml => Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s }
-           else
-               @test = Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
-               format.xml  { render :xml => "<WARNING>El signature debe ser: #{@test} </WARNING>" }
            end
       end
     end
