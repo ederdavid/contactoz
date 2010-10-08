@@ -5,7 +5,7 @@
         <table border="1"> 
           <tr>
              <td></td>
-            <td><%= link_to "Company Name", :controller => "companies",:sort=>"true",:search => @query,:action => "sortByName" %></td>
+            <%= link_to " <td> Company Name  </td>", :controller => "companies",:sort=>"true",:search => @query,:action => "sortByName" %>
             <td><%= link_to "Company State", :controller => "companies", :sort=> "true",:search => @query,:action => "sortByState" %></td>
             <td><%= link_to "Company date updated", :controller => "companies", :sort=> "true",:search => @query, :action => "sortByDateUpdated" %></td>
             <td><%= link_to "Number of contacts", :controller => "companies", :sort=> "true",:search => @query,:action => "sortByNumber" %></td>
