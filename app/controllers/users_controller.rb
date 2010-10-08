@@ -24,6 +24,22 @@ skip_before_filter :verify_authenticity_token
     end
   end
 
+  def something
+
+  @user_session = UserSession.new(params[:user_session])
+    @email = params[:user_session][:email] 
+    
+    if @user_session.save
+        @user = User.find(:all, :conditions => ['email = ?', @email], :limit => "1")
+        @user_session.destroy
+    end
+
+   @parameters = params.to_s
+
+
+  end
+
+
   # GET /users/1
   # GET /users/1.xml
   def infoUser
@@ -46,7 +62,7 @@ skip_before_filter :verify_authenticity_token
         if params[:app_key] == @app_key
            if @signature == Digest::MD5.hexdigest("#{@app_key}#{@parameters}#{@secret}").to_s
                if @user
-                   format.xml  { render :xml => @user.to_xml(:only => [:id, :profession, :screen_name, :first_name, :last_name, :email, :level, :points]) }
+                   format.xml  { render :xml => @user.to_xml(:only => [:id, :profession, :screen_name, :first_name, :last_name, :email, :level, string]) }
                else
                    format.xml  { render :xml => "<WARNING>there is not a user for that id</WARNING>" }
                end

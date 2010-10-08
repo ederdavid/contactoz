@@ -5,21 +5,6 @@ class CompaniesController < ApplicationController
     $global_page = 20
 
 
-def clInCNil
-    @companies = Company.find(:all, :conditions => ["company_location_id IS NOT NULL"])
-    for i in @companies
-        @i = i
-        @i.company_location_id = nil
-        @i.save
-    end
-end
-
-def clNil
-    @companiesLocations = CompanyLocation.all
-    for i in @companiesLocations
-        @companiesLocations.destroy
-    end
-end
 
 
 def self.root
