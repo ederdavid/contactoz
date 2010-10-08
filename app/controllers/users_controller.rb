@@ -24,23 +24,6 @@ skip_before_filter :verify_authenticity_token
     end
   end
 
-  def something
-
-  @user_session = UserSession.new(params[:user_session])
-    @email = params[:user_session][:email] 
-    
-    if @user_session.save
-        @user = User.find(:all, :conditions => ['email = ?', @email], :limit => "1")
-        @user_session.destroy
-    end
-
-   @parameters = params.to_s
-
-
-  end
-
-
-  # GET /users/1
   # GET /users/1.xml
   def infoUser
 
@@ -96,17 +79,6 @@ skip_before_filter :verify_authenticity_token
                format.xml  { render :xml => "<WARNING>El signature debe ser: #{@test} </WARNING>" }
            end
         end
-    end
-  end
-
-  # GET /users/new
-  # GET /users/new.xml
-  def new
-    @user = User.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @user }
     end
   end
 
@@ -248,17 +220,6 @@ skip_before_filter :verify_authenticity_token
       end
   end
 
-  # DELETE /users/1
-  # DELETE /users/1.xml
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(users_url) }
-      format.xml  { head :ok }
-    end
-  end
 
 
 
