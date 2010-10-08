@@ -36,8 +36,9 @@ class ActionsController < ApplicationController
   end
 
   # GET /actions/1/edit
-  def edit
-    @action = Action.find(params[:id])
+  def enter 
+   
+   # @action = Action.find(params[:id])
   end
 
   # POST /actions

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101007183944) do
+ActiveRecord::Schema.define(:version => 20101008185639) do
 
   create_table "access_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -98,9 +98,9 @@ ActiveRecord::Schema.define(:version => 20101007183944) do
     t.string   "giro"
     t.string   "year_started"
     t.string   "company_city"
-    t.integer  "company_location_id"
     t.string   "source"
     t.string   "root"
+    t.integer  "company_location_id"
   end
 
   add_index "companies", ["company_name"], :name => "index_companies_on_company_name"
@@ -129,6 +129,11 @@ ActiveRecord::Schema.define(:version => 20101007183944) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "company_id"
+    t.string   "giro"
+    t.string   "colonia"
+    t.string   "scian"
+    t.string   "name"
+    t.string   "site"
   end
 
   create_table "companycontacts", :force => true do |t|
