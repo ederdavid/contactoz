@@ -49,7 +49,7 @@ slideMenu('#export_button');
                                 <tr> 
 					<% $allContacts = company.id %>
                                     <td class="center"> <%= check_box_tag "company[]", company.id %></td> 
-                                    <%= link_to "<td>" + company.company_name + "</td>", display_company_path(company) %> 
+                                   <td> <a><%= link_to company.company_name, display_company_path(company) %></a></td> 
                                     <td><a><%= link_to company.contacts.count,  display_company_path(company, :tab => "directorio") %></a></td> 
                                    <td><%= company.company_city %></td>
 				     <td><%= company.company_state %></td> 
