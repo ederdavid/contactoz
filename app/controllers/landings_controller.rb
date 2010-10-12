@@ -16,7 +16,11 @@ class LandingsController < ApplicationController
 
  def new_email
    
-   Prospect.create(:email => params[:email])
+   @prospect = Prospect.create(:email => params[:email])
+   if @prospect.save
+      flash[:notice] = "Recibirá un mensaje antes de su lanzamiento"
+   end
+
        render :action => 'index'
   end
 
