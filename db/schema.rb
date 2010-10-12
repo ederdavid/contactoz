@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101012042647) do
+ActiveRecord::Schema.define(:version => 20101012060551) do
 
   create_table "access_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -273,6 +273,7 @@ ActiveRecord::Schema.define(:version => 20101012042647) do
   create_table "landings", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "email"
   end
 
   create_table "news", :force => true do |t|
