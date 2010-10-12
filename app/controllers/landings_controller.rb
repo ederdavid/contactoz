@@ -14,6 +14,14 @@ class LandingsController < ApplicationController
   end
 
 
+ def new_email
+   
+   Prospect.create(:email => params[:email])
+       render :action => 'index'
+   
+
+  end
+
 
 
 end

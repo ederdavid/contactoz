@@ -1,1 +1,20 @@
+
+
+<% form_tag(new_email_path, :method=>'post') do %>
+
+
+                <div id="emailform">
+
+  
+ <!--                       <input type="text" value="tu correo electrónico" /> -->
+
+
+  <%= text_field_tag :email, "tu correo electrónico" %>
+<%= submit_tag "LISTO", :class => "submit" %>
+
+<!--        <input type="submit" class="submit" value="SUBMIT" /> --> 
+                </div>
+<% end %>
+
+
 <!-- include submit logic here -->

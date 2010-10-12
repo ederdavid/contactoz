@@ -12,7 +12,7 @@ class Company < ActiveRecord::Base
 
 def self.remove_dups
 
-         @similar_companies = Company.find(:all,:conditions=> ['company_name LIKE ?', '%NUEVA WALMART%'])
+         @similar_companies = Company.find(:all,:conditions=> ['company_name LIKE ?', '%BANCO AZTECA%'])
 
 i = 1
 
