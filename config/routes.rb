@@ -54,6 +54,7 @@ ActionController::Routing::Routes.draw do |map|
   map.connect '/add_post', :controller => 'users', :action => 'add_post'
   map.connect '/export_to_csv', :controller => 'companies', :action => 'export_to_csv'
 
+  map.new_email "new_email", :controller => "landings", :action => "new_email"
   map.register "registrar", :controller => "actions", :action => "new"
   map.display_company "display_companies/:id", :controller => "display_companies", :action => "show"  
   map.display_contact "display_contacts/:id", :controller => "displays", :action => "show" 

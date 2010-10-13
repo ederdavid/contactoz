@@ -4,7 +4,8 @@ class News < Feed
 
 	def  self.read_feeds
 
-		@fd = File.open("/Users/tina/Desktop/contact/config/rss")
+               @fd = File.open("/Users/tina/Desktop/contact/config/rss2") 
+		#@fd = File.open("/Users/tina/Desktop/contact/config/rss")
     		@JSONfeeds = ActiveSupport::JSON.decode(@fd.read)
 
   		for feed in @JSONfeeds.keys

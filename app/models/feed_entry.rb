@@ -1,16 +1,13 @@
 class FeedEntry < ActiveRecord::Base
 
- searchable do
-    text    :name,  :boost=>2 
-    text    :summary, :boost=>2 
-    text    :content
-   time    :published_at
-  end
+# searchable do
+#    text    :name,  :boost=>2 
+#    text    :summary, :boost=>2 
+#    text    :content
+#   time    :published_at
+#  end
 
 
-	def self.test_search
-		@search = FeedEntry.search { keywords 'acerca mexico Monterrey', :minimum_match => 2 }
-	end
 
 require 'nokogiri'
 require 'open-uri'
@@ -198,60 +195,8 @@ require 'open-uri'
 
 
 
-
-  # delayed job
-  def self.populate_body
-
-
-require 'nokogiri'
-require 'open-uri'
-
-
-     #scraping_elements = {'proceso'=>'.txt_cajas', 'radioformula'=>'.corp_text' ,'jornada'=>'.article-cont .text'}
-
-  	FeedEntry.find_all_by_content(nil).each do |feed|
-		@feed_url = feed.url.to_s
-		doc = Nokogiri::HTML(open(@feed_url))
-                if doc
-			breakpoint("FeedEntry#url") { @feed_url}
-
-        		if @feed_url.include? "proceso"
-                                @element = doc.at_css("#divExclusivaContenido").text
-				if @element
-      					feed.content = @element
-					feed.save
-				end
-			end
-
-			##to do: elfinanciero
-
-                        #if feed_url.include? "cnnexpansion"
-                        #        feed.update_attribute(:content, doc.at_css("#cambiarFuente").text)
-                        #end
-
-                        #if feed_url.include? "jornada"
-                        #        feed.update_attribute(:content, doc.at_css("#article-cont").text)
-                        #end
-                        #if feed_url.include? "radioformula"
-                        #        feed.update_attribute(:content, doc.at_css(".corp_text").text)
-                        #end
-
-                        #if feed_url.include? "milenio"
-                        #        feed.update_attribute(:content, doc.at_css("#parrafos").text)
-                        #end
-
-                        #if feed_url.include? "milenio"
-                        #        feed.update_attribute(:content, doc.at_css("#parrafos").text)
-                        #end
-
-
-                end
-			
-		end
-
-  end
   
-  private
+  #private
   
   def self.add_entries(entries)
     entries.each do |entry|

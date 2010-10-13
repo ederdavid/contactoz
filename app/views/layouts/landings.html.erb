@@ -16,7 +16,7 @@ getTwitters('tweet', {
   enableLinks: true, 
   ignoreReplies: true, 
   clearContents: true,
-  template: '%text%<br/><a href="http://twitter.com/%user_screen_name%/statuses/%id%/">%time%</a>'
+  template: '%text%<br/><a href="http://twitter.com/kontactoz">%time%</a>'
 });
 </script>
 
@@ -29,32 +29,9 @@ getTwitters('tweet', {
 	
 		<div id="status"><p><span>21</span>% COMPLETO</p><div class="arrow"></div></div>
 		
-		<div id="content">
-			<div class="left">
-				<div class="scroller">
-					<p><%= image_tag("logo_Kontacto.png", :id=>"buslogo", :alt=>"Kontactoz") %> Kontactoz</p>
-					<h1>Bienvenido al Kontactoz, un portal para la gente de negocio</h1>
-					<p> Un base de datos de empresas, productos, servicios, y mucho mas. 
-Este portal es un lugar donde encuentran herramientas para su negocio, las funciones de marketing, ventas, análisis y noticias en directo.
-Para probar esta applicacion, por favor envíe un correo electrónico a contacto@kontactoz.com. Comentarios y sugerencias son bienvenidos</p>
-				</div>
-			</div>
-
-			<div class="right">
-				<div class="twitter">
-<%= image_tag("landing/ajax-loader.gif", :alt=>"") %>
-					<div id="tweet"></div>
-				</div>
-				<div class="twitterbottom"><a href="http://twitter.com/add_username_here">FOLLOW US</a></div>
-			</div>
-		</div>
 		
-		
-		<div id="emailform">
-			<input type="text" value="tu correo electrónico" />
-                 		
-	<input type="submit" class="submit" value="SUBMIT" />
-		</div>
+	<%= yield %>
+	
 	
 	</div>
 	
@@ -64,12 +41,8 @@ Para probar esta applicacion, por favor envíe un correo electrónico a contacto
 			<ul class="social">
 				<li><a href="#"><%= image_tag("landing/facebook.png", :alt=>"") %>
 </a></li>
-				<li><a href="#"><%= image_tag("landing/twitter.png", :alt=>"") %></a></li>
-				<!-- <li><a href="#"><img src="./images/youtube.png" alt="YouTube" /></a></li> -->
-				<!-- <li><a href="#"><img src="./images/digg.png" alt="Digg" /></a></li> -->
-				<!-- <li><a href="#"><img src="./images/posterous.png" alt="Posterous" /></a></li> -->
+				<li><a href="http://twitter.com/kontactoz"><%= image_tag("landing/twitter.png", :alt=>"") %></a></li>
 			</ul>
-			<!-- <p>DESIGNED BY <a href="http://themes.simnor.net">SIMNOR</a>&nbsp;&nbsp;&bull;&nbsp;&nbsp;ICONS BY <a href="http://komodomedia.com/download/#social-network-icon-pack">KOMODO</a></p> -->
 		</div>
 	</div>
 
