@@ -1,3 +1,33 @@
+ <div id="content">
+                        <div class="left">
+                                <div class="scroller">
+                                        <p><%= image_tag("logo_Kontacto.png", :id=>"buslogo", :alt=>"Kontactoz") %> Kontactoz</p>
+                                        <h1>Bienvenido al Kontactoz, un portal para la gente de negocio</h1>
+                                        <p> Se trata de una base de datos de empresas, productos, servicios, y mucho mas. Este portal es un lugar donde encontraran herramientas para su negocio, las funciones de marketing, ventas, análisis y noticias en directo. Para probar esta aplicacion, por favor envíe un correo electrónico aqui. Agradecemos cualquier comentario y sugerencia
+
+</p>
+                                </div>
+                        </div>
+
+                        <div class="right">
+                                <div class="twitter">
+
+                                <%= image_tag("landing/ajax-loader.gif", :alt=>"") %>
+                                        <div id="tweet">       
+
+
+<% if flash[:notice] %> 
+<p style="color:red"> 
+Gracias ... </p>
+<% end %>
+<p><%= flash[:notice] %> </p>
+
+
+</div>
+                                </div>
+                                <div class="twitterbottom"><a href="http://twitter.com/kontactoz">SIGANOS</a></div>
+                        </div>
+                </div>
 
 
 <% form_tag(new_email_path, :method=>'post') do %>
