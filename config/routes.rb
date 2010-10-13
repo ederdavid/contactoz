@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+  map.search "search", :controller => "application"
   map.resources :landings
 
   map.connect 'users/:action', :controller => 'users', :action => /[a-z_]+/i

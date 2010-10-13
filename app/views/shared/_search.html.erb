@@ -1,20 +1,20 @@
 
     <!-- search -->  
                 <div class="search">
-                    <form id="search_form" method="get" action="">
+                    <% form_tag "/search", :controller => 'companies', :action => 'index', :id => "search_form", :method => "get" do %>
                         <div class="wrap">
-                        	<span id="activeSearch" class="active"><a href="#">Contactos</a><small>▼</small><input type="text" id="searchFilter" name="filter" value="Contacts"></span>
-
+                        	<span id="activeSearch" class="active"><a href="#">Contactos</a><small>▼</small><input type="text" id="searchFilter" name="filter" value="Contactos"></span>
 							<ul>
 								<li><a href="#">Contactos</a></li>
 								<li><a href="#">Empresas</a></li>
 								<li><a href="#">Servicios</a></li>
 								<li><a href="#">Productos</a></li>
 							</ul>
-                            <input type="text" data-default=" " name="search" value=" "></input>
+                        
+                            <input type="text" data-default=" " name="search" value=" "></input>                            
                             <button type="submit" value="Search"></button>
                         </div>
-                    </form>
+                    <% end %>
                 </div>
                 <div class="clear"></div>
                 <!--/ search -->  

@@ -1,0 +1,18 @@
+<% @query = params[:search] %>
+
+
+<%= render :partial => 'shared/search' %>
+
+
+
+<!-- \search -->
+<% if @companies %>
+<%= render :partial => "shared/companyresults", :object => @companies %>
+<!-- \results -->
+<% elsif @contacts %>    
+    <%= render :partial => "shared/contactresults", :object => @contacts %>
+    <!-- \results -->
+    <% else %>   
+    <%= render :partial => 'shared/homepage' %> 
+<% end %>
+

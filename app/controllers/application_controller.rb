@@ -14,25 +14,59 @@ class ApplicationController < ActionController::Base
   helper_method :current_user  
 
   def index
-	if params[:type] == "companies"
-		@companies = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:query]}%"], :limit => "20")
-	end
-	if params[:type] == "contacts"
-		@contacts = Contact.find(:all, :conditions => ['name LIKE ?', "%#{params[:query]}%"], :limit => "20")
-	end
-	if params[:type] == "products"
-	end
-	if params[:type] == "services"
-	end
-	if params[:type] == "all"
-		@companies = Company.find(:all, :conditions => ['company_name LIKE ?', "%#{params[:query]}%"], :limit => "10")
-		@contacts = Contact.find(:all, :conditions => ['name LIKE ?', "%#{params[:query]}%"], :limit => "10")
-	end
-	respond_to do |format|
-           format.js
-           format.html # index.html.erb
-           format.xml  { render :xml => @contacts }
+    if params[:filter] == "Empresas"
+       @results = Company.find(:all, :conditions => ['company_name ~* ?', "#{params[:query]}"], :limit => "20")
+       @query = params[:search]
+       if @query 
+        	if params[:sort].nil?
+	        @companies = Company.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['company_name ~* ? AND (root = ? OR company_location_id is NULL)', "#{params[:search]}", "t"], :order => 'company_name')
+        end       
        end
+       respond_to do |format|
+            format.js
+            format.html # index.html.erb
+            format.xml  { render :xml => @companies.to_xml(:only =>[:company_name, :company_phone, :updated_at, :company_city, :company_site, :company_state]) }
+       end
+    elsif params[:filter] == "Contactos"
+       @results = Contact.find(:all, :conditions => ['name ~* ?', "#{params[:query]}"], :limit => "20")
+       @query = params[:search]
+       if @query 
+        	if params[:sort].nil?
+	        @contacts = Contact.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['name ~* ?', "#{params[:search]}"], :order => 'name')
+        end       
+       end
+       respond_to do |format|
+           format.js
+           format.html
+           format.xml  { render :xml => @contacts.to_xml(:only =>[:id, :name, :title, :city, :department, :hierarchy]) }
+       end
+    elsif params[:filter] == "Servicios"
+       @results = Service.find(:all, :conditions => ['name ~* ?', "#{params[:query]}"], :limit => "20")
+       @query = params[:search]
+       if @query 
+        	if params[:sort].nil?
+	        @services = Service.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['name ~* ?', "#{params[:search]}"], :order => 'name')
+        end       
+       end
+       respond_to do |format|
+           format.js
+           format.html
+           format.xml  { render :xml => @services.to_xml(:only =>[:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at, :updated_at]) }
+       end
+    elsif params[:filter] == "Productos"
+       @results = Product.find(:all, :conditions => ['name ~* ?', "#{params[:query]}"], :limit => "20")
+       @query = params[:search]
+       if @query 
+        	if params[:sort].nil?
+	        @services = Product.paginate(:page=>params[:page],:per_page=> 20,:conditions => ['name ~* ?', "#{params[:search]}"], :order => 'name')
+        end       
+       end
+       respond_to do |format|
+           format.js
+           format.html
+           format.xml  { render :xml => @services.to_xml(:only =>[:id, :name, :description, :contact_name, :contact_title, :contact_email, :buy, :sell, :created_at]) }
+       end
+    end
   end
   
   private  
@@ -75,6 +109,6 @@ class ApplicationController < ActionController::Base
   end 
 
   def comany_sort_name(company)
-	@company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name like ?', $parametro], :order => 'company_name')
+	@company.paginate(:page=>params[:page],:per_page=> 3,:conditions => ['company_name ~* ?', $parametro], :order => 'company_name')
   end
 end
